@@ -32,20 +32,10 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 
 TEMPLATE_PATH = Path("templates/brief_template.html")
 
-# ── Trusted sources and preferences ────────────────────────────────────────
-SOURCES = {
-    "core": ["The Economist", "NYT", "BBC", "TechCrunch", "Stratechery", "AI Daily Brief", "TLDR"],
-    "subscriptions": ["The Economist", "NYT", "Lenny's Newsletter"],
-    "explore_pool": ["WIRED", "MIT Technology Review", "Ars Technica", "The Verge", "Aeon", "Quanta Magazine"],
-    "podcasts": ["Lenny's Podcast", "AI Daily Brief", "Acquired", "The Journal (WSJ)"],
-}
-
-CATEGORIES = [
-    {"id": "world", "name": "World & Politics", "badge_class": "world", "number": "01"},
-    {"id": "tech", "name": "Tech & AI", "badge_class": "tech", "number": "02"},
-    {"id": "business", "name": "Business & Finance", "badge_class": "business", "number": "03"},
-    {"id": "science", "name": "Science & Health", "badge_class": "science", "number": "04"},
-]
+# ── Load config ────────────────────────────────────────────────────────────
+_config = json.loads(Path("config.json").read_text())
+SOURCES = _config["sources"]
+CATEGORIES = _config["categories"]
 
 WEATHER_LOCATIONS = [
     {"label": "Home", "icon": "🏠", "query": os.environ.get("WEATHER_LOCATION_HOME", "")},
