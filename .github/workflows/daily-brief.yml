@@ -1,0 +1,56 @@
+name: Daily Brief
+
+on:
+  schedule:
+    # Run at 6:00 AM UTC — adjust to your timezone
+    # For GMT/London: 6:00 AM UTC = 6:00 AM GMT
+    # For EST: use "0 11 * * *" (6 AM EST = 11 AM UTC)
+    # For IST: use "0 0 * * *" (6 AM IST = 12:30 AM UTC, round to midnight)
+    - cron: "0 6 * * *"
+
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate daily brief
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: python generate_brief.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "Daily Brief Bot"
+          git config user.email "daily-brief-bot@users.noreply.github.com"
+
+          DATE=$(date +%Y-%m-%d)
+
+          git add briefs/
+
+          # Only commit if there are changes
+          if git diff --cached --quiet; then
+            echo "No new files to commit"
+          else
+            git commit -m "📰 Daily Brief — $DATE"
+            git push
+          fi

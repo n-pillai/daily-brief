@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — {{ date_str }}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.world { background: var(--world); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>{{ day_name }}, {{ date_str }}</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">{{ brief.summary }}</div>
+</div>
+
+{% if mp3_filename %}
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · ElevenLabs</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="{{ mp3_filename }}"></audio>
+  </div>
+</div>
+{% endif %}
+
+{% for section in brief.sections %}
+<!-- {{ section.number }} · {{ section.name }} -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge {{ section.badge_class }}">{{ section.number }}</span>
+    <span class="section-title">{{ section.name }}</span>
+  </div>
+
+  {% for story in section.stories %}
+  <div class="story">
+    <h3>{% if story.sources and story.sources[0].url %}<a href="{{ story.sources[0].url }}" target="_blank">{{ story.headline }}</a>{% else %}{{ story.headline }}{% endif %}</h3>
+    <div class="source">
+      {% for src in story.sources %}
+        {% if not loop.first %} · {% endif %}
+        {% if src.url %}<a href="{{ src.url }}" target="_blank">{{ src.name }}</a>{% else %}{{ src.name }}{% endif %}
+        {% if src.subscriber %}<span class="sub-badge">Subscriber</span>{% endif %}
+      {% endfor %}
+    </div>
+    <p>{{ story.summary }}</p>
+    {% if story.why_it_matters %}
+    <div class="why-it-matters"><strong>Why it matters:</strong> {{ story.why_it_matters }}</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endfor %}
+
+<!-- 05 · EXPLORE -->
+{% if brief.explore %}
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>{{ brief.explore.source_name }}</strong> — {{ brief.explore.source_description }}
+  </div>
+
+  {% for story in brief.explore.stories %}
+  <div class="story">
+    <h3>{% if story.source_url %}<a href="{{ story.source_url }}" target="_blank">{{ story.headline }}</a>{% else %}{{ story.headline }}{% endif %}</h3>
+    <div class="source">{% if story.source_url %}<a href="{{ story.source_url }}" target="_blank">{{ story.source_name }}</a>{% else %}{{ story.source_name }}{% endif %}</div>
+    <p>{{ story.summary }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<!-- 06 · DEEP DIVE -->
+{% if brief.deep_dive %}
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive — Got More Time?</span>
+  </div>
+
+  <div class="deepdive-intro">
+    If you have extra time today, here are handpicked long reads, new podcast episodes, and your audiobook. Tap any to jump right in.
+  </div>
+
+  {% for item in brief.deep_dive %}
+  <div class="dd-item">
+    <span class="dd-icon">{{ item.icon }}</span>
+    <div class="dd-content">
+      <h4>{% if item.url %}<a href="{{ item.url }}" target="_blank">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h4>
+      <div class="dd-meta">
+        <span class="dd-tag {{ item.type }}">{{ item.tag_label }}</span>
+        {% if item.subscriber %}<span class="sub-badge">Subscriber</span>{% endif %}
+        {{ item.meta }}
+      </div>
+      <p>{{ item.description }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · {{ day_name }}, {{ date_str }}</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR{% if brief.explore %} · {{ brief.explore.source_name }}{% endif %}<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
