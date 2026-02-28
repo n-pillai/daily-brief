@@ -1,22 +1,20 @@
 # The Daily Brief
 
-Automated daily news briefing with AI synthesis and audio narration.
-
-Generates a curated HTML brief + MP3 audio file every morning at 6 AM via GitHub Actions.
+Automated daily news briefing with AI synthesis and audio narration, delivered to your inbox every morning.
 
 ## What it does
 
 1. **Searches** today's news across trusted sources (Economist, NYT, BBC, TechCrunch, Stratechery, TLDR)
 2. **Synthesises** stories via Claude — cross-referencing across outlets, categorising into World & Politics, Tech & AI, Business & Finance, Science & Health
 3. **Curates** an Explore section (rotating discovery sources) and Deep Dive section (podcasts, long reads)
-4. **Narrates** the brief in British English via ElevenLabs, producing an MP3
-5. **Commits** the HTML + MP3 to `briefs/` daily
+4. **Narrates** the brief in British English via Deepgram Aura, producing an MP3
+5. **Emails** the HTML brief to your inbox via Resend
 
 ## Setup
 
-### 1. Create a private GitHub repo
+### 1. Fork or clone this repo
 
-Push this folder to a new private repo on GitHub.
+Keep the repo private if you don't want your daily brief content public.
 
 ### 2. Add secrets
 
@@ -25,7 +23,9 @@ Go to **Settings → Secrets and variables → Actions** and add:
 | Secret | Value |
 |--------|-------|
 | `ANTHROPIC_API_KEY` | Your Anthropic API key |
-| `ELEVENLABS_API_KEY` | Your ElevenLabs API key |
+| `DEEPGRAM_API_KEY` | Your Deepgram API key |
+| `RESEND_API_KEY` | Your Resend API key |
+| `RECIPIENT_EMAIL` | Email address to deliver the brief to |
 
 ### 3. Adjust the schedule
 
@@ -42,21 +42,22 @@ Edit `.github/workflows/daily-brief.yml` and change the cron to match your timez
 Either wait for the cron, or trigger manually:
 **Actions → Daily Brief → Run workflow**
 
-## Reading your brief
+The brief will arrive in your inbox within a few minutes.
 
-Browse to `briefs/` in your repo. Each day produces:
+## Output
 
-- `daily_brief_YYYY-MM-DD.html` — the full brief (open in browser)
-- `daily_brief_YYYY-MM-DD.mp3` — audio narration
-- `daily_brief_YYYY-MM-DD.json` — raw data (for debugging)
-- `daily_brief_YYYY-MM-DD_email.html` — email-safe version
+Each run produces and emails:
 
-Tip: use GitHub Pages on the `briefs/` folder for a nice browsable archive.
+- A structured HTML brief with stories across 4 categories, an Explore section, and a Deep Dive section
+- An MP3 audio narration (~10–15 minutes)
+
+Generated files are not committed to the repo — the brief is delivered via email only.
 
 ## Costs
 
-- **Anthropic API**: ~$0.10–0.30/day (Claude Sonnet, web search)
-- **ElevenLabs**: ~$0.15–0.30/day (~5,000 characters of narration)
+- **Anthropic API**: ~$0.10–0.30/day (Claude Sonnet with web search)
+- **Deepgram**: ~$0.01–0.05/day (Aura TTS, pay-per-character)
+- **Resend**: free tier (3,000 emails/month)
 - **GitHub Actions**: free tier (well under 2,000 min/month)
 
-Total: roughly **$5–15/month**.
+Total: roughly **$3–10/month**.
