@@ -9,8 +9,11 @@ import os
 import re
 import json
 import time
+import smtplib
 import datetime
 import requests
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from pathlib import Path
 from anthropic import Anthropic
 from jinja2 import Template
@@ -19,6 +22,8 @@ from jinja2 import Template
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 DEEPGRAM_API_KEY = os.environ["DEEPGRAM_API_KEY"]
 DEEPGRAM_VOICE = "aura-helios-en"  # British male
+GMAIL_ADDRESS = os.environ["GMAIL_ADDRESS"]
+GMAIL_APP_PASSWORD = os.environ["GMAIL_APP_PASSWORD"]
 
 TODAY = datetime.date.today()
 DATE_STR = TODAY.strftime("%B %d, %Y")         # February 28, 2026
@@ -401,6 +406,25 @@ Return ONLY the complete HTML document, no markdown code fences."""
     return html
 
 
+# ── Step 7: Send email ────────────────────────────────────────────────────
+def send_email(email_html: str) -> None:
+    """Send the daily brief to GMAIL_ADDRESS via Gmail SMTP."""
+    print("📬 Sending email...")
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = f"The Daily Brief — {DAY_NAME}, {DATE_STR}"
+    msg["From"] = GMAIL_ADDRESS
+    msg["To"] = GMAIL_ADDRESS
+    msg.attach(MIMEText(email_html, "html"))
+
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        server.starttls()
+        server.login(GMAIL_ADDRESS, GMAIL_APP_PASSWORD)
+        server.sendmail(GMAIL_ADDRESS, GMAIL_ADDRESS, msg.as_string())
+
+    print(f"  ✅ Email sent to {GMAIL_ADDRESS}")
+
+
 # ── Main pipeline ─────────────────────────────────────────────────────────
 def main():
     print(f"\n{'='*60}")
@@ -432,6 +456,9 @@ def main():
     email_path = OUTPUT_DIR / f"daily_brief_{DATE_FILE}_email.html"
     email_path.write_text(email_html)
     print(f"  📧 Email HTML saved: {email_path}")
+
+    # Step 7: Send email
+    send_email(email_html)
 
     print(f"\n{'='*60}")
     print(f"  ✅ BRIEF COMPLETE")
