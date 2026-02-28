@@ -273,6 +273,42 @@ Return ONLY the JSON array."""
 
 
 # ── Step 4: Generate audio via Deepgram ───────────────────────────────────
+def _split_text(text: str, max_chars: int = 1900) -> list[str]:
+    """Split text into chunks under max_chars, breaking at sentence boundaries."""
+    if len(text) <= max_chars:
+        return [text]
+    chunks = []
+    while text:
+        if len(text) <= max_chars:
+            chunks.append(text)
+            break
+        split_at = text.rfind(". ", 0, max_chars)
+        if split_at == -1:
+            split_at = text.rfind(" ", 0, max_chars)
+        if split_at == -1:
+            split_at = max_chars
+        else:
+            split_at += 1  # include the period
+        chunks.append(text[:split_at].strip())
+        text = text[split_at:].strip()
+    return chunks
+
+
+def _tts_request(text: str) -> bytes:
+    """Send a single TTS request to Deepgram and return audio bytes."""
+    response = requests.post(
+        f"https://api.deepgram.com/v1/speak?model={DEEPGRAM_VOICE}",
+        headers={
+            "Authorization": f"Token {DEEPGRAM_API_KEY}",
+            "Content-Type": "application/json",
+        },
+        json={"text": text},
+    )
+    if response.status_code != 200:
+        raise RuntimeError(f"Deepgram API error ({response.status_code}): {response.text[:200]}")
+    return response.content
+
+
 def generate_audio(narration_sections: list[dict]) -> Path:
     """Call Deepgram TTS API for each narration section, stitch into one MP3."""
     print("🔊 Generating audio via Deepgram...")
@@ -281,21 +317,13 @@ def generate_audio(narration_sections: list[dict]) -> Path:
     for i, section in enumerate(narration_sections):
         print(f"  🎵 Section {i+1}/{len(narration_sections)}: {section['label']}...")
 
-        response = requests.post(
-            f"https://api.deepgram.com/v1/speak?model={DEEPGRAM_VOICE}",
-            headers={
-                "Authorization": f"Token {DEEPGRAM_API_KEY}",
-                "Content-Type": "application/json",
-            },
-            json={"text": section["text"]},
-        )
+        chunks = _split_text(section["text"])
+        section_bytes = b""
+        for chunk in chunks:
+            section_bytes += _tts_request(chunk)
 
-        if response.status_code != 200:
-            error_msg = response.text[:200]
-            raise RuntimeError(f"Deepgram API error ({response.status_code}): {error_msg}")
-
-        audio_chunks.append(response.content)
-        print(f"  ✅ {section['label']} done ({len(response.content)} bytes)")
+        audio_chunks.append(section_bytes)
+        print(f"  ✅ {section['label']} done ({len(section_bytes)} bytes)")
 
     # Stitch MP3 chunks together
     mp3_path = OUTPUT_DIR / f"daily_brief_{DATE_FILE}.mp3"
