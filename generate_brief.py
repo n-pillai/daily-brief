@@ -19,6 +19,8 @@ from jinja2 import Template
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 DEEPGRAM_API_KEY = os.environ["DEEPGRAM_API_KEY"]
 DEEPGRAM_VOICE = "aura-helios-en"  # British male
+RESEND_API_KEY = os.environ["RESEND_API_KEY"]
+RECIPIENT_EMAIL = os.environ["RECIPIENT_EMAIL"]
 
 TODAY = datetime.date.today()
 DATE_STR = TODAY.strftime("%B %d, %Y")         # February 28, 2026
@@ -401,6 +403,31 @@ Return ONLY the complete HTML document, no markdown code fences."""
     return html
 
 
+# ── Step 7: Send email ────────────────────────────────────────────────────
+def send_email(email_html: str) -> None:
+    """Send the daily brief via Resend."""
+    print("📬 Sending email...")
+
+    response = requests.post(
+        "https://api.resend.com/emails",
+        headers={
+            "Authorization": f"Bearer {RESEND_API_KEY}",
+            "Content-Type": "application/json",
+        },
+        json={
+            "from": "The Daily Brief <onboarding@resend.dev>",
+            "to": [RECIPIENT_EMAIL],
+            "subject": f"The Daily Brief — {DAY_NAME}, {DATE_STR}",
+            "html": email_html,
+        },
+    )
+
+    if response.status_code != 200:
+        raise RuntimeError(f"Resend API error ({response.status_code}): {response.text[:200]}")
+
+    print(f"  ✅ Email sent to {RECIPIENT_EMAIL}")
+
+
 # ── Main pipeline ─────────────────────────────────────────────────────────
 def main():
     print(f"\n{'='*60}")
@@ -432,6 +459,9 @@ def main():
     email_path = OUTPUT_DIR / f"daily_brief_{DATE_FILE}_email.html"
     email_path.write_text(email_html)
     print(f"  📧 Email HTML saved: {email_path}")
+
+    # Step 7: Send email
+    send_email(email_html)
 
     print(f"\n{'='*60}")
     print(f"  ✅ BRIEF COMPLETE")
