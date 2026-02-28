@@ -47,7 +47,55 @@ CATEGORIES = [
     {"id": "science", "name": "Science & Health", "badge_class": "science", "number": "04"},
 ]
 
+WEATHER_LOCATIONS = [
+    {"label": "Home", "icon": "🏠", "query": os.environ.get("WEATHER_LOCATION_HOME", "")},
+    {"label": "Work", "icon": "🏢", "query": os.environ.get("WEATHER_LOCATION_WORK", "")},
+]
+
 client = Anthropic(api_key=ANTHROPIC_API_KEY)
+
+
+# ── Weather ───────────────────────────────────────────────────────────────
+def _weather_icon(code: int) -> str:
+    if code == 113: return "☀️"
+    if code == 116: return "⛅"
+    if code in (119, 122): return "☁️"
+    if code in (143, 248, 260): return "🌫️"
+    if code in (200, 386, 389, 392, 395): return "⛈️"
+    if code in (179, 182, 185, 323, 326, 329, 332, 335, 338, 350, 368, 371, 374, 377): return "❄️"
+    return "🌧️"
+
+
+def fetch_weather() -> list[dict]:
+    """Fetch today's weather for each location via wttr.in (no API key required)."""
+    print("🌤️  Fetching weather...")
+    results = []
+    for loc in WEATHER_LOCATIONS:
+        try:
+            r = requests.get(
+                f"https://wttr.in/{loc['query']}?format=j1",
+                timeout=10,
+                headers={"User-Agent": "daily-brief/1.0"},
+            )
+            data = r.json()
+            current = data["current_condition"][0]
+            today = data["weather"][0]
+            code = int(current["weatherCode"])
+            results.append({
+                "label": loc["label"],
+                "location_icon": loc["icon"],
+                "weather_icon": _weather_icon(code),
+                "condition": current["weatherDesc"][0]["value"],
+                "temp_f": current["temp_F"],
+                "feels_like_f": current["FeelsLikeF"],
+                "high_f": today["maxtempF"],
+                "low_f": today["mintempF"],
+            })
+            print(f"  ✅ {loc['label']}: {current['temp_F']}°F, {current['weatherDesc'][0]['value']}")
+        except Exception as e:
+            print(f"  ⚠️  Weather fetch failed for {loc['label']}: {e}")
+            results.append({"label": loc["label"], "location_icon": loc["icon"], "error": True})
+    return results
 
 
 # ── Step 1: Search for news ───────────────────────────────────────────────
@@ -231,6 +279,15 @@ def generate_narration(brief_data: dict) -> list[dict]:
     """Generate TTS-friendly narration text from brief data."""
     print("🎤 Generating narration text...")
 
+    weather = brief_data.get("weather", [])
+    weather_lines = []
+    for w in weather:
+        if not w.get("error"):
+            weather_lines.append(
+                f"{w['label']}: {w['temp_f']}°F, {w['condition']}, high {w['high_f']}°F, low {w['low_f']}°F"
+            )
+    weather_str = " / ".join(weather_lines) if weather_lines else ""
+
     prompt = f"""Convert this daily brief into a spoken narration script for a British English newsreader.
 
 Brief data:
@@ -242,7 +299,7 @@ Rules:
 - No contractions ("do not" not "don't", "here is" not "here's")
 - Natural speech phrasing with good rhythm
 - Include brief transitions between sections
-- Open with "The Daily Brief. {DAY_NAME}, {DATE_STR}. Good morning."
+- Open with "The Daily Brief. {DAY_NAME}, {DATE_STR}. Good morning." then add one natural sentence covering today's weather for both locations: {weather_str}
 - Close with "That is your Daily Brief for {DAY_NAME}. Have a great day."
 - Do NOT narrate the Deep Dive section — just the 4 news categories and Explore
 
@@ -443,6 +500,29 @@ def generate_email_html(brief_data: dict, mp3_url: str) -> str:
                           f'<div style="margin-bottom:16px">{badge("Deep Dive", "#0891B2")}</div>'
                           f'{items_html}</div>')
 
+    # Weather card
+    weather_html = ""
+    weather_data = brief_data.get("weather", [])
+    if weather_data:
+        cells = ""
+        for w in weather_data:
+            if w.get("error"):
+                cells += (f'<td style="width:50%;text-align:center;padding:8px 4px;'
+                          f'font-family:Arial;font-size:12px;color:#9ca3af">'
+                          f'{w["location_icon"]} {w["label"]}<br>Unavailable</td>')
+            else:
+                cells += (f'<td style="width:50%;text-align:center;padding:8px 4px">'
+                          f'<div style="font-family:Arial;font-size:11px;color:#6b7280;margin-bottom:4px">'
+                          f'{w["location_icon"]} {w["label"]}</div>'
+                          f'<div style="font-size:22px;margin-bottom:2px">{w["weather_icon"]}</div>'
+                          f'<div style="font-family:Arial;font-size:15px;font-weight:bold;color:#111">{w["temp_f"]}°F</div>'
+                          f'<div style="font-family:Arial;font-size:11px;color:#6b7280;margin-bottom:2px">{w["condition"]}</div>'
+                          f'<div style="font-family:Arial;font-size:11px;color:#9ca3af">H:{w["high_f"]}° / L:{w["low_f"]}°</div>'
+                          f'</td>')
+        weather_html = (f'<table width="100%" style="margin-bottom:24px;background:#f8fafc;'
+                        f'border-radius:8px;border-collapse:collapse">'
+                        f'<tr>{cells}</tr></table>')
+
     # Audio link
     audio_html = ""
     if mp3_url:
@@ -462,7 +542,7 @@ def generate_email_html(brief_data: dict, mp3_url: str) -> str:
             f'<div style="font-family:Arial;font-size:13px;color:#6b7280">{DAY_NAME}, {DATE_STR}</div>'
             f'<p style="margin:12px 0 0;font-family:Georgia,serif;font-size:15px;color:#374151;font-style:italic">{brief_data.get("summary","")}</p>'
             f'</div>'
-            f'{audio_html}{sections_html}{explore_html}{deep_dive_html}'
+            f'{weather_html}{audio_html}{sections_html}{explore_html}{deep_dive_html}'
             f'<div style="text-align:center;padding-top:24px;border-top:1px solid #e5e7eb;'
             f'font-family:Arial;font-size:11px;color:#9ca3af">Curated for Nisha · {DAY_NAME}, {DATE_STR}</div>'
             f'</div></body></html>')
@@ -502,11 +582,15 @@ def main():
     print(f"  THE DAILY BRIEF — {DAY_NAME}, {DATE_STR}")
     print(f"{'='*60}\n")
 
+    # Step 0: Fetch weather
+    weather = fetch_weather()
+
     # Step 1: Search
     raw_results = search_news()
 
     # Step 2: Synthesise
     brief_data = synthesise_brief(raw_results)
+    brief_data["weather"] = weather
 
     # Save raw data for debugging
     data_path = OUTPUT_DIR / f"daily_brief_{DATE_FILE}.json"
