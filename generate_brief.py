@@ -364,40 +364,108 @@ def render_html(brief_data: dict, narration_sections: list[dict], mp3_filename: 
 
 
 # ── Step 6: Generate email-safe HTML ──────────────────────────────────────
-def generate_email_html(brief_data: dict) -> str:
-    """Generate a simplified inline-styled HTML version for email."""
+def generate_email_html(brief_data: dict, mp3_url: str) -> str:
+    """Generate inline-styled email HTML programmatically from brief data."""
     print("📧 Generating email HTML...")
 
-    prompt = f"""Convert this daily brief data into a clean, email-safe HTML document.
+    ACCENT = "#1B4D3E"
+    BADGE_COLORS = {
+        "world": "#DC2626", "tech": "#2563EB", "business": "#059669",
+        "science": "#7C3AED", "explore": "#D97706",
+    }
 
-Brief data:
-{json.dumps(brief_data, indent=2)}
+    def badge(text, color):
+        return (f'<span style="background:{color};color:#fff;padding:3px 10px;'
+                f'border-radius:4px;font-size:11px;font-family:Arial,sans-serif;'
+                f'font-weight:bold;text-transform:uppercase;letter-spacing:0.5px">{text}</span>')
 
-Requirements:
-- ALL styles must be inline (no <style> tags — email clients strip them)
-- Max width 600px, centered
-- Use web-safe fonts: Georgia for body, Arial/Helvetica for UI elements
-- Color scheme: accent=#1B4D3E, world=#DC2626, tech=#2563EB, business=#059669, science=#7C3AED, explore=#D97706, deepdive=#0891B2
-- Include the header: "THE DAILY BRIEF" brand, date, summary
-- Include all sections with colored badges, story headlines (as links), sources, summaries, "why it matters" boxes
-- Mark subscriber sources with a small green "Subscriber" badge
-- Include Explore and Deep Dive sections
-- Footer: "Curated for Nisha · Generated at 6:00 AM · {DAY_NAME}, {DATE_STR}"
-- Keep it clean and readable — this is a premium newsletter aesthetic
+    def render_story(story):
+        sources_parts = []
+        for s in story.get("sources", []):
+            link = f'<a href="{s.get("url","")}" style="color:{ACCENT};text-decoration:none">{s["name"]}</a>'
+            if s.get("subscriber"):
+                link += (' <span style="background:#059669;color:#fff;padding:1px 5px;'
+                         'border-radius:3px;font-size:9px;font-family:Arial">Sub</span>')
+            sources_parts.append(link)
+        sources_html = " · ".join(sources_parts)
 
-Return ONLY the complete HTML document, no markdown code fences."""
+        why = ""
+        if story.get("why_it_matters"):
+            why = (f'<div style="background:#f0fdf4;border-left:3px solid {ACCENT};'
+                   f'padding:8px 12px;margin:8px 0;font-size:13px;font-family:Georgia,serif;'
+                   f'color:#374151"><strong>Why it matters:</strong> {story["why_it_matters"]}</div>')
 
-    response = client.messages.create(
-        model="claude-sonnet-4-5-20250929",
-        max_tokens=8000,
-        messages=[{"role": "user", "content": prompt}],
-    )
+        return (f'<div style="margin-bottom:20px">'
+                f'<h3 style="margin:0 0 4px;font-family:Georgia,serif;font-size:16px;color:#111">{story["headline"]}</h3>'
+                f'<div style="font-size:12px;color:#6b7280;margin-bottom:8px;font-family:Arial">{sources_html}</div>'
+                f'<p style="margin:0;font-family:Georgia,serif;font-size:14px;color:#374151;line-height:1.6">{story["summary"]}</p>'
+                f'{why}</div>')
 
-    html = response.content[0].text
-    # Strip markdown fences if present
-    if html.startswith("```"):
-        html = re.sub(r'^```(?:html)?\s*\n?', '', html)
-        html = re.sub(r'\n?```\s*$', '', html)
+    # News sections
+    sections_html = ""
+    for section in brief_data.get("sections", []):
+        color = BADGE_COLORS.get(section["id"], "#6b7280")
+        stories_html = "".join(render_story(s) for s in section.get("stories", []))
+        sections_html += (f'<div style="margin-bottom:32px">'
+                          f'<div style="margin-bottom:16px">{badge(section["name"], color)}</div>'
+                          f'{stories_html}</div>')
+
+    # Explore section
+    explore = brief_data.get("explore", {})
+    explore_html = ""
+    if explore:
+        explore_stories = ""
+        for s in explore.get("stories", []):
+            explore_stories += (f'<div style="margin-bottom:16px">'
+                                f'<h3 style="margin:0 0 4px;font-family:Georgia,serif;font-size:15px;color:#111">'
+                                f'<a href="{s.get("source_url","")}" style="color:#111;text-decoration:none">{s["headline"]}</a></h3>'
+                                f'<p style="margin:0;font-family:Georgia,serif;font-size:13px;color:#374151;line-height:1.6">{s["summary"]}</p>'
+                                f'</div>')
+        explore_html = (f'<div style="margin-bottom:32px">'
+                        f'<div style="margin-bottom:8px">{badge("Explore · " + explore.get("source_name",""), BADGE_COLORS["explore"])}</div>'
+                        f'<p style="font-size:12px;color:#6b7280;font-family:Arial;margin:0 0 16px">{explore.get("source_description","")}</p>'
+                        f'{explore_stories}</div>')
+
+    # Deep Dive section
+    deep_dive_html = ""
+    deep_dive_items = brief_data.get("deep_dive", [])
+    if deep_dive_items:
+        items_html = ""
+        for item in deep_dive_items:
+            items_html += (f'<div style="margin-bottom:12px;padding:12px;background:#f8fafc;border-radius:6px">'
+                           f'<div style="font-size:11px;color:#6b7280;font-family:Arial;margin-bottom:4px">'
+                           f'{item.get("icon","")} {item.get("meta","")}</div>'
+                           f'<h4 style="margin:0 0 4px;font-family:Georgia,serif;font-size:14px">'
+                           f'<a href="{item.get("url","")}" style="color:{ACCENT};text-decoration:none">{item["title"]}</a></h4>'
+                           f'<p style="margin:0;font-size:13px;font-family:Georgia,serif;color:#374151">{item.get("description","")}</p>'
+                           f'</div>')
+        deep_dive_html = (f'<div style="margin-bottom:32px">'
+                          f'<div style="margin-bottom:16px">{badge("Deep Dive", "#0891B2")}</div>'
+                          f'{items_html}</div>')
+
+    # Audio link
+    audio_html = ""
+    if mp3_url:
+        audio_html = (f'<div style="margin-bottom:32px;padding:16px;background:#f0fdf4;'
+                      f'border-radius:8px;text-align:center">'
+                      f'<p style="margin:0 0 10px;font-family:Arial;font-size:13px;color:#374151">🎧 Listen to today\'s brief</p>'
+                      f'<a href="{mp3_url}" style="background:{ACCENT};color:#fff;padding:10px 24px;'
+                      f'border-radius:6px;text-decoration:none;font-family:Arial;font-size:14px;font-weight:bold">'
+                      f'Download MP3</a>'
+                      f'<p style="margin:8px 0 0;font-size:11px;color:#9ca3af;font-family:Arial">'
+                      f'Audio may take a moment to become available after delivery.</p></div>')
+
+    html = (f'<!DOCTYPE html><html><body style="margin:0;padding:0;background:#f9fafb">'
+            f'<div style="max-width:600px;margin:0 auto;background:#fff;padding:32px 24px">'
+            f'<div style="text-align:center;margin-bottom:24px;padding-bottom:24px;border-bottom:2px solid {ACCENT}">'
+            f'<h1 style="margin:0 0 4px;font-family:Georgia,serif;font-size:28px;color:{ACCENT};letter-spacing:2px">THE DAILY BRIEF</h1>'
+            f'<div style="font-family:Arial;font-size:13px;color:#6b7280">{DAY_NAME}, {DATE_STR}</div>'
+            f'<p style="margin:12px 0 0;font-family:Georgia,serif;font-size:15px;color:#374151;font-style:italic">{brief_data.get("summary","")}</p>'
+            f'</div>'
+            f'{audio_html}{sections_html}{explore_html}{deep_dive_html}'
+            f'<div style="text-align:center;padding-top:24px;border-top:1px solid #e5e7eb;'
+            f'font-family:Arial;font-size:11px;color:#9ca3af">Curated for Nisha · {DAY_NAME}, {DATE_STR}</div>'
+            f'</div></body></html>')
 
     print("  ✅ Email HTML generated")
     return html
@@ -454,11 +522,9 @@ def main():
     # Step 5: Render HTML
     html_path = render_html(brief_data, narration_sections, mp3_path.name)
 
-    # Step 6: Generate email HTML
-    email_html = generate_email_html(brief_data)
-    email_path = OUTPUT_DIR / f"daily_brief_{DATE_FILE}_email.html"
-    email_path.write_text(email_html)
-    print(f"  📧 Email HTML saved: {email_path}")
+    # Step 6: Generate email HTML (programmatic, no API call)
+    mp3_url = f"https://raw.githubusercontent.com/n-pillai/daily-brief/main/briefs/{mp3_path.name}"
+    email_html = generate_email_html(brief_data, mp3_url)
 
     # Step 7: Send email
     send_email(email_html)
@@ -467,14 +533,12 @@ def main():
     print(f"  ✅ BRIEF COMPLETE")
     print(f"  📄 HTML:  {html_path}")
     print(f"  🔊 Audio: {mp3_path}")
-    print(f"  📧 Email: {email_path}")
     print(f"  💾 Data:  {data_path}")
     print(f"{'='*60}\n")
 
     return {
         "html_path": str(html_path),
         "mp3_path": str(mp3_path),
-        "email_html": email_html,
         "date": DATE_FILE,
     }
 

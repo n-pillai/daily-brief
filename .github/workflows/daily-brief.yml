@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   generate:
@@ -39,3 +39,46 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
         run: python generate_brief.py
+
+      - name: Commit MP3
+        run: |
+          git config user.name "Daily Brief Bot"
+          git config user.email "daily-brief-bot@users.noreply.github.com"
+          git add briefs/*.mp3
+          if git diff --cached --quiet; then
+            echo "No new MP3 to commit"
+          else
+            git commit -m "🔊 Audio — $(date +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Clean up MP3s older than 7 days
+        run: |
+          git config user.name "Daily Brief Bot"
+          git config user.email "daily-brief-bot@users.noreply.github.com"
+          python3 -c "
+          import os, datetime
+          from pathlib import Path
+
+          cutoff = datetime.date.today() - datetime.timedelta(days=7)
+          deleted = []
+          for f in Path('briefs').glob('daily_brief_*.mp3'):
+              date_str = f.stem[len('daily_brief_'):]
+              try:
+                  if datetime.date.fromisoformat(date_str) < cutoff:
+                      os.remove(f)
+                      deleted.append(f.name)
+              except ValueError:
+                  pass
+          if deleted:
+              print(f'Removed: {deleted}')
+          else:
+              print('Nothing to clean up')
+          "
+          git add -A briefs/
+          if git diff --cached --quiet; then
+            echo "No cleanup needed"
+          else
+            git commit -m "chore: remove briefs older than 7 days"
+            git push
+          fi
