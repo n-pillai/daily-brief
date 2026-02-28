@@ -9,11 +9,8 @@ import os
 import re
 import json
 import time
-import smtplib
 import datetime
 import requests
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 from pathlib import Path
 from anthropic import Anthropic
 from jinja2 import Template
@@ -22,8 +19,8 @@ from jinja2 import Template
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 DEEPGRAM_API_KEY = os.environ["DEEPGRAM_API_KEY"]
 DEEPGRAM_VOICE = "aura-helios-en"  # British male
-GMAIL_ADDRESS = os.environ["GMAIL_ADDRESS"]
-GMAIL_APP_PASSWORD = os.environ["GMAIL_APP_PASSWORD"]
+RESEND_API_KEY = os.environ["RESEND_API_KEY"]
+RECIPIENT_EMAIL = os.environ["RECIPIENT_EMAIL"]
 
 TODAY = datetime.date.today()
 DATE_STR = TODAY.strftime("%B %d, %Y")         # February 28, 2026
@@ -408,21 +405,27 @@ Return ONLY the complete HTML document, no markdown code fences."""
 
 # ── Step 7: Send email ────────────────────────────────────────────────────
 def send_email(email_html: str) -> None:
-    """Send the daily brief to GMAIL_ADDRESS via Gmail SMTP."""
+    """Send the daily brief via Resend."""
     print("📬 Sending email...")
 
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = f"The Daily Brief — {DAY_NAME}, {DATE_STR}"
-    msg["From"] = GMAIL_ADDRESS
-    msg["To"] = GMAIL_ADDRESS
-    msg.attach(MIMEText(email_html, "html"))
+    response = requests.post(
+        "https://api.resend.com/emails",
+        headers={
+            "Authorization": f"Bearer {RESEND_API_KEY}",
+            "Content-Type": "application/json",
+        },
+        json={
+            "from": "The Daily Brief <onboarding@resend.dev>",
+            "to": [RECIPIENT_EMAIL],
+            "subject": f"The Daily Brief — {DAY_NAME}, {DATE_STR}",
+            "html": email_html,
+        },
+    )
 
-    with smtplib.SMTP("smtp.gmail.com", 587) as server:
-        server.starttls()
-        server.login(GMAIL_ADDRESS, GMAIL_APP_PASSWORD)
-        server.sendmail(GMAIL_ADDRESS, GMAIL_ADDRESS, msg.as_string())
+    if response.status_code != 200:
+        raise RuntimeError(f"Resend API error ({response.status_code}): {response.text[:200]}")
 
-    print(f"  ✅ Email sent to {GMAIL_ADDRESS}")
+    print(f"  ✅ Email sent to {RECIPIENT_EMAIL}")
 
 
 # ── Main pipeline ─────────────────────────────────────────────────────────
