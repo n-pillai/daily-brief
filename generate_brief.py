@@ -72,7 +72,7 @@ def search_news() -> dict:
             tools=[{
                 "type": "web_search_20250305",
                 "name": "web_search",
-                "max_uses": 5,
+                "max_uses": 2,
             }],
             messages=[{
                 "role": "user",
