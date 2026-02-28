@@ -8,6 +8,7 @@ and produces an HTML brief + MP3 file.
 import os
 import re
 import json
+import time
 import datetime
 import requests
 from pathlib import Path
@@ -96,6 +97,7 @@ Format as JSON array. Only return the JSON, no other text."""
 
         results[category] = text
         print(f"  ✅ {category} done")
+        time.sleep(15)  # Stay within 30k TPM rate limit
 
     return results
 
