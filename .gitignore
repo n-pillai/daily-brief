@@ -3,4 +3,5 @@ __pycache__/
 .env
 .venv/
 venv/
-briefs/
+briefs/*.html
+briefs/*.json
