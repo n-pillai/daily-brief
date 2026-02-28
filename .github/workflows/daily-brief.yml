@@ -37,7 +37,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          RECIPIENT_EMAILS: ${{ secrets.RECIPIENT_EMAILS }}
           WEATHER_LOCATION_HOME: ${{ secrets.WEATHER_LOCATION_HOME }}
           WEATHER_LOCATION_WORK: ${{ secrets.WEATHER_LOCATION_WORK }}
         run: python generate_brief.py

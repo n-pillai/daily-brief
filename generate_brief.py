@@ -20,7 +20,7 @@ ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 DEEPGRAM_API_KEY = os.environ["DEEPGRAM_API_KEY"]
 DEEPGRAM_VOICE = "aura-helios-en"  # British male
 RESEND_API_KEY = os.environ["RESEND_API_KEY"]
-RECIPIENT_EMAIL = os.environ["RECIPIENT_EMAIL"]
+RECIPIENT_EMAILS = [e.strip() for e in os.environ["RECIPIENT_EMAILS"].split(",")]
 
 TODAY = datetime.date.today()
 DATE_STR = TODAY.strftime("%B %d, %Y")         # February 28, 2026
@@ -564,7 +564,7 @@ def send_email(email_html: str) -> None:
         },
         json={
             "from": "The Daily Brief <onboarding@resend.dev>",
-            "to": [RECIPIENT_EMAIL],
+            "to": RECIPIENT_EMAILS,
             "subject": f"The Daily Brief — {DAY_NAME}, {DATE_STR}",
             "html": email_html,
         },
@@ -573,7 +573,7 @@ def send_email(email_html: str) -> None:
     if response.status_code != 200:
         raise RuntimeError(f"Resend API error ({response.status_code}): {response.text[:200]}")
 
-    print(f"  ✅ Email sent to {RECIPIENT_EMAIL}")
+    print(f"  ✅ Email sent to {', '.join(RECIPIENT_EMAILS)}")
 
 
 # ── Main pipeline ─────────────────────────────────────────────────────────
