@@ -554,7 +554,7 @@ def send_email(email_html: str) -> None:
             "Content-Type": "application/json",
         },
         json={
-            "from": "The Daily Brief <onboarding@resend.dev>",
+            "from": "The Daily Brief <today@brief.nisha-pillai.com>",
             "to": RECIPIENT_EMAILS,
             "subject": f"The Daily Brief — {DAY_NAME}, {DATE_STR}",
             "html": email_html,
