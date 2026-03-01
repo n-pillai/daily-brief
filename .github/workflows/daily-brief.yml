@@ -42,45 +42,14 @@ jobs:
           WEATHER_LOCATION_WORK: ${{ secrets.WEATHER_LOCATION_WORK }}
         run: python generate_brief.py
 
-      - name: Commit MP3
+      - name: Commit briefs
         run: |
           git config user.name "Daily Brief Bot"
           git config user.email "daily-brief-bot@users.noreply.github.com"
-          git add briefs/*.mp3
+          git add briefs/*.mp3 briefs/*.html
           if git diff --cached --quiet; then
-            echo "No new MP3 to commit"
+            echo "No new briefs to commit"
           else
-            git commit -m "🔊 Audio — $(date +%Y-%m-%d)"
-            git push
-          fi
-
-      - name: Clean up MP3s older than 7 days
-        run: |
-          git config user.name "Daily Brief Bot"
-          git config user.email "daily-brief-bot@users.noreply.github.com"
-          python3 -c "
-          import os, datetime
-          from pathlib import Path
-
-          cutoff = datetime.date.today() - datetime.timedelta(days=7)
-          deleted = []
-          for f in Path('briefs').glob('daily_brief_*.mp3'):
-              date_str = f.stem[len('daily_brief_'):]
-              try:
-                  if datetime.date.fromisoformat(date_str) < cutoff:
-                      os.remove(f)
-                      deleted.append(f.name)
-              except ValueError:
-                  pass
-          if deleted:
-              print(f'Removed: {deleted}')
-          else:
-              print('Nothing to clean up')
-          "
-          git add -A briefs/
-          if git diff --cached --quiet; then
-            echo "No cleanup needed"
-          else
-            git commit -m "chore: remove briefs older than 7 days"
+            git commit -m "feat: add daily brief $(date +%Y-%m-%d)"
             git push
           fi

@@ -10,7 +10,6 @@ import re
 import json
 import time
 import datetime
-import subprocess
 import requests
 from pathlib import Path
 from anthropic import Anthropic
@@ -583,23 +582,6 @@ def cleanup_old_briefs(days: int = 7) -> None:
         print("  ✅ Nothing to clean up")
 
 
-# ── Commit and push briefs to GitHub ──────────────────────────────────────
-def commit_and_push_briefs(html_path: Path, mp3_path: Path) -> None:
-    """Stage the new brief files, commit, and push to remote."""
-    print("📤 Committing briefs to GitHub...")
-    subprocess.run(["git", "add", str(html_path), str(mp3_path)], check=True)
-    staged = subprocess.run(["git", "diff", "--cached", "--quiet"])
-    if staged.returncode == 0:
-        print("  ℹ️  Nothing new to commit")
-        return
-    subprocess.run(
-        ["git", "commit", "--no-verify", "-m", f"feat: add daily brief {DATE_FILE}"],
-        check=True,
-    )
-    subprocess.run(["git", "push"], check=True)
-    print(f"  ✅ Brief committed and pushed ({html_path.name}, {mp3_path.name})")
-
-
 # ── Main pipeline ─────────────────────────────────────────────────────────
 def main():
     print(f"\n{'='*60}")
@@ -637,9 +619,6 @@ def main():
 
     # Step 7: Send email
     send_email(email_html)
-
-    # Step 8: Commit and push briefs to repo
-    commit_and_push_briefs(html_path, mp3_path)
 
     print(f"\n{'='*60}")
     print(f"  ✅ BRIEF COMPLETE")
