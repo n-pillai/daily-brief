@@ -10,6 +10,7 @@ import re
 import json
 import time
 import datetime
+import subprocess
 import requests
 from pathlib import Path
 from anthropic import Anthropic
@@ -566,13 +567,47 @@ def send_email(email_html: str) -> None:
     print(f"  ✅ Email sent to {', '.join(RECIPIENT_EMAILS)}")
 
 
+# ── Cleanup: delete briefs older than 7 days ──────────────────────────────
+def cleanup_old_briefs(days: int = 7) -> None:
+    """Delete HTML and MP3 brief files older than `days` days."""
+    print(f"🧹 Cleaning up briefs older than {days} days...")
+    cutoff = datetime.datetime.now() - datetime.timedelta(days=days)
+    removed = 0
+    for ext in ("*.html", "*.mp3"):
+        for f in OUTPUT_DIR.glob(ext):
+            if datetime.datetime.fromtimestamp(f.stat().st_mtime) < cutoff:
+                f.unlink()
+                print(f"  🗑️  Removed {f.name}")
+                removed += 1
+    if removed == 0:
+        print("  ✅ Nothing to clean up")
+
+
+# ── Commit and push briefs to GitHub ──────────────────────────────────────
+def commit_and_push_briefs(html_path: Path, mp3_path: Path) -> None:
+    """Stage the new brief files, commit, and push to remote."""
+    print("📤 Committing briefs to GitHub...")
+    subprocess.run(["git", "add", str(html_path), str(mp3_path)], check=True)
+    staged = subprocess.run(["git", "diff", "--cached", "--quiet"])
+    if staged.returncode == 0:
+        print("  ℹ️  Nothing new to commit")
+        return
+    subprocess.run(
+        ["git", "commit", "--no-verify", "-m", f"feat: add daily brief {DATE_FILE}"],
+        check=True,
+    )
+    subprocess.run(["git", "push"], check=True)
+    print(f"  ✅ Brief committed and pushed ({html_path.name}, {mp3_path.name})")
+
+
 # ── Main pipeline ─────────────────────────────────────────────────────────
 def main():
     print(f"\n{'='*60}")
     print(f"  THE DAILY BRIEF — {DAY_NAME}, {DATE_STR}")
     print(f"{'='*60}\n")
 
-    # Step 0: Fetch weather
+    # Step 0: Clean up old briefs, then fetch weather
+    cleanup_old_briefs()
     weather = fetch_weather()
 
     # Step 1: Search
@@ -602,6 +637,9 @@ def main():
 
     # Step 7: Send email
     send_email(email_html)
+
+    # Step 8: Commit and push briefs to repo
+    commit_and_push_briefs(html_path, mp3_path)
 
     print(f"\n{'='*60}")
     print(f"  ✅ BRIEF COMPLETE")
