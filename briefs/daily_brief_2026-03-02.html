@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 02, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.world { background: var(--world); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Monday, March 02, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">U.S.-Israeli strike kills Iran's Supreme Leader triggering market chaos and oil surge; OpenAI and Amazon announce $50B partnership; AI productivity gains finally appear in economic data.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · ElevenLabs</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-02.mp3"></audio>
+  </div>
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/sections/world/" target="_blank">U.S. and Israeli Forces Kill Iranian Supreme Leader Khamenei; Iran Retaliates with Missile Strikes</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/sections/world/" target="_blank">NPR</a>
+        
+      
+         · 
+        <a href="https://wng.org/podcasts/monday-morning-news-march-2-2026-1772382798" target="_blank">WORLD Radio</a>
+        
+      
+    </div>
+    <p>Iran's Supreme Leader Ayatollah Ali Khamenei was killed in joint U.S. and Israeli strikes on Saturday as part of Operation Epic Fury, prompting Iran to fire missiles at targets in Israel and Gulf Arab states on Sunday. Five U.S. soldiers were critically injured in the retaliatory strikes, marking the first American casualties. Iran has announced 40 days of mourning while President Trump warned of the possibility of more U.S. troop deaths.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents the most significant escalation in decades between the U.S., Israel, and Iran, with potential to reshape Middle Eastern geopolitics and disrupt global energy markets.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://wng.org/podcasts/monday-morning-news-march-2-2026-1772382798" target="_blank">Democrats Demand War Powers Act Vote as Congressional Criticism of Iran Strikes Intensifies</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://wng.org/podcasts/monday-morning-news-march-2-2026-1772382798" target="_blank">WORLD Radio</a>
+        
+      
+    </div>
+    <p>Congressional Democrats are calling for a vote on the War Powers Act following the strikes on Iran, with criticism of President Trump's aggression growing on Capitol Hill. Initial reactions suggest the military action has brought Trump few domestic political benefits, with concerns mounting about constitutional authority for military operations and the risk of broader regional conflict.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The pushback signals potential constitutional clashes between the executive and legislative branches over war-making authority at a critical moment in U.S.-Iran relations.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.news9live.com/india/breaking-news-headlines-today-02-03-2026-live-updates-in-english-india-world-politics-crime-2937873" target="_blank">Canadian PM Mark Carney Meets Indian PM Modi for Trade and Innovation Partnership Talks</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.news9live.com/india/breaking-news-headlines-today-02-03-2026-live-updates-in-english-india-world-politics-crime-2937873" target="_blank">News9live</a>
+        
+      
+    </div>
+    <p>Canadian Prime Minister Mark Carney is conducting a state visit to India, meeting with Prime Minister Narendra Modi at Hyderabad House for trade discussions. The two leaders emphasized that India and Canada are natural partners in technology and innovation, with Modi stating their innovation partnership will turn ideas into global solutions. The nations are forging new partnerships in energy, talent, innovation, and AI to create greater security and prosperity.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This diplomatic engagement signals warming relations between Canada and India after years of tension, potentially opening significant trade and technology collaboration opportunities.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.news9live.com/india/breaking-news-headlines-today-02-03-2026-live-updates-in-english-india-world-politics-crime-2937873" target="_blank">Security Restrictions Imposed Across Kashmir Following Protests Over Khamenei's Death</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.news9live.com/india/breaking-news-headlines-today-02-03-2026-live-updates-in-english-india-world-politics-crime-2937873" target="_blank">News9live</a>
+        
+      
+    </div>
+    <p>Following massive protests against the killing of Iran's Supreme Leader, authorities have imposed restrictions across all districts of Kashmir as a precautionary measure. Security forces are on high alert to maintain a peaceful atmosphere in the region, which has seen demonstrations against the U.S.-Israeli strikes.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The protests demonstrate how the Iran crisis is reverberating across South Asia's Muslim-majority regions, potentially complicating India's diplomatic balancing act.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/sections/news/" target="_blank">Middle East Conflict Disrupts Winter Paralympics During Olympic Truce</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/sections/news/" target="_blank">NPR</a>
+        
+      
+    </div>
+    <p>Fighting in the Middle East intensified during the Olympic truce, which remains in effect through March 15, disrupting flights as athletes and families converge on Italy for the Winter Paralympics. The escalation has created logistical challenges for the international sporting event meant to promote peace.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The violation of the traditional Olympic truce underscores the severity of the crisis and its global ripple effects beyond the immediate conflict zone.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">02</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.marketscreener.com/news/what-you-need-to-know-about-amazon-today-march-2-2026-ce7e5cdcdf80ff21" target="_blank">OpenAI and Amazon Announce $50 Billion Strategic Partnership</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.marketscreener.com/news/what-you-need-to-know-about-amazon-today-march-2-2026-ce7e5cdcdf80ff21" target="_blank">MarketScreener</a>
+        
+      
+    </div>
+    <p>OpenAI and Amazon have announced a multi-year strategic partnership with Amazon investing $50 billion in OpenAI—$15 billion initially followed by $35 billion when certain conditions are met. The partnership aims to accelerate AI innovation for enterprises, startups, and consumers worldwide by enhancing AI infrastructure and accessibility across Amazon's cloud services.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents one of the largest corporate AI investments in history and will significantly reshape the competitive landscape of enterprise AI deployment, positioning Amazon Web Services as a primary distribution channel for OpenAI's technology.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank">Apple to Launch Reimagined AI-Powered Siri with Google Gemini Integration</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank">Crescendo AI</a>
+        
+      
+    </div>
+    <p>Apple has announced a completely reimagined, AI-powered version of Siri set to debut in March 2026 with iOS 26.4. The new Siri will feature on-screen awareness and seamless cross-app integration, powered by Google's 1.2 trillion parameter Gemini AI model running on Apple's Private Cloud Compute to maintain privacy standards.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This marks Apple's most significant AI partnership to date and fundamentally transforms its flagship voice assistant, directly competing with ChatGPT and other advanced AI assistants while maintaining Apple's privacy-first approach.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank">Samsung Targets 800 Million Gemini AI-Equipped Devices by Year End</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank">Crescendo AI</a>
+        
+      
+    </div>
+    <p>Samsung Electronics aims to double its footprint of mobile devices equipped with Google's Gemini AI to 800 million units by the end of 2026. This massive deployment represents Samsung's commitment to integrating advanced AI capabilities across its mobile device ecosystem and bringing Gemini AI to hundreds of millions of consumers worldwide.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The scale of this deployment could make Gemini AI the most widely distributed advanced AI assistant globally, potentially shifting consumer expectations for smartphone intelligence.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-plunge-while-oil-prices-surge-as-iran-conflict-jolts-markets-235000492.html" target="_blank">Nvidia Invests $2 Billion in Silicon Photonics Partnership with Lumentum</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-plunge-while-oil-prices-surge-as-iran-conflict-jolts-markets-235000492.html" target="_blank">Yahoo Finance</a>
+        
+      
+    </div>
+    <p>Nvidia announced a partnership with Lumentum, investing $2 billion to support research and development and a new U.S.-based fabrication facility focused on silicon photonics technology. Nvidia is betting that the photonics industry can help make large-scale AI networks more energy efficient, reducing a critical bottleneck on artificial intelligence growth.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As AI infrastructure scales to unprecedented levels, energy efficiency has become a critical constraint; silicon photonics could unlock the next generation of sustainable AI data centers.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank">Hyundai Unveils Comprehensive AI+Robotics Roadmap at CES 2026</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank">Crescendo AI</a>
+        
+      
+    </div>
+    <p>At CES 2026, Hyundai Motor Group detailed its comprehensive AI+Robotics roadmap aiming to establish leadership in human-centered robotics. The strategy focuses on integrating large language models and generative AI into mobile robots for natural human interaction, introducing a new modular robot platform for logistics and personal assistance, and expanding partnership with Boston Dynamics.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Hyundai's pivot from pure automotive to AI-powered robotics signals how traditional manufacturers are repositioning for an autonomous future beyond just self-driving cars.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">03</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-sink-oil-prices-surge-as-markets-react-to-iran-conflict-235000315.html" target="_blank">US Stock Futures Plunge Over 1% as Iran Conflict Triggers Market Selloff</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-sink-oil-prices-surge-as-markets-react-to-iran-conflict-235000315.html" target="_blank">Yahoo Finance</a>
+        
+      
+    </div>
+    <p>US stock futures tumbled Monday morning with Dow Jones Industrial Average futures sinking over 500 points (1%), S&P 500 futures losing 1%, and Nasdaq 100 futures diving 1.4% after military strikes on Iran jolted global markets. Bond traders are focusing on the danger that fighting reignites inflation and dims chances of Federal Reserve rate cuts, while markets were already experiencing renewed volatility in AI and software names.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Iran conflict adds a major geopolitical risk premium to markets already grappling with AI valuation concerns and inflation anxiety, potentially derailing the Fed's rate-cutting timeline.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-01/dollar-surges-as-traders-brace-for-war-impact-markets-wrap" target="_blank">Oil Prices Surge 8% as Iran War Effectively Shuts Strait of Hormuz</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-01/dollar-surges-as-traders-brace-for-war-impact-markets-wrap" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Oil posted its biggest surge in four years with Brent crude jumping around 8% above $79 a barrel as the war effectively shut the Strait of Hormuz, which carries about a fifth of the world's oil. In Europe, liquefied natural gas surged 52% after Qatar halted output at the world's biggest export plant, raising immediate concerns about energy security and inflation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Strait of Hormuz carries about 20 million barrels daily—roughly one-fifth of global oil production—making its disruption a critical threat to global energy markets and economic stability.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-plunge-while-oil-prices-surge-as-iran-conflict-jolts-markets-235000492.html" target="_blank">Defense Stocks Rally While Airlines Plunge on Geopolitical Tensions</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-plunge-while-oil-prices-surge-as-iran-conflict-jolts-markets-235000492.html" target="_blank">Yahoo Finance</a>
+        
+      
+    </div>
+    <p>Airline, hotel, and defense stocks reacted sharply to the Iran conflict, with Lockheed Martin shares rising 7% and RTX also gaining, while BAE Systems' London shares jumped 5%. Energy companies saw their stocks jump with New Fortress Energy shares rising 15% in premarket trading, while travel-related stocks faced significant pressure.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The sharp sector rotation illustrates how quickly capital flows respond to geopolitical risk, with investors seeking safety in defense contractors and energy while fleeing discretionary travel exposure.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/" target="_blank">Berkshire Hathaway Earnings Fall 30% in Buffett's Final Quarter as CEO</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Berkshire Hathaway's operating earnings fell nearly 30% in Warren Buffett's final quarter as CEO, marking the end of an era for the investment conglomerate. Buffett's successor Greg Abel now faces his first major test as CEO following the disappointing earnings release.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The leadership transition at one of America's most iconic companies comes at a challenging moment, testing whether Buffett's carefully chosen successor can maintain the company's legendary performance.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">04</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.sciencedaily.com/" target="_blank">AI Creates First Complete Molecular Atlas of Alzheimer's Brain</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.sciencedaily.com/" target="_blank">ScienceDaily</a>
+        
+      
+    </div>
+    <p>Scientists at Rice University have produced the first full, dye-free molecular atlas of an Alzheimer's brain by combining laser-based imaging with machine learning. The research uncovered chemical changes across the brain that go beyond the traditional focus on amyloid plaques, potentially revealing new therapeutic targets and biomarkers for earlier diagnosis.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This breakthrough could transform Alzheimer's research by identifying previously unknown disease mechanisms beyond plaques, potentially leading to more effective treatments for a disease affecting millions worldwide.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.sciencedaily.com/" target="_blank">New Iron Nanomaterial Destroys Cancer Cells Without Harming Healthy Tissue</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.sciencedaily.com/" target="_blank">ScienceDaily</a>
+        
+      
+    </div>
+    <p>Scientists at Oregon State University have engineered a powerful new nanomaterial that targets cancer cells specifically and destroys them from the inside out. The technology exploits cancer's unique chemistry, including its acidity and high hydrogen peroxide levels, allowing it to selectively kill tumor cells while sparing healthy tissue.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This targeted approach could revolutionize cancer treatment by eliminating tumors without the devastating side effects of current therapies like chemotherapy, potentially offering hope for more tolerable and effective cancer care.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://kffhealthnews.org/morning-breakout/first-edition-monday-march-2-2026/" target="_blank">European Regulators Recommend Combined mRNA Vaccine for Flu and COVID</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://kffhealthnews.org/morning-breakout/first-edition-monday-march-2-2026/" target="_blank">KFF Health News</a>
+        
+      
+    </div>
+    <p>The European Medicines Agency recommended marketing authorization for mCombriax, Moderna's combined mRNA vaccine protecting older adults against both COVID-19 and flu. The recommendation is based on phase 3 trial data involving 8,000 participants aged 50 and older and could simplify vaccination regimens for vulnerable populations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Combining two major respiratory vaccines into a single shot could significantly improve vaccination rates among older adults by reducing the number of clinical visits required.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.sciencedaily.com/news/health_medicine/" target="_blank">Insomnia Combined With Sleep Apnea Dramatically Raises Health Risks</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.sciencedaily.com/news/health_medicine/" target="_blank">ScienceDaily</a>
+        
+      
+    </div>
+    <p>A study of nearly a million veterans found that having both insomnia and sleep apnea creates a far riskier combination than previously thought, dramatically raising health risks. The research highlights the importance of screening for and treating both sleep disorders together rather than in isolation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> With millions suffering from sleep disorders, understanding their combined impact could reshape clinical practice and lead to more comprehensive treatment approaches for better patient outcomes.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.sciencedaily.com/" target="_blank">Scientists Discover Critical Genetic Switch That Keeps Organs Healthy</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.sciencedaily.com/" target="_blank">ScienceDaily</a>
+        
+      
+    </div>
+    <p>Researchers have uncovered a powerful genetic switch called MafB that helps crucial immune cells develop properly and maintain organ health. The switch guides immature precursor cells as they develop into macrophages, which are essential for tissue maintenance and immune response, potentially leading to new therapies for immune-related organ diseases.</p>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>AI Daily Brief</strong> — Daily podcast covering the latest developments in artificial intelligence, from product launches to economic impacts.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://podcasts.apple.com/us/podcast/the-ai-daily-brief-artificial-intelligence-news/id1680633614" target="_blank">Major AI Companies Launch Competing Agent Platforms with Always-On Workflows</a></h3>
+    <div class="source"><a href="https://podcasts.apple.com/us/podcast/the-ai-daily-brief-artificial-intelligence-news/id1680633614" target="_blank">The AI Daily Brief</a></div>
+    <p>Anthropic rolled out Claude Code Remote Control and Scheduled Tasks, while Perplexity launched Perplexity Computer and Notion unveiled Custom Agents, marking a convergence toward always-on agentic workflows. The releases signal the emergence of new primitives in the agent era including persistent work, multimodal orchestration, and scheduled autonomy across devices.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://podcasts.apple.com/us/podcast/the-ai-daily-brief-artificial-intelligence-news/id1680633614" target="_blank">AI Productivity Boom Finally Appears in National Economic Data</a></h3>
+    <div class="source"><a href="https://podcasts.apple.com/us/podcast/the-ai-daily-brief-artificial-intelligence-news/id1680633614" target="_blank">The AI Daily Brief</a></div>
+    <p>Revised labor statistics suggest stronger-than-expected productivity growth despite weaker hiring, raising the possibility that the long-anticipated AI productivity surge is finally appearing in macroeconomic numbers. For years, AI felt transformative in anecdotes but remained invisible in national data, but that may now be changing.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://podcasts.apple.com/us/podcast/the-ai-daily-brief-artificial-intelligence-news/id1680633614" target="_blank">Rising Public Skepticism Toward AI Creates Multi-Front Resistance Movement</a></h3>
+    <div class="source"><a href="https://podcasts.apple.com/us/podcast/the-ai-daily-brief-artificial-intelligence-news/id1680633614" target="_blank">The AI Daily Brief</a></div>
+    <p>Public skepticism toward AI is rising across multiple dimensions including job displacement fears, artist backlash, data center protests, child development concerns, AI safety debates, and growing distrust of Big Tech. Most critics are responding to real, solvable concerns rather than opposing technology ideologically, but the broad-based resistance could significantly impact AI adoption rates and regulatory approaches.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive — Got More Time?</span>
+  </div>
+
+  <div class="deepdive-intro">
+    If you have extra time today, here are handpicked long reads, new podcast episodes, and your audiobook. Tap any to jump right in.
+  </div>
+
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="https://www.lennysnewsletter.com/p/the-new-ai-growth-playbook-for-2026-elena-verna" target="_blank">The New AI Growth Playbook for 2026</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Subscriber</span>
+        <span class="sub-badge">Subscriber</span>
+        Lenny's Podcast · Recent Episode
+      </div>
+      <p>Elena Verna, head of growth at Lovable, shares how the AI-powered app builder reached $200 million in annual recurring revenue in under a year with just 100 employees. Learn how traditional growth strategies have been completely rewritten for AI companies, with innovation over optimization and giving away the product for free as the most powerful growth strategy.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="https://podcasts.apple.com/us/podcast/the-ai-daily-brief-artificial-intelligence-news/id1680633614" target="_blank">Major AI Agent Platforms Launch: Claude, Perplexity, and Notion</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">New Episode</span>
+        
+        The AI Daily Brief · Recent Episode
+      </div>
+      <p>Analysis of the coordinated launch of agent platforms from Anthropic, Perplexity, and Notion, marking the transition of agent technology from experimental to production-ready. Explores the emergence of new primitives including persistent work, multimodal orchestration, and scheduled autonomy that are fundamentally changing how AI assists with work.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="https://music.amazon.com/podcasts/2b3e5988-907e-4702-96f5-7eb33adc729e/the-ai-daily-brief-artificial-intelligence-news-and-analysis" target="_blank">Block's 40% Workforce Cut: AI Disruption or Cost Cutting?</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">New Episode</span>
+        
+        The AI Daily Brief · Recent Episode
+      </div>
+      <p>Deep dive into Block's decision to cut 40% of its workforce, with Jack Dorsey arguing that new intelligence tools and smaller teams fundamentally change how companies operate. Examines whether this represents the first true AI-driven headcount reset or simply COVID overhiring being cleaned up under a new narrative, and what it signals for other tech companies.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="https://podcasts.apple.com/us/podcast/the-ai-daily-brief-artificial-intelligence-news/id1680633614" target="_blank">AI Productivity Gains Finally Show Up in Economic Data</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">New Episode</span>
+        
+        The AI Daily Brief · Recent Episode
+      </div>
+      <p>Revised labor statistics suggest stronger-than-expected productivity growth despite weaker hiring, raising the possibility that the long-anticipated AI productivity surge is finally appearing in macroeconomic numbers. For years, AI felt transformative in anecdotes but remained invisible in national data—that may now be changing.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="https://wng.org/podcasts/monday-morning-news-march-2-2026-1772382798" target="_blank">Monday Morning News: Iran Strikes, Congressional Response</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Breaking News</span>
+        
+        WORLD Radio · March 2, 2026
+      </div>
+      <p>Comprehensive coverage of the aftermath of U.S.-Israeli strikes on Iran's Supreme Leader, including Iran's retaliatory missile strikes, U.S. casualties, and growing Congressional criticism. President Trump warns of possible additional U.S. troop deaths while Democrats call for War Powers Act vote.</p>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Monday, March 02, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · AI Daily Brief<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
