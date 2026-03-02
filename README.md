@@ -70,9 +70,4 @@ The HTML and MP3 are committed to `briefs/` in the repo and automatically delete
 
 ## Costs
 
-- **Anthropic API**: ~$0.10–0.30/day (Claude Sonnet with web search)
-- **Deepgram**: ~$0.01–0.05/day (Aura TTS, pay-per-character)
-- **Resend**: free tier (3,000 emails/month)
-- **GitHub Actions**: free tier (well under 2,000 min/month)
-
-Total: roughly **$3–10/month**.
+There are small API costs across Claude, Deepgram, and Resend. GitHub Actions is free for public repositories.
