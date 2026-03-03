@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 03, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Tuesday, March 03, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Markets plunge as Iran closes Strait of Hormuz threatening global oil supplies, India faces energy security crisis with 25 days of crude reserves, and CMS halts major Medicare Advantage insurer enrollment over seven-year compliance failure.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-03.mp3"></audio>
+  </div>
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com/" target="_blank">India Maintains 25 Days of Crude Oil Reserves Amid Strait of Hormuz Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com/" target="_blank">The Hindu</a>
+        
+      
+    </div>
+    <p>Government sources report India maintains 25 days of crude oil reserves and 25 days each of petrol and diesel stock as tensions escalate in West Asia. The Airports Authority of India is seeking information on fuel stocks from international airport operators as roughly 50% of India's crude imports transit through the Strait of Hormuz, which Iran has reportedly closed.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> India's energy security faces immediate threat as the Strait of Hormuz crisis could disrupt half the nation's crude oil imports, potentially impacting fuel prices and macroeconomic stability.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/02/stock-market-today-live-updates.html" target="_blank">Markets Plunge as Iran Closes Strait of Hormuz, S&P 500 Falls 1.7%</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/02/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+         · 
+        <a href="https://www.bloomberg.com/news/articles/2026-03-02/asia-poised-for-weak-open-after-treasuries-sink-markets-wrap" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>U.S. equities tumbled sharply with the Dow losing 844 points and the S&P 500 dropping 1.7% as the Iran conflict entered its fourth day. Oil prices spiked 8% after Iran closed the Strait of Hormuz and threatened to set ships ablaze, while travel stocks were particularly hard hit and energy stocks surged. Ten-year Treasury yields posted their biggest two-day rise since April as soaring energy prices cast doubt on central banks' ability to control inflation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Strait of Hormuz closure threatens global oil supplies and could trigger sustained inflation pressures that derail central bank rate cut plans.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/03/5-things-to-know-before-the-market-opens.html" target="_blank">Target Earnings Beat Expectations Despite Declining Revenue and Customer Traffic</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/03/5-things-to-know-before-the-market-opens.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Target reported fourth-quarter adjusted earnings of $2.44 per share, beating Wall Street's forecast of $2.16 and sending shares up 4% in premarket trading. However, the retailer posted revenue declining approximately 1.5% year-over-year and customer visits to stores and its website decreased for a fourth consecutive quarter as new CEO Michael Fiddelke hosted his first investor day.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Target's declining traffic despite earnings beats signals ongoing consumer spending challenges and raises questions about retail margin sustainability in a high-price environment.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/01/stock-market-today-live-update.html" target="_blank">Berkshire Hathaway Q4 Operating Earnings Drop 29% Under New CEO Greg Abel</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/01/stock-market-today-live-update.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Berkshire Hathaway reported operating earnings of $10.2 billion for the fourth quarter, down more than 29% from $14.56 billion a year earlier, driven primarily by a 54% decline in insurance underwriting profits. New CEO Greg Abel, who took over from Warren Buffett at the start of 2026, used his first annual shareholder letter to reassure investors about maintaining the conglomerate's culture of financial conservatism.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Abel's first quarterly report as Buffett's successor will be closely watched as a signal of how the legendary conglomerate adapts under new leadership.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/02/stock-market-today-live-updates.html" target="_blank">South Korea's Kospi Plunges Over 5% as Defense Stocks Surge on Iran Conflict</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/02/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>South Korea's Kospi tumbled more than 5% as trading resumed after a public holiday, reflecting heightened concerns about the Iran conflict. Defense stocks saw massive gains with some surging over 20% as the conflict fueled global interest in defense names, while Japan's Nikkei 225 fell 2.49% and Hong Kong's Hang Seng declined 0.29%.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The divergence between defense stock gains and broader market losses illustrates how geopolitical conflict is creating sector-specific winners while threatening overall economic stability.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://kffhealthnews.org/morning-breakout/first-edition-tuesday-march-3-2026/" target="_blank">CMS Halts Enrollment in Elevance's Medicare Advantage Plans Over Seven-Year Misconduct</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://kffhealthnews.org/morning-breakout/first-edition-tuesday-march-3-2026/" target="_blank">STAT News</a>
+        
+      
+    </div>
+    <p>Elevance Health will no longer be able to enroll people into its Medicare Advantage plans starting March 31 after failing to submit required information to federal regulators over a seven-year period, according to a harshly worded CMS suspension notice. The punishment will not affect the 1.9 million people already enrolled in Elevance's plans.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents one of the most significant regulatory actions against a major Medicare Advantage insurer and could reshape the competitive landscape of the privatized Medicare market.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://kffhealthnews.org/morning-breakout/first-edition-tuesday-march-3-2026/" target="_blank">Fungal Aspergillosis Infections Rising 5% Annually in United States</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://kffhealthnews.org/morning-breakout/first-edition-tuesday-march-3-2026/" target="_blank">KFF Health News</a>
+        
+      
+    </div>
+    <p>Analysis of electronic health record data published in Open Forum Infectious Diseases shows aspergillosis diagnoses increased by more than 5% annually in the United States from 2013 through 2023. The findings reveal a concerning decade-long trend in fungal infections across the country.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This significant annual increase in aspergillosis cases signals a growing public health threat that could strain healthcare systems and require enhanced fungal disease surveillance.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://kffhealthnews.org/morning-breakout/first-edition-tuesday-march-3-2026/" target="_blank">Rope Squirrels Identified as Natural Reservoir of Mpox Virus</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://kffhealthnews.org/morning-breakout/first-edition-tuesday-march-3-2026/" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>A report in Nature details a case of likely direct mpox virus transmission from a fire-footed rope squirrel to wild sooty mangabey monkeys in a Côte d'Ivoire national park in 2023. Researchers examined molecular, ecological, and behavioral evidence from rodents and wildlife in the area, building on decades of monitoring primates and other wildlife.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Understanding animal reservoirs of mpox is critical for predicting and preventing future outbreaks that could spill over into human populations.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://kffhealthnews.org/morning-breakout/first-edition-tuesday-march-3-2026/" target="_blank">GLP-1 Drugs May Increase Risk of Osteoporosis and Gout</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://kffhealthnews.org/morning-breakout/first-edition-tuesday-march-3-2026/" target="_blank">KFF Health News</a>
+        
+      
+    </div>
+    <p>GLP-1 drugs including Ozempic and Wegovy may be tied to a slightly higher risk of osteoporosis and gout, according to research presented at the American Academy of Orthopaedic Surgeons' annual meeting. The study was prompted by observations that some patients developed serious tendon tears after relatively minor injuries.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As GLP-1 drugs become increasingly prescribed for weight loss, understanding their potential effects on bone and connective tissue health is critical for patient safety.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org/physics/" target="_blank">Meteorite Crystals May Reveal Birth of the Milky Way</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.quantamagazine.org/physics/" target="_blank">Quanta Magazine</a>
+        
+      
+    </div>
+    <p>Microscopic crystals extracted from meteorites could help settle a debate about the birth of our patch of the Milky Way, according to research published March 2. The study examines ancient materials preserved in meteorites to understand the early formation of our galactic neighborhood.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> These ancient crystals provide a rare window into the Milky Way's formation billions of years ago, potentially rewriting our understanding of galactic evolution.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>No Stories Available</strong> — Unable to locate current stories from approved exploration sources for today.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive — Got More Time?</span>
+  </div>
+
+  <div class="deepdive-intro">
+    If you have extra time today, here are handpicked long reads, new podcast episodes, and your audiobook. Tap any to jump right in.
+  </div>
+
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="https://aidailybrief.ai/" target="_blank">Major AI Companies Launch Agentic Workflows with Always-On Autonomous Agents</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">New Episode</span>
+        
+        AI Daily Brief · This week
+      </div>
+      <p>Anthropic launched Claude Code Remote Control and Scheduled Tasks, Perplexity introduced Perplexity Computer, and Notion unveiled Custom Agents, marking a shift where every major AI player is shipping always-on, agentic workflows. The episode explores new primitives in the agent era including persistent work, multimodal orchestration, scheduled autonomy, and AI that follows users across devices.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="https://aidailybrief.ai/" target="_blank">Anti-AI Movement Grows as Public Skepticism Toward AI Technology Rises</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">New Episode</span>
+        
+        AI Daily Brief · This week
+      </div>
+      <p>Public resistance to AI is taking many forms including job displacement fears, artist backlash, data center protests, child development concerns, AI safety debates, and growing distrust of Big Tech. The episode analyzes different camps within the emerging anti-AI movement and argues that most critics are responding to real, solvable concerns rather than being anti-technology ideologues.</p>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Tuesday, March 03, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · No Stories Available<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
