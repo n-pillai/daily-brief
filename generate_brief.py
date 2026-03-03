@@ -61,29 +61,40 @@ def fetch_weather() -> list[dict]:
     print("🌤️  Fetching weather...")
     results = []
     for loc in WEATHER_LOCATIONS:
-        try:
-            r = requests.get(
-                f"https://wttr.in/{loc['query']}?format=j1",
-                timeout=10,
-                headers={"User-Agent": "daily-brief/1.0"},
-            )
-            data = r.json()
-            current = data["current_condition"][0]
-            today = data["weather"][0]
-            code = int(current["weatherCode"])
-            results.append({
-                "label": loc["label"],
-                "location_icon": loc["icon"],
-                "weather_icon": _weather_icon(code),
-                "condition": current["weatherDesc"][0]["value"],
-                "temp_f": current["temp_F"],
-                "feels_like_f": current["FeelsLikeF"],
-                "high_f": today["maxtempF"],
-                "low_f": today["mintempF"],
-            })
-            print(f"  ✅ {loc['label']}: {current['temp_F']}°F, {current['weatherDesc'][0]['value']}")
-        except Exception as e:
-            print(f"  ⚠️  Weather fetch failed for {loc['label']}: {e}")
+        success = False
+        for attempt in range(3):
+            try:
+                r = requests.get(
+                    f"https://wttr.in/{loc['query']}?format=j1",
+                    timeout=10,
+                    headers={"User-Agent": "daily-brief/1.0"},
+                )
+                if r.status_code != 200:
+                    raise RuntimeError(f"HTTP {r.status_code}")
+                data = r.json()
+                current = data["current_condition"][0]
+                today = data["weather"][0]
+                code = int(current["weatherCode"])
+                results.append({
+                    "label": loc["label"],
+                    "location_icon": loc["icon"],
+                    "weather_icon": _weather_icon(code),
+                    "condition": current["weatherDesc"][0]["value"],
+                    "temp_f": current["temp_F"],
+                    "feels_like_f": current["FeelsLikeF"],
+                    "high_f": today["maxtempF"],
+                    "low_f": today["mintempF"],
+                })
+                print(f"  ✅ {loc['label']}: {current['temp_F']}°F, {current['weatherDesc'][0]['value']}")
+                success = True
+                break
+            except Exception as e:
+                if attempt < 2:
+                    print(f"  ⚠️  Weather fetch failed for {loc['label']} (attempt {attempt + 1}/3): {e} — retrying in 5s...")
+                    time.sleep(5)
+                else:
+                    print(f"  ❌ Weather fetch failed for {loc['label']} after 3 attempts: {e}")
+        if not success:
             results.append({"label": loc["label"], "location_icon": loc["icon"], "error": True})
     return results
 
