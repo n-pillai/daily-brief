@@ -3,7 +3,13 @@
     "core": ["The Economist", "NYT", "BBC", "TechCrunch", "Stratechery", "AI Daily Brief", "TLDR"],
     "subscriptions": ["The Economist", "NYT", "Lenny's Newsletter"],
     "explore_pool": ["WIRED", "MIT Technology Review", "Ars Technica", "The Verge", "Aeon", "Quanta Magazine"],
-    "podcasts": ["Lenny's Podcast", "AI Daily Brief", "Acquired", "The Journal (WSJ)"]
+    "podcasts": ["Lenny's Podcast", "AI Daily Brief", "Acquired", "The Journal (WSJ)"],
+    "trusted_sources": {
+      "world": ["BBC", "Reuters", "Associated Press", "New York Times", "The Guardian", "Financial Times", "The Economist", "Washington Post", "Al Jazeera English"],
+      "tech": ["TechCrunch", "The Verge", "Ars Technica", "WIRED", "MIT Technology Review", "Stratechery", "Bloomberg Technology"],
+      "business": ["Bloomberg", "Financial Times", "Wall Street Journal", "CNBC", "The Economist", "Reuters", "Forbes"],
+      "science": ["Nature", "Science", "STAT News", "KFF Health News", "Quanta Magazine", "Scientific American", "New Scientist", "The Lancet"]
+    }
   },
   "categories": [
     {"id": "world", "name": "World & Politics", "badge_class": "world", "number": "01"},

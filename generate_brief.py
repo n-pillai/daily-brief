@@ -36,6 +36,7 @@ TEMPLATE_PATH = Path("templates/brief_template.html")
 _config = json.loads(Path("config.json").read_text())
 SOURCES = _config["sources"]
 CATEGORIES = _config["categories"]
+TRUSTED_SOURCES = SOURCES["trusted_sources"]
 
 WEATHER_LOCATIONS = [
     {"label": "Home", "icon": "🏠", "query": os.environ.get("WEATHER_LOCATION_HOME", "")},
@@ -104,13 +105,74 @@ def search_news() -> dict:
     """Use Claude with web search to gather today's news across all categories."""
     print("📡 Searching for today's news...")
 
+    def source_list(category: str) -> str:
+        return ", ".join(TRUSTED_SOURCES.get(category, []))
+
+    explore_sources = ", ".join(SOURCES["explore_pool"])
+    podcast_sources = ", ".join(SOURCES["podcasts"])
+
     search_queries = {
-        "world": f"top world politics news today {DATE_STR}",
-        "tech": f"top technology AI news today {DATE_STR}",
-        "business": f"top business finance news today {DATE_STR}",
-        "science": f"top science health news today {DATE_STR}",
-        "explore": f"interesting stories WIRED MIT Technology Review today {DATE_STR}",
-        "deepdive": f"new podcast episodes Lenny's Podcast AI Daily Brief Acquired The Journal WSJ {DATE_STR}",
+        "world": (
+            f"top world politics news today {DATE_STR} "
+            f"from {source_list('world')}"
+        ),
+        "tech": (
+            f"top technology AI news today {DATE_STR} "
+            f"from {source_list('tech')}"
+        ),
+        "business": (
+            f"top business finance news today {DATE_STR} "
+            f"from {source_list('business')}"
+        ),
+        "science": (
+            f"top science health news today {DATE_STR} "
+            f"from {source_list('science')}"
+        ),
+        "explore": (
+            f"interesting technology science culture stories today {DATE_STR} "
+            f"from {explore_sources}"
+        ),
+        "deepdive": (
+            f"new podcast episodes released today or this week {DATE_STR} "
+            f"from {podcast_sources}"
+        ),
+    }
+
+    source_instructions = {
+        "world": (
+            f"Search specifically for today's top world politics and international news "
+            f"reported by these trusted outlets: {source_list('world')}. "
+            f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Do not use news aggregators, regional blogs, or unfamiliar outlets."
+        ),
+        "tech": (
+            f"Search specifically for today's top technology and AI news "
+            f"reported by these trusted outlets: {source_list('tech')}. "
+            f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Do not use news aggregators or secondary tech blogs."
+        ),
+        "business": (
+            f"Search specifically for today's top business and finance news "
+            f"reported by these trusted outlets: {source_list('business')}. "
+            f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Do not use news aggregators or investor blogs."
+        ),
+        "science": (
+            f"Search specifically for today's top science and health news "
+            f"reported by these trusted outlets: {source_list('science')}. "
+            f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Do not use aggregator sites like ScienceDaily — find the primary journal or specialist outlet."
+        ),
+        "explore": (
+            f"Search for interesting and thought-provoking stories published today or this week "
+            f"specifically from these outlets: {explore_sources}. "
+            f"These are the only acceptable sources for this section."
+        ),
+        "deepdive": (
+            f"Search for new podcast episodes released today or this week "
+            f"specifically from these shows: {podcast_sources}. "
+            f"Only return episodes from these exact shows."
+        ),
     }
 
     results = {}
@@ -126,14 +188,18 @@ def search_news() -> dict:
             }],
             messages=[{
                 "role": "user",
-                "content": f"""Search for: {query}
+                "content": f"""{source_instructions[category]}
+
+Search query: {query}
 
 Return the top 5 most important stories. For each story provide:
 - headline (concise, informative)
-- source_name (which outlet reported it)
-- source_url (direct link if available, otherwise outlet homepage)
+- source_name (the specific outlet, e.g. "BBC", "Reuters" — not an aggregator)
+- source_url (direct link to the article if available, otherwise the outlet's homepage)
 - summary (2-3 sentences of substance, not just headline expansion)
 - why_it_matters (1 sentence, only for the top 1-2 stories)
+
+If you cannot find 5 stories from the approved outlets, return fewer rather than filling slots with unapproved sources.
 
 Format as JSON array. Only return the JSON, no other text."""
             }],
@@ -160,6 +226,11 @@ def synthesise_brief(raw_results: dict) -> dict:
     subscriptions = ", ".join(SOURCES["subscriptions"])
     explore_sources = ", ".join(SOURCES["explore_pool"])
 
+    trusted_by_category = "\n".join(
+        f"- {cat.title()}: {', '.join(outlets)}"
+        for cat, outlets in TRUSTED_SOURCES.items()
+    )
+
     prompt = f"""You are writing The Daily Brief for {DAY_NAME}, {DATE_STR}.
 
 Here are raw news search results by category:
@@ -184,6 +255,16 @@ DEEP DIVE (podcasts/long reads):
 
 Write a synthesised daily brief. Cross-reference stories across sources for accuracy.
 The reader subscribes to: {subscriptions} — mark these with "subscriber": true.
+
+SOURCE QUALITY RULES — strictly enforced:
+Only include stories from these approved outlets per section:
+{trusted_by_category}
+- Explore: {explore_sources}
+
+If a story in the raw results comes from a news aggregator (e.g. ScienceDaily, Crescendo AI, News9live, MarketScreener, or any site that republishes others' reporting), you must either:
+  a) Identify and cite the actual primary source (the journal, university, or original outlet), or
+  b) Omit the story entirely.
+Do not include stories where you cannot identify a reputable primary source. Fewer high-quality stories is better than padding with aggregator content.
 
 Return ONLY valid JSON with this exact structure:
 {{
