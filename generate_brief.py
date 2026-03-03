@@ -116,6 +116,10 @@ def search_news() -> dict:
             f"top world politics news today {DATE_STR} "
             f"from {source_list('world')}"
         ),
+        "india": (
+            f"top India news politics business today {DATE_STR} "
+            f"from {source_list('india')}"
+        ),
         "tech": (
             f"top technology AI news today {DATE_STR} "
             f"from {source_list('tech')}"
@@ -127,6 +131,10 @@ def search_news() -> dict:
         "science": (
             f"top science health news today {DATE_STR} "
             f"from {source_list('science')}"
+        ),
+        "sports": (
+            f"top sports news today {DATE_STR} "
+            f"from {source_list('sports')}"
         ),
         "explore": (
             f"interesting technology science culture stories today {DATE_STR} "
@@ -145,6 +153,12 @@ def search_news() -> dict:
             f"Only return stories where the original reporting outlet is one of these sources. "
             f"Do not use news aggregators, regional blogs, or unfamiliar outlets."
         ),
+        "india": (
+            f"Search specifically for today's top news from India — politics, economy, society, and foreign affairs — "
+            f"reported by these trusted outlets: {source_list('india')}. "
+            f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Do not use news aggregators or unfamiliar regional outlets."
+        ),
         "tech": (
             f"Search specifically for today's top technology and AI news "
             f"reported by these trusted outlets: {source_list('tech')}. "
@@ -162,6 +176,12 @@ def search_news() -> dict:
             f"reported by these trusted outlets: {source_list('science')}. "
             f"Only return stories where the original reporting outlet is one of these sources. "
             f"Do not use aggregator sites like ScienceDaily — find the primary journal or specialist outlet."
+        ),
+        "sports": (
+            f"Search specifically for today's top sports news — scores, results, transfers, and major stories — "
+            f"reported by these trusted outlets: {source_list('sports')}. "
+            f"Cover a mix of sports (cricket, football/soccer, tennis, basketball, F1 as relevant). "
+            f"Only return stories where the original reporting outlet is one of these sources."
         ),
         "explore": (
             f"Search for interesting and thought-provoking stories published today or this week "
@@ -238,6 +258,9 @@ Here are raw news search results by category:
 WORLD & POLITICS:
 {raw_results.get('world', 'No results')}
 
+INDIA:
+{raw_results.get('india', 'No results')}
+
 TECH & AI:
 {raw_results.get('tech', 'No results')}
 
@@ -246,6 +269,9 @@ BUSINESS & FINANCE:
 
 SCIENCE & HEALTH:
 {raw_results.get('science', 'No results')}
+
+SPORTS:
+{raw_results.get('sports', 'No results')}
 
 EXPLORE (discovery sources):
 {raw_results.get('explore', 'No results')}
@@ -288,24 +314,38 @@ Return ONLY valid JSON with this exact structure:
       ]
     }},
     {{
+      "id": "india",
+      "name": "India",
+      "badge_class": "india",
+      "number": "02",
+      "stories": [...]
+    }},
+    {{
       "id": "tech",
       "name": "Tech & AI",
       "badge_class": "tech",
-      "number": "02",
+      "number": "03",
       "stories": [...]
     }},
     {{
       "id": "business",
       "name": "Business & Finance",
       "badge_class": "business",
-      "number": "03",
+      "number": "04",
       "stories": [...]
     }},
     {{
       "id": "science",
       "name": "Science & Health",
       "badge_class": "science",
-      "number": "04",
+      "number": "05",
+      "stories": [...]
+    }},
+    {{
+      "id": "sports",
+      "name": "Sports",
+      "badge_class": "sports",
+      "number": "06",
       "stories": [...]
     }}
   ],
@@ -385,13 +425,15 @@ Rules:
 - Close with "That is your Daily Brief for {DAY_NAME}. Have a great day."
 - Do NOT narrate the Deep Dive section — just the 4 news categories and Explore
 
-Return a JSON array with exactly 6 objects:
+Return a JSON array with exactly 8 objects:
 [
   {{"label": "Introduction", "text": "..."}},
   {{"label": "World & Politics", "text": "..."}},
+  {{"label": "India", "text": "..."}},
   {{"label": "Tech & AI", "text": "..."}},
   {{"label": "Business & Finance", "text": "..."}},
   {{"label": "Science & Health", "text": "..."}},
+  {{"label": "Sports", "text": "..."}},
   {{"label": "Explore & Sign-off", "text": "..."}}
 ]
 
@@ -509,8 +551,9 @@ def generate_email_html(brief_data: dict, mp3_url: str) -> str:
 
     ACCENT = "#1B4D3E"
     BADGE_COLORS = {
-        "world": "#DC2626", "tech": "#2563EB", "business": "#059669",
-        "science": "#7C3AED", "explore": "#D97706",
+        "world": "#DC2626", "india": "#F97316", "tech": "#2563EB",
+        "business": "#059669", "science": "#7C3AED",
+        "sports": "#0EA5E9", "explore": "#D97706",
     }
 
     def badge(text, color):
