@@ -261,10 +261,11 @@ Format as JSON array. Only return the JSON, no other text."""
                     }],
                 )
                 break
-            except anthropic.RateLimitError:
+            except anthropic.RateLimitError as e:
                 if attempt < 2:
-                    print(f"  ⚠️  Rate limit hit for {category} (attempt {attempt + 1}/3) — waiting 60s...")
-                    time.sleep(60)
+                    wait = int(e.response.headers.get("retry-after", 60))
+                    print(f"  ⚠️  Rate limit hit for {category} (attempt {attempt + 1}/3) — waiting {wait}s...")
+                    time.sleep(wait)
                 else:
                     raise
 
@@ -276,6 +277,7 @@ Format as JSON array. Only return the JSON, no other text."""
 
         results[category] = text
         print(f"  ✅ {category} done")
+        time.sleep(10)  # Brief pause between categories to avoid rapid-fire token bursts
 
     return results
 
