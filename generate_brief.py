@@ -47,55 +47,86 @@ client = Anthropic(api_key=ANTHROPIC_API_KEY)
 
 
 # ── Weather ───────────────────────────────────────────────────────────────
-def _weather_icon(code: int) -> str:
-    if code == 113: return "☀️"
-    if code == 116: return "⛅"
-    if code in (119, 122): return "☁️"
-    if code in (143, 248, 260): return "🌫️"
-    if code in (200, 386, 389, 392, 395): return "⛈️"
-    if code in (179, 182, 185, 323, 326, 329, 332, 335, 338, 350, 368, 371, 374, 377): return "❄️"
+def _wmo_icon(code: int) -> str:
+    if code == 0: return "☀️"
+    if code in (1, 2): return "⛅"
+    if code == 3: return "☁️"
+    if code in (45, 48): return "🌫️"
+    if code in (95, 96, 99): return "⛈️"
+    if code in (71, 73, 75, 77, 85, 86): return "❄️"
     return "🌧️"
 
 
+def _wmo_description(code: int) -> str:
+    descriptions = {
+        0: "Clear sky", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast",
+        45: "Foggy", 48: "Icy fog",
+        51: "Light drizzle", 53: "Drizzle", 55: "Heavy drizzle",
+        61: "Light rain", 63: "Rain", 65: "Heavy rain",
+        71: "Light snow", 73: "Snow", 75: "Heavy snow", 77: "Snow grains",
+        80: "Showers", 81: "Rain showers", 82: "Heavy showers",
+        85: "Snow showers", 86: "Heavy snow showers",
+        95: "Thunderstorm", 96: "Thunderstorm with hail", 99: "Thunderstorm with hail",
+    }
+    return descriptions.get(code, "Unknown")
+
+
+def _geocode(location_name: str) -> tuple[float, float, str]:
+    """Geocode a location name to lat/lon using Open-Meteo's geocoding API."""
+    r = requests.get(
+        "https://geocoding-api.open-meteo.com/v1/search",
+        params={"name": location_name, "count": 1, "language": "en", "format": "json"},
+        timeout=10,
+    )
+    r.raise_for_status()
+    results = r.json().get("results", [])
+    if not results:
+        raise RuntimeError(f"No geocoding results for '{location_name}'")
+    result = results[0]
+    return result["latitude"], result["longitude"], result.get("timezone", "auto")
+
+
 def fetch_weather() -> list[dict]:
-    """Fetch today's weather for each location via wttr.in (no API key required)."""
+    """Fetch today's weather via Open-Meteo (free, no API key required)."""
     print("🌤️  Fetching weather...")
     results = []
     for loc in WEATHER_LOCATIONS:
-        success = False
-        for attempt in range(3):
-            try:
-                r = requests.get(
-                    f"https://wttr.in/{loc['query']}?format=j1",
-                    timeout=10,
-                    headers={"User-Agent": "daily-brief/1.0"},
-                )
-                if r.status_code != 200:
-                    raise RuntimeError(f"HTTP {r.status_code}")
-                data = r.json()
-                current = data["current_condition"][0]
-                today = data["weather"][0]
-                code = int(current["weatherCode"])
-                results.append({
-                    "label": loc["label"],
-                    "location_icon": loc["icon"],
-                    "weather_icon": _weather_icon(code),
-                    "condition": current["weatherDesc"][0]["value"],
-                    "temp_f": current["temp_F"],
-                    "feels_like_f": current["FeelsLikeF"],
-                    "high_f": today["maxtempF"],
-                    "low_f": today["mintempF"],
-                })
-                print(f"  ✅ {loc['label']}: {current['temp_F']}°F, {current['weatherDesc'][0]['value']}")
-                success = True
-                break
-            except Exception as e:
-                if attempt < 2:
-                    print(f"  ⚠️  Weather fetch failed for {loc['label']} (attempt {attempt + 1}/3): {e} — retrying in 5s...")
-                    time.sleep(5)
-                else:
-                    print(f"  ❌ Weather fetch failed for {loc['label']} after 3 attempts: {e}")
-        if not success:
+        if not loc["query"]:
+            results.append({"label": loc["label"], "location_icon": loc["icon"], "error": True})
+            continue
+        try:
+            lat, lon, timezone = _geocode(loc["query"])
+            r = requests.get(
+                "https://api.open-meteo.com/v1/forecast",
+                params={
+                    "latitude": lat,
+                    "longitude": lon,
+                    "current": "temperature_2m,apparent_temperature,weather_code",
+                    "daily": "temperature_2m_max,temperature_2m_min",
+                    "temperature_unit": "fahrenheit",
+                    "timezone": timezone,
+                    "forecast_days": 1,
+                },
+                timeout=10,
+            )
+            r.raise_for_status()
+            data = r.json()
+            current = data["current"]
+            daily = data["daily"]
+            code = current["weather_code"]
+            results.append({
+                "label": loc["label"],
+                "location_icon": loc["icon"],
+                "weather_icon": _wmo_icon(code),
+                "condition": _wmo_description(code),
+                "temp_f": str(round(current["temperature_2m"])),
+                "feels_like_f": str(round(current["apparent_temperature"])),
+                "high_f": str(round(daily["temperature_2m_max"][0])),
+                "low_f": str(round(daily["temperature_2m_min"][0])),
+            })
+            print(f"  ✅ {loc['label']}: {round(current['temperature_2m'])}°F, {_wmo_description(code)}")
+        except Exception as e:
+            print(f"  ❌ Weather fetch failed for {loc['label']}: {e}")
             results.append({"label": loc["label"], "location_icon": loc["icon"], "error": True})
     return results
 
@@ -204,7 +235,7 @@ def search_news() -> dict:
             tools=[{
                 "type": "web_search_20250305",
                 "name": "web_search",
-                "max_uses": 2,
+                "max_uses": 5,
             }],
             messages=[{
                 "role": "user",
@@ -218,8 +249,9 @@ Return the top 5 most important stories. For each story provide:
 - source_url (direct link to the article if available, otherwise the outlet's homepage)
 - summary (2-3 sentences of substance, not just headline expansion)
 - why_it_matters (1 sentence, only for the top 1-2 stories)
+- approved (true if source is in the approved list, false if not)
 
-If you cannot find 5 stories from the approved outlets, return fewer rather than filling slots with unapproved sources.
+Prefer approved outlets. If you find fewer than 3 stories from approved outlets, fill remaining slots with stories from other major reputable outlets (major newspapers, wire services, broadcasters) and mark approved as false. Do not use aggregators or blogs.
 
 Format as JSON array. Only return the JSON, no other text."""
             }],
@@ -291,6 +323,7 @@ If a story in the raw results comes from a news aggregator (e.g. ScienceDaily, C
   a) Identify and cite the actual primary source (the journal, university, or original outlet), or
   b) Omit the story entirely.
 Do not include stories where you cannot identify a reputable primary source. Fewer high-quality stories is better than padding with aggregator content.
+If a section has fewer than 2 stories from approved outlets, include the most important stories from any major reputable outlet (major newspapers, wire services, broadcasters) to bring each section to at least 3 stories. Mark these with a note in the source name like "Additional: [Outlet Name]".
 
 Return ONLY valid JSON with this exact structure:
 {{

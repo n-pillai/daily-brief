@@ -259,6 +259,54 @@
   .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
   .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
 
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
   /* Footer */
   .footer {
     text-align: center;
@@ -324,6 +372,24 @@
   <div class="audio-controls">
     <audio controls src="{{ mp3_filename }}"></audio>
   </div>
+</div>
+{% endif %}
+
+{% if brief.weather %}
+<div class="weather-card">
+  {% for w in brief.weather %}
+  <div class="weather-item">
+    <div class="weather-loc">{{ w.location_icon }} {{ w.label }}</div>
+    {% if w.error %}
+    <div class="weather-unavail">Unavailable</div>
+    {% else %}
+    <div class="weather-emoji">{{ w.weather_icon }}</div>
+    <div class="weather-temp">{{ w.temp_f }}°F</div>
+    <div class="weather-desc">{{ w.condition }}</div>
+    <div class="weather-hilo">H: {{ w.high_f }}° · L: {{ w.low_f }}°</div>
+    {% endif %}
+  </div>
+  {% endfor %}
 </div>
 {% endif %}
 
