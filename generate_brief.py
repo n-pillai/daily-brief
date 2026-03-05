@@ -423,11 +423,21 @@ Return ONLY valid JSON with this exact structure:
 Include 4-5 stories per news section, 2-3 explore stories, and 5-7 deep dive items.
 Ensure all URLs are real and accurate. Do not invent URLs."""
 
-    response = client.messages.create(
-        model="claude-sonnet-4-5-20250929",
-        max_tokens=8000,
-        messages=[{"role": "user", "content": prompt}],
-    )
+    for attempt in range(3):
+        try:
+            response = client.messages.create(
+                model="claude-sonnet-4-5-20250929",
+                max_tokens=8000,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            break
+        except anthropic.RateLimitError as e:
+            if attempt < 2:
+                wait = int(e.response.headers.get("retry-after", 60))
+                print(f"  ⚠️  Rate limit hit during synthesis (attempt {attempt + 1}/3) — waiting {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
 
     text = response.content[0].text
 
@@ -484,11 +494,21 @@ Return a JSON array with exactly 8 objects:
 
 Return ONLY the JSON array."""
 
-    response = client.messages.create(
-        model="claude-sonnet-4-5-20250929",
-        max_tokens=6000,
-        messages=[{"role": "user", "content": prompt}],
-    )
+    for attempt in range(3):
+        try:
+            response = client.messages.create(
+                model="claude-sonnet-4-5-20250929",
+                max_tokens=6000,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            break
+        except anthropic.RateLimitError as e:
+            if attempt < 2:
+                wait = int(e.response.headers.get("retry-after", 60))
+                print(f"  ⚠️  Rate limit hit during narration (attempt {attempt + 1}/3) — waiting {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
 
     text = response.content[0].text
     json_match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', text, re.DOTALL)
