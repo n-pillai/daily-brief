@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 05, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Thursday, March 05, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">South Korean markets suffer historic crash amid Iran war fears; Kraken becomes first crypto firm to gain Federal Reserve master account; India faces England in T20 World Cup semi-final.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-05.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">51°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 64° · L: 49°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">51°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 62° · L: 50°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+  <div class="story">
+    <h3>U.S.-Israel Military Conflict with Iran Continues to Escalate</h3>
+    <div class="source">
+      
+        
+        Additional: Multiple outlets
+        
+      
+    </div>
+    <p>The military conflict between the U.S., Israel, and Iran that began on February 28, 2026 continues to intensify, with significant impacts on global energy markets and regional stability. President Trump announced the U.S. would insure Gulf shipping and escort tankers through the Strait of Hormuz if necessary to secure oil transport routes. The conflict has triggered sharp selloffs in Asian markets and raised crude oil prices.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The conflict threatens critical global oil shipping routes and has already caused historic market volatility, with potential for broader economic and geopolitical contagion.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/04/5-things-to-know-before-the-market-opens.html" target="_blank">Commerce Secretary Lutnick to Testify on Epstein Connections</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/04/5-things-to-know-before-the-market-opens.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>Commerce Secretary Howard Lutnick voluntarily agreed to testify before the House Oversight Committee regarding his connection to Jeffrey Epstein after recently released records showed their relationship was more extensive than previously disclosed. The House Oversight Committee also asked Goldman Sachs' top lawyer Kathryn Ruemmler to testify about her Epstein connection, with pressure mounting from both parties.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The investigation into cabinet-level officials' ties to Epstein raises questions about vetting processes and could impact the Trump administration's credibility.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/cricket/series/8604/game/1512772/india-vs-england-2nd-semi-final-icc-mens-t20-world-cup-2025-26" target="_blank">India Hosts England in High-Stakes T20 World Cup Semi-Final</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/cricket/series/8604/game/1512772/india-vs-england-2nd-semi-final-icc-mens-t20-world-cup-2025-26" target="_blank">Additional: ESPN</a>
+        
+      
+    </div>
+    <p>Defending champions India face England at Mumbai's Wankhede Stadium on March 5, 2026 in the second T20 World Cup semi-final. Both teams are seeking a historic third title, with India entering as favorites on home soil while England topped their Super 8 group with three consecutive wins. Key performers include India's Suryakumar Yadav (231 runs) and England's Harry Brook (228 runs).</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This clash between two former champions could define an era in T20 cricket, with the winner advancing to face either South Africa or New Zealand in the final at Ahmedabad.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/04/5-things-to-know-before-the-market-opens.html" target="_blank">OpenAI CEO Tells Staff Company Won't Control Military's AI Use</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/04/5-things-to-know-before-the-market-opens.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>OpenAI CEO Sam Altman told employees that the company won't make operational decisions on how the military uses its technology, according to a partial transcript reviewed by CNBC. The comments came after OpenAI won a Defense Department contract following the Pentagon's blacklisting of rival Anthropic. Employees at OpenAI and Alphabet have called for stricter guardrails on military use of AI systems.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The policy raises critical questions about AI companies' responsibility for how their technology is deployed in military applications and sets a precedent for the industry.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Google Search Rolls Out Gemini's Canvas Feature</h3>
+    <div class="source">
+      
+        
+        TechCrunch
+        
+      
+    </div>
+    <p>Google has begun rolling out Canvas, a feature from its Gemini AI assistant, directly into Google Search. The integration represents Google's continued effort to embed advanced AI capabilities throughout its core products.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This move signals Google's aggressive strategy to maintain search dominance by incorporating generative AI features that could fundamentally change how users interact with search engines.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Alibaba's Qwen Tech Lead Resigns</h3>
+    <div class="source">
+      
+        
+        Bloomberg
+        
+      
+    </div>
+    <p>The technical lead of Alibaba's Qwen AI model has resigned from the company, marking a significant departure from one of China's leading AI development teams.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The resignation could impact Alibaba's competitive position in China's intense AI race and signals potential internal challenges at the tech giant.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.wsj.com" target="_blank">Kraken Becomes First Crypto Firm to Gain Federal Reserve Master Account</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.wsj.com" target="_blank">Wall Street Journal</a>
+        
+      
+    </div>
+    <p>Cryptocurrency exchange Kraken's banking unit, Kraken Financial, has secured approval for a Federal Reserve master account, granting it direct access to the Fed's core payment systems including Fedwire. This makes Kraken the first digital asset bank in U.S. history to receive such approval, allowing it to move money on the same rails used by traditional banks and credit unions. The approval is limited and does not include the full suite of services available to traditional banks, such as earning interest on reserves.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This milestone marks a historic convergence of crypto infrastructure and traditional banking, potentially opening the door for broader institutional adoption of digital assets within the U.S. financial system.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-04/korean-stock-gauge-poised-for-correction-on-iran-war-selloff" target="_blank">South Korean Stocks Suffer Worst Single-Day Crash on Record</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-04/korean-stock-gauge-poised-for-correction-on-iran-war-selloff" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>The Kospi Index plunged 12% on Wednesday following a 7.2% drop on Tuesday, marking the biggest two-day crash since 2008 and the worst single day in the index's history. Heavyweights Samsung Electronics, SK Hynix, and Hyundai Motor tumbled as the U.S.-Iran war intensified concerns about oil prices and energy security for the import-dependent nation. The rout triggered a 20-minute trading halt and was exacerbated by forced liquidation of leveraged retail positions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The collapse demonstrates how quickly market exuberance can turn to panic when geopolitical risks collide with highly leveraged positions, raising questions about contagion risks to other markets.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/04/5-things-to-know-before-the-market-opens.html" target="_blank">U.S. Markets Rally on Trump's Gulf Oil Shipping Assurances</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/04/5-things-to-know-before-the-market-opens.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>U.S. stocks rebounded on Wednesday with the S&P 500 gaining 0.78% and the Nasdaq climbing 1.29%, reversing earlier losses after President Trump announced the U.S. would insure Gulf shipping and escort tankers through the Strait of Hormuz if necessary. The assurances helped ease crude oil prices that had surged earlier in the session, while technology stocks led the market higher with chipmakers Micron and AMD advancing more than 5%.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The divergence between U.S. market resilience and Asian market panic highlights how government intervention and energy security assurances can stabilize investor sentiment during geopolitical crises.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+  <div class="story">
+    <h3>Magnetic Fluid Shows Promise for Heart Surgery Applications</h3>
+    <div class="source">
+      
+        
+        Nature
+        
+      
+    </div>
+    <p>Researchers have developed a magnetic fluid technology that could revolutionize minimally invasive heart surgery procedures. The innovation represents a significant advancement in surgical techniques that could reduce patient recovery times and improve outcomes.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This technology could transform cardiac surgery by enabling less invasive procedures with better precision and faster patient recovery.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Boreal Forest Fires Accelerating Climate Feedback Loops</h3>
+    <div class="source">
+      
+        
+        Nature
+        
+      
+    </div>
+    <p>New research published in Nature reveals that increasing boreal forest fires are creating dangerous climate feedback loops, releasing massive amounts of stored carbon and accelerating warming in northern regions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The findings underscore the urgent need for climate action as feedback loops could accelerate global warming beyond current projections.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>FDA Issues New Warnings on GLP-1 Drug Usage</h3>
+    <div class="source">
+      
+        
+        STAT News
+        
+      
+    </div>
+    <p>The FDA has issued updated safety warnings regarding GLP-1 receptor agonists, the popular class of diabetes and weight-loss drugs including Ozempic and Wegovy. The warnings address potential side effects and proper usage guidelines as prescription rates continue to surge.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> With millions of Americans now taking these medications, proper safety guidance is critical to prevent adverse outcomes from this rapidly growing drug class.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/cricket/series/8604/game/1512772/india-vs-england-2nd-semi-final-icc-mens-t20-world-cup-2025-26" target="_blank">India vs England T20 World Cup Semi-Final Set for Mumbai Showdown</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/cricket/series/8604/game/1512772/india-vs-england-2nd-semi-final-icc-mens-t20-world-cup-2025-26" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Defending champions India face England in the second T20 World Cup semi-final at Wankhede Stadium on March 5, 2026. Both teams are seeking a historic third title in the tournament, with India entering as favorites on home soil while England topped their Super 8 group with three consecutive wins. The match features key performers including India's Suryakumar Yadav (231 runs) and England's Harry Brook (228 runs).</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This semi-final clash between two former champions could define an era in T20 cricket, with the winner advancing to face either South Africa or New Zealand in the final at Ahmedabad.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Limited Content Available</strong> — Insufficient current stories from approved exploration outlets for March 5, 2026.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive — Got More Time?</span>
+  </div>
+
+  <div class="deepdive-intro">
+    If you have extra time today, here are handpicked long reads, new podcast episodes, and your audiobook. Tap any to jump right in.
+  </div>
+
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4>The NFL - Acquired</h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">New Episode</span>
+        
+        Released March 2, 2026
+      </div>
+      <p>An in-depth exploration of the National Football League's business model, history, and cultural impact on American sports and entertainment.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4>OpenAI's Code Red Memo - The Journal (WSJ)</h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Business</span>
+        
+        Recent episode
+      </div>
+      <p>Inside OpenAI's internal warnings about AI safety and the company's response to emerging technical challenges.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4>Claude Code Remote Control and Scheduled Tasks - AI Daily Brief</h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Tech</span>
+        
+        Recent episode
+      </div>
+      <p>Breaking down Anthropic's latest Claude AI capabilities including remote code execution and task scheduling features.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4>Perplexity Computer - AI Daily Brief</h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Tech</span>
+        
+        Recent episode
+      </div>
+      <p>Analysis of Perplexity AI's new computer-use capabilities and what they mean for AI agent development.</p>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Thursday, March 05, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Limited Content Available<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
