@@ -12,6 +12,7 @@ import time
 import datetime
 import requests
 from pathlib import Path
+import anthropic
 from anthropic import Anthropic
 from jinja2 import Template
 
@@ -229,17 +230,20 @@ def search_news() -> dict:
     results = {}
     for category, query in search_queries.items():
         print(f"  🔍 Searching: {category}...")
-        response = client.messages.create(
-            model="claude-sonnet-4-5-20250929",
-            max_tokens=2000,
-            tools=[{
-                "type": "web_search_20250305",
-                "name": "web_search",
-                "max_uses": 5,
-            }],
-            messages=[{
-                "role": "user",
-                "content": f"""{source_instructions[category]}
+
+        for attempt in range(3):
+            try:
+                response = client.messages.create(
+                    model="claude-sonnet-4-5-20250929",
+                    max_tokens=2000,
+                    tools=[{
+                        "type": "web_search_20250305",
+                        "name": "web_search",
+                        "max_uses": 5,
+                    }],
+                    messages=[{
+                        "role": "user",
+                        "content": f"""{source_instructions[category]}
 
 Search query: {query}
 
@@ -254,8 +258,15 @@ Return the top 5 most important stories. For each story provide:
 Prefer approved outlets. If you find fewer than 3 stories from approved outlets, fill remaining slots with stories from other major reputable outlets (major newspapers, wire services, broadcasters) and mark approved as false. Do not use aggregators or blogs.
 
 Format as JSON array. Only return the JSON, no other text."""
-            }],
-        )
+                    }],
+                )
+                break
+            except anthropic.RateLimitError:
+                if attempt < 2:
+                    print(f"  ⚠️  Rate limit hit for {category} (attempt {attempt + 1}/3) — waiting 60s...")
+                    time.sleep(60)
+                else:
+                    raise
 
         # Extract text from response
         text = ""
@@ -265,7 +276,6 @@ Format as JSON array. Only return the JSON, no other text."""
 
         results[category] = text
         print(f"  ✅ {category} done")
-        time.sleep(15)  # Stay within 30k TPM rate limit
 
     return results
 
