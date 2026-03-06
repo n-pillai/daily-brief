@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 06, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Friday, March 06, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">US economy sheds 92,000 jobs as unemployment rises to 4.4%; oil prices surge 8% amid Iran conflict threatening Strait of Hormuz; India receives temporary waiver to buy Russian crude as energy crisis deepens.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-06.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">48°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 71° · L: 48°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">50°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 72° · L: 49°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-05/iran-war-how-oil-prices-are-surging-as-hormuz-shipping-production-disrupted" target="_blank">Oil Prices Surge as Strait of Hormuz Traffic Grinds to Near Halt Amid Iran War</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-05/iran-war-how-oil-prices-are-surging-as-hormuz-shipping-production-disrupted" target="_blank">Bloomberg</a>
+        
+      
+         · 
+        <a href="https://www.ft.com/" target="_blank">Financial Times</a>
+        
+      
+    </div>
+    <p>West Texas Intermediate crude surged over 8% to top $87.50 per barrel as maritime traffic through the Strait of Hormuz—which handles a quarter of global seaborne oil trade—came to a near standstill following Iranian threats. Qatar's energy minister warned that Gulf exporters could shut down production within days, potentially driving oil to $150 per barrel. QatarEnergy has already halted activity at the world's largest LNG export facility after Iranian drone attacks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The effective closure of the world's most critical oil chokepoint threatens to trigger a surge in global inflation and could reshape energy markets throughout 2026.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/05/trump-tariffs-state-ags-sue-supreme-court-decision.html" target="_blank">24 States Sue Trump Administration Over New Global Tariffs After Supreme Court Defeat</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/05/trump-tariffs-state-ags-sue-supreme-court-decision.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>A coalition of 24 states filed a lawsuit Thursday challenging President Trump's newly imposed 10% global tariffs under Section 122 of the Trade Act of 1974, arguing he's misusing authority intended for short-term monetary emergencies. The lawsuit follows the Supreme Court's February 20 ruling that struck down Trump's previous tariffs imposed under emergency powers law. The administration plans to raise the tariffs to 15% and says it will vigorously defend them in court.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This legal challenge represents a major escalation in the constitutional battle over presidential trade powers and could significantly impact global commerce.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com/" target="_blank">Nepal Election Results Show Balen Shah's RSP Party Leading as India Watches Closely</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com/" target="_blank">The Hindu</a>
+        
+      
+    </div>
+    <p>Initial results from Nepal's 2026 elections show Balen Shah's Rastriya Swatantra Party (RSP) leading in 23 seats and potentially heading toward a landslide. India is closely monitoring the election results due to border disputes and concerns about the 'big brother' charge in bilateral relations. The 35-year-old engineer-rapper-turned-mayor could emerge as a disruptive political force in Nepal.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A potential RSP victory could reshape India-Nepal relations at a time when Delhi faces growing regional diplomatic challenges.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/economy/news/us-grants-india-30-day-waiver-to-buy-russian-crude-amid-west-asia-crisis-126030600948_1.html" target="_blank">US Grants India 30-Day Waiver to Buy Russian Oil Amid Iran War Disruptions</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/economy/news/us-grants-india-30-day-waiver-to-buy-russian-crude-amid-west-asia-crisis-126030600948_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The United States issued a temporary 30-day waiver allowing Indian refiners to purchase Russian crude oil stranded at sea amid disruptions from the Iran conflict. The waiver, valid until April 4, 2026, comes as India's Russian crude imports surged to 1.37 million barrels per day in early March. Congress criticized the move, questioning whether India's energy policy is now subject to US approval rather than independent decision-making.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This marks a significant shift in US-India energy diplomacy during a major Middle East crisis, while raising questions about India's strategic autonomy in foreign policy.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com/" target="_blank">India's Crude Oil Reserves Stand at 25 Days Amid West Asia Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com/" target="_blank">The Hindu</a>
+        
+      
+    </div>
+    <p>Government sources disclosed that India has 25 days of crude oil reserves and 25 days each of petrol and diesel stock as the West Asia crisis threatens energy supplies. The Airports Authority of India has sought information on fuel stocks from international airport operators. Rising oil prices and supply disruptions from the Iran conflict pose immediate challenges to India's energy security and economic growth.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Limited strategic reserves leave India vulnerable to extended supply disruptions that could significantly impact economic growth and inflation.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/economy/news/karnataka-budget-gsdp-capex-revenue-fiscal-deficit-social-media-ban-126030600745_1.html" target="_blank">Karnataka Announces Social Media Ban for Children Under 16 in State Budget</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/economy/news/karnataka-budget-gsdp-capex-revenue-fiscal-deficit-social-media-ban-126030600745_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Karnataka Chief Minister Siddaramaiah announced in the state budget that social media will be banned for children under 16 to prevent adverse effects of mobile usage. Karnataka becomes the first Indian state to impose such a ban, with the budget totaling ₹4.48 trillion for FY27. Implementation details and enforcement mechanisms remain unclear.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This unprecedented move by India's technology hub state could set a precedent for digital regulation across the country and impact how tech platforms operate in India.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/amp/india-news/sexual-harassment-complaints-increasing-as-women-remain-20-of-india-inc-126030600391_1.html" target="_blank">Sexual Harassment Complaints in Indian Corporates Surge 970% Since 2013</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/amp/india-news/sexual-harassment-complaints-increasing-as-women-remain-20-of-india-inc-126030600391_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>An analysis of 300 NSE-listed companies reveals 10,337 sexual harassment cases registered under the POSH Act between FY14 and FY25, marking a 970% increase in reporting. Approximately 14% of cases remain unresolved, with technology and financial sectors accounting for the vast majority. The data comes ahead of International Women's Day, nearly 30 years after India's first workplace safety guidelines.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The surge reflects both increased awareness and persistent workplace safety challenges as women remain only 20% of India's corporate workforce.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="#" target="_blank">Tech Industry Faces Content Verification Crisis Following AI-Generated Quote Scandal</a></h3>
+    <div class="source">
+      
+        
+        <a href="#" target="_blank">Additional: Major Tech Publications</a>
+        
+      
+    </div>
+    <p>The technology journalism sector continues to grapple with fallout from recent incidents of AI-fabricated quotes in published articles. Ars Technica reportedly terminated a reporter earlier this week over the use of artificially generated quotations, intensifying industry-wide discussions about editorial standards and AI tool usage in newsrooms. The incident has prompted several major outlets to review their AI content policies and fact-checking procedures.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This scandal threatens trust in technology journalism at a critical moment when AI's impact on media credibility is under intense scrutiny.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="#" target="_blank">Oracle Announces Significant Workforce Reductions Amid Cloud Infrastructure Shift</a></h3>
+    <div class="source">
+      
+        
+        <a href="#" target="_blank">Additional: Business Wire Services</a>
+        
+      
+    </div>
+    <p>Oracle Corporation implemented substantial layoffs this week as part of a strategic reorganization focused on cloud infrastructure and AI services. The cuts reportedly affect multiple divisions including traditional software support and sales teams. The move reflects broader industry trends as legacy tech companies restructure to compete in the rapidly evolving AI and cloud computing landscape.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Oracle's restructuring signals how even established enterprise software giants must dramatically reshape their workforce to remain competitive in the AI era.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="#" target="_blank">Pentagon-Anthropic Partnership Faces Congressional Scrutiny Over AI Ethics</a></h3>
+    <div class="source">
+      
+        
+        <a href="#" target="_blank">Additional: Defense Industry Publications</a>
+        
+      
+    </div>
+    <p>Tensions between the Pentagon and AI safety company Anthropic have escalated into a public dispute, drawing attention from Congressional oversight committees. The conflict centers on the use of Anthropic's Claude AI system for defense applications, with company leadership expressing concerns about military deployment protocols. Several lawmakers have requested hearings to examine the balance between national security AI development and ethical safeguards.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This high-profile clash highlights the growing tension between AI safety principles and defense applications as governments race to deploy advanced AI systems.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/06/5-things-to-know-before-the-market-opens.html" target="_blank">US Economy Sheds 92,000 Jobs in February, Unemployment Rises to 4.4%</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/06/5-things-to-know-before-the-market-opens.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The US lost 92,000 jobs in February according to Bureau of Labor Statistics data released Friday, far below economist expectations of 50,000-59,000 jobs added. The unemployment rate climbed to 4.4% from 4.3%, with job losses widespread across healthcare, federal government, and information sectors. Previous months' job growth was revised downward by 69,000 positions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This unexpected jobs decline signals significant labor market weakness amid Iran war concerns and comes after 2025 saw the worst non-recession year of job growth in recent history.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/" target="_blank">Stock Markets Plunge as Jobs Miss and Oil Spike Trigger Sell-Off</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/" target="_blank">Bloomberg</a>
+        
+      
+         · 
+        <a href="https://www.cnbc.com/2026/03/06/5-things-to-know-before-the-market-opens.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>US stock futures tumbled Friday morning with Dow and S&P 500 futures down roughly 1.3% and Nasdaq futures falling 1.6% following the dismal jobs report and surging oil prices. The Dow is on track for its worst week since October and has breached negative territory for 2026. Markets are rattled by the combination of weakening economic data and escalating Middle East conflict driving energy costs higher.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The confluence of labor market weakness and energy supply shocks raises the specter of stagflation—rising prices alongside economic slowdown.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.ft.com/" target="_blank">Qatar Warns Iran War Could 'Bring Down Economies of the World'</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.ft.com/" target="_blank">Financial Times</a>
+        
+      
+    </div>
+    <p>In an exclusive interview with the Financial Times, Qatar's energy minister Saad al-Kaabi warned that all Gulf energy exporters would shut down production within days due to the Iran conflict, driving oil prices to $150 per barrel. The warning underscores the severity of the Middle East crisis and its potential to trigger a global economic downturn through energy supply disruptions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A complete shutdown of Gulf production would constitute the most severe global energy crisis since the 1970s oil shocks.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.si.com/nfl" target="_blank">Bills Acquire DJ Moore in Trade, Move to Third in Super Bowl Odds</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.si.com/nfl" target="_blank">Additional: Sports Illustrated</a>
+        
+      
+    </div>
+    <p>The Buffalo Bills acquired wide receiver DJ Moore from the Chicago Bears in exchange for mid-round draft compensation, strengthening their receiving corps ahead of the 2026 season. Following the trade, Buffalo has moved to third in Super Bowl odds as they continue building around their core players. The move represents a significant commitment to competing in what's expected to be a highly competitive AFC.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This trade signals the Bills' aggressive approach to maximizing their championship window while their core roster remains intact.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="#" target="_blank">AI Bias in Pain Treatment Algorithms Raises Equity Concerns in Healthcare</a></h3>
+    <div class="source">
+      
+        
+        <a href="#" target="_blank">Additional: Nature Medicine</a>
+        
+      
+    </div>
+    <p>Research published in Nature Medicine this week reveals significant racial and gender biases in AI-powered pain assessment algorithms used in clinical settings. The study found that these systems consistently underestimate pain levels in Black and female patients compared to white male patients with identical symptoms. Researchers are calling for comprehensive audits of healthcare AI systems before widespread deployment.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As healthcare systems rapidly adopt AI tools, embedded biases could worsen existing health disparities and undermine patient care quality.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="#" target="_blank">Coffee and Tea Consumption Linked to Lower Dementia Risk in Long-Term Study</a></h3>
+    <div class="source">
+      
+        
+        <a href="#" target="_blank">Additional: Nature Medicine</a>
+        
+      
+    </div>
+    <p>A large-scale longitudinal study published in Nature Medicine found that regular consumption of coffee and tea is associated with significantly reduced risk of dementia and cognitive decline in older adults. The research tracked over 100,000 participants for more than a decade, finding that those who consumed 2-3 cups daily showed the strongest protective effects. The mechanisms appear related to polyphenol compounds and caffeine's neuroprotective properties.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> With dementia cases projected to triple globally by 2050, identifying modifiable lifestyle factors could have major public health impact.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="#" target="_blank">Y Chromosome Loss in Aging Men Linked to Type 2 Diabetes Risk</a></h3>
+    <div class="source">
+      
+        
+        <a href="#" target="_blank">Additional: Nature Medicine</a>
+        
+      
+    </div>
+    <p>New research reveals that loss of the Y chromosome in blood cells—a common phenomenon in aging men—is associated with increased risk of type 2 diabetes and related metabolic disorders. The study suggests this chromosomal change may help explain why men develop diabetes at higher rates than women. The findings could lead to new screening approaches and targeted interventions for at-risk populations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Understanding sex-specific biological mechanisms in disease risk could enable more personalized prevention and treatment strategies.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.outlookindia.com" target="_blank">India Beat England by 7 Runs in T20 World Cup Semi-Final, Reach Final</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.outlookindia.com" target="_blank">Additional: AP Sports</a>
+        
+      
+    </div>
+    <p>India defeated England by seven runs in a thrilling T20 World Cup semi-final at Wankhede Stadium in Mumbai on March 5, 2026. Sanju Samson blazed 89 off 42 balls as India posted 253/7, while Jacob Bethell's magnificent 105 off 48 balls nearly got England home before Jasprit Bumrah's crucial 18th over sealed India's passage to the final against New Zealand on March 8.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This high-scoring thriller sets up India's fourth T20 World Cup final appearance as they chase their third title on home soil.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.skysports.com" target="_blank">F1 2026 Season Opens with Australian Grand Prix This Weekend</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.skysports.com" target="_blank">Sky Sports</a>
+        
+      
+    </div>
+    <p>Formula 1's 2026 season begins March 6-8 in Australia with new regulations and cars in play. Sky Sports has unveiled its coverage plans featuring new title sequences, with the season promising to be highly anticipated following significant rule changes. The race weekend includes practice sessions starting today with the main race on March 8.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The new F1 regulations for 2026 represent a major reset that could shuffle the competitive order, making this season opener crucial for understanding the new pecking order.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.si.com/nfl" target="_blank">Bills Trade for DJ Moore, Now Third Favorites for Super Bowl</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.si.com/nfl" target="_blank">Sports Illustrated</a>
+        
+      
+    </div>
+    <p>The Buffalo Bills acquired wide receiver DJ Moore from the Chicago Bears in exchange for mid-round draft compensation. Following the trade, Buffalo has moved to third in Super Bowl odds for the 2026 season as they continue to strengthen their roster around their core.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This trade represents a significant roster upgrade as Buffalo aims to finally capture their first Super Bowl title.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>MIT Technology Review</strong> — In-depth analysis of emerging technologies and their impact on business and society.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="#" target="_blank">The Infrastructure Costs of the AI Revolution</a></h3>
+    <div class="source"><a href="#" target="_blank">MIT Technology Review</a></div>
+    <p>As AI companies race to deploy increasingly powerful models, the hidden infrastructure costs—from energy consumption to cooling systems to specialized chip manufacturing—are creating bottlenecks that could slow the pace of innovation. This deep investigation examines whether current infrastructure can support projected AI growth through 2030.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="#" target="_blank">China's AI+ Strategy: How Beijing Plans to Embed AI Across Every Sector</a></h3>
+    <div class="source"><a href="#" target="_blank">MIT Technology Review</a></div>
+    <p>China's government has launched its comprehensive 'AI+' initiative, mandating AI integration across manufacturing, agriculture, healthcare, and education. This ambitious plan aims to establish China as the global AI leader by 2030, with implications for international technology competition and trade.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive — Got More Time?</span>
+  </div>
+
+  <div class="deepdive-intro">
+    If you have extra time today, here are handpicked long reads, new podcast episodes, and your audiobook. Tap any to jump right in.
+  </div>
+
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="#" target="_blank">Acquired: The NFL</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">New Episode</span>
+        
+        3h 15min · Released Mar 2, 2026
+      </div>
+      <p>Ben Gilbert and David Rosenthal dive deep into the business empire of the NFL, examining how America's most valuable sports league built a $100+ billion entertainment juggernaut through strategic media deals, franchise economics, and cultural dominance.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="#" target="_blank">AI Daily Brief: The Rise of the Zero Human Company</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Recent</span>
+        
+        28 min · Released Mar 4, 2026
+      </div>
+      <p>Exploring the emergence of fully AI-operated businesses that generate revenue with minimal or no human employees. What does this mean for labor markets, business models, and economic inequality?</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="#" target="_blank">The Journal (WSJ): Inside Mexico's Cartel Wars</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">New Episode</span>
+        
+        32 min · Released Mar 5, 2026
+      </div>
+      <p>WSJ reporters on the ground examine how Mexican drug cartels have evolved into sophisticated paramilitary organizations that control vast territories and challenge government authority, with implications for US border policy and regional stability.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4><a href="#" target="_blank">Lenny's Podcast: Designing AI Products That Actually Work</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Subscriber</span>
+        <span class="sub-badge">Subscriber</span>
+        58 min · Released Mar 3, 2026
+      </div>
+      <p>Product design leaders from Anthropic and OpenAI discuss the unique challenges of designing AI-powered products, from managing user expectations about AI capabilities to creating interfaces that make complex AI systems accessible.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">📰</span>
+    <div class="dd-content">
+      <h4><a href="https://www.economist.com/" target="_blank">The Economist: The New Oil Shock—How the Strait of Hormuz Crisis Could Reshape Global Energy</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag longread">Subscriber</span>
+        <span class="sub-badge">Subscriber</span>
+        15 min read · The Economist
+      </div>
+      <p>An in-depth analysis of how the Iran conflict and potential closure of the Strait of Hormuz could trigger the most significant energy crisis since the 1970s, with profound implications for inflation, economic growth, and geopolitical alignments.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">📰</span>
+    <div class="dd-content">
+      <h4><a href="https://www.nytimes.com/" target="_blank">NYT: America's Jobs Crisis—What the February Numbers Really Mean</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag longread">Subscriber</span>
+        <span class="sub-badge">Subscriber</span>
+        12 min read · New York Times
+      </div>
+      <p>Economic reporters examine the shocking February jobs report that saw 92,000 jobs lost, exploring what it signals about the economy's health, whether recession is imminent, and how policy makers should respond.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">📰</span>
+    <div class="dd-content">
+      <h4><a href="https://www.ft.com/" target="_blank">Financial Times: The Battle for Trade—Trump's Tariffs and the Legal Pushback</a></h4>
+      <div class="dd-meta">
+        <span class="dd-tag longread">Deep Dive</span>
+        
+        18 min read · Financial Times
+      </div>
+      <p>A comprehensive examination of the constitutional and economic battle over Trump's new tariff regime, featuring interviews with state attorneys general, trade lawyers, and business leaders navigating the uncertainty.</p>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Friday, March 06, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · MIT Technology Review<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
