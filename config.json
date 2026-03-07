@@ -2,7 +2,7 @@
   "sources": {
     "core": ["The Economist", "NYT", "BBC", "TechCrunch", "Stratechery", "AI Daily Brief", "TLDR"],
     "subscriptions": ["The Economist", "NYT", "Lenny's Newsletter"],
-    "explore_pool": ["WIRED", "MIT Technology Review", "Ars Technica", "The Verge", "Aeon", "Quanta Magazine"],
+    "explore_pool": ["The Economist", "New York Times", "WIRED", "MIT Technology Review", "Ars Technica", "The Verge", "Aeon", "Quanta Magazine", "Smithsonian Magazine", "Fast Company", "80,000 Hours"],
     "podcasts": ["Lenny's Podcast", "AI Daily Brief", "Acquired", "The Journal (WSJ)"],
     "trusted_sources": {
       "world": ["BBC", "Reuters", "Associated Press", "New York Times", "The Guardian", "Financial Times", "The Economist", "Washington Post", "Al Jazeera English"],

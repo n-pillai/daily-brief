@@ -169,7 +169,7 @@ def search_news() -> dict:
             f"from {source_list('sports')}"
         ),
         "explore": (
-            f"interesting technology science culture stories today {DATE_STR} "
+            f"interesting long-form feature stories published in the past 2 weeks "
             f"from {explore_sources}"
         ),
         "deepdive": (
@@ -216,8 +216,11 @@ def search_news() -> dict:
             f"Only return stories where the original reporting outlet is one of these sources."
         ),
         "explore": (
-            f"Search for interesting and thought-provoking stories published today or this week "
+            f"Search for interesting and thought-provoking long-form or feature stories published in the past 2 weeks "
             f"specifically from these outlets: {explore_sources}. "
+            f"Prioritise The Economist and New York Times — the reader subscribes to both and rarely has time to read long-form. "
+            f"Surface their best essays, analysis, or features from the past 2 weeks first. "
+            f"Fill remaining slots from the other outlets. "
             f"These are the only acceptable sources for this section."
         ),
         "deepdive": (
