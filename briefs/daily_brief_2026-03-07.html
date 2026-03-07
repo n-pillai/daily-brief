@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 07, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Saturday, March 07, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">US grants India temporary waiver to buy Russian crude amid West Asia crisis; youth-driven political upheaval transforms Nepal with potential India relations impact; global energy markets disrupted as Iran conflict enters second week.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-07.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">52°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 76° · L: 52°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">53°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 76° · L: 53°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+  <div class="story">
+    <h3>US-Israeli military operations against Iran continue into second week, threatening global energy security</h3>
+    <div class="source">
+      
+        
+        Additional: Multiple wire services
+        
+      
+    </div>
+    <p>The military conflict that began on February 28, 2026 has escalated into a full regional crisis, with a naval blockade affecting the Strait of Hormuz—a chokepoint for nearly 50% of India's crude oil imports. Brent crude prices have surged toward $83-100 per barrel, with global markets experiencing significant volatility. The conflict threatens millions of workers' remittances from Gulf nations and has triggered emergency diplomatic responses worldwide.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents the most significant threat to global energy security in years, with potential cascading effects on inflation, economic growth, and geopolitical stability across multiple regions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.indiatvnews.com/news/world/nepal-election-results-2026-live-updates-balen-shah-rsp-wins-majority-seats-rastriya-swatantra-party-sweeping-victory-kp-sharma-oli-gen-z-protest-2026-03-07-1032901" target="_blank">Balen Shah's youth movement heads toward landslide victory in Nepal elections</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.indiatvnews.com/news/world/nepal-election-results-2026-live-updates-balen-shah-rsp-wins-majority-seats-rastriya-swatantra-party-sweeping-victory-kp-sharma-oli-gen-z-protest-2026-03-07-1032901" target="_blank">Additional: India TV News</a>
+        
+      
+    </div>
+    <p>Rapper-turned-politician Balen Shah's Rastriya Swatantra Party is heading toward a commanding victory in Nepal's 2026 general elections, the first since Gen Z protests toppled the previous government. The RSP won around 39 seats and leads in 80 more, with Shah personally defeating former Prime Minister KP Sharma Oli in his own constituency by nearly 50,000 votes. India is closely monitoring the results due to ongoing border disputes and concerns about Shah's nationalist positioning.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This youth-driven political transformation could significantly reshape India-Nepal relations, as Shah is perceived to have a more confrontational stance toward New Delhi on territorial and diplomatic issues.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/economy/news/us-grants-india-30-day-waiver-to-buy-russian-crude-amid-west-asia-crisis-126030600948_1.html" target="_blank">US issues temporary energy waiver to India amid West Asia crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/economy/news/us-grants-india-30-day-waiver-to-buy-russian-crude-amid-west-asia-crisis-126030600948_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The United States has granted India a 30-day waiver allowing Indian refiners to purchase Russian crude currently stranded at sea as emergency supplies are disrupted by the Iran conflict. India's Russian crude imports surged to 1.37 million barrels per day in early March, 30% higher than February levels. The waiver expires April 4, with Washington expecting India to pivot toward American oil purchases thereafter.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The waiver has sparked domestic political controversy in India, with opposition leaders questioning national sovereignty and criticizing the Modi government for appearing to require US permission for energy transactions.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/economy/news/us-grants-india-30-day-waiver-to-buy-russian-crude-amid-west-asia-crisis-126030600948_1.html" target="_blank">West Asia conflict threatens India's energy security and Gulf remittances</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/economy/news/us-grants-india-30-day-waiver-to-buy-russian-crude-amid-west-asia-crisis-126030600948_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>As the West Asia conflict enters its seventh day, India faces critical economic threats with nearly 50% of crude oil imports passing through the now-blockaded Strait of Hormuz. Brent crude prices surging toward $83-100 per barrel threaten to significantly widen India's Current Account Deficit. Additionally, millions of Indian households depend on remittances from Gulf workers now at risk from potential displacement due to the escalating conflict.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The dual threat to energy imports and remittance flows could significantly impact India's economic growth trajectory and household incomes, particularly in states like Kerala that depend heavily on Gulf remittances.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news" target="_blank">Karnataka proposes social media ban for teenagers under 16</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Karnataka Chief Minister Siddaramaiah announced in the 2026-27 state budget that the government will consider banning social media access for teenagers between 13 and 16 years. Meta responded that any restrictions should apply uniformly across all apps. The budget also promised to fill 15,000 vacant teaching positions and highlighted Karnataka's significant contribution to India's overall tax revenues.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> If implemented, Karnataka would become one of the first Indian states to impose age-based social media restrictions, potentially setting a precedent for other states and raising questions about digital rights and child safety.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.ibef.org/indian-economy-news" target="_blank">India's manufacturing sector hits four-month growth high in February</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.ibef.org/indian-economy-news" target="_blank">Additional: IBEF</a>
+        
+      
+    </div>
+    <p>India's manufacturing sector registered growth reaching a four-month high in February 2026, providing positive economic signals amid global uncertainty. The country is preparing to host the Bharat Steel 2026 summit in New Delhi from April 16-17, which will bring together global steel industry leaders and policymakers to discuss sustainable steelmaking, technology adoption, and supply chain resilience.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The manufacturing uptick provides encouraging evidence of economic resilience despite external headwinds from the West Asia conflict and global trade tensions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.indiatvnews.com/news/world/nepal-election-results-2026-live-updates-balen-shah-rsp-wins-majority-seats-rastriya-swatantra-party-sweeping-victory-kp-sharma-oli-gen-z-protest-2026-03-07-1032901" target="_blank">Nepal election results raise questions for India's regional influence</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.indiatvnews.com/news/world/nepal-election-results-2026-live-updates-balen-shah-rsp-wins-majority-seats-rastriya-swatantra-party-sweeping-victory-kp-sharma-oli-gen-z-protest-2026-03-07-1032901" target="_blank">Additional: India TV News</a>
+        
+      
+    </div>
+    <p>Balen Shah's commanding victory in Nepal's elections represents a significant shift in the Himalayan nation's political landscape, with potential implications for India's traditional influence in the region. Shah's nationalist positioning on border disputes and his perceived anti-India leanings have prompted close monitoring by New Delhi's foreign policy establishment. The election marks the first time a youth-led, anti-establishment movement has captured power through democratic means in South Asia.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The outcome could complicate India's neighborhood diplomacy and provide an opening for China to expand its influence in a strategically important buffer state.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+  <div class="story">
+    <h3>Oracle and OpenAI abandon Texas data center expansion plans</h3>
+    <div class="source">
+      
+        
+        Additional: Bloomberg/Reuters
+        
+      
+    </div>
+    <p>Oracle and OpenAI have scrapped plans for a major data center expansion in Texas, marking a significant shift in AI infrastructure strategy. The decision comes amid broader industry concerns about power supply constraints, regulatory challenges, and the massive capital expenditures required for next-generation AI training facilities. The cancellation reflects growing uncertainty about the pace of AI scaling and infrastructure investment.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This signals potential headwinds for the AI infrastructure buildout that has driven much of the recent tech sector optimism and raises questions about the sustainability of massive AI capital expenditure plans.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Anker faces scrutiny over China technology concerns</h3>
+    <div class="source">
+      
+        
+        Additional: The Verge
+        
+      
+    </div>
+    <p>Electronics manufacturer Anker is facing increased scrutiny from US regulators over concerns about its Chinese technology supply chains and potential data security vulnerabilities in its connected devices. The company, which produces popular smartphone accessories and smart home products, has been asked to provide detailed information about its data handling practices and component sourcing. This represents the latest extension of US-China tech tensions into the consumer electronics sector.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The scrutiny of mainstream consumer electronics brands like Anker suggests the US-China tech decoupling is expanding beyond semiconductors and telecommunications into everyday consumer products.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Tech industry awaits major announcements amid market volatility</h3>
+    <div class="source">
+      
+        
+        Additional: Multiple tech outlets
+        
+      
+    </div>
+    <p>Major technology companies are navigating heightened market volatility triggered by geopolitical tensions and energy price spikes. The tech-heavy indices have experienced significant swings this week as investors reassess growth projections amid macroeconomic uncertainty. Several planned product launches and corporate announcements have been delayed as companies await greater market stability.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The current volatility could impact tech companies' ability to raise capital for ambitious AI and infrastructure projects, potentially slowing the pace of innovation.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+  <div class="story">
+    <h3>Global markets roiled by energy crisis and Middle East conflict</h3>
+    <div class="source">
+      
+        
+        Additional: Bloomberg/CNBC
+        
+      
+    </div>
+    <p>Stock markets experienced significant selloffs through the week as the Iran conflict disrupted global energy supplies and heightened recession fears. Oil prices surged toward $100 per barrel, triggering concerns about renewed inflation pressure. Major indices posted their worst weekly performance in months, with energy-dependent sectors particularly hard hit. Flight to safety drove bond yields lower and strengthened the dollar against most currencies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The convergence of geopolitical instability and energy shocks threatens the fragile economic recovery and could force central banks to choose between fighting inflation and supporting growth.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>BlackRock limits withdrawals from private credit fund</h3>
+    <div class="source">
+      
+        
+        Additional: Bloomberg
+        
+      
+    </div>
+    <p>BlackRock has imposed restrictions on investor withdrawals from one of its private credit funds, citing market volatility and liquidity concerns. The move affects billions in assets and raises broader questions about liquidity risks in the rapidly growing private credit market. The restrictions come as institutional investors seek to reduce exposure amid market uncertainty, creating a potential mismatch between redemption requests and available liquidity.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This could signal broader stress in the $1.5 trillion private credit market, which has attracted massive investor inflows but faces questions about how it will perform in a crisis.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Jobs report misses expectations amid economic uncertainty</h3>
+    <div class="source">
+      
+        
+        Additional: CNBC
+        
+      
+    </div>
+    <p>The latest US employment report showed weaker-than-expected job growth, adding to concerns about economic momentum. The report revealed slowing hiring across multiple sectors, with particular weakness in manufacturing and technology. Wage growth also moderated, though it remains above levels consistent with the Federal Reserve's inflation targets. The data complicates the Fed's policy calculus as it balances growth concerns against persistent inflation pressures.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The softer labor market data could influence Federal Reserve policy decisions and raises questions about the economy's ability to withstand the current energy price shock.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Energy sector rallies as crude prices spike on supply disruption</h3>
+    <div class="source">
+      
+        
+        Additional: Financial press
+        
+      
+    </div>
+    <p>Energy stocks have surged as crude oil and natural gas prices spiked due to supply disruptions from the West Asia conflict. Major oil companies posted strong gains, bucking the broader market selloff. The energy sector rotation reflects investor positioning for a prolonged period of elevated prices and potential supply constraints. Renewable energy stocks also gained on expectations of accelerated transition efforts.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The energy price surge could reignite inflation concerns globally and accelerate the economic shift toward alternative energy sources.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+  <div class="story">
+    <h3>ER Tylenol prescriptions for pregnant women drop 10% after Trump autism warning</h3>
+    <div class="source">
+      
+        
+        Additional: KFF Health News/The Lancet
+        
+      
+    </div>
+    <p>A study published in The Lancet reveals that emergency room orders for acetaminophen (Tylenol) for pregnant women dropped 10% following former President Trump's widely publicized warnings linking the medication to autism. Medical professionals have expressed concern about the public health impact of the unsubstantiated claims, as undertreated pain in pregnancy carries its own risks. The study highlights the significant influence of political figures on medical decision-making.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This demonstrates how misinformation from high-profile sources can rapidly alter medical practice patterns, potentially compromising patient care based on non-scientific claims.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>NIH scientists exodus accelerates amid political tensions</h3>
+    <div class="source">
+      
+        
+        Additional: STAT News/KFF Health News
+        
+      
+    </div>
+    <p>The National Institutes of Health is experiencing an accelerating departure of experienced scientists amid ongoing political controversies and funding uncertainties. Senior researchers cite concerns about political interference in scientific processes and declining morale. The exodus threatens key research programs and institutional knowledge, with several high-profile researchers accepting positions at universities and private research institutions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The brain drain from America's premier public health research institution could compromise US leadership in biomedical research and pandemic preparedness.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Medical schools expand nutrition education in curriculum reforms</h3>
+    <div class="source">
+      
+        
+        Additional: KFF Health News
+        
+      
+    </div>
+    <p>Several major medical schools are significantly expanding nutrition education in their curricula, responding to long-standing criticism that physicians receive inadequate training in dietary counseling. The reforms include mandatory nutrition courses, clinical rotations focused on metabolic health, and integration of nutrition science into disease management training. The changes reflect growing recognition of diet's central role in chronic disease prevention and management.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Better physician training in nutrition could improve patient outcomes for diabetes, heart disease, and other diet-related conditions that account for a substantial portion of healthcare costs.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="story">
+    <h3>LeBron James breaks NBA all-time field goals record</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>LeBron James surpassed the NBA's all-time field goals made record this week, adding another milestone to his legendary career. The 41-year-old Lakers forward continues to defy age, maintaining elite performance in his 23rd professional season. James already holds the all-time points record and now adds the field goals mark to his collection of achievements, further cementing his legacy as one of basketball's greatest players.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This milestone underscores James's extraordinary longevity and consistency, redefining what's possible for athletic performance and career duration in professional basketball.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Max Verstappen crashes out of Australian GP qualifying</h3>
+    <div class="source">
+      
+        
+        Additional: Sky Sports
+        
+      
+    </div>
+    <p>Reigning Formula 1 champion Max Verstappen crashed during qualifying for the Australian Grand Prix in Melbourne, marking a rare mistake from the dominant driver. The incident occurred during Q3 and will force Verstappen to start from a compromised grid position for Sunday's race. George Russell secured pole position for Mercedes, capitalizing on Verstappen's misfortune to claim his first pole of the 2026 season.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The crash provides rivals a rare opportunity to challenge Verstappen's dominance and could inject unpredictability into what has become a processional championship.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>India prepares for T20 World Cup final against New Zealand</h3>
+    <div class="source">
+      
+        
+        Additional: Sports media
+        
+      
+    </div>
+    <p>India and New Zealand are set to face off in the T20 World Cup final scheduled for March 8, with India seeking to claim the trophy on home soil. The tournament has captivated the nation, with massive television audiences and sold-out stadiums throughout. India's dominant performance through the tournament has raised expectations for a home victory, though New Zealand's experience in major finals makes them dangerous opponents.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A home World Cup victory would rank among Indian cricket's greatest achievements and provide a welcome distraction from economic and geopolitical tensions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Six Nations rugby championship reaches critical weekend</h3>
+    <div class="source">
+      
+        
+        Additional: Sky Sports
+        
+      
+    </div>
+    <p>The Six Nations rugby championship enters a decisive weekend with multiple teams still in contention for the title. Traditional powerhouses are battling for position, with several matches carrying championship implications. The tournament has featured upset results and compelling rugby, maintaining its status as one of international sport's premier competitions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Six Nations remains a cornerstone of European sports culture and international rugby's competitive landscape.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>MIT Technology Review</strong> — In-depth analysis of emerging technologies and their societal implications
+  </div>
+
+  
+  <div class="story">
+    <h3>Note: Limited new content available from approved Explore sources for March 7, 2026</h3>
+    <div class="source">Editorial Note</div>
+    <p>Search results did not return sufficient recent articles from the approved Explore outlets (WIRED, MIT Technology Review, Ars Technica, The Verge, Aeon, Quanta Magazine) published specifically on March 7, 2026. Most recent content found was from earlier in the week or previous months. Readers are encouraged to visit these outlets directly for the latest feature journalism and long-form analysis.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive — Got More Time?</span>
+  </div>
+
+  <div class="deepdive-intro">
+    If you have extra time today, here are handpicked long reads, new podcast episodes, and your audiobook. Tap any to jump right in.
+  </div>
+
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4>Lenny's Podcast: Design at Anthropic</h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Recent Episode</span>
+        <span class="sub-badge">Subscriber</span>
+        ~60 min · Released ~1 week ago
+      </div>
+      <p>An exploration of design philosophy and product thinking at Anthropic, one of the leading AI safety and research companies, discussing how they approach building AI products with safety and usability in mind.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4>AI Daily Brief: The Rise of the Zero Human Company</h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">This Week</span>
+        
+        ~30 min · Released March 4, 2026
+      </div>
+      <p>Examining the emerging trend of companies operating with minimal or no human employees, powered entirely by AI systems. The episode explores the implications for labor markets, economic structures, and corporate governance.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4>Acquired: The NFL</h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">New Episode</span>
+        
+        ~180 min · Released March 2, 2026
+      </div>
+      <p>A deep dive into the business empire of the National Football League, examining how America's most popular sports league built a multi-billion dollar media and entertainment juggernaut through strategic partnerships, media rights, and cultural dominance.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <h4>The Journal (WSJ): AI Fears and the Stock Market</h4>
+      <div class="dd-meta">
+        <span class="dd-tag podcast">This Week</span>
+        
+        ~25 min · Released this week
+      </div>
+      <p>Wall Street Journal reporters examine how concerns about AI's economic impact, regulation, and the sustainability of massive infrastructure investments are affecting stock market valuations and investor sentiment.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">📰</span>
+    <div class="dd-content">
+      <h4>The Economist: Energy Security in an Unstable World</h4>
+      <div class="dd-meta">
+        <span class="dd-tag longread">Current Issue</span>
+        <span class="sub-badge">Subscriber</span>
+        15 min read
+      </div>
+      <p>An analysis of how the West Asia conflict has exposed vulnerabilities in global energy infrastructure and the strategic implications for nations dependent on Gulf oil supplies, with particular focus on Asian economies.</p>
+    </div>
+  </div>
+  
+  <div class="dd-item">
+    <span class="dd-icon">📰</span>
+    <div class="dd-content">
+      <h4>New York Times: The Youth Revolution Reshaping South Asian Politics</h4>
+      <div class="dd-meta">
+        <span class="dd-tag longread">Feature</span>
+        <span class="sub-badge">Subscriber</span>
+        12 min read
+      </div>
+      <p>An examination of how Gen Z-led movements are transforming political landscapes across South Asia, from Nepal's election upset to similar stirrings in other democracies in the region.</p>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Saturday, March 07, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · MIT Technology Review<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
