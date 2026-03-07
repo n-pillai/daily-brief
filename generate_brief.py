@@ -132,6 +132,73 @@ def fetch_weather() -> list[dict]:
     return results
 
 
+# ── NBA Scores ────────────────────────────────────────────────────────────
+def fetch_nba_scores() -> list[dict]:
+    """Fetch yesterday's completed NBA scores from ESPN's public API."""
+    print("🏀 Fetching NBA scores...")
+    yesterday = TODAY - datetime.timedelta(days=1)
+    date_param = yesterday.strftime("%Y%m%d")
+    try:
+        r = requests.get(
+            "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+            params={"dates": date_param},
+            timeout=10,
+        )
+        r.raise_for_status()
+        games = []
+        for event in r.json().get("events", []):
+            competition = event.get("competitions", [{}])[0]
+            if not competition.get("status", {}).get("type", {}).get("completed"):
+                continue
+            competitors = competition.get("competitors", [])
+            home = next((c for c in competitors if c["homeAway"] == "home"), None)
+            away = next((c for c in competitors if c["homeAway"] == "away"), None)
+            if not home or not away:
+                continue
+            away_score = int(away.get("score", 0))
+            home_score = int(home.get("score", 0))
+            games.append({
+                "away_abbr": away["team"]["abbreviation"],
+                "away_score": away_score,
+                "home_abbr": home["team"]["abbreviation"],
+                "home_score": home_score,
+                "away_win": away_score > home_score,
+            })
+        if games:
+            print(f"  ✅ {len(games)} NBA game(s) on {yesterday.strftime('%b %d')}")
+        else:
+            print(f"  ℹ️  No NBA games on {yesterday.strftime('%b %d')}")
+        return games
+    except Exception as e:
+        print(f"  ❌ NBA scores fetch failed: {e}")
+        return []
+
+
+# ── Active Sports ──────────────────────────────────────────────────────────
+def get_active_sports() -> str:
+    """Return a string listing sports currently in season, based on the current month."""
+    month = TODAY.month
+    active = []
+    if month in (10, 11, 12, 1, 2, 3, 4, 5, 6):
+        active.append("NBA basketball")
+    if month in (9, 10, 11, 12, 1, 2):
+        active.append("NFL American football")
+    if month in (8, 9, 10, 11, 12, 1, 2, 3, 4, 5):
+        active.append("Premier League and European soccer")
+    if month in (4, 5, 6, 7, 8, 9, 10):
+        active.append("MLB baseball")
+    if month in (10, 11, 12, 1, 2, 3, 4, 5, 6):
+        active.append("NHL ice hockey")
+    # Cricket: year-round; IPL runs April–May, WPL runs February–March
+    cricket = "international cricket (pay special attention to Team India Men and Women matches)"
+    if month in (2, 3):
+        cricket += ", WPL (Women's Premier League)"
+    if month in (4, 5):
+        cricket += ", IPL (Indian Premier League)"
+    active.append(cricket)
+    return ", ".join(active)
+
+
 # ── Step 1: Search for news ───────────────────────────────────────────────
 def search_news() -> dict:
     """Use Claude with web search to gather today's news across all categories."""
@@ -142,6 +209,7 @@ def search_news() -> dict:
 
     explore_sources = ", ".join(SOURCES["explore_pool"])
     podcast_sources = ", ".join(SOURCES["podcasts"])
+    active_sports = get_active_sports()
 
     search_queries = {
         "world": (
@@ -165,7 +233,7 @@ def search_news() -> dict:
             f"from {source_list('science')}"
         ),
         "sports": (
-            f"top sports news today {DATE_STR} "
+            f"top sports news today {DATE_STR} — sports currently in season: {active_sports} "
             f"from {source_list('sports')}"
         ),
         "explore": (
@@ -212,7 +280,8 @@ def search_news() -> dict:
         "sports": (
             f"Search specifically for today's top sports news — scores, results, transfers, and major stories — "
             f"reported by these trusted outlets: {source_list('sports')}. "
-            f"Cover a mix of sports (cricket, football/soccer, tennis, basketball, F1 as relevant). "
+            f"Sports currently in season: {active_sports}. Prioritise coverage of these. "
+            f"If any World Cup or major international tournament is currently active, include it. "
             f"Only return stories where the original reporting outlet is one of these sources."
         ),
         "explore": (
@@ -651,14 +720,32 @@ def generate_email_html(brief_data: dict, mp3_url: str) -> str:
                 f'<p style="margin:0;font-family:Georgia,serif;font-size:14px;color:#374151;line-height:1.6">{story["summary"]}</p>'
                 f'{why}</div>')
 
+    # NBA scoreboard (injected at top of Sports section)
+    def nba_scoreboard_html(scores):
+        if not scores:
+            return ""
+        games_html = ""
+        for g in scores:
+            away = f"<strong>{g['away_abbr']} {g['away_score']}</strong>" if g["away_win"] else f"{g['away_abbr']} {g['away_score']}"
+            home = f"<strong>{g['home_abbr']} {g['home_score']}</strong>" if not g["away_win"] else f"{g['home_abbr']} {g['home_score']}"
+            games_html += (f'<span style="background:#fff;border-radius:4px;padding:4px 8px;'
+                           f'font-family:Arial;font-size:12px;color:#1e293b;white-space:nowrap">'
+                           f'{away} <span style="color:#94a3b8">@</span> {home}</span> ')
+        return (f'<div style="margin-bottom:16px;padding:10px 12px;background:#EFF6FF;'
+                f'border-radius:6px;border:1px solid #BFDBFE">'
+                f'<div style="font-family:Arial;font-size:10px;font-weight:bold;color:#1E40AF;'
+                f'text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">🏀 NBA — Last Night</div>'
+                f'<div style="display:flex;flex-wrap:wrap;gap:6px">{games_html}</div></div>')
+
     # News sections
     sections_html = ""
     for section in brief_data.get("sections", []):
         color = BADGE_COLORS.get(section["id"], "#6b7280")
         stories_html = "".join(render_story(s) for s in section.get("stories", []))
+        scores_html = nba_scoreboard_html(brief_data.get("nba_scores", [])) if section["id"] == "sports" else ""
         sections_html += (f'<div style="margin-bottom:32px">'
                           f'<div style="margin-bottom:16px">{badge(section["name"], color)}</div>'
-                          f'{stories_html}</div>')
+                          f'{scores_html}{stories_html}</div>')
 
     # Explore section
     explore = brief_data.get("explore", {})
@@ -791,9 +878,10 @@ def main():
     print(f"  THE DAILY BRIEF — {DAY_NAME}, {DATE_STR}")
     print(f"{'='*60}\n")
 
-    # Step 0: Clean up old briefs, then fetch weather
+    # Step 0: Clean up old briefs, fetch weather and NBA scores
     cleanup_old_briefs()
     weather = fetch_weather()
+    nba_scores = fetch_nba_scores()
 
     # Step 1: Search
     raw_results = search_news()
@@ -801,6 +889,7 @@ def main():
     # Step 2: Synthesise
     brief_data = synthesise_brief(raw_results)
     brief_data["weather"] = weather
+    brief_data["nba_scores"] = nba_scores
 
     # Save raw data for debugging
     data_path = OUTPUT_DIR / f"daily_brief_{DATE_FILE}.json"

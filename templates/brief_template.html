@@ -259,6 +259,44 @@
   .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
   .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
 
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
   /* Weather */
   .weather-card {
     display: flex;
@@ -400,6 +438,21 @@
     <span class="section-badge {{ section.badge_class }}">{{ section.number }}</span>
     <span class="section-title">{{ section.name }}</span>
   </div>
+
+  {% if section.id == 'sports' and brief.nba_scores %}
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      {% for game in brief.nba_scores %}
+      <div class="nba-game">
+        <span class="{% if game.away_win %}winner{% endif %}">{{ game.away_abbr }} {{ game.away_score }}</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="{% if not game.away_win %}winner{% endif %}">{{ game.home_abbr }} {{ game.home_score }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
 
   {% for story in section.stories %}
   <div class="story">
