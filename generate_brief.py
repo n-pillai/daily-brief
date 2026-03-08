@@ -199,6 +199,73 @@ def get_active_sports() -> str:
     return ", ".join(active)
 
 
+# ── Deep Dive State ───────────────────────────────────────────────────────
+def load_deep_dive_state() -> dict:
+    """Load curated deep dive state from data/deep_dive_state.json."""
+    state_path = Path("data/deep_dive_state.json")
+    if not state_path.exists():
+        print("  ⚠️  No deep_dive_state.json found — Deep Dive section will be empty")
+        return {}
+    return json.loads(state_path.read_text())
+
+
+def save_deep_dive_state(state: dict) -> None:
+    """Write updated deep dive state back to data/deep_dive_state.json."""
+    state_path = Path("data/deep_dive_state.json")
+    state_path.parent.mkdir(exist_ok=True)
+    state_path.write_text(json.dumps(state, indent=2))
+
+
+def enrich_deep_dive_item(item: dict, item_type: str) -> dict:
+    """On first appearance, generate a 1-2 sentence description and estimated time via web search."""
+    if not item or item.get("description"):
+        return item
+    title = item.get("title", "Unknown")
+    source = item.get("source", "Unknown")
+    url = item.get("url", "")
+    type_label = "longform article or essay" if item_type == "read" else "podcast episode"
+    print(f"  ✨ Enriching {item_type}: {title}...")
+    prompt = f"""Search for information about this {type_label} and return a brief description.
+
+Title: {title}
+Source: {source}
+{"URL: " + url if url else ""}
+
+Return JSON only:
+{{
+  "description": "1-2 sentence description of what this is about and why it is worth reading or listening to",
+  "estimated_time": "e.g. '25 min read' or '2.5 hr listen'"
+}}"""
+    for attempt in range(3):
+        try:
+            response = client.messages.create(
+                model="claude-sonnet-4-5-20250929",
+                max_tokens=300,
+                tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 2}],
+                messages=[{"role": "user", "content": prompt}],
+            )
+            break
+        except anthropic.RateLimitError as e:
+            if attempt < 2:
+                wait = int(e.response.headers.get("retry-after", 60))
+                time.sleep(wait)
+            else:
+                raise
+    text = ""
+    for block in response.content:
+        if block.type == "text":
+            text += block.text
+    try:
+        json_match = re.search(r'\{[^{}]*\}', text, re.DOTALL)
+        if json_match:
+            enriched = json.loads(json_match.group())
+            item["description"] = enriched.get("description", "")
+            item["estimated_time"] = enriched.get("estimated_time", "")
+    except Exception as e:
+        print(f"  ⚠️  Enrichment parsing failed: {e}")
+    return item
+
+
 # ── Step 1: Search for news ───────────────────────────────────────────────
 def search_news() -> dict:
     """Use Claude with web search to gather today's news across all categories."""
@@ -239,10 +306,6 @@ def search_news() -> dict:
         "explore": (
             f"interesting long-form feature stories published in the past 2 weeks "
             f"from {explore_sources}"
-        ),
-        "deepdive": (
-            f"new podcast episodes released today or this week {DATE_STR} "
-            f"from {podcast_sources}"
         ),
     }
 
@@ -286,16 +349,13 @@ def search_news() -> dict:
         ),
         "explore": (
             f"Search for interesting and thought-provoking long-form or feature stories published in the past 2 weeks "
-            f"specifically from these outlets: {explore_sources}. "
+            f"from these outlets: {explore_sources}. "
             f"Prioritise The Economist and New York Times — the reader subscribes to both and rarely has time to read long-form. "
             f"Surface their best essays, analysis, or features from the past 2 weeks first. "
             f"Fill remaining slots from the other outlets. "
+            f"Also search for the top longform essays, blog posts, or papers trending on Hacker News in the past week — "
+            f"surface the actual articles being linked, not Hacker News discussion pages. "
             f"These are the only acceptable sources for this section."
-        ),
-        "deepdive": (
-            f"Search for new podcast episodes released today or this week "
-            f"specifically from these shows: {podcast_sources}. "
-            f"Only return episodes from these exact shows."
         ),
     }
 
@@ -392,9 +452,6 @@ SPORTS:
 EXPLORE (discovery sources):
 {raw_results.get('explore', 'No results')}
 
-DEEP DIVE (podcasts/long reads):
-{raw_results.get('deepdive', 'No results')}
-
 Write a synthesised daily brief. Cross-reference stories across sources for accuracy.
 The reader subscribes to: {subscriptions} — mark these with "subscriber": true.
 
@@ -477,22 +534,10 @@ Return ONLY valid JSON with this exact structure:
         "summary": "..."
       }}
     ]
-  }},
-  "deep_dive": [
-    {{
-      "type": "podcast|audiobook|longread",
-      "icon": "🎙️ or 📖 or 📰",
-      "title": "...",
-      "url": "...",
-      "meta": "62 min · Released Feb 27",
-      "description": "...",
-      "subscriber": false,
-      "tag_label": "New Episode"
-    }}
-  ]
+  }}
 }}
 
-Include 4-5 stories per news section, 2-3 explore stories, and 5-7 deep dive items.
+Include 4-5 stories per news section and 2-3 explore stories.
 Ensure all URLs are real and accurate. Do not invent URLs."""
 
     for attempt in range(3):
@@ -765,20 +810,49 @@ def generate_email_html(brief_data: dict, mp3_url: str) -> str:
 
     # Deep Dive section
     deep_dive_html = ""
-    deep_dive_items = brief_data.get("deep_dive", [])
-    if deep_dive_items:
-        items_html = ""
-        for item in deep_dive_items:
-            items_html += (f'<div style="margin-bottom:12px;padding:12px;background:#f8fafc;border-radius:6px">'
-                           f'<div style="font-size:11px;color:#6b7280;font-family:Arial;margin-bottom:4px">'
-                           f'{item.get("icon","")} {item.get("meta","")}</div>'
-                           f'<h4 style="margin:0 0 4px;font-family:Georgia,serif;font-size:14px">'
-                           f'<a href="{item.get("url","")}" style="color:{ACCENT};text-decoration:none">{item["title"]}</a></h4>'
-                           f'<p style="margin:0;font-size:13px;font-family:Georgia,serif;color:#374151">{item.get("description","")}</p>'
-                           f'</div>')
-        deep_dive_html = (f'<div style="margin-bottom:32px">'
-                          f'<div style="margin-bottom:16px">{badge("Deep Dive", "#0891B2")}</div>'
-                          f'{items_html}</div>')
+    dds = brief_data.get("deep_dive_state", {})
+    if dds:
+        def dd_email_item(icon, label, item, nudge=False):
+            if not item:
+                return ""
+            days = item.get("days_shown", 1)
+            day_str = f"Day {days}"
+            if nudge and days >= 7:
+                day_str += " — tell Leo when you finish to get your next item"
+            title_html = (f'<a href="{item["url"]}" style="color:{ACCENT};text-decoration:none">{item["title"]}</a>'
+                          if item.get("url") else item.get("title", ""))
+            desc = f'<p style="margin:4px 0 0;font-size:13px;font-family:Georgia,serif;color:#374151">{item["description"]}</p>' if item.get("description") else ""
+            time_str = f' · {item["estimated_time"]}' if item.get("estimated_time") else ""
+            return (f'<div style="margin-bottom:12px;padding:12px;background:#f8fafc;border-radius:6px">'
+                    f'<div style="font-size:11px;color:#6b7280;font-family:Arial;margin-bottom:4px">'
+                    f'{icon} {label} · {day_str}{time_str}</div>'
+                    f'<div style="font-size:14px;font-family:Georgia,serif;font-weight:bold">{title_html}</div>'
+                    f'<div style="font-size:11px;color:#9ca3af;font-family:Arial">{item.get("source","")}</div>'
+                    f'{desc}</div>')
+
+        book_r = dds.get("current_book_read")
+        book_l = dds.get("current_book_listen")
+        book_html = ""
+        if book_r:
+            if book_l and book_r.get("title") == book_l.get("title"):
+                book_html = (f'<div style="margin-bottom:12px;padding:12px;background:#f8fafc;border-radius:6px">'
+                             f'<div style="font-size:11px;color:#6b7280;font-family:Arial;margin-bottom:4px">📚 Book — reading + listening</div>'
+                             f'<div style="font-size:14px;font-family:Georgia,serif;font-weight:bold">{book_r["title"]}</div>'
+                             f'<div style="font-size:12px;color:#9ca3af;font-family:Arial">{book_r.get("author","")}</div></div>')
+            else:
+                book_html = (f'<div style="margin-bottom:12px;padding:12px;background:#f8fafc;border-radius:6px">'
+                             f'<div style="font-size:11px;color:#6b7280;font-family:Arial;margin-bottom:4px">📚 Book</div>'
+                             f'<div style="font-size:13px;font-family:Georgia,serif"><strong>Reading:</strong> {book_r["title"]} · {book_r.get("author","")}</div>'
+                             + (f'<div style="font-size:13px;font-family:Georgia,serif"><strong>Listening:</strong> {book_l["title"]} · {book_l.get("author","")}</div>' if book_l else "")
+                             + f'</div>')
+
+        items_html = (dd_email_item("📖", "Read", dds.get("current_read"), nudge=True)
+                      + dd_email_item("🎙️", "Listen", dds.get("current_listen"), nudge=True)
+                      + book_html)
+        if items_html:
+            deep_dive_html = (f'<div style="margin-bottom:32px">'
+                              f'<div style="margin-bottom:16px">{badge("Deep Dive", "#0891B2")}</div>'
+                              f'{items_html}</div>')
 
     # Weather card
     weather_html = ""
@@ -890,6 +964,23 @@ def main():
     brief_data = synthesise_brief(raw_results)
     brief_data["weather"] = weather
     brief_data["nba_scores"] = nba_scores
+
+    # Step 2b: Load and enrich deep dive state
+    print("📚 Loading deep dive state...")
+    deep_dive_state = load_deep_dive_state()
+    if deep_dive_state:
+        if deep_dive_state.get("current_read") and not deep_dive_state["current_read"].get("description"):
+            deep_dive_state["current_read"] = enrich_deep_dive_item(deep_dive_state["current_read"], "read")
+        if deep_dive_state.get("current_listen") and not deep_dive_state["current_listen"].get("description"):
+            deep_dive_state["current_listen"] = enrich_deep_dive_item(deep_dive_state["current_listen"], "listen")
+        for key in ("current_read", "current_listen"):
+            item = deep_dive_state.get(key)
+            if item and item.get("first_shown"):
+                first = datetime.date.fromisoformat(item["first_shown"])
+                item["days_shown"] = (TODAY - first).days + 1
+        save_deep_dive_state(deep_dive_state)
+        print("  ✅ Deep dive state ready")
+    brief_data["deep_dive_state"] = deep_dive_state
 
     # Save raw data for debugging
     data_path = OUTPUT_DIR / f"daily_brief_{DATE_FILE}.json"
