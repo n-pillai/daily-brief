@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 08, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Sunday, March 08, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Israel strikes Iran's oil facilities as succession crisis deepens in Tehran; Nepal's youth-led party wins landslide election victory; AI companies split over Pentagon access amid first major US governance debate</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-08.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">51°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 74° · L: 50°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">52°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 72° · L: 52°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org" target="_blank">Israel Strikes Iran Oil Facilities as Tehran Nears Supreme Leader Succession Announcement</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org" target="_blank">Associated Press</a>
+        
+      
+         · 
+        <a href="https://www.washingtonpost.com/world/" target="_blank">Washington Post</a>
+        
+      
+    </div>
+    <p>Israel targeted Iran's oil facilities for the first time early Sunday, with massive flames visible over Tehran's skyline. Iranian state media reported officials were close to announcing a successor to Ayatollah Ali Khamenei, who was killed in initial U.S.-Israeli strikes on February 28. The conflict, now in its ninth day, has expanded across the Middle East with attacks on multiple Gulf nations. European leaders urged restraint as President Trump threatened to widen U.S. targets after Iran's president dismissed calls for unconditional surrender.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents the most significant U.S. military engagement in the Middle East in decades, with potential to reshape the region's power balance, disrupt global energy markets, and risk wider regional war.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.wfdd.org/national/2026-03-08/a-new-nepali-party-led-by-an-ex-rapper-is-set-for-a-landslide-win-in-parliamentary-election" target="_blank">Former Rapper's Party Wins Landslide Victory in Nepal's First Post-Uprising Election</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.wfdd.org/national/2026-03-08/a-new-nepali-party-led-by-an-ex-rapper-is-set-for-a-landslide-win-in-parliamentary-election" target="_blank">Associated Press</a>
+        
+      
+         · 
+        <a href="https://www.aljazeera.com" target="_blank">Al Jazeera English</a>
+        
+      
+    </div>
+    <p>The Rastriya Swatantra Party, led by former rapper and Kathmandu mayor Balendra Shah, secured over 103 of 165 directly elected seats in Nepal's parliamentary election, stunning defeat for traditional parties. The results follow September 2025 Gen Z protests that forced out the previous government. Shah defeated former PM KP Sharma Oli in his home constituency by a massive margin, with the RSP sweeping all 15 seats in the Kathmandu Valley.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This historic political transformation shows how youth-led protests can translate into electoral change and may reshape India's strategic interests in Nepal, particularly regarding hydropower projects and the 1950 Treaty of Peace and Friendship.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/4/nearly-66000-afghans-displaced-amid-fierce-fighting-on-pakistan-border-un" target="_blank">Afghanistan-Pakistan Border Conflict Displaces Nearly 100,000 as Fighting Enters Second Week</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/4/nearly-66000-afghans-displaced-amid-fierce-fighting-on-pakistan-border-un" target="_blank">Al Jazeera English</a>
+        
+      
+    </div>
+    <p>The United Nations reported nearly 100,000 people displaced as Afghanistan and Pakistan continue cross-border fighting that Pakistan's defense minister called "open war." Afghan officials claim to have shot down Pakistani drones and captured border posts, while both sides report heavy casualties. The conflict began after Pakistani airstrikes in late February targeted what Islamabad said were militant hideouts.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The escalating conflict between two nuclear-armed neighbors threatens regional stability and creates a growing humanitarian crisis in an already fragile border region.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.washingtonpost.com/world/" target="_blank">Ukraine Claims Battlefield Successes with New Anti-Drone Systems</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.washingtonpost.com/world/" target="_blank">Washington Post</a>
+        
+      
+    </div>
+    <p>Ukraine has claimed multiple successes on the front lines in recent days, highlighting the effectiveness of new anti-drone interceptors and weapons systems. The developments underscore Ukraine's continued military resilience despite ongoing Russian attacks. Reports indicate Russian forces launched drone and missile barrages on residential areas in Kharkiv, killing ten people including two children.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Ukraine's technological adaptation demonstrates how the conflict continues to drive innovation in counter-drone warfare, with implications for future military conflicts.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com" target="_blank">Congress Questions Centre Over US 'Blackmail' After 30-Day Russian Oil Waiver</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com" target="_blank">The Hindu</a>
+        
+      
+    </div>
+    <p>The Congress party questioned the Modi government over what it calls US 'blackmail' after the Trump administration granted India a temporary 30-day waiver to purchase Russian oil amid the escalating US-Iran conflict. The waiver comes as global crude prices surge near $94 per barrel due to the closure of the Strait of Hormuz, through which over 20% of global oil and gas shipments pass. External Affairs Minister S. Jaishankar stated that Iranian ships involved in the conflict were part of a 'fleet review' and got caught in the escalation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The limited 30-day waiver exposes India's energy security vulnerability and raises questions about its strategic autonomy amid intensifying US pressure and the ongoing Middle East conflict.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/air-india-to-operate-special-flights-for-uae-on-march-8-amid-gulf-crisis-126030800037_1.html" target="_blank">Air India Operates Special Evacuation Flights from UAE Amid Gulf Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/air-india-to-operate-special-flights-for-uae-on-march-8-amid-gulf-crisis-126030800037_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Air India and Air India Express are operating special evacuation flights between Delhi-Dubai and Mumbai-Dubai on March 8 to assist stranded travelers amid ongoing airspace restrictions in West Asia. The airlines continue scheduled operations to Jeddah and Muscat, as airspace over Saudi Arabia and Oman remains open. The move comes as the escalating US-Israel-Iran conflict has severely disrupted flight operations across the Middle East region.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The evacuation flights highlight India's efforts to protect millions of Indian workers in the Gulf region as the conflict threatens to escalate further.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/early-summer-conditions-grip-most-parts-of-india-as-temperatures-rise-126030800058_1.html" target="_blank">Early Summer Conditions Grip India as Temperatures Rise 6-15°C Above Normal</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/early-summer-conditions-grip-most-parts-of-india-as-temperatures-rise-126030800058_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Large parts of India are experiencing an early surge in temperatures in early March, with maximum temperatures in several regions rising 6 to 15 degrees Celsius above seasonal averages. The India Meteorological Department forecasts that summer-like conditions are gripping most of the country much earlier than usual this year. Rain and snowfall are expected in hill regions today, providing some relief.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The unprecedented early heat wave raises concerns about agricultural impact, power demand, and public health during the coming months.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/unemployed-class-10-passouts-in-bengal-to-get-rs-1-500-allowance-from-march-7-mamata-126030700432_1.html" target="_blank">West Bengal CM Announces ₹1,500 Monthly Allowance for Unemployed Class 10 Pass-outs</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/unemployed-class-10-passouts-in-bengal-to-get-rs-1-500-allowance-from-march-7-mamata-126030700432_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>West Bengal Chief Minister Mamata Banerjee announced on March 7 that unemployed young people aged 21-40 who have passed Class 10 exams will receive ₹1,500 per month starting immediately, advancing the scheme originally scheduled for April. The announcement was made during a sit-in protest against large-scale deletion of voter names by the Election Commission during the Special Intensive Revision exercise, ahead of assembly polls.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The pre-election welfare announcement signals intensifying political competition in West Bengal while addressing youth unemployment concerns.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/03/07/a-roadmap-for-ai-if-anyone-will-listen/" target="_blank">Bipartisan AI Framework Released Amid Pentagon-Anthropic Standoff</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/03/07/a-roadmap-for-ai-if-anyone-will-listen/" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>A bipartisan coalition released the Pro-Human Declaration, a framework for responsible AI development, just as the Pentagon designated Anthropic a 'supply chain risk' after the company refused unlimited military access to its technology. OpenAI subsequently signed its own Pentagon deal that legal experts say will be difficult to enforce, exposing the lack of coherent AI governance rules in the US.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This marks the first major national conversation about control over AI systems and reveals how costly Congressional inaction on AI regulation has become.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-07/openai-s-head-of-robotics-resigns-over-company-s-pentagon-deal" target="_blank">OpenAI Robotics Chief Resigns Over Pentagon Deal</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-07/openai-s-head-of-robotics-resigns-over-company-s-pentagon-deal" target="_blank">Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>The head of OpenAI's robotics team resigned on Saturday, citing ethical concerns over the company's agreement to deploy its AI models within the Pentagon's classified network. The resignation follows the controversial deal OpenAI made with the Defense Department after Anthropic refused similar terms.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The high-profile resignation signals growing internal resistance at AI companies to military partnerships and highlights deepening ethical divisions in the industry.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/technology" target="_blank">Anthropic Faces Potential Huawei-Style Ban After Pentagon Dispute</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/technology" target="_blank">Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Anthropic is at risk of receiving a ban similar to Huawei following the Pentagon's designation of the AI company as a 'supply chain risk' after it refused to grant unlimited military access to its Claude AI system. The punishment represents an unprecedented move to use national security designations against a domestic AI company over contract disputes.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The aggressive use of supply chain security designations against a US AI company sets a concerning precedent for government control over the technology sector.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://arstechnica.com" target="_blank">Ars Technica Fires Senior AI Reporter Following Fabricated Quotes Controversy</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://arstechnica.com" target="_blank">Ars Technica</a>
+        
+      
+    </div>
+    <p>Condé Nast-owned Ars Technica terminated senior AI reporter Benj Edwards in early March after he used AI tools that generated fabricated quotes in a February article about an AI agent. Edwards admitted he made a 'serious journalistic error' while working sick, using ChatGPT to extract quotes which resulted in paraphrased rather than actual words from the source.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The incident underscores the dangers of journalists using AI tools for tasks requiring precision and raises questions about editorial oversight in the AI era.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/technology" target="_blank">Oracle and OpenAI End Plans to Expand Flagship Data Center</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/technology" target="_blank">Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Oracle and OpenAI have terminated plans to expand their flagship data center project, according to Bloomberg reporting from March 6. The cancellation comes amid broader questions about AI infrastructure economics and follows massive capital expenditure announcements from other hyperscalers.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The cancellation suggests growing caution about AI infrastructure investments despite industry hype about continued scaling.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">Oil Prices Surge Near $94 as Strait of Hormuz Remains Closed</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Additional: Reuters</a>
+        
+      
+    </div>
+    <p>Global crude oil prices surged to near $94 per barrel as the escalating US-Israel-Iran conflict keeps the Strait of Hormuz closed to commercial shipping. The strait normally handles over 20% of global oil and gas shipments, creating severe supply disruption concerns. Energy markets face their biggest disruption since the 1970s oil crisis.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The closure threatens global energy security and could trigger significant inflation if the conflict continues, with India particularly vulnerable given its energy import dependence.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com" target="_blank">US Jobs Report Shows Weak February Hiring Amid Economic Uncertainty</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>The February jobs report revealed weaker-than-expected hiring as economic uncertainty from the Middle East conflict weighs on business confidence. Labor market indicators suggest employers are taking a cautious approach to expansion amid concerns about energy costs and supply chain disruptions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The weak hiring data raises concerns about US economic resilience as multiple crises converge, potentially forcing the Federal Reserve to reconsider its monetary policy stance.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.ft.com" target="_blank">Global Markets Face Volatility as Geopolitical Risks Mount</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.ft.com" target="_blank">Additional: Financial Times</a>
+        
+      
+    </div>
+    <p>Global equity markets experienced sharp volatility this week as investors grappled with escalating geopolitical tensions in the Middle East and South Asia. Flight-to-safety trades boosted gold and government bonds while emerging market assets faced selling pressure. Defense and energy stocks outperformed broader indices.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The market turbulence reflects growing investor concern that multiple simultaneous conflicts could derail the global economic recovery.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.scientificamerican.com/article/ibm-scientists-unveil-the-first-ever-half-moebius-molecule-with-the-help-of/" target="_blank">IBM Scientists Create First 'Half-Möbius' Molecule Using Quantum Computing</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.scientificamerican.com/article/ibm-scientists-unveil-the-first-ever-half-moebius-molecule-with-the-help-of/" target="_blank">Scientific American</a>
+        
+      
+    </div>
+    <p>IBM Research scientists have synthesized a new ring-shaped molecule with a twisted electron structure more complex than a Möbius strip, confirmed using quantum computers. The breakthrough in topological chemistry was published in Science and demonstrates how quantum computers can help study bizarre quantum behaviors in strangely shaped molecules. This is the first time such a molecule has been created, opening new possibilities in molecular science.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents a major advance in both quantum computing applications and our ability to engineer exotic molecular structures with novel quantum properties.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.scientificamerican.com/article/measles-outbreak-erupts-in-one-of-u-s-s-largest-ice-detention-centers/" target="_blank">U.S. Measles Cases Surpass 1,000 in Just Two Months, Threatening Elimination Status</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.scientificamerican.com/article/measles-outbreak-erupts-in-one-of-u-s-s-largest-ice-detention-centers/" target="_blank">Scientific American</a>
+        
+      
+    </div>
+    <p>The CDC has reported 152 measles outbreaks across 45 states in 2026, with total cases exceeding 1,000 by early March—nearly half of all 2025 infections. Outbreaks have occurred in ICE detention facilities in Texas, with facilities closed to visitors. If trends continue, experts say the U.S. will likely lose its measles-free status earned in 2000.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The rapid spread threatens to reverse two decades of measles elimination in the U.S., highlighting the fragility of public health achievements amid declining vaccination rates.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/" target="_blank">Tropical Insects Show Limited Capacity to Survive Rising Temperatures</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>A comprehensive survey of tropical insect populations reveals that species from lowland areas have low capacity to survive increased temperatures, with thermal tolerance limited by fundamental properties of protein architecture. The research indicates many insects may be far less capable of coping with climate change than previously hoped, posing serious risks to tropical ecosystems.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The findings suggest tropical biodiversity loss from climate change could be far more severe than current models predict, with cascading effects on ecosystems and food security.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.scientificamerican.com/article/stand-up-for-science-will-hold-second-rally-against-trump-administration/" target="_blank">Scientists Plan Second 'Stand Up for Science' Rally Against Federal Research Cuts</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.scientificamerican.com/article/stand-up-for-science-will-hold-second-rally-against-trump-administration/" target="_blank">Scientific American</a>
+        
+      
+    </div>
+    <p>Nationwide demonstrations are planned for March 7 in 50 cities to protest Trump administration policies including research funding cuts, downsizing of federal science agencies, and public health policy overhauls. Organizers cite systematic dismantling of CDC, FDA, and NIH, with researchers now modifying grant proposals to align with administration priorities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The protests reflect growing alarm in the scientific community about threats to research independence and public health infrastructure.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.scientificamerican.com/article/nasa-must-delay-deorbiting-the-iss-u-s-lawmakers-say/" target="_blank">Lawmakers Demand NASA Delay International Space Station Deorbiting Until 2032</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.scientificamerican.com/article/nasa-must-delay-deorbiting-the-iss-u-s-lawmakers-say/" target="_blank">Scientific American</a>
+        
+      
+    </div>
+    <p>The Senate Committee on Commerce has added measures to the NASA Authorization Act of 2026 requiring NASA to extend ISS operations through 2032 and forbidding deorbiting until a replacement commercial station is operational. The ISS has been continuously occupied since 2000, but aging infrastructure increases risks of catastrophic failure.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The decision could extend humanity's longest continuous presence in space while raising concerns about safety risks from aging systems.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="winner">ORL 119</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MIN 92</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">BKN 107</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">DET 105</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">PHI 116</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ATL 125</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">LAC 123</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MEM 120</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">UTAH 99</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">MIL 113</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">GS 97</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">OKC 104</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2025-26-1502138/india-vs-new-zealand-final-1512773/live-cricket-score" target="_blank">India Begins T20 World Cup Final Defense with Record-Breaking Powerplay Against New Zealand</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2025-26-1502138/india-vs-new-zealand-final-1512773/live-cricket-score" target="_blank">Additional: ESPN Cricinfo</a>
+        
+      
+    </div>
+    <p>India's openers Sanju Samson and Rohit Sharma produced a record-breaking powerplay, scoring 92 runs in the first six overs—the highest powerplay score in T20 World Cup history. Defending champions India are attempting to become the first team to win back-to-back T20 World Cup titles against New Zealand at Narendra Modi Stadium in Ahmedabad. New Zealand is seeking their first-ever T20 World Cup trophy after five previous ICC final defeats.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The historic final represents India's bid for unprecedented back-to-back T20 World Cup titles and New Zealand's latest attempt to break their ICC trophy drought.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.si.com/" target="_blank">San Antonio Spurs Stage Historic 25-Point Comeback Behind Victor Wembanyama</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.si.com/" target="_blank">Sports Illustrated</a>
+        
+      
+    </div>
+    <p>The Spurs overcame a 25-point deficit on Friday to defeat the LA Clippers 116-112, marking their 14th win in the past 15 games. Victor Wembanyama said he had 'zero left' physically but was emotional after the comeback victory, which continues San Antonio's remarkable late-season surge toward playoff contention.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Spurs' stunning turnaround represents one of the most dramatic playoff pushes in recent NBA history and showcases Wembanyama's leadership in his sophomore season.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/espn/latestnews" target="_blank">Shohei Ohtani Hits Grand Slam as Japan Dominates Taiwan at World Baseball Classic</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/espn/latestnews" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Ohtani blasted a grand slam to lead Japan to a convincing victory over Taiwan in World Baseball Classic pool play on March 6. The defending champions remain perfect in the tournament, with Ohtani hitting his second home run in two days while teammate Seiya Suzuki added two homers of his own.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Japan's dominant performance positions them as strong favorites to repeat as World Baseball Classic champions while Ohtani continues to cement his status as baseball's biggest global star.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espncricinfo.com/series/women-s-premier-league-2025-26-1510059" target="_blank">Royal Challengers Bangalore Win Second WPL Title with Record Partnership</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espncricinfo.com/series/women-s-premier-league-2025-26-1510059" target="_blank">Additional: ESPN Cricinfo</a>
+        
+      
+    </div>
+    <p>RCB secured their second Women's Premier League title with a 6-wicket victory over Delhi Capitals in the final at Vadodara. Smriti Mandhana and Georgia Voll put on a record 165-run partnership off 92 balls—the biggest partnership in WPL history—to chase down 204 runs, with Mandhana playing through illness.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The victory establishes RCB as the WPL's first dynasty and showcases the growing competitiveness and quality of women's cricket in India.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Limited Content Available</strong> — Insufficient recent long-form content from approved Explore sources in the past 2 weeks to provide curated recommendations today.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 1 · 25-30 min read
+        
+      </div>
+      <h4><a href="https://steve-yegge.medium.com/the-anthropic-hive-mind-d01f768f3d7b" target="_blank">Steve Yegge: "The Anthropic Hive Mind"</a></h4>
+      <div class="dd-meta">Medium</div>
+      <p>Veteran engineer Steve Yegge interviews approximately 40 Anthropic employees and describes how the company operates as a 'hive mind' running on vibes rather than traditional hierarchy, comparing their culture to improv theater's 'Yes, and...' approach and examining whether this organizational model can sustain rapid growth.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 1 · 2 hr 40 min listen
+        
+      </div>
+      <h4>Acquired: Taylor Swift episode</h4>
+      <div class="dd-meta">Acquired</div>
+      <p>An in-depth business analysis of Taylor Swift's empire, exploring how she became the biggest music artist of her generation and is reshaping the entire music industry through strategies like re-recording her original albums. Worth listening to understand the business and strategic decisions behind one of the most influential artists in modern music.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Sunday, March 08, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Limited Content Available<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
