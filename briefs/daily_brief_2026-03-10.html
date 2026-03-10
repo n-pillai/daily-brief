@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 10, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Tuesday, March 10, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">India eases China investment restrictions after years of tensions; Bill Ackman files for up to $10 billion hedge fund IPO; oil prices swing wildly as Trump hints Iran war may soon end.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-10.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">⛅</div>
+    <div class="weather-temp">47°F</div>
+    <div class="weather-desc">Mainly clear</div>
+    <div class="weather-hilo">H: 68° · L: 47°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">45°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 66° · L: 45°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/10/crude-oil-prices-today-iran-war.html" target="_blank">Oil Prices Whipsaw as Trump Signals Possible End to Iran War, Hints at Seizing Strait of Hormuz</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/10/crude-oil-prices-today-iran-war.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Oil prices experienced extreme volatility with Brent crude briefly topping $119 per barrel before falling back near $90 after President Trump suggested the Iran war could soon end and hinted at seizing control of the Strait of Hormuz. The strategically vital waterway, through which 20% of global oil supplies normally pass, has been effectively closed since U.S.-Israeli strikes began, forcing major producers including Saudi Arabia and Iraq to cut production. U.S. gasoline prices have surged 16% in a week to $3.48 per gallon.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The closure of the Strait of Hormuz represents an unprecedented energy crisis threatening global supply chains and could force central banks to delay rate cuts despite economic weakness.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/10/china-trade-balance-surplus-record-exports-tariffs-imports.html" target="_blank">China's Trade Surplus Hits Record High as Exports Surge 21.8% Despite U.S. Tariff Tensions</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/10/china-trade-balance-surplus-record-exports-tariffs-imports.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>China's trade surplus surged to a record $213.62 billion in the combined January-February period, far exceeding expectations of $179.6 billion, as exports rose 21.8% year-over-year—three times the 7.1% growth economists had forecast. Imports also jumped 19.8% against expectations of 6.3% growth, underscoring the resilience of the world's second-largest economy despite ongoing trade tensions with the U.S. China's consumer price index rose 1.3% in February, the strongest rebound since January 2023.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The record surplus demonstrates China's economic resilience and export strength despite tariff pressures, potentially complicating U.S.-China trade negotiations.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.indiatvnews.com/news/world/nepal-election-results-2026-live-updates-balen-shah-rsp-wins-majority-seats-rastriya-swatantra-party-sweeping-victory-kp-sharma-oli-gen-z-protest-2026-03-07-1032901" target="_blank">Balen Shah's Rastriya Swatantra Party Heads for Landslide Victory in Nepal Elections</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.indiatvnews.com/news/world/nepal-election-results-2026-live-updates-balen-shah-rsp-wins-majority-seats-rastriya-swatantra-party-sweeping-victory-kp-sharma-oli-gen-z-protest-2026-03-07-1032901" target="_blank">Additional: Hindustan Times</a>
+        
+      
+    </div>
+    <p>Former rapper Balendra Shah's Rastriya Swatantra Party (RSP) is heading toward a landslide victory in Nepal's first general elections since Gen Z-led protests toppled the KP Sharma Oli government. The RSP won 53 seats and was leading in 67 more constituencies, shattering the dominance of traditional parties like Nepali Congress and CPN-UML. Shah reportedly defeated former PM KP Sharma Oli in his own constituency, marking a generational shift in Nepali politics.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents a dramatic generational shift in South Asian politics as youth-driven movements successfully translate protest energy into electoral power.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://sg.news.yahoo.com/india-eases-investment-restrictions-china-103556198.html" target="_blank">India Cabinet Approves Easing Investment Restrictions on China to Boost Capital Inflows</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://sg.news.yahoo.com/india-eases-investment-restrictions-china-103556198.html" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>India's cabinet on Tuesday approved easing restrictions on foreign investments from China and other land-bordering nations to boost capital inflows in the world's fifth-largest economy. India tightened scrutiny of investments from Chinese companies in 2020 after border clashes, requiring security clearance from home and foreign ministries. Facing steep U.S. tariffs, New Delhi has cautiously begun to revive ties with Beijing since last year, with PM Modi visiting China in August and both countries resuming direct flights and easing visa procedures.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This marks a significant shift in India-China economic relations after years of tension following the 2020 border clashes, potentially opening up billions in new investment amid global trade realignment.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/economy/news/us-grants-india-30-day-waiver-to-buy-russian-crude-amid-west-asia-crisis-126030600948_1.html" target="_blank">Congress Questions Government After U.S. Issues 30-Day Waiver for India to Buy Russian Oil</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/economy/news/us-grants-india-30-day-waiver-to-buy-russian-crude-amid-west-asia-crisis-126030600948_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The United States issued a temporary 30-day waiver to India allowing oil refiners to buy Russian crude stranded at sea amid disruptions from the Iran war. India's imports of Russian crude skyrocketed to 1.37 million barrels per day in early March, 30% more than February. The Congress party criticized the Modi government, with MPs questioning whether India needs U.S. permission to secure its energy security, calling the language "neo-imperial arrogance."</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The waiver exposes tensions between India's strategic autonomy claims and its energy security needs, spotlighting the political sensitivity of U.S.-India relations amid the Iran conflict.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://pulse.zerodha.com/" target="_blank">Banking Stocks Plunge on Maharashtra Farm Loan Waiver Announcement</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://pulse.zerodha.com/" target="_blank">Additional: NDTV</a>
+        
+      
+    </div>
+    <p>Banking stocks plunged on Monday, with the Bank Nifty seeing its steepest fall since April 2025. Maharashtra's farm loan waiver announcement triggered widespread selling, particularly impacting state-owned banks. This, coupled with foreign investors' cautious stance on Indian equities, led to significant losses across the banking sector, with Union Bank of India and IDFC First Bank among the hardest hit.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The waiver raises concerns about state finances and bank asset quality ahead of multiple state elections in 2026.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news" target="_blank">Karnataka Budget Proposes Social Media Ban for Children Under 16</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Presenting Karnataka's 2026-27 budget, Chief Minister Siddaramaiah said his government will take a call on banning social media for teenagers between 13 and 16 years. Karnataka proposed the restriction as part of child safety measures, with Meta stating that any such restrictions should apply uniformly across apps. The state budget also emphasized Karnataka's position as one of the largest contributors of tax revenues to India.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> If implemented, Karnataka would become one of the first Indian states to enforce age-based social media restrictions, potentially setting a precedent for other states.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/technology" target="_blank">Yann LeCun's New AI Startup Raises $1 Billion in Funding Round</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/technology" target="_blank">Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Meta's chief AI scientist Yann LeCun has raised $1 billion for a new artificial intelligence startup, according to Bloomberg Technology reports. The venture represents one of the largest AI startup funding rounds this year. Details about the company's specific focus and investors remain limited, but the substantial funding reflects continued investor appetite for AI ventures led by prominent researchers.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> LeCun's deep learning expertise and Meta pedigree could challenge OpenAI and Anthropic in the increasingly competitive foundation model space.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/technology" target="_blank">Pentagon Deal with Anthropic Faces Scrutiny Over AI Safety Commitments</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/technology" target="_blank">Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Anthropic's partnership with the Pentagon is drawing criticism from AI safety advocates who question whether the deal aligns with the company's stated commitment to developing safe artificial intelligence systems. The collaboration involves providing AI models for defense applications, raising concerns about dual-use technology and the militarization of advanced AI systems. Anthropic has defended the partnership as consistent with its mission while implementing safeguards.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The controversy highlights growing tensions between AI safety principles and commercial pressures as leading AI labs seek government contracts.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/technology" target="_blank">Apple Postpones Launch of Smart Home Display Amid Design Overhaul</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/technology" target="_blank">Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Apple has delayed the launch of its long-anticipated smart home display as the company conducts a significant redesign of the product. The postponement reflects Apple's ongoing challenges in the smart home market, where it has struggled to compete with Amazon and Google. The device was expected to integrate deeply with Apple's ecosystem and feature advanced Siri capabilities powered by the company's AI investments.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The delay suggests Apple is still searching for a compelling smart home strategy years after competitors established market dominance.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/technology" target="_blank">Apple Expands iPhone Manufacturing Operations in India</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/technology" target="_blank">Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Apple is significantly expanding its iPhone manufacturing presence in India, according to Bloomberg reports, as the company continues diversifying its supply chain beyond China. The expansion comes amid geopolitical tensions and follows India's recent easing of investment restrictions on Chinese companies, which could facilitate technology transfer and component sourcing. India now accounts for a growing share of iPhone production, particularly for export markets.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Apple's manufacturing shift to India represents a major realignment of global tech supply chains with implications for trade and employment.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-10/ackman-seeks-10-billion-in-us-ipo-of-pershing-square-and-fund" target="_blank">Bill Ackman's Pershing Square Files for $5-10 Billion NYSE IPO</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-10/ackman-seeks-10-billion-in-us-ipo-of-pershing-square-and-fund" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Billionaire investor Bill Ackman filed for an initial public offering that would list his hedge fund Pershing Square Capital Management on the NYSE alongside a new closed-end fund, seeking to raise between $5 billion and $10 billion. The dual-structure offering has already secured $2.8 billion in commitments from institutional investors including family offices, pension funds, and insurance companies. Ackman is modeling the permanent-capital investment vehicle after Warren Buffett's Berkshire Hathaway approach.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This marks a major shift in hedge fund accessibility as one of the world's most prominent activist investors attempts to build a publicly traded investment vehicle, potentially opening high-profile hedge fund management to retail investors.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/10/saba-capitals-boaz-weinstein-warns-private-credit-problems-are-multiplying.html" target="_blank">Boaz Weinstein Warns Private Credit Problems 'Multiplying by the Quarter' as Liquidity Crunch Intensifies</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/10/saba-capitals-boaz-weinstein-warns-private-credit-problems-are-multiplying.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Hedge fund manager Boaz Weinstein cautioned that problems in the $1.8 trillion private credit industry are multiplying quarterly due to what he calls the 'financial alchemy of promising liquidity that isn't there.' His firm Saba Capital, alongside Cox Capital Management, launched tender offers to purchase stakes in Blue Owl's nontraded private credit funds at discounts of up to 35% after the funds halted redemptions and sold $1.4 billion in assets. Despite his warnings, Weinstein said he's actually bullish on major private credit managers like Ares, Apollo, and Blackstone.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The liquidity crisis in private credit could expose millions of investors to losses and trigger broader financial instability if the asset class unravels.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.marketscreener.com/news/u-s-small-business-sentiment-slips-ce7e5fded18af721" target="_blank">U.S. Small Business Optimism Slips to 98.8 in February Despite Declining Uncertainty</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.marketscreener.com/news/u-s-small-business-sentiment-slips-ce7e5fded18af721" target="_blank">Additional: Wall Street Journal</a>
+        
+      
+    </div>
+    <p>The National Federation of Independent Business reported that its small-business optimism index fell 0.5 points to 98.8 in February, below the consensus forecast of 99.5 but remaining above the long-term average of 98. The uncertainty index dropped three points to 88, suggesting small businesses feel more certain about the outlook despite the slight decline in overall optimism. NFIB Chief Economist Bill Dunkelberg noted that high sales and increased profits made February positive for many owners.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Small business sentiment remains a key indicator of Main Street economic health and consumer spending trends heading into spring.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/technology" target="_blank">Human Brain Cells Being Used in Data Centers for AI Computing</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/technology" target="_blank">Additional: Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Technology companies are reportedly exploring the use of human brain cells in data centers to enhance AI computing capabilities, according to Bloomberg Technology reports. The biocomputing approach involves growing organoids—three-dimensional clusters of human brain cells—that could potentially process information more efficiently than traditional silicon chips. The development raises significant ethical questions about consciousness, consent, and the boundaries between biological and artificial intelligence.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This breakthrough could revolutionize computing efficiency while opening unprecedented ethical debates about the use of human biological material in technology.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.technologyreview.com/" target="_blank">MIT Technology Review Named Finalist for 2026 National Magazine Award for AI Energy Investigation</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.technologyreview.com/" target="_blank">MIT Technology Review</a>
+        
+      
+    </div>
+    <p>MIT Technology Review was named a finalist for a 2026 National Magazine Award for its investigation into artificial intelligence's growing energy demands. The recognition, announced March 9, honors the publication's reporting on how AI training and deployment are consuming unprecedented amounts of electricity, raising questions about sustainability and climate commitments. The investigation examined energy usage across major AI labs and data center operations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The recognition highlights growing concerns about AI's environmental footprint as the technology rapidly scales across industries.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/" target="_blank">Climate Warming Accelerating Faster Than Models Predicted, Nature Study Finds</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>A new study published in Nature on March 6 found that global warming is accelerating faster than climate models predicted, with observed temperature increases outpacing projections from the past decade. The research examined discrepancies between modeled and observed warming trends, suggesting that feedback mechanisms may be amplifying warming more rapidly than previously understood. Scientists are calling for updated climate models to better reflect accelerating trends.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Faster-than-expected warming could require more aggressive emissions cuts and adaptation measures than currently planned.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">PHI 101</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CLE 115</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MEM 115</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BKN 126</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">DEN 126</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">OKC 129</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">GS 116</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">UTAH 119</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">NY 118</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAC 126</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/nba/story/_/id/48092442/nba-2026-2026-wilt-chamberlain-record-shai-gilgeous-alexander-okc" target="_blank">Shai Gilgeous-Alexander Ties Wilt Chamberlain's 126-Game 20-Point Streak, Hits Game-Winner vs Nuggets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/nba/story/_/id/48092442/nba-2026-2026-wilt-chamberlain-record-shai-gilgeous-alexander-okc" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Oklahoma City Thunder guard Shai Gilgeous-Alexander tied Wilt Chamberlain's NBA record by scoring at least 20 points in his 126th consecutive game on Monday, March 9. He finished with 35 points, 15 assists, and hit a game-winning three-pointer with 2.7 seconds remaining to defeat the Denver Nuggets 129-126. The defending champion Thunder improved to 51-15, maintaining the league's best record.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This historic achievement places SGA alongside one of basketball's all-time greats while leading the Thunder to championship contention as reigning MVP.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nba.com/" target="_blank">Thunder Defeat Nuggets in Western Conference Showdown Despite Missing Three Starters</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nba.com/" target="_blank">Additional: NBA.com</a>
+        
+      
+    </div>
+    <p>Oklahoma City overcame injuries to Jalen Williams, Chet Holmgren, and Isaiah Hartenstein to defeat Denver in a thriller that came down to the final shot on March 9. Role players Jaylin Williams (29 points, 12 rebounds) and Ajay Mitchell (24 points off the bench) stepped up significantly. The victory marked the Thunder's third win over Denver this season and solidified their position atop the Western Conference.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Thunder's depth is proving crucial as they navigate injuries while maintaining championship aspirations.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espncricinfo.com/series/wpl-2025-26-1510059/royal-challengers-bengaluru-women-vs-delhi-capitals-women-final-1513703/live-match-blog" target="_blank">Royal Challengers Bengaluru Win Second WPL Title with Record Chase</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espncricinfo.com/series/wpl-2025-26-1510059/royal-challengers-bengaluru-women-vs-delhi-capitals-women-final-1513703/live-match-blog" target="_blank">ESPN Cricinfo</a>
+        
+      
+    </div>
+    <p>Royal Challengers Bengaluru defeated Delhi Capitals by six wickets in the WPL 2026 final on February 5, chasing down a record 204 runs. Captain Smriti Mandhana scored 87 off 41 balls while Georgia Voll contributed 79 off 54, forming a record 165-run partnership—the highest in WPL history. Delhi Capitals suffered their fourth consecutive final defeat.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This showcases RCB's dominance in women's cricket's premier T20 league and marks the highest successful chase in WPL history.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>WIRED</strong> — Long-form journalism exploring technology, science, and culture's intersection with society.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.wired.com/" target="_blank">Welcome to the Chinese Century: How China Is Reshaping Global Technology</a></h3>
+    <div class="source"><a href="https://www.wired.com/" target="_blank">WIRED</a></div>
+    <p>WIRED's March/April 2026 cover story examines China's rapid technological advancement across artificial intelligence, quantum computing, biotechnology, and clean energy. The investigation explores how Chinese companies and research institutions are increasingly setting global standards, challenging Western technological dominance, and creating parallel tech ecosystems. The piece analyzes implications for innovation, geopolitics, and the future of global technology leadership as China leverages its massive domestic market and state-directed investment to achieve breakthroughs across multiple frontier technologies.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 1 · 30-40 min read
+        
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 1 · ~3 hr listen
+        
+      </div>
+      <h4>Acquired: Costco episode</h4>
+      <div class="dd-meta">Acquired</div>
+      <p>Acquired's deep-dive into Costco — the business model behind one of the most beloved and profitable retailers in the world, exploring how a membership warehouse club became a cultural phenomenon.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Tuesday, March 10, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · WIRED<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
