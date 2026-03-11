@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 11, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Wednesday, March 11, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">US-Israel military campaign against Iran enters day 12 with over 1,300 civilians killed as oil prices spike and IEA announces record 400-million-barrel reserve release; UN finds Russia's deportation of Ukrainian children constitutes crimes against humanity; Bam Adebayo scores 83 points, second-most in NBA history.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-11.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">45°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 74° · L: 45°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">46°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 71° · L: 46°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/11/iran-war-what-is-happening-on-day-12-of-us-israel-attacks" target="_blank">US-Israel War on Iran Enters Day 12, Over 1,300 Civilians Killed</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/11/iran-war-what-is-happening-on-day-12-of-us-israel-attacks" target="_blank">Al Jazeera English</a>
+        
+      
+         · 
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>The US-Israeli military campaign against Iran has entered its twelfth day with Tehran reporting nearly 10,000 civilian sites bombed and more than 1,300 civilians killed since February 28. Overnight attacks targeted Tehran's Mehrabad airport while Iran continued retaliatory strikes on Israel and US Gulf assets. Political pressure is mounting in Washington as lawmakers demand public hearings on war goals while US casualties rise and civilian strikes come under investigation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents the most significant direct military confrontation between the US and a major Middle Eastern power in decades, with global economic implications from disrupted energy supplies and potential for wider regional escalation.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.ft.com" target="_blank">IEA Announces Record 400 Million Barrel Oil Release as Strait of Hormuz Crisis Deepens</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.ft.com" target="_blank">Financial Times</a>
+        
+      
+         · 
+        <a href="https://www.aljazeera.com/news/liveblog/2026/3/11/iran-war-live-tehran-says-us-israel-hit-nearly-10000-civilian-sites" target="_blank">Al Jazeera English</a>
+        
+      
+    </div>
+    <p>The International Energy Agency announced it will release a record 400 million barrels of crude oil in response to disruption caused by the US-Israel war on Iran, exceeding the 182 million deployed after Russia's 2022 Ukraine invasion. Multiple vessels have been attacked in the Strait of Hormuz, with Iran's Revolutionary Guards firing on ships, and the UAE's major Ruwais refinery shutting down following a drone attack. Oil prices have spiked to nearly $120 per barrel.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This unprecedented oil release signals the severity of global energy supply disruptions and could determine whether economies avoid recession amid oil price volatility.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.usnews.com/news/world/articles/2026-03-11/irans-new-supreme-leader-lightly-injured-but-still-active-iranian-official-tells-reuters" target="_blank">Iran's New Supreme Leader Mojtaba Khamenei Lightly Injured, Still Operating</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.usnews.com/news/world/articles/2026-03-11/irans-new-supreme-leader-lightly-injured-but-still-active-iranian-official-tells-reuters" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>Newly-appointed Supreme Leader Mojtaba Khamenei was lightly injured but is continuing to operate, an Iranian official told Reuters on Wednesday. The official did not provide details about when he was injured or why he had not made any public statement since being appointed as Iran's new leader following his father's assassination in US-Israeli strikes on February 28.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The silence and injury of Iran's new supreme leader raises questions about the stability of Iranian leadership during the most critical military confrontation in the nation's modern history.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nytimes.com" target="_blank">UN Report Finds Russia's Deportation of Ukrainian Children Constitutes Crimes Against Humanity</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nytimes.com" target="_blank">New York Times</a>
+        <span class="sub-badge">Subscriber</span>
+      
+    </div>
+    <p>A UN Independent International Commission of Inquiry report published Tuesday found that Russia's deportation and transfer of Ukrainian children since 2022 amounts to crimes against humanity. The report examined 1,205 children from five Ukrainian regions and found 80% have not returned, while Ukraine claims close to 20,000 children have been illegally sent to Russia and Belarus where some undergo military training.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This UN finding formally designates Russia's systematic child deportations as crimes against humanity, potentially strengthening future international criminal prosecutions and sanctions against Russian officials.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">Spain Removes Ambassador to Israel Amid Escalating Middle East Conflict</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>Spain's government decided on Tuesday to remove its ambassador to Israel, according to the official state gazette published Wednesday. The move represents a significant diplomatic breach between Spain and Israel amid the ongoing US-Israel military operations against Iran and broader Middle East tensions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Spain's diplomatic withdrawal signals growing European unease with the Iran conflict and could presage broader EU pressure on Israel and the United States.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.indiatvnews.com" target="_blank">LPG Cylinder Shortage Crisis Linked to Iran-US Conflict Disrupts Indian Households</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.indiatvnews.com" target="_blank">Additional: India TV News</a>
+        
+      
+    </div>
+    <p>Indian households are facing acute LPG cylinder shortages as the US-Israel conflict with Iran disrupts energy supplies through the Strait of Hormuz. Oil marketing companies have warned of supply chain disruptions, with cooking gas prices expected to rise sharply in coming weeks. The crisis comes as India imports approximately 85% of its crude oil needs, making it particularly vulnerable to Middle East supply shocks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The LPG shortage directly affects millions of Indian households and demonstrates India's energy security vulnerability amid escalating Middle East conflicts.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com" target="_blank">IndiGo CEO Pieter Elbers Resigns After Three-Year Tenure</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com" target="_blank">Additional: Business Standard</a>
+        
+      
+    </div>
+    <p>Pieter Elbers has stepped down as CEO of IndiGo, India's largest airline, after leading the carrier for three years. The resignation comes amid rising fuel costs triggered by the Iran conflict and increasing competitive pressure in India's aviation sector. IndiGo's board is expected to announce a successor within the week.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Elbers' departure at IndiGo, which commands nearly 60% of India's domestic aviation market, comes at a critical juncture for the industry facing fuel price volatility and recovery challenges.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://economictimes.indiatimes.com" target="_blank">Indian Stock Markets Decline as Oil Price Surge Hits Sentiment</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://economictimes.indiatimes.com" target="_blank">Additional: Economic Times</a>
+        
+      
+    </div>
+    <p>Indian equity markets fell sharply on Wednesday with the Sensex dropping over 800 points as Brent crude prices nearing $120 per barrel triggered concerns about inflation and economic growth. Oil marketing, aviation, and paint sector stocks were particularly hard hit, while energy exploration companies gained. Analysts warn that sustained high oil prices could force the Reserve Bank of India to reconsider its monetary policy stance.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> India's heavy dependence on oil imports makes its economy particularly vulnerable to Middle East supply disruptions, threatening to derail inflation targets and growth projections.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.ndtv.com" target="_blank">PM Modi Visits Kerala and Tamil Nadu for Infrastructure Project Launches</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.ndtv.com" target="_blank">Additional: NDTV</a>
+        
+      
+    </div>
+    <p>Prime Minister Narendra Modi traveled to Kerala and Tamil Nadu on Wednesday to inaugurate multiple infrastructure projects worth over ₹15,000 crore, including highway expansions and port modernization initiatives. The visits come ahead of anticipated state assembly elections and amid criticism of the government's handling of the oil crisis. Modi emphasized India's infrastructure development as key to economic resilience during global uncertainties.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The PM's southern state visits signal election positioning while attempting to project economic confidence despite rising energy costs and inflation concerns.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/03/07/a-roadmap-for-ai-if-anyone-will-listen/" target="_blank">Bipartisan Coalition Releases Pro-Human AI Declaration Amid Policy Vacuum</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/03/07/a-roadmap-for-ai-if-anyone-will-listen/" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>A coalition including Steve Bannon, Susan Rice, and former Joint Chiefs Chairman Mike Mullen released a framework for responsible AI development addressing pre-release testing and safety protocols. The declaration comes as polling shows 95% of Americans oppose an unregulated race to superintelligence, yet Congress has failed to produce coherent AI governance rules.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The unusual bipartisan alliance signals growing mainstream concern about AI safety, though the coalition's ability to influence actual policy remains uncertain amid congressional gridlock.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnn.com/2026/03/10/tech/meta-moltbook-bots-social-media" target="_blank">Additional: Meta Acquires Moltbook, the AI Agent Social Network</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnn.com/2026/03/10/tech/meta-moltbook-bots-social-media" target="_blank">Additional: CNN Business</a>
+        
+      
+    </div>
+    <p>Meta purchased Moltbook, the viral social network where AI agents autonomously interact with each other. The acquisition comes as Meta competes with OpenAI for talent and users' attention in the AI arms race. Moltbook's team will join Meta's superintelligence labs, though critics have called the platform full of AI slop and security risks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This signals intensifying competition among tech giants to control the emerging AI agent ecosystem before clear use cases are established.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">Additional: Anthropic Sues Pentagon Over Supply Chain Risk Designation</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Additional: Reuters</a>
+        
+      
+    </div>
+    <p>Anthropic filed lawsuits in California and Washington DC challenging the Defense Department's designation of the company as a supply chain risk. The label, typically reserved for firms with ties to China, could bar government contractors from using Anthropic's models. The dispute arose after Anthropic refused to grant the Pentagon unlimited use of its technology.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This case may establish precedents for how AI companies balance commercial interests with national security demands and sets boundaries for military AI deployment.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.ft.com" target="_blank">Additional: Former Meta AI Chief Yann LeCun's AMI Labs Raises Over $1 Billion</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.ft.com" target="_blank">Additional: Financial Times</a>
+        
+      
+    </div>
+    <p>LeCun's new startup AMI Labs secured more than $1 billion in funding from backers including Nvidia, Temasek, and Bezos-linked capital in Europe's largest seed round. The company focuses on world models, an AI approach that learns from physical environments rather than relying on next-token prediction. The massive seed round signals investor appetite for alternative AI architectures beyond current large language models.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> LeCun's pivot to world models represents a significant bet that current transformer-based AI approaches have fundamental limitations that require new architectures to overcome.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">Oil Prices Swing Wildly as U.S. Forces Sink 16 Iranian Naval Vessels Near Strait of Hormuz</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+         · 
+        <a href="https://www.wsj.com" target="_blank">Wall Street Journal</a>
+        
+      
+    </div>
+    <p>U.S. Central Command reported destroying 16 Iranian minelaying naval vessels near the Strait of Hormuz as a preemptive strike based on intelligence about Iranian mining plans. Oil prices fluctuated between $83-$88 per barrel amid confusion over tanker escort claims and actual supply disruptions. Three additional cargo vessels were struck by projectiles in the strait on March 11, bringing the total number of ships hit since the conflict began to 14.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The escalation in the world's most critical oil chokepoint threatens to push crude prices above $120 per barrel and trigger global recession if the strait becomes impassable.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/10/oracle-orcl-q3-earnings-report-2026.html" target="_blank">Oracle Revenue Surges 22% on AI Cloud Boom, Raises FY2027 Guidance to $90 Billion</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/10/oracle-orcl-q3-earnings-report-2026.html" target="_blank">CNBC</a>
+        
+      
+         · 
+        <a href="https://www.bloomberg.com" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Oracle reported Q3 fiscal 2026 revenue of $17.2 billion, up 22% year-over-year, with cloud revenue jumping 44% to $8.9 billion. The company raised its fiscal 2027 revenue guidance to $90 billion and announced remaining performance obligations reached $553 billion, up 325% from last year. Oracle is funding its massive AI infrastructure expansion through customer prepayments and a $50 billion debt and equity financing initiative.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Oracle's results demonstrate sustained AI infrastructure demand despite concerns about software sector disruption, though the company's negative free cash flow and heavy debt load raise questions about the sustainability of its AI buildout.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.ft.com" target="_blank">JPMorgan Marks Down Private Credit Loans to Software Companies, Tightens Lending</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.ft.com" target="_blank">Financial Times</a>
+        
+      
+         · 
+        <a href="https://www.bloomberg.com" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>JPMorgan Chase has marked down the value of certain loans held by private credit groups and is restricting lending to the sector, focusing on software company loans viewed as vulnerable to AI disruption. The move signals mounting stress in the $2 trillion private credit industry, with investor withdrawals surging at funds including BlackRock's $26 billion HPS Corporate Lending Fund. JPMorgan CEO Jamie Dimon told investors the bank is being more prudent in lending against software assets.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> JPMorgan's markdowns suggest that concerns about AI disruption to software businesses are moving from theoretical to material credit risks, potentially triggering broader private credit market stress.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/10/stock-market-today-live-updates.html" target="_blank">U.S. CPI Rises 2.4% Year-Over-Year in February, Matching Expectations</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/10/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+         · 
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>The U.S. consumer price index increased 2.4% year-over-year and 0.3% month-over-month in February, meeting economist expectations. Core CPI, excluding food and energy, rose 0.2% monthly and 2.5% annually, also in line with forecasts. The data comes as markets assess inflation risks from rising energy prices amid the Iran conflict and Fed Chair nominee Kevin Warsh faces Senate confirmation challenges.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The February CPI data was collected before oil prices spiked above $110, meaning March inflation figures will likely show significant increases that could complicate Federal Reserve policy decisions.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://kffhealthnews.org" target="_blank">Additional: Primary Care Doctors Face Mounting Pressures Amid Healthcare System Strain</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://kffhealthnews.org" target="_blank">Additional: KFF Health News</a>
+        
+      
+    </div>
+    <p>Primary care physicians are experiencing unprecedented burnout and workload pressures as the U.S. healthcare system struggles with staffing shortages and increasing patient demand. A new KFF study found that nearly half of primary care doctors are considering leaving practice within the next five years, citing administrative burdens, inadequate compensation, and lack of support. The crisis threatens to worsen access to basic healthcare services for millions of Americans.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The erosion of primary care represents a fundamental threat to healthcare system sustainability, as these physicians serve as gatekeepers and preventive care providers for most Americans.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://kffhealthnews.org" target="_blank">Additional: Children's Dental Emergency Room Visits Surge, Highlighting Access Gaps</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://kffhealthnews.org" target="_blank">Additional: KFF Health News</a>
+        
+      
+    </div>
+    <p>Emergency room visits for children's dental problems have increased dramatically over the past three years, with hospitals reporting that preventable dental conditions now account for a significant portion of pediatric ER cases. The trend reflects limited access to routine dental care, particularly for Medicaid-enrolled children, as many dentists refuse to accept the insurance due to low reimbursement rates. Healthcare advocates warn that using emergency rooms for dental care is both costly and ineffective.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The surge in pediatric dental ER visits exposes critical gaps in children's healthcare access and highlights how insurance reimbursement policies create barriers to preventive care.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com" target="_blank">Additional: Nature Feature Examines Supplements and Anti-Aging Research</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com" target="_blank">Additional: Nature</a>
+        
+      
+    </div>
+    <p>A feature published in Nature on March 10 examines the growing body of research on dietary supplements marketed for anti-aging effects, finding that while some compounds show promise in laboratory and animal studies, human evidence remains limited. Researchers caution that the $50 billion global supplements market often makes claims far beyond what scientific data supports, and that lifestyle factors like exercise and diet remain the most proven interventions for healthy aging.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As longevity research accelerates and supplements become increasingly popular, distinguishing scientifically-supported interventions from marketing hype is critical for public health.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">MEM 129</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">PHI 139</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">DET 138</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">BKN 100</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">WSH 129</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">MIA 150</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">DAL 112</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ATL 124</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">TOR 99</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">HOU 113</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">PHX 129</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MIL 114</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">BOS 116</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">SA 125</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CHI 130</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">GS 124</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CHA 103</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">POR 101</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">IND 109</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">SAC 114</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIN 106</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAL 120</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/nba/story/_/id/48168997/bam-adebayo-scores-83-second-most-points-nba-history" target="_blank">Bam Adebayo Scores 83 Points, Second-Most in NBA History</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/nba/story/_/id/48168997/bam-adebayo-scores-83-second-most-points-nba-history" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Miami Heat star Bam Adebayo exploded for 83 points in a 150-129 victory over the Washington Wizards on March 10, 2026, surpassing Kobe Bryant's 81 points for the second-highest scoring game in NBA history behind only Wilt Chamberlain's 100. Adebayo went 20-of-43 from the field and set NBA records with 36 free throws made on 43 attempts, with his previous career high being just 41 points. The performance was particularly remarkable as Adebayo had been averaging under 20 points per game this season and is primarily known as a defensive player.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This is one of the rarest achievements in basketball history, with only Chamberlain and now Adebayo scoring more than 80 points in a game, marking an unexpected milestone from a player not typically known for prolific scoring.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espncricinfo.com/series/women-s-premier-league-2025-26-1510059" target="_blank">Royal Challengers Bengaluru Win Second WPL Title</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espncricinfo.com/series/women-s-premier-league-2025-26-1510059" target="_blank">ESPN Cricinfo</a>
+        
+      
+    </div>
+    <p>Royal Challengers Bengaluru defeated Delhi Capitals by 6 wickets to claim their second Women's Premier League title in the final played in Vadodara. Captain Smriti Mandhana (87 off 41 balls) and Georgia Voll (79 off 54 balls) led RCB's successful chase of 204 runs, putting together a record 165-run partnership for the second wicket. This marked Delhi Capitals' fourth consecutive final loss, while RCB successfully defended their 2024 title.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The WPL final showcased the growth of women's cricket in India with a record-breaking partnership and established RCB as the dominant force in the tournament's early history.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.indiatvnews.com/sports/cricket/ipl-2026-schedule-live-bcci-set-to-announce-fixtures-for-20-days-today-2026-03-11-1033398" target="_blank">Additional: IPL 2026 Schedule Announced for Opening Matches</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.indiatvnews.com/sports/cricket/ipl-2026-schedule-live-bcci-set-to-announce-fixtures-for-20-days-today-2026-03-11-1033398" target="_blank">Additional: India TV News</a>
+        
+      
+    </div>
+    <p>The BCCI announced the schedule for the first 20 matches of IPL 2026 on March 11, with Royal Challengers Bengaluru set to face Sunrisers Hyderabad in the opening match on March 28 at Chinnaswamy Stadium. The delayed announcement was due to pending election date confirmations in several Indian states. Mumbai Indians will begin their campaign against Kolkata Knight Riders on March 29, while Chennai Super Kings face Rajasthan Royals on March 30 in Guwahati.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The IPL's start signals the return of India's most lucrative sporting event, though scheduling remains complicated by state elections and the broader oil crisis affecting travel costs.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bbc.com/sport" target="_blank">Additional: Lamine Yamal Becomes Youngest to Reach 30 Champions League Appearances</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bbc.com/sport" target="_blank">Additional: BBC Sport</a>
+        
+      
+    </div>
+    <p>Barcelona's Lamine Yamal converted a stoppage-time penalty to earn a 1-1 draw at Newcastle United in the UEFA Champions League Round of 16 first leg on March 10. The 18-year-old also became the youngest player to reach 30 Champions League appearances at 18 years and 240 days old, breaking the record previously held by Warren Zaïre-Emery. The result leaves the tie evenly poised heading into the second leg at Barcelona.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Yamal continues to rewrite Champions League record books while establishing himself as one of European football's brightest young talents.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Insufficient Content Available</strong> — No current long-form features from approved outlets were available from the past two weeks.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 2 · 30-40 min read
+        
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 2 · ~3 hr listen
+        
+      </div>
+      <h4>Acquired: Costco episode</h4>
+      <div class="dd-meta">Acquired</div>
+      <p>Acquired's deep-dive into Costco — the business model behind one of the most beloved and profitable retailers in the world, exploring how a membership warehouse club became a cultural phenomenon.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Wednesday, March 11, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Insufficient Content Available<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
