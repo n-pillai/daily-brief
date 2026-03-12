@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 12, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Thursday, March 12, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Iran's new Supreme Leader vows to keep the Strait of Hormuz closed as oil hits $100 despite record reserve releases; markets plunge 1.4% on war fears; UN condemns Iran's regional attacks with overwhelming support.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-12.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">49°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 77° · L: 49°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">48°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 74° · L: 48°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">Iran's New Supreme Leader Mojtaba Khamenei Issues First Message as Oil Blockade Continues</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>Iran's new supreme leader Mojtaba Khamenei, elected March 8 following his father Ali Khamenei's assassination in US-Israel strikes, released his first message vowing to maintain the Strait of Hormuz closure. The 53-year-old cleric assumed power at a critical moment as the conflict enters its 13th day. President Trump has called the new leader 'lightweight' and threatened he would not last long without US approval.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The leadership transition in Iran occurs during active military conflict, potentially affecting the trajectory of the war and regional stability with roughly 20% of global oil flowing through the contested strait.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nytimes.com" target="_blank">UN Security Council Condemns Iran Regional Attacks, Rejects Russian Peace Proposal</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nytimes.com" target="_blank">New York Times</a>
+        <span class="sub-badge">Subscriber</span>
+      
+    </div>
+    <p>The UN Security Council adopted a Bahraini-led resolution condemning Iran's regional attacks with 13 of 15 members supporting it, including the US, Britain, and France. The Council rejected a Russian proposal seeking to end the conflict. Iran's representative called the resolution hypocritical, noting that at least 1,348 civilians in Iran have been killed so far in the conflict.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Security Council action represents significant international alignment against Iran's retaliatory strikes, though it failed to produce a ceasefire, indicating continued escalation.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nytimes.com" target="_blank">IEA Announces Record 400 Million Barrel Oil Reserve Release as Iran War Disrupts Energy Markets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nytimes.com" target="_blank">New York Times</a>
+        <span class="sub-badge">Subscriber</span>
+      
+    </div>
+    <p>The International Energy Agency coordinated its largest-ever emergency oil release of 400 million barrels from 32 member countries, including 172 million barrels from the US Strategic Petroleum Reserve. The release comes as Iran attacked commercial ships in the Strait of Hormuz, with oil prices still rising to $87-90 per barrel despite the intervention. The coordinated action aims to mitigate energy market disruptions as the Iran war continues.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The record release indicates the severity of the energy crisis, yet oil prices continue climbing despite unprecedented intervention, threatening global inflation.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">US Iran War Costs Exceed $11.3 Billion in First Six Days</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>Pentagon officials disclosed in a closed-door congressional briefing that the war against Iran cost at least $11.3 billion in its first six days, not including the costs of military buildup prior to strikes. Congressional aides expect the White House to submit a funding request soon, with estimates ranging from $50 billion or higher. The administration has not provided public assessments of total costs or expected duration of the conflict.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The staggering costs highlight the financial burden of the conflict at a time when public support for the war remains historically low.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.washingtonpost.com" target="_blank">Israel Intensifies Strikes on Hezbollah in Lebanon as Iran Conflict Expands</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.washingtonpost.com" target="_blank">Washington Post</a>
+        
+      
+    </div>
+    <p>Israeli military conducted heavy strikes on Beirut and southern suburbs, with the Lebanese health ministry reporting at least seven killed and 21 injured in the Ramlet al Baida neighborhood. The attacks represent an expansion of the Iran war into Lebanon as Israel battles the Iranian proxy Hezbollah. Two oil tankers were also struck by projectiles near Iraq's southern ports on Day 13 of the Middle East conflict.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The geographic expansion of the conflict into Lebanon and Iraq threatens to transform a bilateral confrontation into a broader regional war.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.ndtv.com" target="_blank">Supreme Court Allows Passive Euthanasia for Harish Rana After Decade-Long Legal Battle</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.ndtv.com" target="_blank">Additional: NDTV</a>
+        
+      
+    </div>
+    <p>India's Supreme Court has granted permission for passive euthanasia in the case of Harish Rana, marking a significant development in the country's right-to-die jurisprudence. The case follows established precedents allowing withdrawal of life support under strict conditions. The decision comes after years of legal proceedings and medical evaluations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The ruling reinforces India's framework for end-of-life decisions while highlighting the continued complexity of balancing individual autonomy with medical ethics.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com" target="_blank">Economist Kaushik Basu Warns of US Tariff Impact on Indian Economy</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Former Chief Economic Adviser Kaushik Basu has cautioned about the potential economic impact of US tariff policies on India's export sector. His comments come as global trade tensions escalate amid the ongoing Middle East conflict. The warning addresses concerns about India's vulnerability to shifting US trade policy.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> With India's economy increasingly integrated into global supply chains, US trade policy shifts could significantly affect growth trajectories.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://economictimes.indiatimes.com" target="_blank">Energy Security Concerns Mount as West Asia Crisis Threatens LPG and Oil Supplies</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://economictimes.indiatimes.com" target="_blank">Economic Times</a>
+        
+      
+         · 
+        <a href="https://www.business-standard.com" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Indian energy officials are closely monitoring the situation in West Asia as the Iran conflict threatens critical LPG and crude oil supply routes. India imports significant portions of its energy needs from the Gulf region, making it vulnerable to disruptions in the Strait of Hormuz. The government is reportedly assessing contingency plans including increased domestic production and alternative sourcing.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Energy security is critical for India's economic stability, with any prolonged disruption potentially affecting inflation, industrial production, and household budgets.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com" target="_blank">Mastercard Recruits Circle, Binance and 85+ Crypto Firms for Global Payment Partnership</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com" target="_blank">Additional: Bloomberg</a>
+        
+      
+    </div>
+    <p>Mastercard is recruiting more than 85 digital asset firms, payments providers and financial institutions including Circle Internet Group, Binance and Gemini into a new global partnership program. The program is designed to keep crypto payments connected to its network as stablecoins are pitched as an alternative to traditional payment rails. This marks a major expansion of mainstream financial infrastructure into digital assets.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The move signals traditional finance's recognition of crypto's staying power and could accelerate mainstream adoption of digital asset payments.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.technologyreview.com" target="_blank">AI Energy Consumption Reaches Critical Levels as Data Centers Expand</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.technologyreview.com" target="_blank">MIT Technology Review</a>
+        
+      
+    </div>
+    <p>MIT Technology Review's six-month investigation into AI's energy footprint reveals staggering consumption levels across hyperscale data centers. The research examined hundreds of reports and expert interviews to calculate costs from individual prompts to facility-wide operations. As AI becomes ubiquitous, the environmental impact threatens both climate goals and the sustainability of the AI boom itself.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Understanding AI's true energy demands is critical for climate policy and could force fundamental changes in how AI systems are deployed and regulated.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.economist.com" target="_blank">Tensions Escalate Between US Government and Anthropic Over AI Safety Protocols</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.economist.com" target="_blank">The Economist</a>
+        <span class="sub-badge">Subscriber</span>
+      
+    </div>
+    <p>The Economist reports growing friction between the US government and AI safety firm Anthropic over regulatory approaches to artificial intelligence development. The dispute centers on how to balance innovation with safety concerns as AI capabilities advance rapidly. The conflict highlights broader debates about government oversight of frontier AI models.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The relationship between AI developers and regulators will shape the trajectory of AI development and determine whether safety considerations keep pace with capabilities.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/11/stock-market-today-live-updates.html" target="_blank">Oil Surges Past $100 as Iran Blockade Overwhelms Record IEA Reserve Release</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/11/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+         · 
+        <a href="https://www.bloomberg.com" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Oil prices broke through $100 per barrel for Brent crude and $95 for WTI despite the IEA's record 400 million barrel reserve release. Three more ships were attacked overnight in the Persian Gulf, and Iran's new Supreme Leader vowed to keep the Strait of Hormuz closed. The US will release 172 million barrels from its Strategic Petroleum Reserve over 120 days, but traders see this as merely a temporary reprieve.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The closure of the Strait of Hormuz through which 20% of global oil flows threatens to trigger a broader energy crisis and inflation shock that could derail economic growth worldwide.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/markets/sectors/financials" target="_blank">Markets Plunge as War Fears Grip Wall Street; Dow Falls 676 Points</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/markets/sectors/financials" target="_blank">Bloomberg</a>
+        
+      
+         · 
+        <a href="https://www.cnbc.com/2026/03/11/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Wall Street traders hit by geopolitical worries sent the Dow down 676 points or 1.4%, with the S&P 500 losing 1.3% and the Nasdaq shedding 1.7%. Energy stocks surged while other sectors declined broadly as investors grappled with the prospect of sustained oil price spikes. The selloff reflects growing concern that Middle East instability could push the global economy into recession.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The sharp market decline signals that investors believe the Iran conflict could have lasting economic consequences beyond temporary energy disruptions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/11/stock-market-today-live-updates.html" target="_blank">Morgan Stanley Private Credit Fund Faces 10.9% Redemption Requests Amid Industry Stress</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/11/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The Morgan Stanley North Haven Private Income Fund received redemption requests totaling 10.9% of shares outstanding in the first quarter, but will honor only 5% of those requests, amounting to about $169 million or 45.8% of each investor's tender request. Private credit continues grappling with fund redemptions, questions about underwriting standards, and concerns that AI advances could disrupt borrowers, particularly software companies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Rising redemption pressure in private credit markets could signal broader stress in alternative investments and potential liquidity challenges ahead.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/12/5-things-to-know-before-the-market-opens.html" target="_blank">Airlines Raise Fares as Fuel Costs Surge; United CEO Signals Price Increases</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/12/5-things-to-know-before-the-market-opens.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Several global airlines have already raised fares to cover increasing fuel costs, with United Airlines CEO Scott Kirby indicating his carrier will likely follow suit. Travel demand is staying strong according to senior airline executives, meaning carriers could end up with more pricing power. The increases come as oil prices have surged due to Middle East conflict disrupting global energy supplies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Rising airfares represent another inflation vector that could affect consumer spending and business travel while testing the resilience of post-pandemic travel demand.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org" target="_blank">Fractals May Replace String Theory as Foundation of Space-Time</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.quantamagazine.org" target="_blank">Quanta Magazine</a>
+        
+      
+    </div>
+    <p>Physicist Astrid Eichhorn argues that at extremely small scales, space-time may be made of fractals rather than strings. Her work in asymptotic safety theory suggests we just need to push our understanding of physics further down to find coherence, rather than abandoning current frameworks entirely. The research offers a potential alternative to string theory's approach to quantum gravity.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This work could reshape fundamental physics by providing a testable alternative to string theory for understanding the nature of space-time at the smallest scales.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org" target="_blank">Nuclear Pores Revealed: Disorder Drives One of Nature's Most Complex Machines</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.quantamagazine.org" target="_blank">Quanta Magazine</a>
+        
+      
+    </div>
+    <p>New high-definition imaging reveals how thousands of molecules move through nuclear pores in cells every second. The research published this week shows that disorder, rather than rigid structure, is key to how these molecular machines function so efficiently. The findings challenge traditional assumptions about how biological machinery operates at the molecular level.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Understanding nuclear pore function could have implications for drug delivery, disease treatment, and our fundamental understanding of cellular organization.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.who.int" target="_blank">Global Health Systems Strain Under Combined Pressures of War and Pandemic Preparedness</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.who.int" target="_blank">Additional: World Health Organization</a>
+        
+      
+    </div>
+    <p>Health systems worldwide are facing compounded pressures from the Middle East conflict's humanitarian toll, ongoing pandemic preparedness efforts, and resource constraints. The situation in Iran has created particular challenges for medical supply chains and healthcare access. International health organizations are working to maintain critical services amid geopolitical instability.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The intersection of military conflict and public health infrastructure challenges could create conditions for disease outbreaks and health crises beyond the immediate war zone.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">CLE 122</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ORL 128</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">TOR 111</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">NO 122</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">NY 134</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">UTAH 117</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">HOU 93</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DEN 129</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CHA 117</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">SAC 109</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIN 128</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAC 153</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://olympics.com" target="_blank">India Women's Hockey Team Defeats Wales 4-1 in International Friendly</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://olympics.com" target="_blank">Additional: Olympics.com</a>
+        
+      
+    </div>
+    <p>The Indian women's hockey team secured a convincing 4-1 victory over Wales in an international friendly match on March 11. The win demonstrates India's continued progress in women's hockey as the team prepares for upcoming international tournaments. The match showcased strong attacking play from the Indian side.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> India's women's hockey program continues building momentum following recent Olympic performances, with implications for the sport's growth in the country.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espncricinfo.com" target="_blank">IPL 2026 Schedule Announced as Cricket League Prepares for New Season</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espncricinfo.com" target="_blank">Additional: ESPNcricinfo</a>
+        
+      
+    </div>
+    <p>The Board of Control for Cricket in India has released the complete schedule for the Indian Premier League 2026 season. The tournament will feature all established franchises with matches scheduled across multiple venues. The announcement comes as the league prepares for another season of India's premier cricket competition.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The IPL remains one of the world's most valuable sports properties and a critical revenue driver for cricket globally.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bbc.com/sport" target="_blank">The Hundred Cricket Auction Reshapes Team Rosters for Upcoming Season</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bbc.com/sport" target="_blank">Additional: BBC Sport</a>
+        
+      
+    </div>
+    <p>The Hundred cricket competition held its player auction today, with teams reshaping their rosters for the upcoming season. The England and Wales Cricket Board's signature tournament continues to evolve its format and attract international talent. Several high-profile players changed teams in the auction process.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Hundred's development affects the global cricket calendar and player availability for international competitions.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Quanta Magazine</strong> — An editorially independent publication exploring fundamental developments in mathematics, theoretical physics, and the life sciences.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org" target="_blank">Where Some See Strings, She Sees a Space-Time Made of Fractals</a></h3>
+    <div class="source"><a href="https://www.quantamagazine.org" target="_blank">Quanta Magazine</a></div>
+    <p>Physicist Astrid Eichhorn argues that at extremely small scales, space-time may be made of fractals rather than strings. Her work in asymptotic safety theory suggests we just need to push our understanding of physics further down to find coherence, rather than abandoning current frameworks entirely for string theory.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org" target="_blank">Disorder Drives One of Nature's Most Complex Machines</a></h3>
+    <div class="source"><a href="https://www.quantamagazine.org" target="_blank">Quanta Magazine</a></div>
+    <p>New high-definition imaging reveals how thousands of molecules move through nuclear pores in cells every second. The research shows that disorder, rather than rigid structure, is key to how these molecular machines function so efficiently, challenging traditional assumptions about biological machinery.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.economist.com" target="_blank">Trump's War Without Strategy Risks Descending Into Chaos</a></h3>
+    <div class="source"><a href="https://www.economist.com" target="_blank">The Economist</a></div>
+    <p>The latest Economist examines Trump's ill-considered military conflict against Iran, which marks him as the first president in modern polling history to take the US to war without public support. The analysis explores how this represents a historic shift in how democracies enter armed conflict and could fundamentally reshape the relationship between public opinion and executive war-making powers.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 3 · 30-40 min read
+        
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 3 · ~3 hr listen
+        
+      </div>
+      <h4>Acquired: Costco episode</h4>
+      <div class="dd-meta">Acquired</div>
+      <p>Acquired's deep-dive into Costco — the business model behind one of the most beloved and profitable retailers in the world, exploring how a membership warehouse club became a cultural phenomenon.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Thursday, March 12, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Quanta Magazine<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
