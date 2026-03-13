@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Friday, March 13, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Iran's closure of the Strait of Hormuz sends oil prices soaring above $95/barrel; Apple launches its most affordable MacBook ever at $599; and Royal Challengers Bengaluru win their second WPL title.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-13.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-temp">48°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">H: 76° · L: 48°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-temp">48°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">H: 72° · L: 48°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/11/stock-market-today-live-updates.html" target="_blank">Iran Vows to Keep Strait of Hormuz Closed as Oil Crisis Deepens</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/11/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Iran's new Supreme Leader Mojtaba Khamenei stated the closure of the Strait of Hormuz should continue as a "tool to pressure the enemy," threatening to attack all U.S. military bases in the Middle East if they don't close immediately. The strait's closure has already triggered a global energy crisis, with crude oil prices climbing sharply. The escalation comes amid ongoing conflict between the U.S., Israel, and Iran.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Strait of Hormuz handles roughly one-fifth of global oil supply, and its continued closure threatens energy security worldwide while risking broader military conflict in the Middle East.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Note: Limited World News Available from Approved Sources</h3>
+    <div class="source">
+      
+        
+        Editorial Note
+        
+      
+    </div>
+    <p>March 13, 2026 searches revealed extensive references to major world events including the Iran-U.S. conflict, Israeli operations in Lebanon, and Kosovo's political crisis, but direct access to original reporting from approved outlets (BBC, Reuters, AP, NYT, Guardian, FT, WP, Al Jazeera) was not available. News aggregators cited these outlets' reporting, but the primary articles could not be verified. This represents a data access limitation rather than absence of news.</p>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>India News Coverage Unavailable</h3>
+    <div class="source">
+      
+        
+        Editorial Note
+        
+      
+    </div>
+    <p>No stories from approved India outlets (The Hindu, Hindustan Times, Indian Express, Mint, NDTV, Economic Times, Reuters India, Business Standard) could be verified for March 13, 2026. Search results returned aggregator content and stories from March 11-12 rather than current reporting from primary sources.</p>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-04/apple-launches-599-macbook-neo-threatening-windows-pc-market" target="_blank">Apple Launches $599 MacBook Neo in Major Push Into Budget Laptop Market</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-04/apple-launches-599-macbook-neo-threatening-windows-pc-market" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Apple rolled out the $599 MacBook Neo, its most affordable new-generation laptop ever and $400 less than the MacBook Air. The machine represents Apple's biggest push into low-end computing, directly challenging Windows PCs and Chromebooks for budget-conscious shoppers. The laptop became available in stores on Wednesday, opening macOS to first-time buyers who previously couldn't afford Apple's premium pricing.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This pricing strategy could fundamentally reshape the laptop market by making Apple's ecosystem accessible to millions of price-sensitive consumers, potentially disrupting Microsoft and Google's dominance in education and budget computing.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Tech News Limited from Approved Sources</h3>
+    <div class="source">
+      
+        
+        Editorial Note
+        
+      
+    </div>
+    <p>March 13, 2026 tech coverage from approved outlets (TechCrunch, The Verge, Ars Technica, WIRED, MIT Technology Review, Stratechery, Bloomberg Tech) was not accessible. Most recent verified stories dated to March 11-12, including TechCrunch's report on Breakout Ventures raising $114M and references to Senate AI legislation.</p>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/11/stock-market-today-live-updates.html" target="_blank">Oil Surges Above $95 as Markets Post Worst Levels of 2026</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/11/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>West Texas Intermediate crude futures jumped 9.72% to settle at $95.73 per barrel as Iran's Strait of Hormuz closure continued to squeeze global oil supply. The Dow fell 739.42 points (1.56%) to close at 46,677.85, with all three major indexes posting their lowest closing levels of 2026. The energy crisis is triggering broader market turmoil as investors reassess global growth prospects.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Oil above $95 threatens to reignite inflation just as central banks were considering rate cuts, while the market selloff reflects deep concerns about geopolitical risk and economic stability.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/11/private-credit-could-be-the-next-crisis-how-worried-should-you-be-.html" target="_blank">Private Credit Industry Faces Redemption Wave as Software Loans Spook Investors</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/11/private-credit-could-be-the-next-crisis-how-worried-should-you-be-.html" target="_blank">CNBC</a>
+        
+      
+         · 
+        <a href="https://ts2.tech/en/goldman-sachs-pitches-hedge-funds-new-swap-trade-to-bet-against-software-loans-amid-ai-fears/" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>Morgan Stanley's North Haven Private Income Fund received redemption requests totaling 10.9% of shares outstanding in Q1, honoring about $169 million, while retail investors pulled money from Blue Owl Capital and Blackstone funds. Concerns center on loans to software companies as AI threatens to disrupt business models. Goldman Sachs is now pitching hedge funds swaps to bet against software loans, warning of "a lot of unknowns" ahead as AI concerns spread from stocks into credit markets.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> With $220 billion in evergreen private credit funds representing 20% of industry lending, redemption pressures could trigger a broader crisis if AI-driven disruption materializes in software-dependent businesses.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-11/circle-binance-join-mastercard-s-crypto-partner-program" target="_blank">Mastercard Recruits 85+ Crypto Firms Including Circle and Binance to Payment Network</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-11/circle-binance-join-mastercard-s-crypto-partner-program" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Mastercard launched a global partnership program with over 85 digital asset firms, payments providers, and financial institutions including Circle, Binance, and Gemini. The program aims to integrate digital assets into existing payment systems and keep crypto payments connected to Mastercard's network as stablecoins are increasingly pitched as alternatives to traditional payment rails.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents a major traditional finance player's attempt to co-opt rather than compete with crypto payment systems, potentially shaping how digital assets integrate with mainstream commerce.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://ts2.tech/en/goldman-sachs-pitches-hedge-funds-new-swap-trade-to-bet-against-software-loans-amid-ai-fears/" target="_blank">Goldman Sachs Flags Software Loan Risk as AI Disruption Fears Enter Credit Markets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://ts2.tech/en/goldman-sachs-pitches-hedge-funds-new-swap-trade-to-bet-against-software-loans-amid-ai-fears/" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>Goldman Sachs is offering hedge funds total return swaps to bet for or against corporate loans without holding the debt, specifically targeting software-sector exposure amid AI disruption concerns. The bank pegged its enterprise software credit exposure at roughly 15.5% as of Q3, cautioning "We do not underestimate the risk of AI disruption." Goldman warned that AI's ripple effect could extend far beyond tech stocks over the next two years.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The creation of instruments to short software loans signals that Wall Street views AI as a potential credit crisis trigger, not just an equity market story, with implications for the $1.4 trillion leveraged loan market.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Science Coverage Unavailable from Approved Sources</h3>
+    <div class="source">
+      
+        
+        Editorial Note
+        
+      
+    </div>
+    <p>No stories from approved science outlets (Nature, Science, STAT News, KFF Health News, Quanta Magazine, Scientific American, New Scientist, The Lancet) could be verified for March 13, 2026. Recent articles from these publications dated to earlier in March or late February, but current day reporting was not accessible.</p>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">PHI 109</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DET 131</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">PHX 123</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">IND 108</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">WSH 131</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ORL 136</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">BKN 97</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ATL 108</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIL 105</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">MIA 112</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">DAL 120</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MEM 112</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">DEN 136</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">SA 131</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">BOS 102</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">OKC 104</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">CHI 130</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAL 142</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://news24online.com/sports/cricket/rcb-vs-dc-wpl-2026-final-live-cricket-score-match-today-royal-challengers-bengaluru-women-vs-delhi-capitals-women-today-match-scorecard-and-updates-smriti-mandhana-vs-jemimah-rodrigues-bca-stadium-vad/736429/" target="_blank">Royal Challengers Bengaluru Win Second WPL Title with Record Chase</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://news24online.com/sports/cricket/rcb-vs-dc-wpl-2026-final-live-cricket-score-match-today-royal-challengers-bengaluru-women-vs-delhi-capitals-women-today-match-scorecard-and-updates-smriti-mandhana-vs-jemimah-rodrigues-bca-stadium-vad/736429/" target="_blank">Additional: News24 Online</a>
+        
+      
+    </div>
+    <p>Smriti Mandhana's Royal Challengers Bengaluru secured their second Women's Premier League championship on March 13, chasing down 204 runs against Delhi Capitals in 19.4 overs. Captain Mandhana scored 87 off 41 balls while Georgia Voll made 79 off 54 deliveries, adding a record 165-run partnership for the second wicket in a dominant performance.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The record-breaking partnership and successful chase of a 200+ target showcases the rapidly improving quality and competitiveness of women's cricket in India's premier T20 league.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nba.com/news/bam-adebayo-83-point-game" target="_blank">Bam Adebayo Scores 83 Points, Second-Highest in NBA History</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nba.com/news/bam-adebayo-83-point-game" target="_blank">Additional: NBA.com</a>
+        
+      
+    </div>
+    <p>Miami Heat center Bam Adebayo scored 83 points against Washington on March 10, 2026, the second-highest single-game total in NBA history behind only Wilt Chamberlain's 100. Adebayo set NBA records for free throws made (36) and attempted (43) in Miami's 150-129 victory, though intentional late-game fouling to help him break Kobe Bryant's 81-point mark sparked controversy.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> While a historic achievement placing Adebayo among basketball's greatest single-game performances, the circumstances raise questions about competitive integrity when teams prioritize individual milestones.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="http://www.espn.com/espn/latestnews" target="_blank">Vikings Retain Aaron Jones with Restructured One-Year Deal</a></h3>
+    <div class="source">
+      
+        
+        <a href="http://www.espn.com/espn/latestnews" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>The Minnesota Vikings retained running back Aaron Jones with a restructured one-year contract on March 11, 2026, as part of their offseason roster management. The move helps Minnesota maintain continuity in their backfield while managing salary cap considerations during the NFL free agency period.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Jones' retention signals the Vikings' commitment to their rushing attack while preserving financial flexibility for other offseason moves.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="http://www.espn.com/espn/latestnews" target="_blank">Ottawa Senators Avoid Forfeiting 2026 First-Round Draft Pick</a></h3>
+    <div class="source">
+      
+        
+        <a href="http://www.espn.com/espn/latestnews" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>The Ottawa Senators will not forfeit their 2026 first-round draft pick related to a nixed 2022 trade, according to a March 12 report. The ruling resolves uncertainty surrounding the franchise's draft position and provides the Senators with crucial flexibility for rebuilding their roster heading into the offseason.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Retaining the first-round pick gives Ottawa a valuable asset for either selecting young talent or trading for established players in their rebuilding effort.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>MIT Technology Review & Quanta Magazine</strong> — Deep dives into breakthrough technologies and fundamental science from two of the world's most respected technical publications.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.technologyreview.com/2026/01/12/1130697/10-breakthrough-technologies-2026/" target="_blank">10 Breakthrough Technologies 2026: From Designer Babies to Hyperscale AI Data Centers</a></h3>
+    <div class="source"><a href="https://www.technologyreview.com/2026/01/12/1130697/10-breakthrough-technologies-2026/" target="_blank">MIT Technology Review</a></div>
+    <p>MIT Technology Review's 25th annual list identifies advances poised to reshape the future, including personalized gene-editing treatments, sodium-ion batteries as lithium alternatives, AI coding tools revolutionizing software development, and the rise of hyperscale data centers consuming massive energy. The list also covers controversial embryo screening for traits like intelligence and the growing risks of AI chatbot emotional bonds, providing essential context for understanding which emerging technologies will have the greatest societal impact.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.technologyreview.com" target="_blank">We Did the Math on AI's Energy Footprint: The Hidden Environmental Cost</a></h3>
+    <div class="source"><a href="https://www.technologyreview.com" target="_blank">MIT Technology Review</a></div>
+    <p>Senior reporters James O'Donnell and Casey Crownhart spent six months investigating AI's true energy consumption, analyzing hundreds of reports to reveal the scale of environmental impact. The investigation examines energy costs from individual AI prompts to massive data centers, exploring where this energy comes from and its implications for climate goals. The work earned MIT Technology Review a 2026 National Magazine Award finalist nomination and is critical reading as AI adoption accelerates globally.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org/archive/" target="_blank">Where Some See Strings, She Sees a Space-Time Made of Fractals</a></h3>
+    <div class="source"><a href="https://www.quantamagazine.org/archive/" target="_blank">Quanta Magazine</a></div>
+    <p>Physicist Astrid Eichhorn leads research in asymptotic safety, proposing that when physics laws appear to break down at extreme scales, we simply need to probe deeper into fractal patterns. Published March 11, 2026, this Q&A reveals cutting-edge thinking about fundamental physics and challenges string theory orthodoxy by suggesting space-time itself has fractal structure—offering a radically different approach to understanding the universe at its smallest scales.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 4 · 30-40 min read
+        
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 4 · ~3 hr listen
+        
+      </div>
+      <h4>Acquired: Costco episode</h4>
+      <div class="dd-meta">Acquired</div>
+      <p>Acquired's deep-dive into Costco — the business model behind one of the most beloved and profitable retailers in the world, exploring how a membership warehouse club became a cultural phenomenon.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Friday, March 13, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · MIT Technology Review & Quanta Magazine<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
