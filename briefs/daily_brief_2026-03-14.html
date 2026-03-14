@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 14, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Saturday, March 14, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">U.S. strikes Iran's main oil terminal as war escalates with oil surging past $100; China's Moonshot AI seeks $1 billion at $18 billion valuation; and gut microbe linked to memory loss in breakthrough mouse study.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-14.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">🌫️</div>
+    <div class="weather-temp">51°F</div>
+    <div class="weather-desc">Foggy</div>
+    <div class="weather-hilo">H: 76° · L: 49°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">49°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 74° · L: 48°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/13/iran-war-what-is-happening-on-day-14-of-us-israel-attacks" target="_blank">U.S. Strikes Iran's Main Oil Terminal as War Enters Third Week</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/13/iran-war-what-is-happening-on-day-14-of-us-israel-attacks" target="_blank">Al Jazeera English</a>
+        
+      
+         · 
+        <a href="https://www.usnews.com/news/world/articles/2026-03-14/four-killed-in-russian-air-attack-on-kyiv-region-officials-say" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>President Trump announced U.S. forces struck Kharg Island, Iran's primary oil export terminal, as the U.S.-Israel military campaign continues. Six U.S. crew members on a refueling aircraft died after the plane crashed in western Iraq, bringing total American deaths to at least 11. Global oil prices have surged past $100 per barrel as Iran continues laying underwater mines in the Strait of Hormuz, effectively halting 20% of global oil flows.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The escalating conflict threatens global energy supplies through a critical chokepoint and risks drawing the entire Middle East into wider regional war with severe economic consequences.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/13/iran-war-what-is-happening-on-day-14-of-us-israel-attacks" target="_blank">Iran's New Supreme Leader Vows Continued Strait of Hormuz Blockade</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/13/iran-war-what-is-happening-on-day-14-of-us-israel-attacks" target="_blank">Al Jazeera English</a>
+        
+      
+    </div>
+    <p>Mojtaba Khamenei, installed as Iran's Supreme Leader following his father's assassination, issued his first statement warning that attacks on Israel and U.S. assets will continue unless American military bases close across the region. Iran has begun laying underwater mines in the Strait of Hormuz and continues launching missiles at U.S. facilities and Israeli targets, while shipping through the vital waterway has nearly halted.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The new Iranian leader's defiant stance signals the conflict will intensify rather than de-escalate, threatening critical energy infrastructure and regional stability.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.usnews.com/news/world/articles/2026-03-14/us-embassy-in-iraqs-baghdad-hit-in-missiles-attack-security-sources-say" target="_blank">U.S. Embassy in Baghdad Hit by Missile Attack</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.usnews.com/news/world/articles/2026-03-14/us-embassy-in-iraqs-baghdad-hit-in-missiles-attack-security-sources-say" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>The U.S. Embassy in Baghdad was struck by missiles with smoke rising from the building, Iraqi security sources reported Saturday. The attack is part of Iran's broader campaign targeting U.S. military and diplomatic facilities across the Middle East in response to American and Israeli strikes on Iranian territory.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The embassy attack demonstrates Iran's ability to strike American assets throughout the region despite ongoing military operations.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.usnews.com/news/world/articles/2026-03-14/four-killed-in-russian-air-attack-on-kyiv-region-officials-say" target="_blank">Russian Air Attack Kills Four Near Kyiv as Ukraine War Continues</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.usnews.com/news/world/articles/2026-03-14/four-killed-in-russian-air-attack-on-kyiv-region-officials-say" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>At least four people were killed and 15 wounded in an overnight Russian air attack outside the Ukrainian capital Kyiv, officials said Saturday. The strike comes as Russia's war in Ukraine continues into its fifth year, having become the deadliest European conflict since World War II with over 1.5 million casualties.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The ongoing violence underscores the intractable nature of Europe's largest military conflict in generations.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.thedailystar.net/news/world/news/india-hold-us-trade-deal-amid-new-probe-reuters-4127986" target="_blank">India Delays U.S. Trade Deal Over Trump's Industrial Capacity Probe</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thedailystar.net/news/world/news/india-hold-us-trade-deal-amid-new-probe-reuters-4127986" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>India will hold off on signing a trade deal with the United States for several months after the Trump administration launched fresh investigations into alleged excess industrial capacity among trading partners. Four Indian sources told Reuters that India views the new probe as a pressure tactic, while the U.S. expects India to honor commitments made in an early February understanding.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The delay threatens to derail what would be a significant bilateral trade agreement and signals continued friction in U.S.-India economic relations.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/500-indians-depart-from-qatar-on-limited-flights-amid-airspace-restrictions-126031400068_1.html" target="_blank">500 Indian Nationals Depart Qatar on Limited Flights Amid Airspace Restrictions</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/500-indians-depart-from-qatar-on-limited-flights-amid-airspace-restrictions-126031400068_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Nearly 500 Indian nationals traveled from Qatar to India and other destinations on Qatar Airways flights as the Iran war continues to disrupt Gulf airspace. The Indian Embassy in Doha confirmed the airline facilitated transportation of mortal remains of two Indians who died of natural causes to Kochi on humanitarian grounds.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Middle East conflict is directly impacting Indian expatriates in the Gulf region, where millions work and remit critical foreign exchange.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/companies/news/indigo-to-levy-fuel-charge-for-domestic-international-flights-from-mar-14-126031301106_1.html" target="_blank">IndiGo Imposes Fuel Surcharge as Aviation Costs Surge</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/companies/news/indigo-to-levy-fuel-charge-for-domestic-international-flights-from-mar-14-126031301106_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>IndiGo imposed fuel surcharges ranging from Rs 425 to Rs 2,300 on domestic and international tickets effective March 14, following steep increases in aviation turbine fuel prices due to the ongoing U.S.-Israel-Iran conflict. Air India and Air India Express announced similar surcharges on March 10.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Rising fuel costs linked to Middle East conflict are directly impacting consumer airfare prices across India's aviation sector.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com" target="_blank">India's Retail Inflation Rises to 10-Month High of 3.2%</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com" target="_blank">The Hindu</a>
+        
+      
+    </div>
+    <p>Retail inflation in India accelerated to a 10-month high of 3.2% in February 2026, driven primarily by food inflation and precious metal prices. Food and beverages inflation rose to 3.35% from 2.1% in the previous month, with tomato prices showing over 45% inflation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Rising inflation threatens India's economic recovery and may pressure the Reserve Bank of India to reconsider monetary policy.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/pm-modi-flags-off-3-train-services-unveils-4-570-cr-projects-in-assam-126031300749_1.html" target="_blank">PM Modi Unveils Rs 4,570 Crore Development Projects in Assam</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/pm-modi-flags-off-3-train-services-unveils-4-570-cr-projects-in-assam-126031300749_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Prime Minister Narendra Modi unveiled development projects worth over Rs 4,570 crore and flagged off three new train services in Assam's Kokrajhar, aimed at improving regional connectivity ahead of assembly elections expected next month. On March 14, Modi is scheduled to dedicate projects worth Rs 23,550 crore at Silchar.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The infrastructure push comes as the BJP seeks to consolidate support in northeastern states ahead of critical state elections.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-14/china-ai-startup-moonshot-snags-funds-at-18-billion-valuation" target="_blank">China's Moonshot AI Seeks $1 Billion at $18 Billion Valuation</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-14/china-ai-startup-moonshot-snags-funds-at-18-billion-valuation" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Moonshot AI is seeking to raise up to $1 billion in an expanded funding round that would value the Beijing-based company at about $18 billion, more than quadrupling its valuation from $4.3 billion just three months ago. The company behind the Kimi chatbot previously secured over $700 million earlier this year at a $10 billion valuation, with backers including Alibaba and Tencent increasing their investments.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The rapid valuation surge underscores escalating global competition in AI development as Chinese startups race to rival Silicon Valley leaders despite geopolitical tensions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techstartups.com" target="_blank">Additional: Meta Delays 'Avocado' AI Model Release</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techstartups.com" target="_blank">Additional: Tech Startups</a>
+        
+      
+    </div>
+    <p>Meta has postponed the release of its next-generation AI model codenamed 'Avocado' amid technical challenges and competitive pressure from rivals including OpenAI and Anthropic. The delay comes as the company seeks to refine the model's capabilities before public launch.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The postponement highlights intensifying pressure on major tech companies to deliver increasingly capable AI models while managing safety and performance concerns.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://creati.ai" target="_blank">Additional: Google Maps Integrates Gemini AI Features</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://creati.ai" target="_blank">Additional: Creati.ai</a>
+        
+      
+    </div>
+    <p>Google has begun rolling out Gemini-powered features to Google Maps, enabling more natural language queries and AI-generated recommendations for routes, destinations, and local businesses. The integration represents Google's continued effort to infuse its core products with advanced AI capabilities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The move demonstrates how generative AI is being embedded into everyday consumer applications beyond chatbots.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/13/oil-100-price-brent-wti-trump-iran-war-surrender-khamenei.html" target="_blank">Oil Prices Close Above $100 as Iran War Disrupts Global Energy Markets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/13/oil-100-price-brent-wti-trump-iran-war-surrender-khamenei.html" target="_blank">CNBC</a>
+        
+      
+         · 
+        <a href="https://www.bloomberg.com/news/articles/2026-03-14/the-iran-war-is-pushing-up-the-franc-and-swiss-businesses-are-hurting" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Brent crude closed above $100 per barrel for the second consecutive session on Friday, rising 2.67% to $103.14, while U.S. crude gained 3.11% to $98.71. The Iran war has effectively halted tanker traffic through the Strait of Hormuz where 20% of the world's oil typically passes, with prices continuing to climb despite the International Energy Agency's historic 400 million barrel emergency stockpile release.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The supply disruption represents the largest in global oil market history and threatens to trigger stagflation through surging energy costs and slowing economic growth worldwide.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/12/stock-market-today-live-updates.html" target="_blank">S&P 500 Posts Third Consecutive Weekly Loss Amid Iran War Volatility</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/12/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The S&P 500 fell 1.6% for the week and notched its first three-week losing streak in about a year, with the index hitting a new low for 2026 on Friday. The Dow dropped about 2% while the Nasdaq fell 1.3% week-to-date as investors grappled with surging oil prices and stagflation fears triggered by the U.S.-Israel conflict with Iran.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The sustained market decline reflects growing investor concern about the economic impact of prolonged Middle East conflict.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-14/the-iran-war-is-pushing-up-the-franc-and-swiss-businesses-are-hurting" target="_blank">Switzerland's Strong Franc Inflicts Fresh Pain on Exporters</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-14/the-iran-war-is-pushing-up-the-franc-and-swiss-businesses-are-hurting" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>The Swiss franc's continued appreciation is forcing exporters to cut jobs and automate production to remain competitive as their goods become more expensive abroad. Companies like Roche and Swatch report that currency movements cut about 5% from 2025 sales, while the franc's safe-haven status amid the Iran war adds additional pressure to an economy where exports represent over 70% of GDP.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The franc's strength demonstrates how geopolitical crises create unintended consequences for neutral economies through currency markets.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/12/stock-market-today-live-updates.html" target="_blank">U.S. Job Openings Unexpectedly Jump to 6.9 Million in January</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/12/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The Bureau of Labor Statistics reported that job openings rose by 396,000 to 6.9 million in January, exceeding the FactSet consensus forecast of 6.7 million. The vacancy rate increased to 4.2% as a share of the labor force, signaling continued labor market resilience even as other economic indicators show mixed results amid geopolitical tensions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The strong labor market data complicates the Federal Reserve's monetary policy decisions as it balances inflation concerns with growth risks.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.science.org/news" target="_blank">Gut Microbe Linked to Memory Loss in 'Tour de Force' Mouse Study</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.science.org/news" target="_blank">Science</a>
+        
+      
+    </div>
+    <p>Researchers have identified a specific gut microbe that can promote memory loss in mice in a comprehensive study described as a 'tour de force.' If confirmed in humans, this finding could lead to gut-targeted therapies that might reverse cognitive decline, representing a significant advance in understanding the gut-brain axis and its role in neurological health.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This discovery could transform how we approach treating age-related cognitive decline and dementia by targeting the digestive system rather than the brain directly.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/latest-news" target="_blank">Superluminous Supernovae Powered by Magnetized Neutron Stars</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/latest-news" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>Oscillations in the brightness of extremely bright supernovae reveal they are powered by magnetized neutron stars that distort the orbit of surrounding gas. This discovery helps explain one of astronomy's most energetic phenomena and provides new understanding of stellar remnants, with the wobbling signal offering a new way to identify the engines behind these cosmic explosions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The finding solves a long-standing mystery about the power source of the universe's brightest stellar explosions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/latest-news" target="_blank">Behavioral Clock in Fish Predicts Lifespan Based on Activity and Sleep</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/latest-news" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>Scientists have discovered that activity levels and daytime sleepiness can be combined into a 'behavioral clock' that accurately predicts whether a fish will have a short or long life. The research offers new insights into biological aging markers that go beyond traditional genetic or cellular indicators and could have broader implications for understanding longevity across species.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This behavioral approach to predicting lifespan could provide new non-invasive methods for assessing health and aging in multiple species.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/latest-news" target="_blank">Doom Video Game Now Playable on Bacteria and Neurons</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/latest-news" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>The 1990s video game Doom has been successfully run on bacteria, launched on a satellite, and played by neurons cultured in a laboratory dish. This unusual achievement demonstrates the versatility of biological and unconventional computing systems as researchers explore how living cells can perform computational tasks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The experiments push boundaries in biocomputing and demonstrate the potential for living systems to process information in novel ways.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/latest-news" target="_blank">BioRxiv Preprint Server Reaches 4 Million Monthly Downloads</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/latest-news" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>Four million scientific articles are now downloaded from bioRxiv every month, according to an analysis of the life-science preprint server's first 13 years. This milestone reflects the growing acceptance of preprints in scientific communication and the shift toward open access research, with the platform becoming essential infrastructure for rapid scientific exchange.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The growth demonstrates a fundamental shift in how scientific findings are shared, accelerating research dissemination beyond traditional journal publication timelines.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">MEM 110</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DET 126</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">NY 101</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">IND 92</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">PHX 115</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">TOR 122</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CLE 138</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">DAL 105</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">NO 105</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">HOU 107</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">MIN 127</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">GS 117</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">UTAH 114</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">POR 124</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">CHI 108</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAC 119</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.skysports.com" target="_blank">Additional: Premier League Matches Scheduled for Saturday</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.skysports.com" target="_blank">Additional: Sky Sports</a>
+        
+      
+    </div>
+    <p>Several Premier League fixtures are scheduled for Saturday, March 14, including Chelsea vs Newcastle, Arsenal vs Everton, and West Ham vs Manchester City. The matches continue the tight race for European qualification spots and relegation battles as the season enters its final stretch.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The results will significantly impact the standings in both the race for Champions League places and the fight to avoid relegation.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com" target="_blank">Additional: NHL's Auston Matthews Managing Injury Ahead of Playoffs</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com" target="_blank">Additional: ESPN</a>
+        
+      
+    </div>
+    <p>Toronto Maple Leafs star Auston Matthews is managing an ongoing injury as the NHL regular season nears its conclusion and playoff races intensify. The team is balancing the need to rest their star center with maintaining playoff positioning in the competitive Eastern Conference.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Matthews' health is critical to Toronto's playoff aspirations and could determine their postseason success.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.skysports.com" target="_blank">Additional: The Players Championship Continues at TPC Sawgrass</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.skysports.com" target="_blank">Additional: Sky Sports</a>
+        
+      
+    </div>
+    <p>Golf's The Players Championship continues at TPC Sawgrass in Ponte Vedra Beach, Florida, with the world's top golfers competing for one of the sport's most prestigious titles and largest purses. The tournament's signature 17th hole island green continues to produce dramatic moments.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Often called the 'fifth major,' The Players Championship is one of golf's premier events with significant implications for world rankings.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Nature & Science</strong> — Leading peer-reviewed journals publishing breakthrough research across all scientific disciplines.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.science.org/news" target="_blank">Gut Microbe Linked to Memory Loss Opens New Alzheimer's Treatment Avenue</a></h3>
+    <div class="source"><a href="https://www.science.org/news" target="_blank">Science</a></div>
+    <p>A comprehensive mouse study has identified a specific gut microbe that promotes memory loss, potentially revolutionizing how we approach cognitive decline treatment. The discovery strengthens the understanding of the gut-brain axis and suggests that targeting digestive health could reverse neurological deterioration, offering hope for millions affected by dementia and age-related memory loss.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/latest-news" target="_blank">Magnetized Neutron Stars Power Universe's Brightest Explosions</a></h3>
+    <div class="source"><a href="https://www.nature.com/latest-news" target="_blank">Nature</a></div>
+    <p>Astronomers have solved the mystery of superluminous supernovae by detecting oscillations in brightness that reveal magnetized neutron stars powering these cosmic explosions. The wobbling signal provides a new diagnostic tool for identifying stellar remnants and understanding the most energetic events in the universe, advancing our knowledge of stellar death and remnant behavior.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 5 · 30-40 min read
+        
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 5 · ~3 hr listen
+        
+      </div>
+      <h4>Acquired: Costco episode</h4>
+      <div class="dd-meta">Acquired</div>
+      <p>Acquired's deep-dive into Costco — the business model behind one of the most beloved and profitable retailers in the world, exploring how a membership warehouse club became a cultural phenomenon.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Saturday, March 14, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Nature & Science<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
