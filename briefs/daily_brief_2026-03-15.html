@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 15, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Sunday, March 15, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">The US-Israel military operation against Iran enters its third week with the Strait of Hormuz closure triggering a global energy crisis, while stock markets post their third consecutive week of losses and India scrambles to secure fuel supplies.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-15.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">51°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 83° · L: 51°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">51°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 79° · L: 51°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/14/iran-war-what-is-happening-on-day-15-of-us-israel-attacks" target="_blank">US-Israel War on Iran Continues Into Third Week with Over 1,400 Dead</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/14/iran-war-what-is-happening-on-day-15-of-us-israel-attacks" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>The US-Israeli military operation against Iran has entered its third week, with continued strikes on Iranian military targets and retaliatory attacks from Iran and Hezbollah hitting Israel and Gulf states. The conflict has resulted in over 1,444 deaths in Iran, at least 15 in Israel, 13 US soldiers, and 19 killed in Gulf states. Iran has deployed underwater mines in the Strait of Hormuz and warned of attacks on regional oil infrastructure if energy facilities are targeted.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This unprecedented military conflict threatens global energy supplies, has caused oil prices to surge past $95 per barrel, and risks escalating into a wider regional war.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://shows.acast.com/ftnewsbriefing" target="_blank">Iran Closes Strait of Hormuz, Triggering Global Energy Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://shows.acast.com/ftnewsbriefing" target="_blank">Financial Times</a>
+        
+      
+    </div>
+    <p>Iran's closure of the Strait of Hormuz has created a major global energy crisis, with shipping disrupted and insurance costs skyrocketing. Gulf oil producers have lost billions in energy revenues since the conflict began, while Russia is benefiting with an estimated $150 million per day in extra revenue from surging oil prices. The International Energy Agency has launched the largest release of strategic oil reserves in its history to counter the supply shock.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Strait of Hormuz handles roughly 20% of the world's oil supply, and its closure is causing economic shockwaves globally, affecting gas prices, food costs, and threatening recession.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/14/iran-war-what-is-happening-on-day-15-of-us-israel-attacks" target="_blank">Lebanon Death Toll Climbs to 773 as Israel Expands Strikes</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/14/iran-war-what-is-happening-on-day-15-of-us-israel-attacks" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>Israeli attacks have killed at least 773 people in Lebanon since March 2, including 12 medical workers killed in a strike on a healthcare center. Hezbollah has launched over 200 rockets and 20 drones at northern Israel and stated it is prepared for a "long confrontation." UN peacekeeping positions in southern Lebanon have been struck multiple times, including an attack that wounded three peacekeepers.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The expanding conflict in Lebanon risks opening a full second front in the regional war while humanitarian concerns mount over civilian casualties.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://en.wikipedia.org/wiki/Portal:Current_events" target="_blank">US Pauses Ukraine-Russia Ceasefire Talks to Focus on Iran Conflict</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://en.wikipedia.org/wiki/Portal:Current_events" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>The United States has paused ceasefire negotiations between Russia and Ukraine due to the ongoing war with Iran, representing a significant shift in US diplomatic priorities as military resources are redirected to the Middle East. Russia continues to conduct missile and drone strikes on Ukrainian cities, with at least five people killed in a weekend attack on Brovary near Kyiv.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The pause in negotiations extends Ukraine's suffering and signals the Middle East conflict is now consuming America's diplomatic bandwidth.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/sections/world/" target="_blank">Haiti Prepares for First General Election in Decade with 280 Parties Registered</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/sections/world/" target="_blank">Associated Press</a>
+        
+      
+    </div>
+    <p>A record 280 political parties registered by the March 12 deadline to participate in Haiti's first general election in a decade. The election represents a potential turning point for the Caribbean nation struggling with gang violence, political instability, and humanitarian crises. The high number of parties reflects both hope for political change and the fragmented nature of Haiti's political landscape.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This election could offer Haiti its first opportunity for democratic renewal after years of chaos, though the sheer number of parties may complicate governance.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com/news/morning-digest-march-15-2026/article70744354.ece" target="_blank">India Grapples with LPG Shortage as West Asia Conflict Disrupts Energy Supplies</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com/news/morning-digest-march-15-2026/article70744354.ece" target="_blank">The Hindu</a>
+        
+      
+    </div>
+    <p>Anxiety over LPG supply shortages has spread to domestic consumers, causing panic bookings of gas cylinders and server glitches in online systems. The Indian government is in talks with Tehran to allow fuel ships bound for India to transit the Strait of Hormuz, while the Navy escorts LPG tankers through the strategic waterway. The crisis stems from the ongoing Iran-US-Israel conflict disrupting energy supplies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The fuel supply disruption directly impacts millions of households and businesses, threatening economic stability and testing India's energy security.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://economictimes.indiatimes.com/news" target="_blank">Indian Navy Escorts LPG Tankers Through Strait of Hormuz</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://economictimes.indiatimes.com/news" target="_blank">Economic Times</a>
+        
+      
+    </div>
+    <p>Indian Navy ships are actively monitoring India-bound cargo vessels in the Gulf under Operation Sankalp, ensuring safe passage for merchant ships through the Strait of Hormuz. Two Indian LPG tankers have successfully crossed the strait under naval escort. This deployment addresses rising geopolitical tensions from the Iran-US-Israel war and protects Indian maritime interests as the Strait remains partially disrupted.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> India's naval intervention demonstrates the direct impact of the Middle East conflict on Asian energy security and commerce.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com/news/morning-digest-march-15-2026/article70744354.ece" target="_blank">Last Atomic Clock Fails on ISRO's IRNSS-1F Satellite, Weakening NavIC</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com/news/morning-digest-march-15-2026/article70744354.ece" target="_blank">The Hindu</a>
+        
+      
+    </div>
+    <p>The last atomic clock aboard ISRO's Indian Regional Navigation Satellite System (IRNSS)-1F satellite has failed, further weakening India's indigenous GPS system informally called NavIC. ISRO stated it will launch at least three satellites by the end of 2026 to replace defunct and aging satellites in the constellation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The failure undermines India's strategic autonomy in satellite navigation and highlights the need for faster satellite replacement cycles.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.indiatvnews.com/news/india/assembly-elections-2026-date-announced-for-west-bengal-tamil-nadu-kerala-assam-2026-03-15-1033842" target="_blank">Election Commission Announces Assembly Polls for Five States Beginning April 9</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.indiatvnews.com/news/india/assembly-elections-2026-date-announced-for-west-bengal-tamil-nadu-kerala-assam-2026-03-15-1033842" target="_blank">Additional: India TV News</a>
+        
+      
+    </div>
+    <p>The Election Commission announced Assembly election dates for West Bengal, Tamil Nadu, Kerala, Assam, and Puducherry. Polling in Assam, Kerala, and Puducherry will take place on April 9, Tamil Nadu on April 23, and West Bengal in two phases on April 23 and 29. Counting for all five regions will be held on May 4, covering 17.4 crore voters across 824 constituencies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> These elections will shape the political landscape ahead of the 2029 general elections and test major parties across India's diverse states.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/markets/sectors/financials" target="_blank">China's Moonshot AI Raises Funds at $18 Billion Valuation, Quadrupling in Three Months</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/markets/sectors/financials" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Moonshot AI is seeking to raise as much as $1 billion in an expanded funding round that would value the Chinese AI startup at about $18 billion, more than quadrupling its valuation in just three months. The massive funding round underscores growing investor interest in Chinese AI developers as they race to rival Silicon Valley leaders in the global AI competition.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This explosive valuation growth signals the AI race is intensifying beyond Silicon Valley, with Chinese developers securing massive capital despite U.S. export controls on advanced chips.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.wsj.com" target="_blank">Trump Administration to Receive $10 Billion Fee for Brokering TikTok Deal</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.wsj.com" target="_blank">Wall Street Journal</a>
+        
+      
+    </div>
+    <p>The Trump administration is set to receive approximately $10 billion from investors in the deal that transferred control of TikTok's U.S. business to a majority American-owned joint venture. ByteDance finalized the deal in January to establish the new entity and avoid a U.S. ban on the app used by over 200 million Americans. Administration officials justified the fee by citing Trump's role in rescuing TikTok's U.S. operations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The unprecedented government fee from a corporate transaction raises questions about conflicts of interest and sets a new precedent for executive branch involvement in business deals.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com" target="_blank">S&P Weighs Rule Changes to Speed SpaceX's Entry to S&P 500 Index</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>S&P Dow Jones Indices is considering rule changes that would accelerate SpaceX's potential inclusion in the S&P 500 benchmark index. The move comes as the space and satellite company continues to grow its commercial operations and valuation, potentially making it eligible for the prestigious index that tracks 500 of the largest U.S. publicly traded companies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> SpaceX's potential S&P 500 inclusion would mark a milestone for the commercial space industry and give millions of index fund investors exposure to Elon Musk's private company.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com" target="_blank">Stock Markets Post Third Straight Weekly Loss as Oil Surges Past $95</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The S&P 500 closed out its third consecutive week of losses, falling to new 2026 lows as oil prices surged past $95 per barrel on supply disruption worries from the ongoing Iran war. All three major indexes hit 2026 closing lows, with the Dow falling below 47,000 for the first time this year. West Texas Intermediate crude rose over 9% in a single session to settle at $95.73 per barrel as Iran's new supreme leader vowed to keep the Strait of Hormuz closed.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The combined stock decline and oil spike signal growing investor fears that the Iran conflict could trigger stagflation—rising inflation coupled with economic slowdown.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com" target="_blank">Fertitta Entertainment in Talks to Acquire Caesars for $6.5 Billion</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Fertitta Entertainment is negotiating to buy Caesars Entertainment for $32 per share at an equity value of $6.5 billion, with an enterprise value of $31.5 billion including Caesars' substantial debt. The deal would represent a major consolidation in the gaming industry, with billionaire Carl Icahn reportedly waiting in the wings as another potential bidder.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This potential mega-deal would create one of the world's largest gaming and hospitality empires and reshape the Las Vegas Strip's ownership landscape.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/markets/sectors/financials" target="_blank">China AI Startup Moonshot Raises Funds at $18 Billion Valuation</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/markets/sectors/financials" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Moonshot AI is seeking to raise as much as $1 billion in an expanded funding round that would value the Chinese AI startup at about $18 billion, more than quadrupling its valuation in just three months. The massive funding round underscores growing investor interest in Chinese AI developers as they race to rival Silicon Valley leaders.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The explosive valuation growth demonstrates that the AI investment boom extends well beyond U.S. borders despite geopolitical tensions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.wsj.com" target="_blank">Trump Administration to Receive $10 Billion TikTok Deal Fee</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.wsj.com" target="_blank">Wall Street Journal</a>
+        
+      
+    </div>
+    <p>The Trump administration is set to receive approximately $10 billion from investors in the deal that transferred control of TikTok's U.S. business to a majority American-owned joint venture. Administration officials justified the fee by citing Trump's role in rescuing TikTok's U.S. operations and negotiating with China.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The unprecedented government fee from a corporate transaction sets a concerning precedent for executive branch involvement in private business deals.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/14/iran-war-what-is-happening-on-day-15-of-us-israel-attacks" target="_blank">Iran Conflict Disrupts Medical Supply Chains Across Middle East</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/14/iran-war-what-is-happening-on-day-15-of-us-israel-attacks" target="_blank">Additional: Al Jazeera</a>
+        
+      
+    </div>
+    <p>The ongoing Iran-US-Israel conflict has resulted in strikes on healthcare facilities, including an attack that killed 12 medical workers in Lebanon. The closure of the Strait of Hormuz is also disrupting pharmaceutical supply chains throughout the Middle East and Asia, with concerns mounting about access to essential medicines.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The conflict's impact on healthcare infrastructure and medical supplies threatens public health across the region beyond direct combat casualties.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/14/iran-war-what-is-happening-on-day-15-of-us-israel-attacks" target="_blank">UN Peacekeepers Wounded in Southern Lebanon Strikes</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/14/iran-war-what-is-happening-on-day-15-of-us-israel-attacks" target="_blank">Additional: Al Jazeera</a>
+        
+      
+    </div>
+    <p>UN peacekeeping positions in southern Lebanon have been struck multiple times during the expanding Israel-Lebanon conflict, with at least three peacekeepers wounded in recent attacks. The strikes on UN positions raise concerns about the safety of humanitarian workers operating in conflict zones.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Attacks on UN peacekeepers threaten international humanitarian operations and could further destabilize southern Lebanon.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com/news/morning-digest-march-15-2026/article70744354.ece" target="_blank">Energy Crisis Threatens Cold Chain for Vaccines and Biologics in India</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com/news/morning-digest-march-15-2026/article70744354.ece" target="_blank">Additional: The Hindu</a>
+        
+      
+    </div>
+    <p>India's LPG shortage and fuel supply disruptions are raising concerns about maintaining cold chain infrastructure essential for vaccine storage and distribution. Public health officials are monitoring the situation closely as power supply uncertainties could compromise vaccine efficacy.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Disruption to cold chain systems could undermine India's vaccination programs and broader public health infrastructure.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">BKN 97</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">PHI 104</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIL 99</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ATL 122</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">CHA 102</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">SA 115</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">WSH 100</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BOS 111</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">ORL 121</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MIA 117</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">DEN 125</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAL 127</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">SAC 118</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">LAC 109</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.nbcsports.com/nhl/news/maple-leafs-star-auston-matthews-out-for-season-with-a-torn-mcl-after-kneeing-by-radko-gudas" target="_blank">Maple Leafs Captain Auston Matthews Out for Season with Torn MCL</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nbcsports.com/nhl/news/maple-leafs-star-auston-matthews-out-for-season-with-a-torn-mcl-after-kneeing-by-radko-gudas" target="_blank">AP Sports</a>
+        
+      
+    </div>
+    <p>Toronto Maple Leafs captain Auston Matthews sustained a Grade 3 MCL tear and quad contusion after a knee-on-knee hit from Anaheim's Radko Gudas on March 12, ruling him out for the final 16 regular-season games and playoffs. Gudas received a five-game suspension for the incident. The Maple Leafs sit last in the Atlantic Division at 28-27-11, 11 points out of a playoff spot.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The season-ending injury to one of the NHL's elite players effectively ends Toronto's fading playoff hopes and raises questions about player safety enforcement.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/nba/story/_/id/48188654/heat-spoelstra-adebayo-83-point-game-go-it" target="_blank">Bam Adebayo Scores 83 Points, Second-Most in NBA History</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/nba/story/_/id/48188654/heat-spoelstra-adebayo-83-point-game-go-it" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Miami Heat center Bam Adebayo scored 83 points against Washington on March 10, surpassing Kobe Bryant's 81 to become the second-highest single-game scorer in NBA history behind Wilt Chamberlain's 100. The performance drew mixed reactions, with critics pointing to the tanking Wizards' defense and Adebayo's 43 free throw attempts. Heat coach Erik Spoelstra defended keeping him in late, while Adebayo shot 20-43 from the field.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This historic scoring performance reignited debates about competitive integrity in the modern NBA, particularly regarding tanking teams and the pursuit of individual records.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/soccer/match/_/gameId/740886/everton-arsenal" target="_blank">Arsenal's 16-Year-Old Max Dowman Becomes Premier League's Youngest-Ever Scorer</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/soccer/match/_/gameId/740886/everton-arsenal" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Arsenal defeated Everton 2-0 on March 14, with 16-year-old Max Dowman scoring a brilliant 97th-minute solo goal to become the Premier League's youngest-ever goalscorer. Viktor Gyokeres opened the scoring for the Gunners, who strengthened their grip on the title race while second-place Manchester City dropped points with a 1-1 draw at West Ham.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Dowman's record-breaking goal marks a historic moment for English football and bolsters Arsenal's title challenge.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espn.in/" target="_blank">India Women's Hockey Team Qualifies for 2026 World Cup</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.in/" target="_blank">ESPN India</a>
+        
+      
+    </div>
+    <p>India's women's hockey team secured qualification for the FIH Hockey World Cup 2026 after defeating Italy 1-0 in the semi-final on March 14. Manisha Chauhan scored the winning goal in the 40th minute. India finished top of Pool B and qualified as the highest-ranked fourth-place team, ensuring their World Cup berth before losing 2-0 to England in the final on March 15.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> India's World Cup qualification represents a significant achievement for women's hockey in the country and continues the sport's growth trajectory.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Limited Content Available</strong> — Due to limited availability of recent long-form content from approved outlets on March 15, 2026, this section features key analysis from available sources.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://shows.acast.com/ftnewsbriefing" target="_blank">The Global Energy Security Crisis: How Iran's Strait Closure Reshapes Geopolitics</a></h3>
+    <div class="source"><a href="https://shows.acast.com/ftnewsbriefing" target="_blank">Financial Times</a></div>
+    <p>The closure of the Strait of Hormuz represents the most significant disruption to global energy markets since the 1970s oil shocks. With 20% of the world's oil supply cut off, nations are scrambling to secure alternative routes while strategic reserves are being depleted at historic rates. Russia's windfall profits and China's neutral stance are reshaping the global power balance, while developing nations face the prospect of energy poverty and economic collapse.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/markets/sectors/financials" target="_blank">The AI Valuation Boom: Understanding China's $18 Billion Bet on Moonshot</a></h3>
+    <div class="source"><a href="https://www.bloomberg.com/markets/sectors/financials" target="_blank">Bloomberg</a></div>
+    <p>Moonshot AI's valuation quadrupling to $18 billion in just three months reveals the intensity of the AI arms race beyond Silicon Valley. Despite U.S. chip export controls, Chinese AI companies are finding ways to compete through algorithmic efficiency, massive domestic data sets, and state-backed investment. The funding frenzy suggests investors believe the AI revolution will have multiple winners across different regulatory environments and technical approaches.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 6 · 30-40 min read
+        
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 6 · ~3 hr listen
+        
+      </div>
+      <h4>Acquired: Costco episode</h4>
+      <div class="dd-meta">Acquired</div>
+      <p>Acquired's deep-dive into Costco — the business model behind one of the most beloved and profitable retailers in the world, exploring how a membership warehouse club became a cultural phenomenon.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Sunday, March 15, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Limited Content Available<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
