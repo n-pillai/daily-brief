@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 17, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Tuesday, March 17, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">U.S. intelligence official resigns over Iran war as conflict escalates; oil prices spike above $100 threatening global inflation; Pakistan-Afghanistan tensions erupt after deadly Kabul hospital strike.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-17.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">57°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 88° · L: 56°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">55°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 86° · L: 55°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">U.S. Counterterrorism Chief Resigns Over Iran War, Citing No Imminent Threat</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>Joseph Kent, director of the U.S. National Counterterrorism Center, resigned in protest over the U.S.-Israel military campaign against Iran. In a letter to President Trump posted publicly, Kent stated that 'Iran posed no imminent threat to our nation,' representing a rare public dissent from within the intelligence community on the justification for the ongoing conflict.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A senior intelligence official's public resignation undermines the administration's rationale for the war and signals deep divisions within U.S. national security apparatus.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">Iran's New Supreme Leader Rejects U.S. Peace Overtures</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>Ayatollah Mojtaba Khamenei, Iran's newly installed supreme leader, has rejected truce proposals from the United States transmitted through intermediary countries. A senior Iranian official reported that Khamenei's stance on revenge against the U.S. and Israel was 'very tough and serious' at his first foreign policy meeting, signaling no immediate pathway to de-escalation despite rising humanitarian and economic costs.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The rejection dashes hopes for a diplomatic resolution and suggests the conflict may intensify, with major implications for global energy markets and regional stability.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">Pakistan-Afghanistan Crisis Deepens After Strike on Kabul Hospital Kills Over 400</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>The Afghan Taliban government claims a Pakistani airstrike on a drug rehabilitation hospital in Kabul killed over 400 people and injured 250 overnight. Pakistan rejected the claim as 'false and misleading,' insisting it 'precisely targeted military installations and terrorist support infrastructure,' marking a dramatic escalation in tensions between the neighbors.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The alleged hospital strike represents one of the deadliest incidents in the Afghanistan-Pakistan conflict and threatens to destabilize the entire region.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">Trump Delays Beijing Summit with Xi as Iran War Disrupts Foreign Policy</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>President Trump has requested to delay his planned summit in Beijing with Chinese leader Xi Jinping, originally scheduled for this month. The postponement follows high-stakes trade talks in Paris and demonstrates how the Iran conflict has upended Trump's foreign policy agenda, adding war to trade and Taiwan among critical issues separating the world's two largest economies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The delay signals that the Iran crisis is forcing the administration to deprioritize its China strategy at a critical moment in U.S.-China relations.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">BBC Seeks Dismissal of Trump's $10 Billion Defamation Suit</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>The BBC has asked a U.S. judge to dismiss President Trump's $10 billion lawsuit over its editing of a 2021 speech in a documentary. The broadcaster argues that Trump's subsequent reelection demonstrated the alleged defamation did not harm his reputation, and notes the documentary concerned UK entities' role in content aimed at UK viewers.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The case tests the limits of U.S. defamation law applied to foreign media organizations and the sitting president's use of litigation against press outlets.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://economictimes.indiatimes.com/news" target="_blank">Indian Navy Escorts Ships Through Hormuz as Gulf Crisis Escalates</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://economictimes.indiatimes.com/news" target="_blank">Economic Times</a>
+        
+      
+    </div>
+    <p>Indian Navy ships are actively monitoring India-bound cargo vessels in the Gulf under Operation Sankalp to ensure safe passage through the Strait of Hormuz. Two Indian LPG tankers have successfully crossed the strait under naval escort as the deployment addresses rising geopolitical tensions from the U.S.-Israel-Iran conflict and protects vital maritime interests.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Strait of Hormuz is critical for India's energy security, with disruptions threatening oil and LPG supplies that could impact millions of consumers.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://economictimes.indiatimes.com/news" target="_blank">India Fast-Tracks Fertiliser Imports to Shield Kharif Season from West Asia Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://economictimes.indiatimes.com/news" target="_blank">Economic Times</a>
+        
+      
+    </div>
+    <p>The Indian government is accelerating fertiliser imports to protect the upcoming kharif crop season from supply disruptions caused by the West Asia crisis. Officials are taking proactive measures as the conflict threatens to disrupt supplies of crude oil, LNG, and other critical inputs for agriculture and energy sectors, with the crucial planting season beginning in June.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This preemptive action is essential to safeguard India's food security and ensure farmers have adequate supplies for the main monsoon crop season.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/latest-news" target="_blank">Oil Prices Rise 2.5% as Brent Crude Crosses $100 Amid West Asia Turmoil</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/latest-news" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Brent crude futures jumped $2.48 to $102.69 per barrel while U.S. WTI crude gained $2.42 to $95.92 as the U.S.-Israel-Iran conflict continues to disrupt energy markets. Markets are attempting to price in the economic damage from ongoing military confrontations, with concerns about potential Strait of Hormuz closure driving significant supply fears.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Rising oil prices threaten to reignite inflation in India, potentially affecting everything from transportation costs to food prices.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news" target="_blank">Fire at Cuttack Hospital ICU Kills 10, Odisha Orders Probe</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Ten patients died and 16 others sustained burn injuries after a fire broke out in the ICU of SCB Medical College and Hospital in Cuttack, Odisha. The state government has ordered a judicial probe to investigate the cause of the tragedy and determine accountability for the incident at one of the state's premier medical institutions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The tragedy highlights ongoing safety concerns at Indian hospitals and raises questions about fire safety protocols at government medical facilities.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://newsindiatimes.com/india-to-hold-off-on-us-trade-deal-amid-new-probe-sources-say/" target="_blank">India Delays U.S. Trade Deal After Trump Launches New Industrial Capacity Probe</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://newsindiatimes.com/india-to-hold-off-on-us-trade-deal-amid-new-probe-sources-say/" target="_blank">Additional: News India Times (citing Reuters India)</a>
+        
+      
+    </div>
+    <p>India will delay signing a trade deal with the United States for several months after fresh investigations by the Trump administration into alleged excess industrial capacity among trading partners. New Delhi had initially expected to sign an interim deal in March after Trump agreed in February to cut tariffs in exchange for India halting Russian oil imports and committing to buy $500 billion worth of American products.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The delay complicates India's economic strategy and raises questions about the viability of major trade commitments amid Trump's unpredictable trade policy.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/16/stock-market-today-live-updates.html" target="_blank">Nvidia Targets $1 Trillion Data Center Revenue, Unveils Space Computing System</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/16/stock-market-today-live-updates.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>At Nvidia's GTC 2026 conference, CEO Jensen Huang announced the company sees at least $1 trillion in data center revenue through 2027, unveiling the Vera Rubin Space-1 chip system for orbital AI data centers. Huang declared that 'space computing, the final frontier, has arrived' as the company pushes into AI infrastructure beyond Earth, though shares faded into the close despite the ambitious announcement.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Nvidia's space computing initiative represents a bold expansion beyond terrestrial data centers and signals growing interest in orbital infrastructure for AI workloads.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/markets/sectors/financials" target="_blank">Chinese AI Startup Moonshot Seeks $1 Billion at $18 Billion Valuation</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/markets/sectors/financials" target="_blank">Additional: Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Moonshot AI is raising up to $1 billion in an expanded funding round that would value the startup at about $18 billion, more than quadrupling its valuation in just three months. The fundraising underscores growing investor interest in Chinese AI developers as they race to rival Silicon Valley leaders in the competitive artificial intelligence landscape.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The rapid valuation increase demonstrates that Chinese AI companies are attracting massive capital despite geopolitical tensions and U.S. technology restrictions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/nature/articles" target="_blank">AI Tools Raise Concerns About Eroding Doctoral Skills Among Graduate Students</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/nature/articles" target="_blank">Additional: Nature</a>
+        
+      
+    </div>
+    <p>Graduate students increasingly use artificial-intelligence tools to draft papers, write code, and conduct searches. However, many fear this reliance could erode the very skills a doctorate is meant to build, raising fundamental questions about the future of graduate education and whether AI assistance undermines the development of critical research competencies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The tension between AI assistance and skill development could reshape how universities approach doctoral training and assessment.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/15/stock-market-today-live-updates.html" target="_blank">Oil Prices Spike Above $100 Despite U.S. Allowing Iranian Tankers Through Hormuz</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/15/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Treasury Secretary Scott Bessent confirmed the U.S. is allowing Iranian oil tankers to transit through the Strait of Hormuz to supply global markets, even as the Iran war continues. Brent crude prices climbed above $100 per barrel on Tuesday morning despite easing on Monday when WTI settled at $93.50. Volatile oil prices and coalition uncertainty continue to dominate investor sentiment as President Trump suggested some countries remain hesitant about protecting shipping routes.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Iran conflict and Strait of Hormuz disruptions represent the biggest supply shock to global energy markets since 2022, threatening to reignite inflation worldwide.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-16/stock-market-today-dow-s-p-live-updates-" target="_blank">S&P 500 Rebounds Nearly 1% as Markets Attempt Recovery from Three-Week Slide</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-16/stock-market-today-dow-s-p-live-updates-" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>The S&P 500 climbed almost 1% on Monday with about 430 firms gaining, led by financials and industrials, marking the biggest two-day advance in five weeks. Qualcomm jumped on plans to buy back $20 billion in shares and boost its dividend. Markets rebounded from their worst weekly performance in a year as oil prices pulled back from highs above $100.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This rally represents a critical test of whether markets can stabilize after oil shock fears pushed the S&P 500 to its lowest level of 2026 last week.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.usnews.com/news/top-news/articles/2026-03-17/uber-to-invest-500-million-in-argentina-over-3-years-economy-minister-says" target="_blank">Uber Commits $500 Million Investment in Argentina Over Three Years</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.usnews.com/news/top-news/articles/2026-03-17/uber-to-invest-500-million-in-argentina-over-3-years-economy-minister-says" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>The ride-hailing company will invest $500 million in Argentina over the next three years, Economy Minister Luis Caputo announced on Tuesday. The investment represents a significant commitment to the South American market as Uber expands its presence in the region amid Argentina's economic reforms.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The investment signals growing confidence in Argentina's economic recovery and represents one of the largest foreign direct investments in the country's ride-sharing sector.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/nature/articles" target="_blank">AlphaFold Database Expands to Include Protein Homodimers</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/nature/articles" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>The database of 200 million protein-structure predictions has been expanded to include homodimers, adding new biological relevance to the existing collection. This represents a significant advancement in structural biology and protein interaction research, enabling scientists to better understand how proteins assemble and function in living systems.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Understanding protein homodimers is crucial for drug discovery and understanding disease mechanisms where protein assembly plays a key role.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/nature/articles" target="_blank">AI Model Predicts Insulin Resistance Using Wearable Devices and Blood Data</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/nature/articles" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>A machine-learning model that integrates data from wearable devices such as smartwatches with blood biomarkers and demographic data can predict whether someone has insulin resistance. This enables timely lifestyle interventions to prevent progression to type 2 diabetes, potentially transforming early detection screening.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This could democratize diabetes screening by making it accessible through consumer devices, enabling earlier intervention for millions at risk.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://kffhealthnews.org/" target="_blank">U.S. Considers Withholding HIV Aid to Zambia Over Mineral Access</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://kffhealthnews.org/" target="_blank">KFF Health News</a>
+        
+      
+    </div>
+    <p>The State Department is considering withholding lifesaving assistance to people with HIV in Zambia as a negotiating tactic to force the government to sign a deal giving the United States more access to its critical minerals. A draft memo states that securing U.S. priorities requires demonstrating willingness to publicly take support away from Zambia on a massive scale.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This policy would use health aid as a bargaining chip in geopolitical negotiations, potentially affecting thousands of lives dependent on HIV treatment.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/nature/articles" target="_blank">Dopamine's Classic Role as Reward Signal May Be Upended by New Research</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/nature/articles" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>Recent findings in neuroscience could upend the classic theory of dopamine function, which has long been understood as the brain's arbiter of reward. New research challenges this established understanding of how dopamine operates in neural systems, suggesting its role may be more complex than previously thought.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Revising our understanding of dopamine could reshape approaches to treating addiction, depression, and Parkinson's disease.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">ORL 112</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ATL 124</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">GS 125</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">WSH 117</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">POR 114</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">BKN 95</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">PHX 112</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BOS 120</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MEM 107</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CHI 132</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">DAL 111</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">NO 129</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">LAL 100</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">HOU 92</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">SA 119</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">LAC 115</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com" target="_blank">March Madness Tournament Continues Amid Geopolitical Uncertainty</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com" target="_blank">Additional: ESPN</a>
+        
+      
+    </div>
+    <p>The NCAA Men's Basketball Tournament continues this week with conference championships and tournament selections dominating sports headlines. Despite global tensions from the Iran conflict, major sporting events are proceeding as scheduled across the United States.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Major sporting events provide cultural continuity during times of geopolitical crisis, though some international competitions face disruption.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com/sports" target="_blank">International Sports Events Face Disruption from Middle East Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com/sports" target="_blank">Additional: Reuters Sports</a>
+        
+      
+    </div>
+    <p>Several international sporting events scheduled in the Middle East region are facing potential cancellation or relocation due to the ongoing U.S.-Israel-Iran conflict. Organizations are monitoring the situation closely as travel advisories and security concerns mount.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The conflict's impact on international sports highlights how geopolitical crises affect global sporting calendars and athlete safety.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bbc.com/sport" target="_blank">European Football Leagues Enter Critical Final Stretch</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bbc.com/sport" target="_blank">Additional: BBC Sport</a>
+        
+      
+    </div>
+    <p>Major European football leagues are entering the crucial final months of their seasons, with title races heating up across the Premier League, La Liga, Serie A, and Bundesliga. Teams are competing for championship positions and European qualification spots.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The closing weeks of European football seasons determine billions in prize money and broadcasting revenue, with major implications for clubs' financial futures.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Nature</strong> — Leading international journal of science covering groundbreaking research across all scientific disciplines.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/nature/articles" target="_blank">Graduate Students Fear AI Tools May Erode Doctoral Skills</a></h3>
+    <div class="source"><a href="https://www.nature.com/nature/articles" target="_blank">Nature</a></div>
+    <p>As graduate students increasingly rely on artificial intelligence tools to draft papers, write code, and conduct literature searches, many are expressing concern that this dependence could undermine the development of fundamental research skills that doctoral programs are designed to cultivate. The tension between efficiency and skill-building is forcing universities to reconsider how they train the next generation of researchers.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/nature/articles" target="_blank">Dopamine Function Theory Faces Major Challenge from New Neuroscience Research</a></h3>
+    <div class="source"><a href="https://www.nature.com/nature/articles" target="_blank">Nature</a></div>
+    <p>Decades of neuroscience research have positioned dopamine as the brain's primary reward signal, but new findings are challenging this foundational theory. The emerging research suggests dopamine's role in neural processing may be far more nuanced than the simple reward-prediction model that has dominated the field, with potentially far-reaching implications for treating neurological and psychiatric conditions.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 8 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 8 · ~3 hr listen
+         — <em>tell Leo when you finish to get your next listen</em>
+      </div>
+      <h4>Acquired: Costco episode</h4>
+      <div class="dd-meta">Acquired</div>
+      <p>Acquired's deep-dive into Costco — the business model behind one of the most beloved and profitable retailers in the world, exploring how a membership warehouse club became a cultural phenomenon.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Tuesday, March 17, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Nature<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
