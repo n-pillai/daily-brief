@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 19, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Thursday, March 19, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Gulf energy infrastructure attacked as Iran conflict escalates oil prices above $112; India's HDFC Bank chairman resigns over ethics concerns triggering market crash; NBA moves toward Las Vegas and Seattle expansion.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-19.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">55°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 86° · L: 55°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">51°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 84° · L: 51°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/liveblog/2026/3/19/iran-war-live-qatar-saudi-energy-sites-attacked-riyadh-says-trust-gone" target="_blank">Oil surges past $112 as Iran attacks Gulf energy sites in escalating conflict</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/liveblog/2026/3/19/iran-war-live-qatar-saudi-energy-sites-attacked-riyadh-says-trust-gone" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>Saudi Arabia, Qatar, the UAE and Kuwait reported Iranian attacks on energy infrastructure after Israel struck Iran's South Pars gasfield, marking a sharp escalation in the three-week conflict. The attacks have caused oil and gas prices to soar above $112 per barrel. President Trump said Israel acted out of 'anger' and would not strike the gasfield again, while Saudi Arabia declared 'trust is gone' in regional security arrangements.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The attacks on Gulf energy infrastructure threaten global energy supplies and could push oil prices toward $120, with severe economic consequences for oil-importing nations worldwide.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/18/iran-war-what-is-happening-on-day-19-of-us-israel-attacks" target="_blank">Iran war death toll climbs past 1,444 as US-Israeli campaign enters third week</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/18/iran-war-what-is-happening-on-day-19-of-us-israel-attacks" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>Iran pledged revenge after Israeli strikes killed security chief Ali Larijani and Basij commander Gholamreza Soleimani. At least 1,444 people have been killed and 18,551 injured in US-Israeli attacks since Operation Epic Fury began February 28. Iran launched retaliatory attacks on Israel causing property damage and killing two in Ramat Gan, while also striking US bases across the Gulf region, resulting in 13 US military deaths.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The conflict represents the most significant direct military confrontation between the US-Israel alliance and Iran in history, with potential to reshape Middle East security architecture.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/17/many-killed-wounded-after-blasts-hit-nigerias-maiduguri-witnesses-say" target="_blank">At least 23 killed in suspected suicide bombings in Maiduguri, Nigeria</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/17/many-killed-wounded-after-blasts-hit-nigerias-maiduguri-witnesses-say" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>Multiple blasts struck northeastern Maiduguri on March 16, hitting the University of Maiduguri Teaching Hospital and two markets, killing 23 and injuring 108. Police say preliminary investigation reveals suspected suicide bombers carried out the attacks. Nigerian military blamed Boko Haram militants and warned of increased threat during final days of Ramadan.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The attacks underscore the persistent security challenges in northeastern Nigeria despite military efforts to contain Boko Haram over more than a decade.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/3/15/vietnam-holds-general-election-93-candidates-from-ruling-communist-party" target="_blank">Vietnam holds legislative elections with 93% Communist Party candidates</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/3/15/vietnam-holds-general-election-93-candidates-from-ruling-communist-party" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>Over 73 million Vietnamese voters cast ballots on March 15 to elect 500 members to the National Assembly from 864 candidates. Nearly 93% of candidates are Communist Party members, down slightly from 97% of current seats. Results will be announced by March 23, with the new assembly convening in early April to approve state leadership.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The election maintains Vietnam's one-party system while showing marginal opening to non-party candidates in the world's 15th most populous country.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/companies/people/atanu-chakraborty-resigns-as-hdfc-bank-part-time-chairman-126031801521_1.html" target="_blank">HDFC Bank chairman resigns over ethics concerns, shares plunge 8% to 52-week low</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/companies/people/atanu-chakraborty-resigns-as-hdfc-bank-part-time-chairman-126031801521_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Atanu Chakraborty resigned as part-time chairman of HDFC Bank on March 18, citing that certain practices within the bank over the past two years were 'not in congruence with my personal values and ethics.' The resignation sent HDFC Bank shares to a 52-week low, falling over 8% and wiping out Rs 1.03 lakh crore in investor wealth. The Reserve Bank of India approved Keki Mistry as interim chairman for three months, and stated there are no material concerns regarding the bank's governance or conduct.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As India's largest private sector lender and a systemically important financial institution, governance concerns at HDFC Bank raise questions about board-management alignment and could impact investor confidence in the country's banking sector.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/markets/news/stock-market-crash-erases-rs-11-lakh-crore-investors-wealth-126031900116_1.html" target="_blank">Indian markets crash 2,500 points as oil surges above $112 amid Middle East conflict</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/markets/news/stock-market-crash-erases-rs-11-lakh-crore-investors-wealth-126031900116_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The Sensex plummeted 2,497 points to close around 74,000 and Nifty ended at 23,002 on March 19 as escalating conflict involving the US, Iran, and Israel caused Brent crude prices to surge near $112-120 per barrel. The energy crisis raised fears of imported inflation and trade deficits, with India importing nearly 85% of its crude requirements. The US Federal Reserve's decision to keep interest rates unchanged at 3.75% added to negative sentiment.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The market crash wiped out over Rs 11 lakh crore in investor wealth and threatens India's macroeconomic stability through rising oil import bills and potential inflation pressure.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://economictimes.indiatimes.com" target="_blank">India considers Rs 1,000 crore war-risk insurance as Hormuz crisis threatens energy security</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://economictimes.indiatimes.com" target="_blank">Economic Times</a>
+        
+      
+    </div>
+    <p>India is considering a dedicated Rs 1,000 crore war-risk insurance cover to support insurers as the Middle East conflict disrupts shipping through the Strait of Hormuz. The Indian Navy's Operation Sankalp is actively monitoring India-bound vessels, with two LPG tankers having successfully crossed the strait under naval escort. The government has fast-tracked fertilizer imports to cushion the upcoming kharif season from West Asia supply shocks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> With 85% of India's crude oil imports passing through the Strait of Hormuz, any prolonged disruption could severely impact energy security and agricultural production.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/politics/lok-sabha-revokes-suspension-eight-opposition-mps-budget-session-126031701115_1.html" target="_blank">Lok Sabha revokes suspension of eight opposition MPs after apology</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/politics/lok-sabha-revokes-suspension-eight-opposition-mps-budget-session-126031701115_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The Lok Sabha revoked the suspension of eight opposition MPs on March 17 after Congress leader K. Suresh expressed regret over their conduct. The MPs, including seven from Congress and one from CPI(M), had been suspended since February 3 for unruly behavior during the Budget Session. Speaker Om Birla warned members against displaying placards and AI-generated images.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The resolution ends a prolonged parliamentary standoff that had disrupted legislative proceedings during the crucial Budget Session.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com" target="_blank">Additional: Chinese AI startup Moonshot seeks $18 billion valuation in latest funding round</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com" target="_blank">Additional: Bloomberg</a>
+        
+      
+    </div>
+    <p>Beijing-based AI startup Moonshot is pursuing a new funding round that would value the company at approximately $18 billion, according to sources familiar with the matter. The company, which develops large language models, has attracted significant investor interest amid the global AI boom. The valuation would make Moonshot one of the most valuable AI startups globally.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The massive valuation reflects intensifying competition between Chinese and Western AI companies, despite ongoing technology transfer restrictions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com" target="_blank">Additional: AI bubble concerns mount as investors reassess valuations</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com" target="_blank">Additional: Bloomberg</a>
+        
+      
+    </div>
+    <p>Technology analysts are increasingly questioning whether AI company valuations have outpaced realistic revenue projections, with some drawing parallels to previous technology bubbles. Several major AI firms have seen their stock prices become volatile as investors scrutinize paths to profitability. The debate centers on whether current AI capabilities justify multi-billion dollar valuations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A potential AI valuation correction could significantly impact tech sector investment and innovation funding in coming quarters.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com" target="_blank">Additional: HSBC announces AI-driven job cuts in back-office operations</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com" target="_blank">Additional: Bloomberg</a>
+        
+      
+    </div>
+    <p>Banking giant HSBC announced plans to eliminate thousands of back-office positions as the company deploys AI systems to automate routine tasks including data entry, document processing, and customer inquiry handling. The bank said AI implementation would allow staff reallocation to higher-value customer service roles. Union representatives expressed concern about the pace of automation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> HSBC's move signals how AI automation is beginning to materially reshape employment in the financial services sector.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com" target="_blank">Additional: Qatar's Ras Laffan gas facility struck by Iranian missiles, LNG exports disrupted</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>Iran launched missile attacks on Qatar's Ras Laffan gas facility, one of the world's largest liquefied natural gas export hubs, causing temporary production disruptions. The facility supplies approximately 8% of global LNG demand. Qatar's energy minister said damage assessment is underway, while LNG spot prices surged 40% on Asian markets following the attack.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The strike on Ras Laffan threatens global LNG supplies at a critical time, potentially forcing European and Asian buyers to compete for limited alternative supplies.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com" target="_blank">Additional: Dow falls to 2026 low as Federal Reserve holds rates at 3.75%</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>US stock markets declined sharply with the Dow Jones Industrial Average falling to its lowest level of 2026 after the Federal Reserve announced it would maintain interest rates at 3.75%, citing persistent inflation concerns linked to surging energy prices. Fed Chair Jerome Powell indicated that rate cuts originally expected in mid-2026 may be delayed until economic conditions stabilize.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Fed's hawkish stance disappoints markets hoping for monetary easing and could slow economic growth as borrowing costs remain elevated.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com" target="_blank">Additional: Oil prices breach $112 as Middle East conflict escalates</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com" target="_blank">Additional: Reuters</a>
+        
+      
+    </div>
+    <p>Brent crude futures surged above $112 per barrel for the first time since 2022 following Iranian attacks on Gulf energy infrastructure. West Texas Intermediate also climbed above $108. Energy analysts warn prices could reach $120-130 if shipping through the Strait of Hormuz remains disrupted, with some banks revising their price forecasts upward.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Sustained high oil prices threaten to reignite global inflation and strain economies still recovering from previous energy shocks.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com" target="_blank">Additional: UK announces major science funding increase in Spring Budget</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com" target="_blank">Additional: Nature</a>
+        
+      
+    </div>
+    <p>The UK government unveiled significant increases to science research funding in its Spring Budget, with particular emphasis on biotechnology and clean energy research. The announcement includes multi-year commitments to university research infrastructure and expanded postdoctoral fellowship programs. Scientists welcomed the funding boost after years of stagnant budgets.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The funding increase could help the UK maintain its position as a leading research nation amid intense global competition for scientific talent.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com" target="_blank">Additional: Researchers report progress in mitochondrial disease treatment</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com" target="_blank">Additional: Nature</a>
+        
+      
+    </div>
+    <p>Scientists have demonstrated promising results from experimental mitochondrial transplantation techniques in treating severe mitochondrial diseases. Early-phase clinical trials show improved cellular energy production in patients with previously untreatable conditions. The approach involves transferring healthy mitochondria from donors to replace defective ones in patients' cells.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Mitochondrial diseases affect thousands of children globally with no current cures, making this therapeutic approach potentially life-changing.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.statnews.com" target="_blank">Additional: Global health organizations monitor potential supply chain disruptions from Middle East conflict</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.statnews.com" target="_blank">Additional: STAT News</a>
+        
+      
+    </div>
+    <p>The World Health Organization and international health agencies are assessing potential disruptions to pharmaceutical supply chains as the Iran conflict threatens shipping routes. Several major pharmaceutical manufacturing facilities are located in conflict-affected areas, while shipping delays could impact distribution of essential medicines. Agencies are working with manufacturers to identify alternative supply routes.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Any prolonged disruption to pharmaceutical supply chains could create shortages of essential medications in markets dependent on Middle East manufacturing.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">GS 99</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BOS 120</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">OKC 121</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">BKN 92</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">POR 127</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">IND 119</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">TOR 139</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">CHI 109</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">UTAH 111</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">MIN 147</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">LAC 109</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">NO 124</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">ATL 135</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">DAL 120</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">DEN 118</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">MEM 125</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">LAL 124</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">HOU 116</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/nba/story/_/id/48221805/sources-nba-set-1st-vote-las-vegas-seattle-expansion" target="_blank">NBA set for first vote on Las Vegas and Seattle expansion teams</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/nba/story/_/id/48221805/sources-nba-set-1st-vote-las-vegas-seattle-expansion" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>The NBA Board of Governors will vote March 24-25 on exploring expansion teams exclusively in Las Vegas and Seattle, targeted to begin play in the 2028-29 season. The vote is considered a formality to begin the expansion process, with franchises projected to be valued between $7-10 billion each. If approved by 23 of 30 governors, this would mark Seattle's return to the NBA after the SuperSonics relocated in 2008.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents the NBA's most concrete step toward expansion in decades and would bring professional basketball back to Seattle after a 20-year absence.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espncricinfo.com/series/women-s-premier-league-2025-26-1510059" target="_blank">Royal Challengers Bengaluru win second WPL title behind Mandhana's 87</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espncricinfo.com/series/women-s-premier-league-2025-26-1510059" target="_blank">ESPN Cricinfo</a>
+        
+      
+    </div>
+    <p>Smriti Mandhana led RCB to their second Women's Premier League championship with an 87-run knock off 41 balls in the final at Vadodara. Georgia Voll contributed 79 runs as the pair added a record 165-run partnership for the second wicket, chasing down Delhi Capitals' total of 204 in 19.4 overs. This marks Delhi Capitals' fourth consecutive final defeat.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The WPL final showcased the growing prominence of women's cricket in India with Mandhana's outstanding performance cementing her status as one of the tournament's biggest stars.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="http://www.espn.com/espn/latestnews" target="_blank">Auston Matthews out for season after knee-to-knee hit, Gudas suspended 5 games</a></h3>
+    <div class="source">
+      
+        
+        <a href="http://www.espn.com/espn/latestnews" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Toronto Maple Leafs star Auston Matthews will miss the remainder of the NHL season after suffering a knee-to-knee collision with Anaheim's Radko Gudas on March 14. The NHL subsequently suspended Gudas for five games for the kneeing incident. The Leafs organization has called for harsher punishment, noting the severe impact on their playoff hopes with their top scorer sidelined.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Matthews' season-ending injury significantly diminishes Toronto's Stanley Cup prospects and reignites debate about NHL player safety enforcement.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="http://www.espn.com/espn/latestnews" target="_blank">Venezuela defeats USA 3-2 to win first World Baseball Classic championship</a></h3>
+    <div class="source">
+      
+        
+        <a href="http://www.espn.com/espn/latestnews" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Team Venezuela rallied to defeat the United States 3-2 in the World Baseball Classic final, capturing their first WBC title. The victory came after Venezuela advanced through semifinal wins over Italy and Japan. Many Team USA players were seen quickly removing their silver medals after the ceremony, reflecting disappointment with the second-place finish.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Venezuela's historic victory marks a breakthrough for the South American nation in international baseball's premier tournament.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>WIRED</strong> — Long-form technology and culture journalism exploring how innovation shapes our world.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.wired.com" target="_blank">The Chinese Century: How Beijing is reshaping global technology</a></h3>
+    <div class="source"><a href="https://www.wired.com" target="_blank">WIRED</a></div>
+    <p>WIRED's March/April 2026 issue examines China's growing technological dominance across AI, quantum computing, and green energy sectors. The magazine explores how Chinese tech companies are expanding globally despite Western restrictions, and what this means for the future of innovation and geopolitical competition. Through interviews with entrepreneurs, policymakers, and researchers in both China and the West, the issue provides a comprehensive look at the shifting balance of technological power.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 10 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 10 · ~3 hr listen
+         — <em>tell Leo when you finish to get your next listen</em>
+      </div>
+      <h4>Acquired: Costco episode</h4>
+      <div class="dd-meta">Acquired</div>
+      <p>Acquired's deep-dive into Costco — the business model behind one of the most beloved and profitable retailers in the world, exploring how a membership warehouse club became a cultural phenomenon.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Thursday, March 19, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · WIRED<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
