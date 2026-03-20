@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 20, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Friday, March 20, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">U.S. markets fall as Pentagon deploys warships to Middle East amid Iran conflict; India invokes emergency measures to secure cooking gas supplies; Lakers extend winning streak behind Dončić's 60-point performance.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-20.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">59°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 88° · L: 60°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-temp">60°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">H: 85° · L: 59°</div>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-19/stock-market-today-dow-s-p-live-updates-" target="_blank">Pentagon Sends Warships and Marines to Middle East as Iran Conflict Escalates</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-19/stock-market-today-dow-s-p-live-updates-" target="_blank">Bloomberg</a>
+        
+      
+         · 
+        <a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The Pentagon is deploying three warships and thousands of additional Marines to the Middle East, according to a Wall Street Journal report that accelerated market sell-offs on March 20. The deployment comes as fresh strikes between Iran and Israel were reported, with an Iranian drone strike hitting a QatarEnergy facility that produces over a third of the world's helium supply. Oil prices surged above $108 per barrel while markets price in stagflation risks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The escalation threatens critical global supply chains including helium for semiconductor manufacturing and raises fears of broader regional conflict.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-19/stock-market-today-dow-s-p-live-updates-" target="_blank">UK Government Borrowing Costs Hit Highest Level Since Global Financial Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-19/stock-market-today-dow-s-p-live-updates-" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>UK government borrowing costs reached their highest level since the 2008 global financial crisis as investors fled to safer assets amid Middle East tensions and inflation concerns. The yield spike compounds pressure on Britain's fiscal position as energy costs surge due to disruptions in the Strait of Hormuz.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This signals growing concerns about debt sustainability in major economies as geopolitical risks and inflation create a stagflationary environment.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/economy" target="_blank">India Invokes Emergency Powers to Secure Cooking Gas Supply as Middle East Conflict Disrupts Imports</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/economy" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The Government of India invoked the Essential Commodities Act to regulate LPG and natural gas supply, issuing the Natural Gas Supply Regulation Order 2026 that prioritizes allocation to domestic PNG, CNG, and fertilizer plants. The Ministry of Petroleum ordered refineries to maximize LPG production as 13 tankers carrying 3.5 lakh tonnes of LPG head from the U.S. to India. The emergency measure affects 33 crore households dependent on cooking gas, with 85-90% of India's LPG imports typically passing through the now-disrupted Strait of Hormuz.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This exposes critical vulnerabilities in India's energy security and marks the first use of emergency commodity controls since the pandemic.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/companies/news" target="_blank">HDFC Bank Chairman Atanu Chakraborty Resigns Citing Ethical Concerns</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/companies/news" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>HDFC Bank chairman Atanu Chakraborty resigned citing ethical concerns, triggering questions about governance at India's largest private sector bank. Keki Mistry has taken charge as interim chairman, while experts call for an independent directors' committee to probe the circumstances behind the resignation given the ambiguity in Chakraborty's letter.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The unexpected departure raises governance concerns at a systemically important financial institution and highlights ongoing debates about former bureaucrats leading private sector banks.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/markets/news/stock-market-live-march-20-nse-bse-sensex-nifty-gift-nifty-iran-war-update-brent-crude-oil-share-market-today-126032000112_1.html" target="_blank">Stock Markets Pare Gains as Iran-Israel Tensions Resurface; Sensex Ends 326 Points Up</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/markets/news/stock-market-live-march-20-nse-bse-sensex-nifty-gift-nifty-iran-war-update-brent-crude-oil-share-market-today-126032000112_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The Nifty50 settled 0.49% higher at 23,114.50 and the Sensex closed 325.72 points up at 74,532.96, though both indices pared significant intraday gains after reports of fresh strikes between Iran and Israel. Energy supply worries resurfaced in the last hour of trading as firm oil prices sparked a late sell-off, with investors reluctant to hold positions over the weekend amid war-related uncertainties.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Market fragility reflects India's exposure to Middle East energy disruptions and global risk-off sentiment.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news" target="_blank">Election Commission Orders Major Officer Reshuffle Ahead of West Bengal Polls</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The Election Commission ordered a fresh reshuffle of senior officers ahead of West Bengal elections, deploying 13 IAS officers as District Magistrates and five IPS officers in key poll management roles. The poll body also posted two secretaries to other poll-bound states as observers to ensure fair conduct of elections.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The extensive reshuffle signals the Election Commission's efforts to ensure administrative neutrality in one of India's most politically sensitive states.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://economictimes.indiatimes.com" target="_blank">SBI Funds Management Files for IPO as State Bank and Amundi Plan 10% Stake Sale</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://economictimes.indiatimes.com" target="_blank">Economic Times</a>
+        
+      
+    </div>
+    <p>India's largest asset manager SBI Funds Management filed for an initial public offering, with existing investors State Bank of India and Amundi planning to offload a 10% stake. The IPO marks a significant development in India's growing asset management industry.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This provides retail investors access to India's dominant mutual fund player and could set pricing benchmarks for the asset management sector.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">Additional: Helium Supply Crisis Threatens Global Semiconductor Manufacturing</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>The Iran conflict has halted operations at a QatarEnergy facility that produces helium as a byproduct after it was struck by an Iranian drone. Qatar produced more than a third of the world's helium before the war, according to the U.S. Geological Survey, and the supply disruption raises concerns about chip production as helium is a critical component in semiconductor manufacturing.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This threatens the already-strained global chip supply chain and could impact production of everything from smartphones to AI accelerators.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-19/stock-market-today-dow-s-p-live-updates-" target="_blank">Additional: Tech Stocks Decline on Geopolitical Uncertainty and Rate Hike Expectations</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-19/stock-market-today-dow-s-p-live-updates-" target="_blank">Additional: Bloomberg</a>
+        
+      
+    </div>
+    <p>Technology stocks contributed to broader market declines as traders now price in a 50% chance of a Federal Reserve rate hike by October amid inflation concerns. Higher rates typically pressure high-growth tech valuations, while the Middle East conflict raises concerns about supply chain disruptions for hardware manufacturers.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The shift in rate expectations could end the tech rally that has driven markets over the past year and pressure AI infrastructure investments.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.globalbankingandfinance.com/hellmans-mayonnaise-maker-unilever-takeover-talks-mccormick/" target="_blank">Unilever in Talks to Sell Food Business to McCormick in Potential $30 Billion Deal</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.globalbankingandfinance.com/hellmans-mayonnaise-maker-unilever-takeover-talks-mccormick/" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>Unilever confirmed it received an offer from McCormick & Company for its foods business, which includes Hellmann's mayonnaise, Knorr, and Marmite brands. Barclays analysts estimate the enterprise value at €28-31 billion ($32-38 billion), significantly larger than McCormick's $14.5 billion market cap. The deal would accelerate CEO Fernando Fernandez's strategy to refocus on higher-growth beauty, personal care, and household categories.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents a major strategic shift for one of the world's largest consumer goods companies as conglomerates trim portfolios amid weak consumer demand and rising costs.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/18/stock-market-today-live-updates.html" target="_blank">Gold Posts Worst Week Since 1983 as Inflation Fears Spike</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/18/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Gold fell to its lowest level since February 2, down about 10% for the week and on pace for its worst week since February 1983 when it fell more than 12%. Silver dropped more than 10% on March 19. The sell-off comes amid global inflation fears and rising Treasury yields as markets price in potential Fed rate hikes, reversing gold's traditional safe-haven appeal.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The counterintuitive decline in precious metals during a geopolitical crisis signals that investors fear inflation and rate hikes more than conflict risk.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/17/stock-market-today-live-updates.html" target="_blank">Federal Reserve Holds Rates Steady as Policymakers Navigate Stagflation Risks</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/17/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The Federal Reserve voted 11-1 to keep the benchmark federal funds rate at 3.5%-3.75% on March 18 as policymakers navigate higher-than-expected inflation. February's producer price index rose 0.7% versus 0.3% expected, while the Iran war has heightened stagflation fears with Brent crude trading above $108 per barrel.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Fed faces a difficult balancing act between controlling inflation driven by energy shocks and supporting an economy facing potential disruption.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-19/stock-market-today-dow-s-p-live-updates-" target="_blank">U.S. Markets Fall on Pentagon Deployment News, S&P 500 Heads for Longest Weekly Losing Streak in a Year</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-19/stock-market-today-dow-s-p-live-updates-" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>The S&P 500 fell about 1% on March 20, heading for its longest streak of weekly declines in a year. The drop accelerated after the Wall Street Journal reported the Pentagon is sending three warships and thousands of additional Marines to the Middle East, while traders now price in a 50% chance of a Federal Reserve rate hike by October.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The combination of geopolitical risk and monetary tightening expectations creates a challenging environment for risk assets and suggests volatility may persist.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">Additional: Qatar Helium Facility Strike Disrupts Critical Medical and Scientific Supply</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>The Iranian drone strike on a QatarEnergy facility has disrupted production of helium, which is essential not only for semiconductor manufacturing but also for MRI machines, scientific research equipment, and space exploration. Qatar's production represented more than a third of global helium supply, and the halt in operations could impact medical diagnostics and scientific research worldwide.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Beyond economic impacts, this threatens critical medical infrastructure as helium is irreplaceable in MRI cooling systems and many scientific applications.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">ORL 111</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CHA 130</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">DET 117</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">WSH 95</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">LAL 134</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MIA 126</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CLE 115</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">CHI 110</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">LAC 99</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">NO 105</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">PHX 100</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">SA 101</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIL 96</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">UTAH 128</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">PHI 139</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">SAC 118</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/nba/recap/_/gameId/401810865" target="_blank">Luka Dončić Explodes for 60 Points as Lakers Extend Streak to Eight Games</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/nba/recap/_/gameId/401810865" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Luka Dončić delivered a 60-point masterclass while LeBron James recorded a triple-double (19 points, 15 rebounds, 10 assists) on the night he tied the NBA record for games played, as the Lakers defeated the Miami Heat 134-126. Dončić has now scored at least 30 points in eight consecutive games and reached 50 points for the second time in his last five games, cementing his MVP credentials as the Lakers improve to 44-25.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Lakers' season-best winning streak has them firmly in third place in the Western Conference, while the dual-star performance represents one of the best scoring/triple-double combinations since 1969.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/nba/story/_/id/48256013/spurs-end-6-year-playoff-drought-wembanyama-game-winner" target="_blank">Victor Wembanyama's Game-Winner Sends Spurs to Playoffs, Ending Six-Year Drought</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/nba/story/_/id/48256013/spurs-end-6-year-playoff-drought-wembanyama-game-winner" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Victor Wembanyama hit a 17-foot fadeaway jumper with 1.1 seconds remaining to give the Spurs a 101-100 victory over the Phoenix Suns, clinching San Antonio's first playoff berth since 2019. Wembanyama finished with 34 points, 12 rebounds, and 3 steals, marking his first go-ahead make in the final five seconds. The Spurs are 20-2 since February 1, the best record in the NBA over that span.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This ended the longest playoff drought in Spurs franchise history and cements Wembanyama's MVP candidacy while marking a dramatic turnaround for one of the NBA's most storied franchises.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espncricinfo.com/series/wpl-2025-26-1510059/royal-challengers-bengaluru-women-vs-delhi-capitals-women-final-1513703/live-match-blog" target="_blank">Royal Challengers Bengaluru Win Second WPL Title with Record Chase</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espncricinfo.com/series/wpl-2025-26-1510059/royal-challengers-bengaluru-women-vs-delhi-capitals-women-final-1513703/live-match-blog" target="_blank">ESPN Cricinfo</a>
+        
+      
+    </div>
+    <p>Smriti Mandhana's Royal Challengers Bengaluru captured their second Women's Premier League title by chasing down 204 runs against Delhi Capitals in the final on March 20 in Vadodara. Captain Mandhana scored 87 from 41 balls while Georgia Voll contributed 79 off 54 deliveries, with the pair adding a record 165-run partnership for the second wicket. Delhi Capitals lost their fourth consecutive WPL final despite posting 203/4.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The successful chase of 204 demonstrates the explosive batting standards in women's cricket and solidifies RCB's dynasty in the young tournament.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.thestar.com.my/sport/football/2026/03/19/soccer-champions-league-exposes-premier-league-limits-as-english-clubs-exit-early" target="_blank">Additional: All Four Premier League Clubs Eliminated from Champions League Round of 16</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thestar.com.my/sport/football/2026/03/19/soccer-champions-league-exposes-premier-league-limits-as-english-clubs-exit-early" target="_blank">Additional: The Star</a>
+        
+      
+    </div>
+    <p>Manchester City, Chelsea, Newcastle United and Tottenham Hotspur were all eliminated from the UEFA Champions League at the round of 16 stage, marking the first time four teams from a single nation have exited together at this stage. The collective failure has exposed potential limitations in the Premier League's strength despite its financial dominance.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This historic collapse challenges the narrative of Premier League supremacy and raises questions about tactical approaches and squad depth across England's top clubs.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>No long-form features available</strong> — Search results did not return specific long-form articles from approved outlets published in the past two weeks with accessible URLs.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 11 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 11 · ~3 hr listen
+         — <em>tell Leo when you finish to get your next listen</em>
+      </div>
+      <h4>Acquired: Costco episode</h4>
+      <div class="dd-meta">Acquired</div>
+      <p>Acquired's deep-dive into Costco — the business model behind one of the most beloved and profitable retailers in the world, exploring how a membership warehouse club became a cultural phenomenon.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Friday, March 20, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · No long-form features available<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
