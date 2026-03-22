@@ -554,7 +554,7 @@ Return ONLY valid JSON with this exact structure:
 Include 4-5 stories per news section and 2-3 explore stories.
 Ensure all URLs are real and accurate. Do not invent URLs."""
 
-    response = None
+    brief_data = None
     for attempt in range(3):
         try:
             response = client.messages.create(
@@ -563,28 +563,25 @@ Ensure all URLs are real and accurate. Do not invent URLs."""
                 messages=[{"role": "user", "content": prompt}],
             )
             text = response.content[0].text if response.content else ""
+            json_match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', text, re.DOTALL)
+            if json_match:
+                text = json_match.group(1)
             if not text.strip():
-                if attempt < 2:
-                    print(f"  ⚠️  Empty response during synthesis (attempt {attempt + 1}/3) — retrying in 30s...")
-                    time.sleep(30)
-                    continue
-                else:
-                    raise RuntimeError("synthesise_brief received empty response from Claude after 3 attempts")
+                raise ValueError("empty response")
+            brief_data = json.loads(text)
             break
-        except anthropic.RateLimitError as e:
+        except (anthropic.RateLimitError, ValueError, json.JSONDecodeError) as e:
             if attempt < 2:
-                wait = int(e.response.headers.get("retry-after", 60))
-                print(f"  ⚠️  Rate limit hit during synthesis (attempt {attempt + 1}/3) — waiting {wait}s...")
+                if isinstance(e, anthropic.RateLimitError):
+                    wait = int(e.response.headers.get("retry-after", 60))
+                    print(f"  ⚠️  Rate limit hit during synthesis (attempt {attempt + 1}/3) — waiting {wait}s...")
+                else:
+                    print(f"  ⚠️  Bad response during synthesis (attempt {attempt + 1}/3): {e} — retrying in 30s...")
+                    wait = 30
                 time.sleep(wait)
             else:
-                raise
+                raise RuntimeError(f"synthesise_brief failed after 3 attempts: {e}") from e
 
-    # Extract JSON from response (handle markdown code blocks)
-    json_match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', text, re.DOTALL)
-    if json_match:
-        text = json_match.group(1)
-
-    brief_data = json.loads(text)
     print("  ✅ Brief synthesised")
     return brief_data
 
@@ -632,7 +629,7 @@ Return a JSON array with exactly 8 objects:
 
 Return ONLY the JSON array."""
 
-    response = None
+    sections = None
     for attempt in range(3):
         try:
             response = client.messages.create(
@@ -641,27 +638,24 @@ Return ONLY the JSON array."""
                 messages=[{"role": "user", "content": prompt}],
             )
             text = response.content[0].text if response.content else ""
+            json_match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', text, re.DOTALL)
+            if json_match:
+                text = json_match.group(1)
             if not text.strip():
-                if attempt < 2:
-                    print(f"  ⚠️  Empty response during narration (attempt {attempt + 1}/3) — retrying in 30s...")
-                    time.sleep(30)
-                    continue
-                else:
-                    raise RuntimeError("generate_narration received empty response from Claude after 3 attempts")
+                raise ValueError("empty response")
+            sections = json.loads(text)
             break
-        except anthropic.RateLimitError as e:
+        except (anthropic.RateLimitError, ValueError, json.JSONDecodeError) as e:
             if attempt < 2:
-                wait = int(e.response.headers.get("retry-after", 60))
-                print(f"  ⚠️  Rate limit hit during narration (attempt {attempt + 1}/3) — waiting {wait}s...")
+                if isinstance(e, anthropic.RateLimitError):
+                    wait = int(e.response.headers.get("retry-after", 60))
+                    print(f"  ⚠️  Rate limit hit during narration (attempt {attempt + 1}/3) — waiting {wait}s...")
+                else:
+                    print(f"  ⚠️  Bad response during narration (attempt {attempt + 1}/3): {e} — retrying in 30s...")
+                    wait = 30
                 time.sleep(wait)
             else:
-                raise
-
-    json_match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', text, re.DOTALL)
-    if json_match:
-        text = json_match.group(1)
-
-    sections = json.loads(text)
+                raise RuntimeError(f"generate_narration failed after 3 attempts: {e}") from e
     print(f"  ✅ {len(sections)} narration sections generated")
     return sections
 
