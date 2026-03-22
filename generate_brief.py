@@ -24,7 +24,9 @@ RESEND_API_KEY = os.environ["RESEND_API_KEY"]
 RECIPIENT_EMAILS = [e.strip() for e in os.environ["RECIPIENT_EMAILS"].split(",")]
 
 TODAY = datetime.date.today()
+YESTERDAY = TODAY - datetime.timedelta(days=1)
 DATE_STR = TODAY.strftime("%B %d, %Y")         # February 28, 2026
+YESTERDAY_STR = YESTERDAY.strftime("%B %d, %Y")
 DATE_FILE = TODAY.strftime("%Y-%m-%d")          # 2026-02-28
 DAY_NAME = TODAY.strftime("%A")                 # Friday
 
@@ -314,30 +316,35 @@ def search_news() -> dict:
             f"Search specifically for today's top world politics and international news "
             f"reported by these trusted outlets: {source_list('world')}. "
             f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Only include stories published on {DATE_STR} or {YESTERDAY_STR}. Ignore older stories even if they rank highly. "
             f"Do not use news aggregators, regional blogs, or unfamiliar outlets."
         ),
         "india": (
             f"Search specifically for today's top news from India — politics, economy, society, and foreign affairs — "
             f"reported by these trusted outlets: {source_list('india')}. "
             f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Only include stories published on {DATE_STR} or {YESTERDAY_STR}. Ignore older stories even if they rank highly. "
             f"Do not use news aggregators or unfamiliar regional outlets."
         ),
         "tech": (
             f"Search specifically for today's top technology and AI news "
             f"reported by these trusted outlets: {source_list('tech')}. "
             f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Only include stories published on {DATE_STR} or {YESTERDAY_STR}. Ignore older stories even if they rank highly. "
             f"Do not use news aggregators or secondary tech blogs."
         ),
         "business": (
             f"Search specifically for today's top business and finance news "
             f"reported by these trusted outlets: {source_list('business')}. "
             f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Only include stories published on {DATE_STR} or {YESTERDAY_STR}. Ignore older stories even if they rank highly. "
             f"Do not use news aggregators or investor blogs."
         ),
         "science": (
             f"Search specifically for today's top science and health news "
             f"reported by these trusted outlets: {source_list('science')}. "
             f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Only include stories published on {DATE_STR} or {YESTERDAY_STR}. Ignore older stories even if they rank highly. "
             f"Do not use aggregator sites like ScienceDaily — find the primary journal or specialist outlet."
         ),
         "sports": (
@@ -345,6 +352,7 @@ def search_news() -> dict:
             f"reported by these trusted outlets: {source_list('sports')}. "
             f"Sports currently in season: {active_sports}. Prioritise coverage of these. "
             f"If any World Cup or major international tournament is currently active, include it. "
+            f"Only include stories published on {DATE_STR} or {YESTERDAY_STR}. Ignore older stories even if they rank highly. "
             f"Only return stories where the original reporting outlet is one of these sources."
         ),
         "explore": (
@@ -466,6 +474,12 @@ If a story in the raw results comes from a news aggregator (e.g. ScienceDaily, C
 Do not include stories where you cannot identify a reputable primary source. Fewer high-quality stories is better than padding with aggregator content.
 If a section has fewer than 2 stories from approved outlets, include the most important stories from any major reputable outlet (major newspapers, wire services, broadcasters) to bring each section to at least 3 stories. Mark these with a note in the source name like "Additional: [Outlet Name]".
 
+FRESHNESS RULE — strictly enforced:
+Only include stories published on {DATE_STR} or {YESTERDAY_STR} (within the last 48 hours).
+Exclude any story older than 48 hours, even if it is the only result for a category.
+Events that concluded more than 2 days ago (tournament finals, concluded summits, closed negotiations) must not appear.
+If a category genuinely has no fresh stories, return fewer stories rather than padding with stale ones.
+
 Return ONLY valid JSON with this exact structure:
 {{
   "summary": "One-sentence overview of the day's top 3 stories",
@@ -540,6 +554,7 @@ Return ONLY valid JSON with this exact structure:
 Include 4-5 stories per news section and 2-3 explore stories.
 Ensure all URLs are real and accurate. Do not invent URLs."""
 
+    response = None
     for attempt in range(3):
         try:
             response = client.messages.create(
@@ -547,6 +562,14 @@ Ensure all URLs are real and accurate. Do not invent URLs."""
                 max_tokens=8000,
                 messages=[{"role": "user", "content": prompt}],
             )
+            text = response.content[0].text if response.content else ""
+            if not text.strip():
+                if attempt < 2:
+                    print(f"  ⚠️  Empty response during synthesis (attempt {attempt + 1}/3) — retrying in 30s...")
+                    time.sleep(30)
+                    continue
+                else:
+                    raise RuntimeError("synthesise_brief received empty response from Claude after 3 attempts")
             break
         except anthropic.RateLimitError as e:
             if attempt < 2:
@@ -555,8 +578,6 @@ Ensure all URLs are real and accurate. Do not invent URLs."""
                 time.sleep(wait)
             else:
                 raise
-
-    text = response.content[0].text
 
     # Extract JSON from response (handle markdown code blocks)
     json_match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', text, re.DOTALL)
@@ -611,6 +632,7 @@ Return a JSON array with exactly 8 objects:
 
 Return ONLY the JSON array."""
 
+    response = None
     for attempt in range(3):
         try:
             response = client.messages.create(
@@ -618,6 +640,14 @@ Return ONLY the JSON array."""
                 max_tokens=6000,
                 messages=[{"role": "user", "content": prompt}],
             )
+            text = response.content[0].text if response.content else ""
+            if not text.strip():
+                if attempt < 2:
+                    print(f"  ⚠️  Empty response during narration (attempt {attempt + 1}/3) — retrying in 30s...")
+                    time.sleep(30)
+                    continue
+                else:
+                    raise RuntimeError("generate_narration received empty response from Claude after 3 attempts")
             break
         except anthropic.RateLimitError as e:
             if attempt < 2:
@@ -627,7 +657,6 @@ Return ONLY the JSON array."""
             else:
                 raise
 
-    text = response.content[0].text
     json_match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', text, re.DOTALL)
     if json_match:
         text = json_match.group(1)
