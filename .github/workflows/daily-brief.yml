@@ -2,13 +2,12 @@ name: Daily Brief
 
 on:
   schedule:
-    # Run at 6:00 AM UTC — adjust to your timezone
-    # For GMT/London: 6:00 AM UTC = 6:00 AM GMT
-    # For EST: use "0 11 * * *" (6 AM EST = 11 AM UTC)
-    # For IST: use "0 0 * * *" (6 AM IST = 12:30 AM UTC, round to midnight)
-    - cron: "0 14 * * *"
+    # Runs every hour. The Python script checks Google Calendar for travel events
+    # and only generates the brief at 6am local time (wherever Nisha is).
+    # No changes needed here when traveling — update your calendar and it adjusts automatically.
+    - cron: "0 * * * *"
 
-  # Allow manual trigger from GitHub UI
+  # Allow manual trigger from GitHub UI (useful for re-runs or off-schedule delivery)
   workflow_dispatch:
 
 permissions:
@@ -23,16 +22,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Skip if brief already generated today
+        id: check_existing
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          if [ -f "briefs/daily_brief_${DATE}.html" ]; then
+            echo "Brief already exists for ${DATE} — skipping run."
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Set up Python
+        if: steps.check_existing.outputs.skip == 'false'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
 
       - name: Install dependencies
+        if: steps.check_existing.outputs.skip == 'false'
         run: pip install -r requirements.txt
 
       - name: Generate daily brief
+        if: steps.check_existing.outputs.skip == 'false'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
@@ -40,9 +53,11 @@ jobs:
           RECIPIENT_EMAILS: ${{ secrets.RECIPIENT_EMAILS }}
           WEATHER_LOCATION_HOME: ${{ secrets.WEATHER_LOCATION_HOME }}
           WEATHER_LOCATION_WORK: ${{ secrets.WEATHER_LOCATION_WORK }}
+          CALENDAR_ICS_URL: ${{ secrets.CALENDAR_ICS_URL }}
         run: python generate_brief.py
 
       - name: Commit briefs
+        if: steps.check_existing.outputs.skip == 'false'
         run: |
           git config user.name "Daily Brief Bot"
           git config user.email "daily-brief-bot@users.noreply.github.com"

@@ -10,11 +10,13 @@ import re
 import json
 import time
 import datetime
+import zoneinfo
 import requests
 from pathlib import Path
 import anthropic
 from anthropic import Anthropic
 from jinja2 import Template
+from icalendar import Calendar as ICal
 
 # ── Configuration ──────────────────────────────────────────────────────────
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
@@ -22,6 +24,81 @@ DEEPGRAM_API_KEY = os.environ["DEEPGRAM_API_KEY"]
 DEEPGRAM_VOICE = "aura-helios-en"  # British male
 RESEND_API_KEY = os.environ["RESEND_API_KEY"]
 RECIPIENT_EMAILS = [e.strip() for e in os.environ["RECIPIENT_EMAILS"].split(",")]
+CALENDAR_ICS_URL = os.environ.get("CALENDAR_ICS_URL", "")
+
+DEFAULT_TIMEZONE = "America/Los_Angeles"  # Pacific — fallback when no travel detected
+TARGET_LOCAL_HOUR = 6                     # Deliver at 6:00am local time wherever Nisha is
+
+# City/country keywords → IANA timezone. Extend as needed.
+LOCATION_TIMEZONE_MAP = {
+    # Ireland / UK
+    "dublin": "Europe/Dublin",
+    "ireland": "Europe/Dublin",
+    "cork": "Europe/Dublin",
+    "london": "Europe/London",
+    "edinburgh": "Europe/London",
+    "uk": "Europe/London",
+    "united kingdom": "Europe/London",
+    "england": "Europe/London",
+    "scotland": "Europe/London",
+    # Western Europe
+    "paris": "Europe/Paris",
+    "france": "Europe/Paris",
+    "berlin": "Europe/Berlin",
+    "munich": "Europe/Berlin",
+    "germany": "Europe/Berlin",
+    "amsterdam": "Europe/Amsterdam",
+    "netherlands": "Europe/Amsterdam",
+    "zurich": "Europe/Zurich",
+    "switzerland": "Europe/Zurich",
+    "rome": "Europe/Rome",
+    "milan": "Europe/Rome",
+    "italy": "Europe/Rome",
+    "barcelona": "Europe/Madrid",
+    "madrid": "Europe/Madrid",
+    "spain": "Europe/Madrid",
+    # US / Canada
+    "new york": "America/New_York",
+    "nyc": "America/New_York",
+    "boston": "America/New_York",
+    "washington": "America/New_York",
+    "miami": "America/New_York",
+    "atlanta": "America/New_York",
+    "chicago": "America/Chicago",
+    "houston": "America/Chicago",
+    "dallas": "America/Chicago",
+    "austin": "America/Chicago",
+    "denver": "America/Denver",
+    "phoenix": "America/Phoenix",
+    "seattle": "America/Los_Angeles",
+    "toronto": "America/Toronto",
+    "vancouver": "America/Vancouver",
+    # India
+    "mumbai": "Asia/Kolkata",
+    "delhi": "Asia/Kolkata",
+    "bangalore": "Asia/Kolkata",
+    "bengaluru": "Asia/Kolkata",
+    "hyderabad": "Asia/Kolkata",
+    "chennai": "Asia/Kolkata",
+    "india": "Asia/Kolkata",
+    # Asia / Pacific
+    "tokyo": "Asia/Tokyo",
+    "japan": "Asia/Tokyo",
+    "singapore": "Asia/Singapore",
+    "hong kong": "Asia/Hong_Kong",
+    "beijing": "Asia/Shanghai",
+    "shanghai": "Asia/Shanghai",
+    "china": "Asia/Shanghai",
+    "sydney": "Australia/Sydney",
+    "melbourne": "Australia/Melbourne",
+    "australia": "Australia/Sydney",
+    "auckland": "Pacific/Auckland",
+    "new zealand": "Pacific/Auckland",
+    # Middle East
+    "dubai": "Asia/Dubai",
+    "uae": "Asia/Dubai",
+    "abu dhabi": "Asia/Dubai",
+}
 
 TODAY = datetime.date.today()
 YESTERDAY = TODAY - datetime.timedelta(days=1)
@@ -58,6 +135,99 @@ def _wmo_icon(code: int) -> str:
     if code in (95, 96, 99): return "⛈️"
     if code in (71, 73, 75, 77, 85, 86): return "❄️"
     return "🌧️"
+
+
+def _location_to_timezone(location: str) -> str:
+    """Map a location string to an IANA timezone using keyword matching."""
+    loc = location.lower()
+    for keyword, tz in LOCATION_TIMEZONE_MAP.items():
+        if keyword in loc:
+            return tz
+    return DEFAULT_TIMEZONE
+
+
+def detect_travel_timezone() -> str:
+    """
+    Fetch personal Google Calendar ICS and look for multi-day events happening today.
+    Returns the IANA timezone of the travel destination, or DEFAULT_TIMEZONE if none found.
+    """
+    if not CALENDAR_ICS_URL:
+        return DEFAULT_TIMEZONE
+    try:
+        r = requests.get(CALENDAR_ICS_URL, timeout=10)
+        r.raise_for_status()
+        cal = ICal.from_ical(r.content)
+        for component in cal.walk():
+            if component.name != "VEVENT":
+                continue
+            dtstart = component.get("DTSTART")
+            dtend = component.get("DTEND")
+            if not dtstart or not dtend:
+                continue
+            start_val = dtstart.dt
+            end_val = dtend.dt
+            # Normalize to date
+            start_date = start_val.date() if isinstance(start_val, datetime.datetime) else start_val
+            end_date = end_val.date() if isinstance(end_val, datetime.datetime) else end_val
+            # Must include today and span at least 2 days
+            if not (start_date <= TODAY < end_date):
+                continue
+            if (end_date - start_date).days < 2:
+                continue
+            # 1. Try TZID from a datetime DTSTART
+            if isinstance(start_val, datetime.datetime) and start_val.tzinfo:
+                tz_key = getattr(start_val.tzinfo, "key", str(start_val.tzinfo))
+                if tz_key and tz_key not in ("UTC", DEFAULT_TIMEZONE, "US/Pacific", "America/Pacific"):
+                    try:
+                        zoneinfo.ZoneInfo(tz_key)  # validate
+                        print(f"  🌍 Travel detected via event TZID: {tz_key}")
+                        return tz_key
+                    except zoneinfo.ZoneInfoNotFoundError:
+                        pass
+            # 2. Try LOCATION keyword match
+            location = str(component.get("LOCATION", ""))
+            if location:
+                tz = _location_to_timezone(location)
+                if tz != DEFAULT_TIMEZONE:
+                    print(f"  🌍 Travel detected via location '{location}': {tz}")
+                    return tz
+        return DEFAULT_TIMEZONE
+    except Exception as e:
+        print(f"  ⚠️  Calendar check failed: {e} — defaulting to Pacific")
+        return DEFAULT_TIMEZONE
+
+
+def target_utc_hour_for(tz_name: str) -> int:
+    """Return the UTC hour that corresponds to TARGET_LOCAL_HOUR in tz_name on today's date."""
+    try:
+        tz = zoneinfo.ZoneInfo(tz_name)
+        local_dt = datetime.datetime.combine(TODAY, datetime.time(TARGET_LOCAL_HOUR, 0), tzinfo=tz)
+        return local_dt.astimezone(datetime.timezone.utc).hour
+    except Exception:
+        return 13  # Pacific PDT fallback
+
+
+def _clothing_tip(high_f: int, weather_code: int, precip_pct: int) -> str:
+    """Return a one-line clothing recommendation based on day's high and conditions."""
+    rain = precip_pct >= 40 or weather_code in (51, 53, 55, 61, 63, 65, 80, 81, 82, 95, 96, 99)
+    snow = weather_code in (71, 73, 75, 77, 85, 86)
+    if high_f >= 85:
+        tip = "Hot day — shorts and a t-shirt."
+    elif high_f >= 75:
+        tip = "Warm — light clothing."
+    elif high_f >= 65:
+        tip = "Comfortable — a light layer in the morning."
+    elif high_f >= 55:
+        tip = "Cool — jacket needed."
+    elif high_f >= 45:
+        tip = "Cold — warm coat and layers."
+    else:
+        tip = "Very cold — heavy coat, hat, and gloves."
+    if snow:
+        tip += " Snow expected — boots and waterproofs."
+    elif rain:
+        tip += " Rain likely — bring an umbrella."
+    return tip
 
 
 def _wmo_description(code: int) -> str:
@@ -105,7 +275,7 @@ def fetch_weather() -> list[dict]:
                     "latitude": lat,
                     "longitude": lon,
                     "current": "temperature_2m,apparent_temperature,weather_code",
-                    "daily": "temperature_2m_max,temperature_2m_min",
+                    "daily": "temperature_2m_max,temperature_2m_min,precipitation_probability_max",
                     "temperature_unit": "fahrenheit",
                     "timezone": timezone,
                     "forecast_days": 1,
@@ -117,6 +287,8 @@ def fetch_weather() -> list[dict]:
             current = data["current"]
             daily = data["daily"]
             code = current["weather_code"]
+            high_f = round(daily["temperature_2m_max"][0])
+            precip_pct = round(daily["precipitation_probability_max"][0] or 0)
             results.append({
                 "label": loc["label"],
                 "location_icon": loc["icon"],
@@ -124,8 +296,10 @@ def fetch_weather() -> list[dict]:
                 "condition": _wmo_description(code),
                 "temp_f": str(round(current["temperature_2m"])),
                 "feels_like_f": str(round(current["apparent_temperature"])),
-                "high_f": str(round(daily["temperature_2m_max"][0])),
+                "high_f": str(high_f),
                 "low_f": str(round(daily["temperature_2m_min"][0])),
+                "precip_pct": str(precip_pct),
+                "clothing_tip": _clothing_tip(high_f, code, precip_pct),
             })
             print(f"  ✅ {loc['label']}: {round(current['temperature_2m'])}°F, {_wmo_description(code)}")
         except Exception as e:
@@ -974,6 +1148,23 @@ def main():
     print(f"\n{'='*60}")
     print(f"  THE DAILY BRIEF — {DAY_NAME}, {DATE_STR}")
     print(f"{'='*60}\n")
+
+    # Guard 1: skip if brief already generated today (prevents duplicate hourly runs)
+    brief_html = OUTPUT_DIR / f"daily_brief_{DATE_FILE}.html"
+    if brief_html.exists():
+        print(f"  ✅ Brief already generated for {DATE_STR} — skipping.")
+        return
+
+    # Guard 2: check travel timezone from Google Calendar; skip if this isn't the right UTC hour
+    print("📅 Checking delivery schedule...")
+    travel_tz = detect_travel_timezone()
+    target_hour = target_utc_hour_for(travel_tz)
+    current_utc_hour = datetime.datetime.now(datetime.timezone.utc).hour
+    if current_utc_hour != target_hour:
+        tz_label = travel_tz.replace("_", " ")
+        print(f"  ⏭  Not scheduled for this hour — targeting UTC {target_hour:02d}:00 (6am {tz_label}). Current UTC hour: {current_utc_hour:02d}. Skipping.")
+        return
+    print(f"  ✅ Delivering at UTC {target_hour:02d}:00 — 6am {travel_tz.replace('_', ' ')}")
 
     # Step 0: Clean up old briefs, fetch weather and NBA scores
     cleanup_old_briefs()
