@@ -565,6 +565,7 @@ Return the top 5 most important stories. For each story provide:
 - headline (concise, informative)
 - source_name (the specific outlet, e.g. "BBC", "Reuters" — not an aggregator)
 - source_url (direct link to the article if available, otherwise the outlet's homepage)
+- published_date (exact date the article was published, in YYYY-MM-DD format — this is required; if uncertain, use your best estimate based on the search result)
 - summary (2-3 sentences of substance, not just headline expansion)
 - why_it_matters (1 sentence, only for the top 1-2 stories)
 - approved (true if source is in the approved list, false if not)
@@ -649,10 +650,11 @@ Do not include stories where you cannot identify a reputable primary source. Few
 If a section has fewer than 2 stories from approved outlets, include the most important stories from any major reputable outlet (major newspapers, wire services, broadcasters) to bring each section to at least 3 stories. Mark these with a note in the source name like "Additional: [Outlet Name]".
 
 FRESHNESS RULE — strictly enforced:
-Only include stories published on {DATE_STR} or {YESTERDAY_STR} (within the last 48 hours).
-Exclude any story older than 48 hours, even if it is the only result for a category.
+Each story in the raw results includes a published_date field. Use it.
+Only include stories with published_date of {DATE_STR} or {YESTERDAY_STR} (within the last 48 hours).
+If published_date is missing or ambiguous, include the story — do not drop it on freshness grounds alone.
 Events that concluded more than 2 days ago (tournament finals, concluded summits, closed negotiations) must not appear.
-If a category genuinely has no fresh stories, return fewer stories rather than padding with stale ones.
+If a category genuinely has no fresh stories after applying this rule, fill with the most recent available stories from approved or major reputable outlets rather than leaving the section empty.
 
 Return ONLY valid JSON with this exact structure:
 {{
