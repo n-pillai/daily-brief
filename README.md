@@ -41,15 +41,17 @@ Go to [resend.com/domains](https://resend.com/domains) and verify a domain you o
 
 Without a verified domain, Resend will only deliver to the email address on your Resend account.
 
-### 4. Adjust the schedule
+### 4. Set your timezone and schedule
 
-Edit `.github/workflows/daily-brief.yml` and change the cron to match your timezone:
+The workflow runs **every hour**. The Python script checks the current UTC time and only generates the brief at 6 AM in your local timezone — no manual cron editing required.
 
-```yaml
-# 6 AM London (GMT):   "0 6 * * *"
-# 6 AM New York (EST): "0 11 * * *"
-# 6 AM Mumbai (IST):   "30 0 * * *"
-```
+**Default timezone:** Pacific (`America/Los_Angeles`). To change it, edit `DEFAULT_TIMEZONE` and `TARGET_LOCAL_HOUR` at the top of `generate_brief.py`.
+
+**Travel detection (optional):** Add a `CALENDAR_ICS_URL` secret pointing to a private Google Calendar ICS feed. When a multi-day event is found on your calendar today, the script reads the event's location or timezone and automatically shifts delivery to 6 AM at that destination. No changes needed when you travel — just keep your calendar up to date.
+
+| Secret | Value |
+|--------|-------|
+| `CALENDAR_ICS_URL` | Google Calendar → Settings → your calendar → "Secret address in iCal format" |
 
 ### 5. Customise your sources
 
