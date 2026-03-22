@@ -1,0 +1,23 @@
+name: Test Schedule Detection
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_date:
+        description: 'Date to test (YYYY-MM-DD)'
+        required: true
+        default: '2026-04-07'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests icalendar
+      - name: Run schedule detection test
+        env:
+          CALENDAR_ICS_URL: ${{ secrets.CALENDAR_ICS_URL }}
+        run: python test_schedule.py ${{ github.event.inputs.test_date }}
