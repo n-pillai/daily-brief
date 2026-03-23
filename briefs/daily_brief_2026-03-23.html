@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 23, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Monday, March 23, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Royal Challengers Bengaluru win second WPL title, Tottenham face unprecedented relegation crisis, and quantum computing competition offers $5M prize for healthcare breakthrough.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-23.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">78°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 50° · Now 50°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">71°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 49° · Now 49° · 🌧 1%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Warm — light clothing.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>No Fresh Stories Available from Approved Outlets</h3>
+    <div class="source">
+      
+        
+        Editorial Note
+        
+      
+    </div>
+    <p>Our search of approved outlets (BBC, Reuters, AP, NYT, The Guardian, FT, The Economist, Washington Post, Al Jazeera) found no verifiable stories published on March 22-23, 2026 with complete source information. Search results referenced ongoing Middle East tensions but without direct article links from approved sources.</p>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>No Fresh Stories Available from Approved Outlets</h3>
+    <div class="source">
+      
+        
+        Editorial Note
+        
+      
+    </div>
+    <p>Our search of approved outlets (The Hindu, Hindustan Times, The Indian Express, Mint, NDTV, Economic Times, Reuters India, Business Standard) found no verifiable stories published on March 22-23, 2026 with complete source information. References to West Bengal elections and Middle East impact on India appeared in search results but without direct article links.</p>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>No Fresh Stories Available from Approved Outlets</h3>
+    <div class="source">
+      
+        
+        Editorial Note
+        
+      
+    </div>
+    <p>Our search of approved outlets (TechCrunch, The Verge, Ars Technica, WIRED, MIT Technology Review, Stratechery, Bloomberg Technology) found no verifiable stories published on March 22-23, 2026. Most recent stories from these sources dated to March 18-20, falling outside the 48-hour freshness window.</p>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Elliott Investment Takes Stake in Synopsys</h3>
+    <div class="source">
+      
+        
+        Additional: Reuters/WSJ
+        
+      
+    </div>
+    <p>Elliott Investment Management has acquired a stake in semiconductor design software company Synopsys, according to reports from March 22. The activist investor's move comes as the chip design sector faces consolidation pressures and increased scrutiny of major technology deals.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Elliott's involvement often signals pressure for strategic changes or enhanced shareholder returns at target companies.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Markets Surge Amid U.S.-Iran Diplomatic Developments</h3>
+    <div class="source">
+      
+        
+        Additional: CNBC
+        
+      
+    </div>
+    <p>U.S. stock markets rallied on March 23 as diplomatic channels between Washington and Tehran showed signs of de-escalation following recent Middle East tensions. The surge came alongside other major business news including developments in the Elon Musk Twitter litigation verdict.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Geopolitical stability in the Middle East directly impacts global energy markets and investor confidence.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.technologyreview.com/2026/03/19/1134409/a-5-million-prize-awaits-proof-that-quantum-computers-can-solve-health-care-problems/" target="_blank">Quantum Computing Teams Compete for $5M Healthcare Prize</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.technologyreview.com/2026/03/19/1134409/a-5-million-prize-awaits-proof-that-quantum-computers-can-solve-health-care-problems/" target="_blank">MIT Technology Review</a>
+        
+      
+    </div>
+    <p>Six finalist teams in the Quantum for Bio competition are racing to demonstrate that quantum computers can solve real healthcare challenges, with $5 million at stake. The competition features compact quantum systems using cesium atoms and represents a potential turning point for quantum computing's practical medical applications.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This could mark the transition from theoretical quantum computing to proven real-world healthcare solutions.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">POR 112</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DEN 128</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">BKN 122</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">SAC 126</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">WSH 113</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">NY 145</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">MIN 102</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">BOS 92</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">TOR 98</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">PHX 120</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.espn.in/" target="_blank">Royal Challengers Bengaluru Win Second WPL Title, Defeat Delhi Capitals by 6 Wickets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.in/" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Captain Smriti Mandhana's Royal Challengers Bengaluru captured their second Women's Premier League championship on March 23 by chasing down 204 runs against Delhi Capitals. Mandhana scored 87 off 41 balls while Georgia Voll contributed 79 off 54 deliveries, sharing a record 165-run partnership. Delhi Capitals suffered their fourth consecutive WPL final defeat.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> RCB's second title cements their status as a WPL powerhouse while Delhi's fourth straight final loss raises questions about their ability to close out championships.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espn.in/" target="_blank">Tottenham Hotspur Face Unthinkable Relegation Battle in Premier League Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.in/" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Tottenham Hotspur's dramatic collapse has plunged them into a genuine relegation fight on March 23, with fans forced to contemplate the previously unthinkable scenario. The club's nosedive toward the Premier League's bottom three marks one of the most stunning falls from grace in recent Premier League history, creating an existential crisis at the Tottenham Hotspur Stadium.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A historic club potentially facing relegation represents one of the Premier League's most shocking crises and could have massive financial implications.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nbcsports.com/" target="_blank">Manchester City Beat Arsenal 2-0 to Win 2026 Carabao Cup Final at Wembley</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nbcsports.com/" target="_blank">Additional: NBC Sports</a>
+        
+      
+    </div>
+    <p>Manchester City defeated Arsenal 2-0 in the Carabao Cup final at Wembley Stadium on March 22, with academy graduate Nico O'Reilly scoring both second-half headers. The victory secured City's ninth League Cup title and first since 2021, ending their three-year winless streak against Arsenal and giving Pep Guardiola his fifth League Cup trophy as manager.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This was both clubs' first opportunity for silverware this season, with Arsenal chasing a potential quadruple while City needed momentum after Champions League elimination.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espn.in/" target="_blank">Sunderland Humble Newcastle in Tyne-Wear Derby</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.in/" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>Newcastle United suffered a humiliating defeat to Sunderland in the Tyne-Wear derby on March 22, prompting manager Eddie Howe to acknowledge fan frustration while reaffirming his commitment to the project. The loss raises serious questions about Newcastle's season trajectory and the club's ambitions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Derby defeats carry special significance, and this loss intensifies pressure on Howe and Newcastle's expensive squad to deliver results.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nbcsports.com/" target="_blank">Minnesota Timberwolves End 21-Year Boston Drought on Sunday Night Basketball</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nbcsports.com/" target="_blank">Additional: NBC Sports</a>
+        
+      
+    </div>
+    <p>The Minnesota Timberwolves secured their first victory in Boston since 2005 with a defensive masterclass against the Celtics on March 22. Bones Hyland played a key role despite Anthony Edwards being sidelined, with the Timberwolves' fourth-quarter surge proving decisive in ending the two-decade road losing streak at TD Garden.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Breaking a 21-year road curse demonstrates the Timberwolves' growth as a legitimate contender and their ability to win in historically difficult venues.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>MIT Technology Review & WIRED</strong> — Deep investigations into technology's impact on society, from AI's hidden costs to quantum computing's medical promise.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.technologyreview.com/2026/03/19/1134409/a-5-million-prize-awaits-proof-that-quantum-computers-can-solve-health-care-problems/" target="_blank">Can Quantum Computers Solve Health Care Problems? A $5 Million Prize Awaits the Answer</a></h3>
+    <div class="source"><a href="https://www.technologyreview.com/2026/03/19/1134409/a-5-million-prize-awaits-proof-that-quantum-computers-can-solve-health-care-problems/" target="_blank">MIT Technology Review</a></div>
+    <p>Six teams have reached the finals of the Quantum for Bio competition, competing for $5 million by demonstrating quantum computers can solve real healthcare challenges. The article explores compact quantum systems using cesium atoms and examines whether quantum computing has finally moved from theory to practical medical applications, potentially marking the inflection point where the technology proves its value beyond theoretical demonstrations.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.theverge.com" target="_blank">AI Training Has Become a Miserable Gig Economy for Laid-Off Professionals</a></h3>
+    <div class="source"><a href="https://www.theverge.com" target="_blank">The Verge</a></div>
+    <p>Laid-off lawyers, history PhDs, and scientists have become part of a gig economy where they teach AI systems how to do the jobs they once held. The investigation examines the human cost and irony of professionals training their own replacements in poor working conditions, revealing the hidden labor force behind AI's rapid advancement.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 14 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 3 · ~69 min remaining
+        
+      </div>
+      <h4><a href="https://open.spotify.com/episode/00AFjws53vNchZYgKGmFCU" target="_blank">Dwarkesh Podcast: Why Leonardo was a saboteur, Gutenberg went broke, and Florence was weird (Ada Palmer)</a></h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Ada Palmer (historian, novelist, composer at University of Chicago) on Renaissance history — why great figures of the era were saboteurs, failures, and outcasts before becoming legends. Covers Leonardo, Gutenberg, Medici Florence. You're ~51 min in of 2 hrs.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span></div>
+      <h4>Reading: The Correspondent · Virginia Evans</h4>
+      <h4 style="margin-top:6px">Listening: What We Can Know · Ian McEwan</h4>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Monday, March 23, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · MIT Technology Review & WIRED<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
