@@ -154,7 +154,7 @@ def detect_travel_timezone() -> str:
     if not CALENDAR_ICS_URL:
         return DEFAULT_TIMEZONE
     try:
-        r = requests.get(CALENDAR_ICS_URL, timeout=10)
+        r = requests.get(CALENDAR_ICS_URL, timeout=15)
         r.raise_for_status()
         cal = ICal.from_ical(r.content)
         for component in cal.walk():
@@ -1157,16 +1157,17 @@ def main():
         print(f"  ✅ Brief already generated for {DATE_STR} — skipping.")
         return
 
-    # Guard 2: check travel timezone from Google Calendar; skip if this isn't the right UTC hour
+    # Guard 2: check travel timezone from Google Calendar; skip if it's too early to deliver.
+    # Uses >= not == so missed cron windows (GitHub Actions can skip hours) still trigger delivery.
     print("📅 Checking delivery schedule...")
     travel_tz = detect_travel_timezone()
     target_hour = target_utc_hour_for(travel_tz)
     current_utc_hour = datetime.datetime.now(datetime.timezone.utc).hour
-    if current_utc_hour != target_hour:
+    if current_utc_hour < target_hour:
         tz_label = travel_tz.replace("_", " ")
-        print(f"  ⏭  Not scheduled for this hour — targeting UTC {target_hour:02d}:00 (6am {tz_label}). Current UTC hour: {current_utc_hour:02d}. Skipping.")
+        print(f"  ⏭  Too early — targeting UTC {target_hour:02d}:00 (6am {tz_label}). Current UTC hour: {current_utc_hour:02d}. Skipping.")
         return
-    print(f"  ✅ Delivering at UTC {target_hour:02d}:00 — 6am {travel_tz.replace('_', ' ')}")
+    print(f"  ✅ Delivering — UTC {current_utc_hour:02d}:00 is on or past target UTC {target_hour:02d}:00 (6am {travel_tz.replace('_', ' ')})")
 
     # Step 0: Clean up old briefs, fetch weather and NBA scores
     cleanup_old_briefs()
