@@ -592,6 +592,16 @@ Format as JSON array. Only return the JSON, no other text."""
             if block.type == "text":
                 text += block.text
 
+        # Tag each story with its source category so synthesis cannot cross-contaminate sections.
+        try:
+            stories = json.loads(text)
+            if isinstance(stories, list):
+                for story in stories:
+                    story["source_section"] = category
+                text = json.dumps(stories)
+        except (json.JSONDecodeError, TypeError):
+            pass  # If parsing fails, pass raw text through unchanged
+
         results[category] = text
         print(f"  ✅ {category} done")
         time.sleep(10)  # Brief pause between categories to avoid rapid-fire token bursts
@@ -661,6 +671,12 @@ PLACEHOLDER RULE — absolute:
 You must produce at least 2 real news stories in every section, no exceptions.
 NEVER output a story whose headline says "No Fresh Stories Available", "No Results", or any similar placeholder. If coverage is thin, use slightly older stories or "Additional" outlets — but always real news with real headlines.
 A missing article URL is never a reason to omit a story. Include the story with source name as plain text (url: null) rather than dropping it.
+
+SECTION ASSIGNMENT RULE — strictly enforced:
+Each story in the raw results has a "source_section" field (e.g. "world", "india", "tech", "business", "science", "sports", "explore").
+You MUST only place a story in the section whose id matches its source_section.
+NEVER move a story from one section to another. A story with source_section "world" must not appear in Sports. A story with source_section "sports" must not appear in Business. No exceptions.
+If a section is thin after applying this rule, use the fallback rules above (extend freshness window, add "Additional" outlets) — but only within that section's own source_section stories.
 
 Return ONLY valid JSON with this exact structure:
 {{
