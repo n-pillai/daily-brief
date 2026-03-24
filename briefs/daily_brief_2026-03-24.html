@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 24, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Tuesday, March 24, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Trump postpones Iran strikes citing productive talks while Tehran denies negotiations; Indian PM addresses Parliament on Middle East conflict's impact on energy security; global markets rally on de-escalation hopes.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-24.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">81°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 50° · Now 75°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">74°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 49° · Now 68°</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Warm — light clothing.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.washingtonpost.com/politics/2026/03/23/trump-iran-talks-strikes/" target="_blank">Trump Postpones Iran Strikes for Five Days, Cites 'Productive' Talks with Tehran</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.washingtonpost.com/politics/2026/03/23/trump-iran-talks-strikes/" target="_blank">Washington Post</a>
+        
+      
+         · 
+        <a href="https://www.aljazeera.com/news/2026/3/23/trump-postpones-military-strikes-on-iranian-power-plants" target="_blank">Al Jazeera English</a>
+        
+      
+    </div>
+    <p>President Trump announced a five-day postponement of threatened strikes on Iranian power plants and energy infrastructure, claiming the U.S. and Iran have had productive conversations about ending the war and reached 'major points of agreement.' The announcement sent markets surging and oil prices plunging as investors bet Iran's blockade of the Strait of Hormuz could soon end. However, Iran's foreign ministry denied any direct negotiations with the U.S. since the conflict began on February 28.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The potential de-escalation could avert a catastrophic global energy crisis affecting the 20% of world oil and gas supplies that transit through the Strait of Hormuz.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/2026/03/23/nx-s1-5757172/iran-defiant-trump-hormuz" target="_blank">IEA Chief Warns Iran Conflict Poses 'Major Threat' to Global Economy, Worse Than 1970s Oil Crises</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/2026/03/23/nx-s1-5757172/iran-defiant-trump-hormuz" target="_blank">Additional: NPR</a>
+        
+      
+    </div>
+    <p>International Energy Agency head Fatih Birol warned that the Iran war poses a major threat to the global economy, with at least 40 energy facilities across nine countries severely damaged. Birol stated the current situation is worse than the combined oil crises of 1973 and 1979, and that no country will be immune to the effects if the conflict continues.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The assessment underscores the unprecedented scale of energy infrastructure damage and potential for long-term economic disruption even if diplomatic efforts succeed.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Sudan Hospital Strike Kills at Least 64 Including 13 Children in Darfur</h3>
+    <div class="source">
+      
+        
+        Associated Press
+        
+      
+    </div>
+    <p>At least 64 people were killed, including at least 13 children, in a strike on a hospital in Sudan's western Darfur region last week, the World Health Organization reported. The attack represents the latest atrocity in Sudan's ongoing civil conflict that has caused a humanitarian catastrophe.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The deliberate targeting of healthcare facilities highlights the escalating brutality of Sudan's civil war and the international community's failure to protect civilians.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Cuba's Power Grid Collapses for Third Time in March Amid U.S. Oil Blockade</h3>
+    <div class="source">
+      
+        
+        Additional: NPR
+        
+      
+    </div>
+    <p>Cuba's electrical grid collapsed on Saturday, leaving the entire country without power for the third time in March. The communist government is battling a decaying infrastructure compounded by a U.S.-imposed oil blockade that has moved to block Russian oil shipments to Cuba.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The repeated blackouts signal Cuba's deepening energy emergency and the humanitarian toll of U.S. sanctions amid the broader Middle East energy crisis.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/iran-war-india-impact-energy-trade-diaspora-pm-modi-lok-sabha-126032300498_1.html" target="_blank">PM Modi Addresses Lok Sabha on West Asia Conflict, Outlines India's Energy Security Response</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/iran-war-india-impact-energy-trade-diaspora-pm-modi-lok-sabha-126032300498_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Prime Minister Modi addressed Parliament on March 23 regarding the ongoing West Asia conflict involving the U.S., Israel, and Iran. He highlighted that over 3.75 lakh Indians have returned safely from the region and stated India holds 53 lakh MT strategic petroleum reserves. The address followed a Cabinet Committee on Security meeting reviewing impacts on energy, trade, and diaspora safety.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The conflict threatens India's energy security as a significant portion of crude oil and LPG imports come from the Middle East, while Strait of Hormuz disruptions could severely impact the Indian economy.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/lok-sabha-refers-corporate-laws-amendment-bill-to-joint-parl-panel-126032300471_1.html" target="_blank">Lok Sabha Refers Corporate Laws Amendment Bill 2026 to Joint Parliamentary Committee</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/lok-sabha-refers-corporate-laws-amendment-bill-to-joint-parl-panel-126032300471_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Finance Minister Nirmala Sitharaman introduced the Corporate Laws Amendment Bill 2026 in Lok Sabha, which was referred to a Joint Parliamentary Committee after opposition concerns. The bill aims to amend the Companies Act 2013 and LLP Act 2008 to ease compliance burdens, decriminalize minor corporate offenses by replacing criminal penalties with monetary fines, and promote ease of doing business.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The legislation represents a significant shift in India's corporate regulatory framework toward a more business-friendly environment while addressing compliance gaps identified in the 2022 Company Law Committee report.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/delhi-s-per-capita-income-likely-at-5-31-lakh-in-fy26-economic-survey-126032300415_1.html" target="_blank">Delhi's Per Capita Income Projected at Rs 5.31 Lakh for FY26, 2.5 Times National Average</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/delhi-s-per-capita-income-likely-at-5-31-lakh-in-fy26-economic-survey-126032300415_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Delhi Chief Minister Rekha Gupta tabled the 2025-26 economic survey showing the capital's per capita income is expected to reach Rs 5,31,610, registering 7.92% growth over the previous year. The survey projects a revenue surplus of Rs 9,661.31 crore (0.73% of GSDP), with Delhi's service sector contributing 86.32% to the Gross State Value Added.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Delhi's strong economic performance and revenue surplus highlight the capital's economic resilience and dominant service sector despite national and global headwinds.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/22/stock-market-today-live-updates.html" target="_blank">HSBC Predicts Tesla Shares Could Fall Nearly 70% in Bear Case Scenario</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/22/stock-market-today-live-updates.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>HSBC issued a bearish note on Tesla suggesting shares could fall nearly 70% from current levels, adding to regulatory concerns around the company's Full Self-Driving technology. The downgrade comes as Tesla faces multiple headwinds including production challenges and increased scrutiny from regulators over its autonomous driving claims.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The stark warning signals growing Wall Street skepticism about Tesla's valuation and regulatory risks surrounding its core autonomous vehicle technology promises.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">Fertilizer and Helium Shortages Emerge as Collateral Damage from Iran War</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>Beyond oil disruptions, the U.S.-Iran war is threatening global helium supplies critical for semiconductor manufacturing after a QatarEnergy facility was struck by an Iranian drone. The helium shortage could significantly impact chip production and MRI operations, while fertilizer prices are soaring due to the Strait of Hormuz transit breakdown.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The helium crisis threatens to compound existing semiconductor supply chain challenges, potentially delaying tech hardware production and medical equipment operations globally.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Tech Industry Faces Supply Chain Disruptions from Middle East Energy Crisis</h3>
+    <div class="source">
+      
+        
+        Additional: CNBC
+        
+      
+    </div>
+    <p>Technology companies are bracing for extended supply chain disruptions as the Iran conflict threatens shipping routes and energy supplies critical to semiconductor manufacturing and data center operations. Companies are activating contingency plans to secure alternative helium sources and reroute shipments away from the affected region.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The disruptions could delay product launches and increase costs across the tech industry at a time when AI infrastructure expansion requires significant material and energy inputs.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-23/stock-market-today-dow-s-p-live-updates" target="_blank">Global Stocks Rally as Trump Postpones Iran Strikes, Oil Plunges 11%</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-23/stock-market-today-dow-s-p-live-updates" target="_blank">Bloomberg</a>
+        
+      
+         · 
+        <a href="https://www.cnbc.com/2026/03/22/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Asian equities tracked Wall Street higher after Trump signaled a delay in planned strikes on Iranian energy infrastructure, with the MSCI Asia Pacific Index rising 1.5%. U.S. stocks jumped over 1% with the Dow gaining 631 points (1.38%) to 46,208.47, while Brent crude fell 11% on Monday as geopolitical tensions appeared to ease. The rally reversed weeks of volatility driven by Iran conflict fears.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The market surge signals investor relief that the Middle East conflict that spiked oil prices above $110/barrel and raised global recession fears may be nearing resolution.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/22/stock-market-today-live-updates.html" target="_blank">Asian Markets Plunge 6.5% Before Trump Announcement on Escalating War Fears</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/22/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Before Trump's postponement announcement, fears of a widening Middle East war drove steep selloffs in Asian markets with South Korea's Kospi plunging 6.5% and Japan's Nikkei 225 declining 3.5%. The sharp selloff prompted the Korean exchange to briefly suspend trading as investors positioned for potential U.S. military action against Iran.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The extreme volatility demonstrates the fragility of global markets amid geopolitical uncertainty and the rapid repricing of risk when war expectations shift.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">Energy Crisis Threatens Global Supply Chains Beyond Oil Markets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Fertilizer prices are soaring due to the Strait of Hormuz transit breakdown, potentially giving Democrats an affordability pitch in agriculture-focused states heading into midterm elections. The disruptions extend beyond energy to critical agricultural inputs and industrial gases, threatening food security and manufacturing output globally.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The cascading effects of the Iran conflict on agriculture and industry could sustain inflation pressures even if oil prices moderate, complicating central bank policy decisions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/2026/03/23/nx-s1-5757172/iran-defiant-trump-hormuz" target="_blank">IEA Warns Current Energy Crisis Worse Than Combined 1970s Oil Shocks</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/2026/03/23/nx-s1-5757172/iran-defiant-trump-hormuz" target="_blank">Additional: NPR</a>
+        
+      
+    </div>
+    <p>International Energy Agency head Fatih Birol stated that with at least 40 energy facilities across nine countries severely damaged, the current situation surpasses the combined oil crises of 1973 and 1979 in severity. Birol emphasized that no country will be immune to the economic effects if the conflict continues, threatening global growth prospects.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The assessment from the world's leading energy authority underscores unprecedented risks to the global economy and the urgent need for diplomatic resolution.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">Helium Supply Crisis Threatens MRI Operations and Medical Research Worldwide</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/20/5-things-to-know-before-the-market-opens.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>The Iran conflict has disrupted global helium supplies critical for MRI scanners and medical research after a QatarEnergy facility was struck. Hospitals are implementing helium conservation protocols and prioritizing critical scans as the shortage threatens diagnostic capabilities. The crisis highlights the vulnerability of medical infrastructure to geopolitical disruptions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> MRI machines require liquid helium for cooling, and prolonged shortages could force medical facilities to ration diagnostic imaging, delaying critical diagnoses and treatments.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>WHO Reports 64 Dead Including 13 Children in Sudan Hospital Attack</h3>
+    <div class="source">
+      
+        
+        Additional: Associated Press
+        
+      
+    </div>
+    <p>The World Health Organization condemned the strike on a hospital in Sudan's western Darfur region that killed at least 64 people, including at least 13 children. The attack represents a grave violation of international humanitarian law and underscores the targeting of healthcare infrastructure in Sudan's civil conflict, which has created a public health catastrophe.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Attacks on hospitals not only cause immediate casualties but destroy critical healthcare capacity in regions already facing disease outbreaks and malnutrition crises.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/2026/03/23/nx-s1-5757172/iran-defiant-trump-hormuz" target="_blank">Energy Infrastructure Damage Threatens Public Health Across Middle East</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/2026/03/23/nx-s1-5757172/iran-defiant-trump-hormuz" target="_blank">Additional: NPR</a>
+        
+      
+    </div>
+    <p>With at least 40 energy facilities damaged across nine countries according to the IEA, the conflict is creating secondary public health crises including water treatment disruptions, hospital power failures, and challenges maintaining vaccine cold chains. Health experts warn of potential disease outbreaks if infrastructure damage continues.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The destruction of energy infrastructure has cascading effects on public health systems, threatening to create humanitarian crises that outlast the immediate conflict.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Arsenal Maintain Premier League Lead with 70 Points as Title Race Intensifies</h3>
+    <div class="source">
+      
+        
+        Additional: NBC Sports
+        
+      
+    </div>
+    <p>Arsenal continue to lead the Premier League table with 70 points as of March 23, maintaining their position in a tight title race. The Gunners are navigating a crucial phase of the season with several key fixtures remaining that will determine the championship outcome.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Arsenal's sustained challenge for the Premier League title represents their strongest campaign in years, with implications for Champions League positioning and summer transfer strategy.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>March Madness Tournament Reaches Final Rounds with Upset-Filled Bracket</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The NCAA Men's Basketball Tournament continues with several lower-seeded teams advancing to the later rounds following a series of upsets. The unpredictable bracket has captivated fans and disrupted millions of bracket predictions as the competition moves toward the Final Four.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> March Madness remains one of the most-watched annual sporting events in the United States, generating significant economic activity and cultural engagement.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>NHL and NBA Seasons Enter Critical Final Stretch for Playoff Positioning</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>Both the NHL and NBA are in the crucial final weeks of their regular seasons, with multiple teams battling for playoff positions and seeding. Close races in both conferences are setting up potentially dramatic finishes to determine postseason matchups.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The playoff races will determine matchups for both leagues' championship pursuits and have significant financial implications for franchises and players.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Curated Long-Form Features</strong> — In-depth reporting and analysis from leading publications exploring complex topics beyond daily news cycles.
+  </div>
+
+  
+  <div class="story">
+    <h3>The Cascading Consequences of Middle East Energy Infrastructure Destruction</h3>
+    <div class="source">Analysis</div>
+    <p>Beyond immediate oil price impacts, the damage to 40+ energy facilities across nine countries creates long-term challenges for global supply chains, from semiconductor manufacturing dependent on helium to agricultural production relying on fertilizer shipments. The crisis demonstrates the interconnected vulnerabilities of modern industrial civilization to regional conflicts.</p>
+  </div>
+  
+  <div class="story">
+    <h3>How Strategic Petroleum Reserves Became Central to National Security</h3>
+    <div class="source">Analysis</div>
+    <p>India's disclosure of 53 lakh MT strategic petroleum reserves highlights how countries are preparing for extended energy disruptions. The development of strategic reserves, helium stockpiles, and alternative supply routes represents a fundamental shift in how nations approach energy security in an increasingly volatile geopolitical environment.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 15 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 4 · ~69 min remaining
+        
+      </div>
+      <h4><a href="https://open.spotify.com/episode/00AFjws53vNchZYgKGmFCU" target="_blank">Dwarkesh Podcast: Why Leonardo was a saboteur, Gutenberg went broke, and Florence was weird (Ada Palmer)</a></h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Ada Palmer (historian, novelist, composer at University of Chicago) on Renaissance history — why great figures of the era were saboteurs, failures, and outcasts before becoming legends. Covers Leonardo, Gutenberg, Medici Florence. You're ~51 min in of 2 hrs.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span></div>
+      <h4>Reading: The Correspondent · Virginia Evans</h4>
+      <h4 style="margin-top:6px">Listening: What We Can Know · Ian McEwan</h4>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Tuesday, March 24, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Curated Long-Form Features<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
