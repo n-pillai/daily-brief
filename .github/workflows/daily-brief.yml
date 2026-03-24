@@ -9,6 +9,11 @@ on:
 
   # Allow manual trigger from GitHub UI (useful for re-runs or off-schedule delivery)
   workflow_dispatch:
+    inputs:
+      force:
+        description: "Skip scheduling guard and generate immediately (for testing)"
+        required: false
+        default: "false"
 
 permissions:
   contents: write
@@ -54,6 +59,7 @@ jobs:
           WEATHER_LOCATION_HOME: ${{ secrets.WEATHER_LOCATION_HOME }}
           WEATHER_LOCATION_WORK: ${{ secrets.WEATHER_LOCATION_WORK }}
           CALENDAR_ICS_URL: ${{ secrets.CALENDAR_ICS_URL }}
+          FORCE_GENERATE: ${{ github.event.inputs.force }}
         run: python generate_brief.py
 
       - name: Commit briefs
