@@ -78,6 +78,8 @@ Leave `description` and `estimated_time` as `null` — Claude will enrich them o
 Either wait for the cron, or trigger manually:
 **Actions → Daily Brief → Run workflow**
 
+To force a run outside of the 6 AM delivery window (e.g. for testing), trigger manually with the **force** input set to `true`. This bypasses the scheduling guard and generates immediately.
+
 The brief will arrive in your inbox within about 7 minutes.
 
 ## Output
