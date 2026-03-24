@@ -365,9 +365,9 @@ def get_active_sports() -> str:
         active.append("MLB baseball")
     if month in (10, 11, 12, 1, 2, 3, 4, 5, 6):
         active.append("NHL ice hockey")
-    # Cricket: year-round; IPL runs April–May, WPL runs February–March
+    # Cricket: year-round; IPL runs April–May, WPL runs February–early March
     cricket = "international cricket (pay special attention to Team India Men and Women matches)"
-    if month in (2, 3):
+    if month == 2:
         cricket += ", WPL (Women's Premier League)"
     if month in (4, 5):
         cricket += ", IPL (Indian Premier League)"
@@ -525,9 +525,11 @@ def search_news() -> dict:
             f"Search specifically for today's top sports news — scores, results, transfers, and major stories — "
             f"reported by these trusted outlets: {source_list('sports')}. "
             f"Sports currently in season: {active_sports}. Prioritise coverage of these. "
-            f"If any World Cup or major international tournament is currently active, include it. "
             f"Only include stories published on {DATE_STR} or {YESTERDAY_STR}. Ignore older stories even if they rank highly. "
-            f"Only return stories where the original reporting outlet is one of these sources."
+            f"Only return stories where the original reporting outlet is one of these sources. "
+            f"Additionally: search for any major knockout tournaments currently in progress (e.g. Champions League, Grand Slam tennis, World Cups, Copa America, etc.). "
+            f"For each active tournament found, include one story summarising the state of play — who has advanced, current bracket or standings, and what fixtures are coming up. "
+            f"This tournament summary should be based on current search results, not assumed from the calendar."
         ),
         "explore": (
             f"Search for interesting and thought-provoking long-form or feature stories published in the past 2 weeks "
@@ -564,7 +566,7 @@ Search query: {query}
 Return the top 5 most important stories. For each story provide:
 - headline (concise, informative)
 - source_name (the specific outlet, e.g. "BBC", "Reuters" — not an aggregator)
-- source_url (direct link to the article if available, otherwise the outlet's homepage)
+- source_url (direct link to the specific article if you can confirm it — null if not available; do NOT use the outlet homepage as a fallback)
 - published_date (exact date the article was published, in YYYY-MM-DD format — this is required; if uncertain, use your best estimate based on the search result)
 - summary (2-3 sentences of substance, not just headline expansion)
 - why_it_matters (1 sentence, only for the top 1-2 stories)
@@ -649,12 +651,16 @@ If a story in the raw results comes from a news aggregator (e.g. ScienceDaily, C
 Do not include stories where you cannot identify a reputable primary source. Fewer high-quality stories is better than padding with aggregator content.
 If a section has fewer than 2 stories from approved outlets, include the most important stories from any major reputable outlet (major newspapers, wire services, broadcasters) to bring each section to at least 3 stories. Mark these with a note in the source name like "Additional: [Outlet Name]".
 
-FRESHNESS RULE — strictly enforced:
-Each story in the raw results includes a published_date field. Use it.
-Only include stories with published_date of {DATE_STR} or {YESTERDAY_STR} (within the last 48 hours).
-If published_date is missing or ambiguous, include the story — do not drop it on freshness grounds alone.
-Events that concluded more than 2 days ago (tournament finals, concluded summits, closed negotiations) must not appear.
-If a category genuinely has no fresh stories after applying this rule, fill with the most recent available stories from approved or major reputable outlets rather than leaving the section empty.
+FRESHNESS RULE:
+Prefer stories published on {DATE_STR} or {YESTERDAY_STR}. If published_date is missing or ambiguous, include the story.
+The published_date in raw results is estimated by the search model and may be inaccurate — treat it as a guide, not ground truth. If a story clearly describes a current or ongoing event, include it even if the estimated date looks slightly old.
+If a section has fewer than 3 fresh stories, extend the window to the past 5 days rather than leaving the section thin.
+Do not re-cover a specific match result or concluded event (e.g. a tournament final) if it clearly belongs to a prior day's brief.
+
+PLACEHOLDER RULE — absolute:
+You must produce at least 2 real news stories in every section, no exceptions.
+NEVER output a story whose headline says "No Fresh Stories Available", "No Results", or any similar placeholder. If coverage is thin, use slightly older stories or "Additional" outlets — but always real news with real headlines.
+A missing article URL is never a reason to omit a story. Include the story with source name as plain text (url: null) rather than dropping it.
 
 Return ONLY valid JSON with this exact structure:
 {{
@@ -669,8 +675,8 @@ Return ONLY valid JSON with this exact structure:
         {{
           "headline": "...",
           "sources": [
-            {{"name": "BBC", "url": "https://...", "subscriber": false}},
-            {{"name": "The Economist", "url": "https://...", "subscriber": true}}
+            {{"name": "BBC", "url": "https://bbc.com/news/article-slug", "subscriber": false}},
+            {{"name": "The Economist", "url": null, "subscriber": true}}
           ],
           "summary": "2-3 sentences of real substance",
           "why_it_matters": "1 sentence or null"
@@ -945,11 +951,15 @@ def generate_email_html(brief_data: dict, mp3_url: str) -> str:
     def render_story(story):
         sources_parts = []
         for s in story.get("sources", []):
-            link = f'<a href="{s.get("url","")}" style="color:{ACCENT};text-decoration:none">{s["name"]}</a>'
+            url = s.get("url") or ""
+            if url:
+                name_html = f'<a href="{url}" style="color:{ACCENT};text-decoration:none">{s["name"]}</a>'
+            else:
+                name_html = s["name"]
             if s.get("subscriber"):
-                link += (' <span style="background:#059669;color:#fff;padding:1px 5px;'
-                         'border-radius:3px;font-size:9px;font-family:Arial">Sub</span>')
-            sources_parts.append(link)
+                name_html += (' <span style="background:#059669;color:#fff;padding:1px 5px;'
+                              'border-radius:3px;font-size:9px;font-family:Arial">Sub</span>')
+            sources_parts.append(name_html)
         sources_html = " · ".join(sources_parts)
 
         why = ""
