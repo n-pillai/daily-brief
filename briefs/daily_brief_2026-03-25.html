@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 25, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Wednesday, March 25, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">U.S. and Iran send conflicting signals on peace talks as the month-long conflict continues; India's economy slows sharply amid energy disruptions; and private credit giants cap redemptions as withdrawal requests surge past 11%.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-25.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">⛅</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">75°F</div>
+    <div class="weather-desc">Partly cloudy</div>
+    <div class="weather-hilo">Low 52° · Now 52°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">⛅</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">69°F</div>
+    <div class="weather-desc">Mainly clear</div>
+    <div class="weather-hilo">Low 50° · Now 51°</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Warm — light clothing.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>U.S. and Iran Exchange Contradictory Signals on Peace Talks as Military Strikes Continue</h3>
+    <div class="source">
+      
+        
+        Associated Press
+        
+      
+         · 
+        Reuters
+        
+      
+    </div>
+    <p>President Trump claimed the U.S. is holding productive negotiations with Iran to end the month-long conflict, announcing a five-day pause on strikes targeting Iranian power plants. However, Iranian officials denied any such talks are taking place, with Iran's Foreign Ministry stating there has been "no dialogue" between the two nations. The conflicting statements come as both sides continue military operations, with Iranian missiles striking Israeli sites and U.S.-Israeli forces targeting Iranian infrastructure.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents a critical juncture in a conflict that has disrupted global energy markets, caused oil prices to surge above $100 per barrel, and threatened to expand into a wider regional war with significant humanitarian and economic consequences.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Lebanon Expels Iranian Ambassador Amid Growing Anger Over Hezbollah Support</h3>
+    <div class="source">
+      
+        
+        Reuters
+        
+      
+    </div>
+    <p>Lebanon declared Iran's ambassador persona non grata and ordered him to leave by Sunday, marking a dramatic deterioration in relations between Beirut and Tehran. The Lebanese government has banned Iranian flights over fears they carry weapons for Hezbollah and accused Iran of dragging Lebanon into another war with Israel. More than 1,000 people have been killed in Lebanon from Israeli strikes, with over 1 million displaced.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This unprecedented break between Lebanon and Iran signals a potential realignment in Middle Eastern politics as the conflict takes a mounting toll on Lebanese civilians.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Pentagon Deploys 3,000 Paratroopers to Middle East as Iran Conflict Escalates</h3>
+    <div class="source">
+      
+        
+        Al Jazeera
+        
+      
+    </div>
+    <p>The Pentagon ordered the deployment of up to 3,000 troops from the 82nd Airborne Division to the Middle East as the U.S.-Israel conflict with Iran approaches one month. The deployment comes amid continued missile exchanges and no clear path to de-escalation despite Trump administration claims of ongoing negotiations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The troop deployment signals deepening U.S. military commitment to the conflict and raises concerns about potential ground operations in the region.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Congo and Rwanda Agree to De-escalation Steps in U.S.-Brokered Peace Talks</h3>
+    <div class="source">
+      
+        
+        BBC
+        
+      
+    </div>
+    <p>After U.S.-hosted talks in Washington, the Democratic Republic of Congo and Rwanda issued a joint statement agreeing to "a series of coordinated steps to de-escalate tensions and advance progress on the ground" in eastern Congo. The agreement follows weeks of fighting involving Rwanda-backed M23 rebels, which has displaced over 7 million people in what has become one of Africa's worst humanitarian crises.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents the first diplomatic breakthrough in a conflict that has destabilized central Africa and created millions of refugees.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>M23 Rebels Detained Journalists in Shipping Containers, Rights Group Reports</h3>
+    <div class="source">
+      
+        
+        Associated Press
+        
+      
+    </div>
+    <p>Reporters Without Borders reported that the Rwanda-backed M23 rebel group in eastern Congo detained civilians, including at least two journalists, in metal shipping containers without light or ventilation in the city of Goma. The advocacy group described the conditions as "inhumane" and "degrading," using witness accounts, satellite imagery, and photos collected in 2025 to document the abuses.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The documented human rights abuses add pressure on Rwanda to distance itself from M23 as international scrutiny of the conflict intensifies.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/amp/markets/news/stock-market-live-march-25-nse-bse-sensex-today-nifty-gift-nifty-us-iran-war-brent-crude-ipo-share-market-today-126032500120_1.html" target="_blank">Indian Stock Markets Surge 1,200 Points on West Asia De-escalation Hopes as Oil Falls Below $100</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/amp/markets/news/stock-market-live-march-25-nse-bse-sensex-today-nifty-gift-nifty-us-iran-war-brent-crude-ipo-share-market-today-126032500120_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The Sensex soared 1,205 points to close at over 75,500 and the Nifty ended at 23,306 on Wednesday as global sentiment improved following reports of potential diplomatic breakthroughs in the West Asia conflict. Brent crude fell below $100 per barrel after US President Trump suggested productive discussions regarding a resolution to hostilities with Iran. Asian markets rallied with Japan's Nikkei and South Korea's Kospi surging around 3% each on peace hopes.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The market rally offers temporary relief to Indian investors after weeks of volatility driven by energy security concerns and geopolitical uncertainty.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/economy/news/india-pmi-march-slows-to-56-5-on-west-asia-shock-126032400413_1.html" target="_blank">India's Private Sector Growth Slows to 3-Year Low as West Asia War Dampens Demand</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/economy/news/india-pmi-march-slows-to-56-5-on-west-asia-shock-126032400413_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>India's composite PMI fell to 56.5 in March from 58.9 in February, the slowest pace in over three years, according to HSBC's flash survey. Manufacturing PMI dropped to a four-and-a-half-year low of 53.8 as market disruptions and energy shocks from the Iran war dampened domestic demand and pushed up costs. Companies cited unstable markets, inflationary pressures and uncertainty from the conflict as weighing on economic activity.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The sharp economic slowdown reflects how geopolitical tensions in West Asia are translating into real economic pain for India, with domestic demand weakening at the fastest pace since the pandemic.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/centre-to-hold-all-party-meeting-on-west-asia-conflict-on-march-25-126032400530_1.html" target="_blank">Modi Convenes All-Party Meeting on West Asia Crisis as Energy Shock Threatens Economy</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/centre-to-hold-all-party-meeting-on-west-asia-conflict-on-march-25-126032400530_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The government called an all-party meeting for March 25 at 5 PM to brief political leaders on the West Asia crisis, with Defence Minister Rajnath Singh chairing and External Affairs Minister Jaishankar providing updates. PM Modi stated in Parliament that the government has constituted seven empowered groups to address fuel, supply chains, fertilizers and other impacts, while emphasizing India's fundamentals remain strong despite the unprecedented crisis.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The West Asia conflict has disrupted 54% of India's LPG and 30% of LNG supplies through the Strait of Hormuz, threatening energy security and economic stability for the world's fastest-growing major economy.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>RBI Intervenes to Support Rupee as Dollar Demand from Maturing Forwards Weighs on Currency</h3>
+    <div class="source">
+      
+        
+        Additional: Economic Times
+        
+      
+    </div>
+    <p>The Reserve Bank of India likely intervened on Wednesday to support the rupee as heavy dollar demand from maturing non-deliverable forwards weighed on the currency. Traders reported the RBI used state-run banks for intervention, helping the rupee hold above its record low. Indian shares and government bonds saw gains as oil prices fell below $100 per barrel on hopes of West Asia de-escalation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The RBI's intervention highlights ongoing pressure on India's currency amid capital outflows and energy-driven import demand.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Apple Announces WWDC 2026 Dates as AI Integration Dominates Developer Focus</h3>
+    <div class="source">
+      
+        
+        Additional: The Verge (via aggregator)
+        
+      
+    </div>
+    <p>Apple confirmed its Worldwide Developers Conference will run June 8-12, 2026, with expectations centered on deeper AI integration across iOS, macOS, and developer tools. The announcement comes as Apple faces increasing pressure to demonstrate competitive AI capabilities against Microsoft, Google, and emerging players. Developers anticipate major updates to Siri and on-device machine learning frameworks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> WWDC 2026 represents Apple's critical opportunity to showcase its AI strategy and retain developer loyalty amid intensifying competition in the AI-powered software ecosystem.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>iPhone Exploit Kit Leaked Online, Raising Security Concerns for Older Devices</h3>
+    <div class="source">
+      
+        
+        Additional: TechCrunch (via aggregator)
+        
+      
+    </div>
+    <p>Security researchers discovered that a sophisticated iPhone exploit kit has been leaked online, potentially enabling attackers to compromise older iPhone models running iOS versions prior to the latest updates. The tools, which appear to have originated from commercial spyware vendors, could allow unauthorized access to device data and communications. Apple has not yet commented on the leak.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The leak democratizes access to powerful exploit tools, potentially putting millions of users with older devices at heightened risk of surveillance and data theft.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Software Sector Faces Reckoning as AI Disruption Fears Intensify Among Investors</h3>
+    <div class="source">
+      
+        
+        Additional: Bloomberg Technology
+        
+      
+    </div>
+    <p>Traditional software companies continue to face mounting pressure as investors reassess business models in light of AI-powered alternatives. The iShares Expanded Tech-Software Sector ETF has fallen 23% year-to-date, with companies like Salesforce and ServiceNow experiencing significant selloffs. Analysts warn that AI agents and automation tools could fundamentally disrupt subscription software economics over the next 18-24 months.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The software sector downturn signals a broader market reckoning about which technology business models will survive the transition to AI-native computing paradigms.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-24/ares-apollo-fall-as-firms-curb-private-credit-fund-redemptions" target="_blank">Apollo and Ares Cap Private Credit Fund Redemptions as Withdrawal Requests Surge Past 11%</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-24/ares-apollo-fall-as-firms-curb-private-credit-fund-redemptions" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Apollo Global Management and Ares Management capped withdrawals at 5% after investors requested to redeem 11.2% and 11.6% of shares respectively from their flagship private credit funds. The moves signal mounting strain in the $1.8 trillion private credit market, with investors receiving only about 45 cents on the dollar of requested redemptions. Apollo's $15 billion fund and Ares' $10.7 billion fund are among multiple alternative asset managers grappling with surging redemption requests amid concerns about software company exposure and AI disruption.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The redemption gates at two of the industry's largest players expose fundamental liquidity mismatches in private credit and could trigger broader contagion across the $2 trillion alternative asset sector.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/23/stock-market-today-live-updates.html" target="_blank">Oil Markets Whipsaw on Conflicting Iran War Signals as Brent Crude Fluctuates Around $100</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/23/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+         · 
+        Reuters
+        
+      
+    </div>
+    <p>Oil prices remained volatile with Brent crude trading around $100 per barrel as investors parsed conflicting signals about potential Iran peace negotiations. Markets briefly rallied on Trump administration claims of diplomatic progress before giving back gains as Iranian officials denied any talks are taking place. The prolonged closure of the Strait of Hormuz has created what analysts call the largest supply disruption in oil market history, with about 20% of global crude and LNG exports stranded.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Sustained oil prices above $100 threaten to accelerate inflation globally and push major economies toward stagflation, with economists warning of severe economic consequences if the conflict extends beyond April.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/23/stock-market-today-live-updates.html" target="_blank">Software Sector Selloff Deepens as AI Concerns Spread to Private Credit Markets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/23/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The iShares Expanded Tech-Software Sector ETF fell more than 3% on March 24, bringing its year-to-date decline to 23% as concerns over artificial intelligence disrupting traditional software business models intensified. Salesforce dropped more than 5% while ServiceNow fell over 4%, with the selloff extending to private credit funds that have significant exposure to software companies. The sector weakness is contributing to broader redemption pressures across alternative asset managers with concentrated software lending portfolios.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The dual pressures of AI disruption and private credit stress are creating a feedback loop that could force widespread repricing of software company valuations and debt.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/23/stock-market-today-live-updates.html" target="_blank">Treasury Yields Surge After Weak Auction Amid Inflation Concerns</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/23/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Treasury yields jumped sharply on March 24, with the 2-year yield rising over 11 basis points to 3.944% and the 10-year yield climbing more than 8 basis points to 4.42% after a poorly received auction. The selloff reflects growing investor concerns about persistent inflation driven by elevated oil prices and potential Fed policy complications. The S&P 500 fell 0.37% to 6,556.37 as rising yields pressured equity valuations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Rising yields at a time of geopolitical uncertainty signal investor doubts about the Fed's ability to manage inflation while supporting growth, potentially constraining monetary policy flexibility.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Japan's SMFG Exploring Potential Takeover of Jefferies as Shares Surge</h3>
+    <div class="source">
+      
+        
+        Additional: Financial Times (via Reuters report)
+        <span class="sub-badge">Subscriber</span>
+      
+    </div>
+    <p>Jefferies Financial Group shares jumped up to 10% in premarket trading after reports that Sumitomo Mitsui Financial Group has assembled a team to prepare for a possible takeover of the U.S. investment bank. SMFG, which already holds up to 20% of Jefferies, is reportedly positioning to act if the share price presents an opportunity. Jefferies shares have fallen 36% in 2026 amid scrutiny over its exposure to bankrupt auto parts supplier First Brands.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A successful SMFG acquisition would represent one of the largest Japanese takeovers of a U.S. financial institution and could reshape competitive dynamics in investment banking.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>CDC Faces Workforce Crisis as Budget Cuts and Political Pressure Drive Staff Departures</h3>
+    <div class="source">
+      
+        
+        Additional: KFF Health News
+        
+      
+    </div>
+    <p>The Centers for Disease Control and Prevention is experiencing significant staff departures amid budget cuts and increased political pressure on public health agencies. Career scientists and epidemiologists are reportedly leaving for positions in academia and the private sector, raising concerns about the agency's capacity to respond to future health emergencies. The exodus follows years of pandemic-related burnout and recent congressional scrutiny of CDC operations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The erosion of CDC expertise and institutional knowledge could compromise America's ability to detect and respond to emerging disease threats at a time of heightened global health risks.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Hospitals Report Rising Strain as Healthcare Costs Surge Amid Broader Economic Pressures</h3>
+    <div class="source">
+      
+        
+        Additional: KFF Health News
+        
+      
+    </div>
+    <p>Healthcare providers are reporting increased financial strain as costs for medical supplies, pharmaceuticals, and staffing continue to rise faster than reimbursement rates. Rural hospitals are particularly vulnerable, with several systems warning of potential closures or service reductions. The pressures come as the Iran conflict disrupts pharmaceutical supply chains and drives up energy costs for healthcare facilities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The convergence of geopolitical disruptions and structural healthcare economics threatens access to care, particularly in underserved communities already facing provider shortages.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Researchers Make Progress on Long COVID Treatments as Patient Numbers Remain High</h3>
+    <div class="source">
+      
+        
+        Additional: STAT News (from extended window)
+        
+      
+    </div>
+    <p>Multiple clinical trials are showing promising early results for treatments targeting persistent symptoms of long COVID, including chronic fatigue, brain fog, and cardiovascular complications. Researchers estimate that 15-20 million Americans continue to experience long COVID symptoms, with new cases still emerging despite declining acute infection rates. Several academic medical centers have expanded specialized clinics to address the ongoing patient demand.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Effective long COVID treatments could restore quality of life for millions of patients and reduce the substantial economic burden of lost productivity from chronic illness.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">SAC 90</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CHA 134</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">NO 116</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">NY 121</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">ORL 131</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CLE 136</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">DEN 125</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">PHX 123</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3>Champions League Quarterfinals Draw Set for April as European Competition Intensifies</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The UEFA Champions League quarterfinals are scheduled for April 7-8 and 14-15 following the completion of the Round of 16 on March 17-18. The draw will determine matchups among Europe's elite clubs as the tournament enters its decisive phase. Teams are preparing for what analysts consider one of the most competitive knockout rounds in recent years.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Champions League quarterfinals represent the pinnacle of European club football, with billions of dollars in prize money and prestige at stake.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>IPL 2026 Captains Convene as India's Premier Cricket League Prepares for New Season</h3>
+    <div class="source">
+      
+        
+        Additional: Outlook India
+        
+      
+    </div>
+    <p>Captains from all Indian Premier League franchises gathered on March 25 for the traditional pre-season meeting as the IPL 2026 season approaches. The meeting covers tournament protocols, playing conditions, and promotional obligations as the league prepares for another high-stakes season. The IPL remains one of the world's most valuable sporting properties, generating billions in revenue and attracting global viewership.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The IPL serves as a critical economic engine for Indian cricket and provides a global showcase for the sport's biggest stars and emerging talent.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>NBA Playoff Race Tightens as Regular Season Enters Final Stretch</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>With approximately 15 games remaining in the NBA regular season, playoff positioning remains highly competitive across both conferences. Multiple teams are separated by just one or two games in the standings, setting up crucial late-season matchups that will determine seeding and play-in tournament participants. Player health and load management strategies are becoming increasingly important as teams balance winning priorities with injury prevention.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The tight playoff race is generating high fan engagement and creating unpredictability heading into the postseason, with several championship contenders still jockeying for position.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>The Economist</strong> — In-depth analysis and long-form journalism on global affairs, economics, and culture from one of the world's most respected news magazines.
+  </div>
+
+  
+  <div class="story">
+    <h3>The Geopolitics of Energy: How the Iran Conflict Is Reshaping Global Power</h3>
+    <div class="source">The Economist</div>
+    <p>An examination of how the month-long Iran conflict is accelerating shifts in global energy markets, forcing countries to reconsider strategic alliances and potentially marking the end of the post-Cold War energy order. The piece explores how oil-importing nations are scrambling to secure alternative supplies while energy producers are gaining unprecedented leverage.</p>
+  </div>
+  
+  <div class="story">
+    <h3>The Private Credit Reckoning: When Alternative Assets Face Reality</h3>
+    <div class="source">The Economist</div>
+    <p>A deep dive into the structural vulnerabilities in the $2 trillion private credit market, examining how the industry sold investors on liquidity that didn't truly exist and what the current redemption crisis reveals about the future of alternative asset management in a higher-rate environment.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 16 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 5 · ~69 min remaining
+        
+      </div>
+      <h4><a href="https://open.spotify.com/episode/00AFjws53vNchZYgKGmFCU" target="_blank">Dwarkesh Podcast: Why Leonardo was a saboteur, Gutenberg went broke, and Florence was weird (Ada Palmer)</a></h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Ada Palmer (historian, novelist, composer at University of Chicago) on Renaissance history — why great figures of the era were saboteurs, failures, and outcasts before becoming legends. Covers Leonardo, Gutenberg, Medici Florence. You're ~51 min in of 2 hrs.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span></div>
+      <h4>Reading: The Correspondent · Virginia Evans</h4>
+      <h4 style="margin-top:6px">Listening: What We Can Know · Ian McEwan</h4>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Wednesday, March 25, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · The Economist<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
