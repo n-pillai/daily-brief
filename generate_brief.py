@@ -27,7 +27,7 @@ RECIPIENT_EMAILS = [e.strip() for e in os.environ["RECIPIENT_EMAILS"].split(",")
 CALENDAR_ICS_URL = os.environ.get("CALENDAR_ICS_URL", "")
 
 DEFAULT_TIMEZONE = "America/Los_Angeles"  # Pacific — fallback when no travel detected
-TARGET_LOCAL_HOUR = 6                     # Deliver at 6:00am local time wherever Nisha is
+TARGET_LOCAL_HOUR = 5                     # Target 5:00am — GitHub Actions delays ~40min so delivery lands ~5:40–6:00am
 
 # City/country keywords → IANA timezone. Extend as needed.
 LOCATION_TIMEZONE_MAP = {
