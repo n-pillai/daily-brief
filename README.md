@@ -6,7 +6,7 @@ Automated daily news briefing with AI synthesis, weather, and audio narration, d
 
 1. **Weather** — fetches current conditions and forecast for up to two locations
 2. **Searches** today's news via Claude with web search across World & Politics, India, Tech & AI, Business & Finance, Science & Health, and Sports — pulling only from a curated list of trusted outlets per section. Sports coverage is seasonally aware (tracks what's currently in season, with a focus on Team India, IPL, and WPL)
-3. **Synthesises** stories — cross-referencing across outlets, flagging subscriber sources
+3. **Synthesises** stories — cross-referencing across outlets, flagging subscriber sources — then runs a post-synthesis validation layer that catches cross-section duplicates, meta-items (e.g. "journal publishes new issue"), hallucinated events with no verifiable source, and explore stories without real article URLs
 4. **Surfaces an Explore section** — longform articles and features from a broader pool (WIRED, Quanta, Hacker News, Aeon, MIT Technology Review, and others), prioritising paid subscriptions
 5. **Tracks a Deep Dive queue** — a persistent curated backlog of one longform read and one podcast episode, each shown with a day counter so you know how long it's been queued. Also tracks your current book. Items are managed externally and synced in; a nudge appears after Day 7
 6. **Shows yesterday's NBA scores** via the ESPN public API
@@ -43,7 +43,7 @@ Without a verified domain, Resend will only deliver to the email address on your
 
 ### 4. Set your timezone and schedule
 
-The workflow runs **every hour**. The Python script checks the current UTC time and only generates the brief at 6 AM in your local timezone — no manual cron editing required.
+The workflow runs **every hour**. The Python script checks the current UTC time and only generates the brief at 5 AM in your local timezone (typically delivers ~5:40 AM after GitHub Actions cron delay) — no manual cron editing required.
 
 **Default timezone:** Pacific (`America/Los_Angeles`). To change it, edit `DEFAULT_TIMEZONE` and `TARGET_LOCAL_HOUR` at the top of `generate_brief.py`.
 
