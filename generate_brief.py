@@ -672,6 +672,11 @@ You must produce at least 2 real news stories in every section, no exceptions.
 NEVER output a story whose headline says "No Fresh Stories Available", "No Results", or any similar placeholder. If coverage is thin, use slightly older stories or "Additional" outlets — but always real news with real headlines.
 A missing article URL is never a reason to omit a story. Include the story with source name as plain text (url: null) rather than dropping it.
 
+CONTENT QUALITY RULES:
+- Never include stories about a journal publishing an issue, a magazine releasing an edition, or other meta-publishing announcements. Focus on specific discoveries, findings, or events — not on the fact that a publication released content.
+- Do not report future tournament schedules, semifinals, or event dates unless the story comes from a specific named outlet with a verifiable URL. If a sporting event's current status is unclear from the search results, omit it rather than risk fabrication.
+- Each story must describe a specific, verifiable event or development. Generic roundups or summaries of "what's happening in [field]" are not stories.
+
 SECTION ASSIGNMENT RULE — strictly enforced:
 Each story in the raw results has a "source_section" field (e.g. "world", "india", "tech", "business", "science", "sports", "explore").
 You MUST only place a story in the section whose id matches its source_section.
@@ -781,6 +786,152 @@ Ensure all URLs are real and accurate. Do not invent URLs."""
                 raise RuntimeError(f"synthesise_brief failed after 3 attempts: {e}") from e
 
     print("  ✅ Brief synthesised")
+    return brief_data
+
+
+# ── Step 2b: Post-synthesis validation ────────────────────────────────────
+# Structural guardrails that catch issues regardless of what the synthesis
+# prompt produces. The prompt is advisory; this code is the safety net.
+
+# Words too common to be meaningful for headline similarity.
+_STOP_WORDS = frozenset(
+    "a an the and or but in on for to of is are was were with from by at as "
+    "its it that this be has have had not no been will set new says said after "
+    "over into about up out may could how what when where who why".split()
+)
+
+# Patterns that indicate a meta-item (journal publication announcement, not news).
+_META_PATTERNS = [
+    re.compile(r"\b(?:publishes?|releases?|announces?)\s+(?:volume|issue|edition)\b", re.IGNORECASE),
+    re.compile(r"\bvolume\s+\d+\s+issue\s+\d+\b", re.IGNORECASE),
+    re.compile(r"\blatest\s+(?:issue|edition)\s+(?:of|featuring)\b", re.IGNORECASE),
+    re.compile(r"\bjournal\s+(?:publishes?|releases?)\b", re.IGNORECASE),
+]
+
+
+def _headline_keywords(headline: str) -> set[str]:
+    """Extract significant lowercase keywords from a headline."""
+    words = set(re.findall(r"[a-z0-9]+", headline.lower()))
+    return words - _STOP_WORDS
+
+
+def _is_meta_item(headline: str, summary: str = "") -> bool:
+    """Return True if the story is a meta-publishing announcement, not real news."""
+    text = f"{headline} {summary}"
+    return any(p.search(text) for p in _META_PATTERNS)
+
+
+def _has_vague_source(story: dict) -> bool:
+    """Return True if the story has no URL and only a generic 'Additional:' source."""
+    sources = story.get("sources", [])
+    if not sources:
+        return True
+    has_any_url = any(s.get("url") for s in sources)
+    all_additional = all(
+        s.get("name", "").startswith("Additional:") for s in sources
+    )
+    return not has_any_url and all_additional
+
+
+def validate_brief(brief_data: dict) -> dict:
+    """Post-synthesis validation: dedup, meta-item filter, URL/source checks.
+
+    Modifies brief_data in place and returns it. Logs all removals.
+    """
+    print("🔍 Validating brief...")
+    removed = []
+
+    sections = brief_data.get("sections", [])
+
+    # ── 1. Cross-section headline deduplication ──
+    # Build index: keyword set → (section_id, story_index, headline)
+    headline_index: list[tuple[str, int, set, str]] = []
+    for section in sections:
+        for i, story in enumerate(section.get("stories", [])):
+            kw = _headline_keywords(story.get("headline", ""))
+            if kw:
+                headline_index.append((section["id"], i, kw, story["headline"]))
+
+    # Find pairs with >50% keyword overlap (Jaccard similarity)
+    duplicates_to_remove: set[tuple[str, int]] = set()
+    for a in range(len(headline_index)):
+        for b in range(a + 1, len(headline_index)):
+            sec_a, idx_a, kw_a, hl_a = headline_index[a]
+            sec_b, idx_b, kw_b, hl_b = headline_index[b]
+            if sec_a == sec_b:
+                continue  # only check cross-section
+            intersection = kw_a & kw_b
+            union = kw_a | kw_b
+            if len(union) > 0 and len(intersection) / len(union) > 0.4:
+                # Keep the one whose section is the more natural home.
+                # Heuristic: sports stories stay in sports, india stories stay in india, etc.
+                # If both have source_section tags, use those; otherwise keep the first.
+                story_a = sections[next(j for j, s in enumerate(sections) if s["id"] == sec_a)]["stories"][idx_a]
+                story_b = sections[next(j for j, s in enumerate(sections) if s["id"] == sec_b)]["stories"][idx_b]
+                tag_a = story_a.get("source_section", sec_a)
+                tag_b = story_b.get("source_section", sec_b)
+                # Remove from the section that doesn't match the tag
+                if tag_a == sec_a and tag_b != sec_b:
+                    duplicates_to_remove.add((sec_b, idx_b))
+                elif tag_b == sec_b and tag_a != sec_a:
+                    duplicates_to_remove.add((sec_a, idx_a))
+                else:
+                    # Both match or neither does — remove the later one
+                    duplicates_to_remove.add((sec_b, idx_b))
+
+    for section in sections:
+        original = section.get("stories", [])
+        filtered = []
+        for i, story in enumerate(original):
+            if (section["id"], i) in duplicates_to_remove:
+                removed.append(f"  DEDUP [{section['id']}] {story.get('headline', '?')}")
+            else:
+                filtered.append(story)
+        section["stories"] = filtered
+
+    # ── 2. Meta-item filter ──
+    for section in sections:
+        original = section.get("stories", [])
+        filtered = []
+        for story in original:
+            if _is_meta_item(story.get("headline", ""), story.get("summary", "")):
+                removed.append(f"  META  [{section['id']}] {story.get('headline', '?')}")
+            else:
+                filtered.append(story)
+        section["stories"] = filtered
+
+    # ── 3. Vague-source filter (no URL + generic "Additional:" source) ──
+    for section in sections:
+        original = section.get("stories", [])
+        filtered = []
+        for story in original:
+            if _has_vague_source(story):
+                removed.append(f"  VAGUE [{section['id']}] {story.get('headline', '?')}")
+            else:
+                filtered.append(story)
+        section["stories"] = filtered
+
+    # ── 4. Explore URL enforcement ──
+    explore = brief_data.get("explore", {})
+    if explore:
+        original = explore.get("stories", [])
+        filtered = []
+        for story in original:
+            url = story.get("source_url")
+            if not url or url == "null":
+                removed.append(f"  NOURL [explore] {story.get('headline', '?')}")
+            else:
+                filtered.append(story)
+        explore["stories"] = filtered
+
+    # ── Report ──
+    if removed:
+        print(f"  ⚠️  Removed {len(removed)} stories:")
+        for line in removed:
+            print(line)
+    else:
+        print("  ✅ All stories passed validation")
+
     return brief_data
 
 
@@ -1210,6 +1361,9 @@ def main():
     brief_data = synthesise_brief(raw_results)
     brief_data["weather"] = weather
     brief_data["nba_scores"] = nba_scores
+
+    # Step 2a: Post-synthesis validation (structural guardrails)
+    brief_data = validate_brief(brief_data)
 
     # Step 2b: Load and enrich deep dive state
     print("📚 Loading deep dive state...")
