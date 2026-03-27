@@ -9,21 +9,20 @@
     "days_shown": 18
   },
   "current_listen": {
-    "title": "Dwarkesh Podcast: Why Leonardo was a saboteur, Gutenberg went broke, and Florence was weird (Ada Palmer)",
-    "url": "https://open.spotify.com/episode/00AFjws53vNchZYgKGmFCU",
+    "title": "Dwarkesh Podcast: Terence Tao episode",
+    "url": null,
     "source": "Dwarkesh Podcast",
-    "first_shown": "2026-03-21",
-    "description": "Ada Palmer (historian, novelist, composer at University of Chicago) on Renaissance history \u2014 why great figures of the era were saboteurs, failures, and outcasts before becoming legends. Covers Leonardo, Gutenberg, Medici Florence. You're ~51 min in of 2 hrs.",
-    "estimated_time": "~69 min remaining",
-    "days_shown": 7
+    "first_shown": "2026-03-27",
+    "description": null,
+    "estimated_time": null
   },
   "current_book_read": {
-    "title": "The Correspondent",
-    "author": "Virginia Evans"
+    "title": "What We Can Know",
+    "author": "Ian McEwan"
   },
   "current_book_listen": {
     "title": "What We Can Know",
     "author": "Ian McEwan"
   },
-  "last_synced": "2026-03-24"
+  "last_synced": "2026-03-27"
 }
