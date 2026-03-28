@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 28, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Saturday, March 28, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Global markets tumble as Iran conflict drives oil above $108; India slashes fuel taxes and gains special Strait passage status; US stocks enter correction territory.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-28.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">76°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 51° · Now 52°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">70°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 47° · Now 48° · 🌧 1%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Warm — light clothing.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Iran Grants India 'Friendly Nation' Status for Hormuz Passage Amid War</h3>
+    <div class="source">
+      
+        
+        The Hindu
+        
+      
+    </div>
+    <p>Iran's Foreign Minister declared five nations—India, China, Russia, Iraq, and Pakistan—permitted to move ships through the Strait of Hormuz, which Iran claims as territorial waters. Iran thanked India for helping rescue Iranian ships after the US Navy sank the Iranian frigate IRIS Dena. At least four India-flagged vessels have recently transited the strait as traffic drops to single digits.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This strategic exemption secures India's critical oil supply route as the conflict threatens to disrupt 30% of global oil shipments through the strait.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/economy/news/why-india-cut-fuel-excise-duty-now-petrol-prices-impact-iran-us-israel-war-126032700284_1.html" target="_blank">Oil Prices Surge Above $108 as Strait of Hormuz Closure Intensifies</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/economy/news/why-india-cut-fuel-excise-duty-now-petrol-prices-impact-iran-us-israel-war-126032700284_1.html" target="_blank">Additional: Business Standard</a>
+        
+      
+    </div>
+    <p>International crude prices jumped from $70 to around $122 per barrel following US-Israel strikes against Iran and the effective closure of the Strait of Hormuz. The escalation has triggered global supply concerns, with shipping traffic through the critical waterway reduced to single-digit vessel counts. Major economies are scrambling to secure alternative oil supplies and implement emergency measures.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Strait of Hormuz handles 30% of global oil shipments, and its prolonged disruption threatens to trigger stagflation across major economies.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/economy/news/why-india-cut-fuel-excise-duty-now-petrol-prices-impact-iran-us-israel-war-126032700284_1.html" target="_blank">Government Slashes Fuel Excise Duty by ₹10 per Litre to Shield Consumers</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/economy/news/why-india-cut-fuel-excise-duty-now-petrol-prices-impact-iran-us-israel-war-126032700284_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The Indian government cut central excise duty on petrol and diesel by ₹10 per litre each, bringing petrol duty to ₹3/litre and diesel to zero. The emergency decision comes as international crude prices surged from $70 to around $122 per barrel following the US-Israel strikes against Iran. Oil marketing companies are currently facing losses of around ₹24 per litre on petrol and ₹30 per litre on diesel despite the duty cut.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents a major fiscal sacrifice by the government to prevent inflationary pressures during a critical geopolitical crisis, though it will significantly impact tax revenues.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/amp/industry/news/new-1-2-billion-noida-airport-set-to-test-india-s-infra-buildout-boom-126032800103_1.html" target="_blank">PM Modi to Inaugurate ₹11,200 Crore Noida International Airport at Jewar</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/amp/industry/news/new-1-2-billion-noida-airport-set-to-test-india-s-infra-buildout-boom-126032800103_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Prime Minister Narendra Modi will inaugurate the Noida International Airport in Jewar, Uttar Pradesh today after multiple deadline misses. The first phase, built with ₹11,200 crore investment, will handle 12 million passengers annually across a 7,200-acre site with six runways planned. Zurich Airport International is the sole investor in what is planned to be India's largest airport.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The project tests India's ability to attract major foreign investment in infrastructure beyond domestic champions like Adani and Ambani, and will serve the Delhi-NCR region's growing aviation needs.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>India Tests Local Currency Payments for Gulf Oil as Rupee Hits ₹94.1</h3>
+    <div class="source">
+      
+        
+        The Hindu
+        
+      
+    </div>
+    <p>India is experimenting with payments for Gulf oil in local currencies rather than US dollars as crude prices hit $123/barrel and the rupee plummets to ₹94.1 per dollar. The move aims to save 1-2% in transaction costs and reduce the fiscal impact of the double hit from rising oil prices and currency depreciation. India already pays Russia in rupees and UAE in dirhams for oil imports.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The shift away from dollar-denominated oil trade could accelerate de-dollarization trends and reshape global energy payment systems if other major importers follow suit.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Iran Grants India Privileged Strait Access After Ship Rescue Operations</h3>
+    <div class="source">
+      
+        
+        The Hindu
+        
+      
+    </div>
+    <p>Iran thanked India for helping rescue Iranian ships after US Navy attacks and granted India special permission to transit the Strait of Hormuz along with China, Russia, Iraq, and Pakistan. At least four India-flagged vessels have successfully transited the strait in recent days despite the conflict. The arrangement secures India's vital oil supply route as Iran effectively controls passage through what it claims as territorial waters.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This diplomatic win ensures India's energy security during the crisis while positioning it as a neutral actor capable of maintaining relationships with both Western allies and Iran.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://fortune.com/2026/03/26/anthropic-leaked-unreleased-model-exclusive-event-security-issues-cybersecurity-unsecured-data-store/" target="_blank">Anthropic Data Breach Exposes Unreleased AI Model and Internal Documents</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://fortune.com/2026/03/26/anthropic-leaked-unreleased-model-exclusive-event-security-issues-cybersecurity-unsecured-data-store/" target="_blank">Additional: Fortune</a>
+        
+      
+    </div>
+    <p>AI company Anthropic left nearly 3,000 internal documents publicly accessible due to a content management system misconfiguration, revealing details of its most capable AI model to date called 'Mythos' and an invite-only CEO retreat in the UK. The company attributed the breach to 'human error' and secured the data after being notified by Fortune. Anthropic confirmed it is testing a new model representing 'a step change' in AI capabilities with early access customers.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The breach raises questions about AI companies' security practices when handling potentially powerful models and sensitive strategic information.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/27/anthropic-cybersecurity-stocks-ai-mythos.html" target="_blank">Cybersecurity Stocks Plunge After Anthropic AI Model Leak Reveals Security Risks</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/27/anthropic-cybersecurity-stocks-ai-mythos.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>Cybersecurity stocks fell sharply after reports that Anthropic's new 'Mythos' AI model poses unprecedented cybersecurity risks due to advanced capabilities in finding and exploiting software vulnerabilities. The model details were inadvertently exposed in a publicly accessible data cache. The cybersecurity sector faces growing pressure from AI-powered threats and competition from AI security tools.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The incident highlights the growing arms race between AI-powered offensive and defensive cybersecurity capabilities, potentially reshaping the entire security industry.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Arm Shifts Strategy to Design and Sell Chips Directly to Customers</h3>
+    <div class="source">
+      
+        
+        Stratechery
+        
+      
+    </div>
+    <p>Chip designer Arm is making a strategic pivot from licensing its designs to manufacturers toward designing and selling chips directly to end customers. The move represents a fundamental shift in Arm's business model from its traditional role as an intellectual property provider to the semiconductor industry. The decision comes as the company seeks to capture more value from the AI chip boom.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This transformation could disrupt the semiconductor value chain and put Arm in direct competition with many of its current licensees like Qualcomm and MediaTek.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-27/us-futures-drop-on-china-s-us-trade-probe-escalating-iran-war" target="_blank">US Stocks Sink into Correction as Iran War Escalates Oil Prices</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-27/us-futures-drop-on-china-s-us-trade-probe-escalating-iran-war" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>The S&P 500 dropped 1.7% to its lowest level in over seven months, marking its fifth consecutive weekly decline. Both the Nasdaq 100 and Dow Jones Industrial Average entered correction territory, falling more than 10% from recent peaks, as oil prices surged above $108 per barrel. The selloff intensified amid escalating conflict in Iran and closure of the Strait of Hormuz.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This marks the longest weekly losing streak for US stocks since 2022, driven by fears that prolonged energy supply disruptions will fuel stagflation and force central banks to maintain or raise interest rates.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/26/stock-market-today-live-updates.html" target="_blank">Federal Reserve Faces Rate Hike Speculation as Stagflation Fears Mount</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/26/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Futures markets pushed the probability of a Fed rate increase by year-end above 50% for the first time, as surging energy prices and rising import costs fuel stagflation concerns. The S&P 500 is down 6.8% in March, on track for its biggest monthly slide since December 2022. Citigroup strategists cut equity exposure to neutral as negative macro risk signals trigger caution across Wall Street.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The reversal in rate expectations threatens to derail the bull market and puts the Fed in the difficult position of choosing between fighting inflation or supporting economic growth.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://money.usnews.com/investing/news/articles/2026-03-27/citigroup-said-to-weigh-buying-us-regional-bank-bloomberg-news-reports" target="_blank">Citigroup Dismisses Report of Regional Bank Acquisition Plans</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://money.usnews.com/investing/news/articles/2026-03-27/citigroup-said-to-weigh-buying-us-regional-bank-bloomberg-news-reports" target="_blank">Reuters</a>
+        
+      
+    </div>
+    <p>Citigroup denied a Bloomberg News report that its executives were considering acquiring a US regional bank to boost deposits. The bank called the suggestion 'baseless speculation' and said it remains focused on organic growth and completing its regulatory transformation. Citi executives are optimistic about completing compliance work on major consent orders later this year.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The rare public denial highlights Citigroup's sensitivity about M&A speculation while it works through significant regulatory challenges and strategic restructuring.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-27/us-futures-drop-on-china-s-us-trade-probe-escalating-iran-war" target="_blank">Energy Sector Surges as Oil Disruption Fears Dominate Markets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-27/us-futures-drop-on-china-s-us-trade-probe-escalating-iran-war" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Energy stocks emerged as the sole bright spot in a brutal week for markets, with major oil companies posting double-digit gains as crude prices surged past $108 per barrel. The sector benefited from fears that the closure of the Strait of Hormuz could create prolonged supply disruptions. However, broader market concerns about economic damage from high energy prices offset most of the gains in energy equities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The divergence between energy stocks and broader markets reflects investor uncertainty about whether high oil prices will benefit producers more than they damage economic growth.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://fortune.com/2026/03/26/anthropic-leaked-unreleased-model-exclusive-event-security-issues-cybersecurity-unsecured-data-store/" target="_blank">AI Model Demonstrates Advanced Vulnerability Detection Capabilities</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://fortune.com/2026/03/26/anthropic-leaked-unreleased-model-exclusive-event-security-issues-cybersecurity-unsecured-data-store/" target="_blank">Additional: Fortune</a>
+        
+      
+    </div>
+    <p>Anthropic's leaked 'Mythos' AI model demonstrates unprecedented capabilities in identifying and exploiting software vulnerabilities, according to internal documents accidentally made public. The model represents what the company describes as 'a step change' in AI capabilities, currently being tested with early access customers. Security researchers express concern about the implications if such powerful vulnerability-detection AI systems become widely available.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The development highlights both the potential and risks of advanced AI in cybersecurity, raising questions about responsible disclosure and access controls for powerful AI models.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://fortune.com/2026/03/26/anthropic-leaked-unreleased-model-exclusive-event-security-issues-cybersecurity-unsecured-data-store/" target="_blank">Human Error in Content Management Exposes Major AI Research Data</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://fortune.com/2026/03/26/anthropic-leaked-unreleased-model-exclusive-event-security-issues-cybersecurity-unsecured-data-store/" target="_blank">Additional: Fortune</a>
+        
+      
+    </div>
+    <p>Nearly 3,000 internal documents from AI company Anthropic were left publicly accessible due to a content management system misconfiguration, exposing sensitive research details and strategic plans. The incident was attributed to human error rather than a cyberattack. The breach underscores ongoing challenges in data security practices even at companies building advanced AI safety systems.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The incident raises questions about information security practices in AI development and the potential risks of premature exposure of powerful AI capabilities.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/27/anthropic-cybersecurity-stocks-ai-mythos.html" target="_blank">New AI Capabilities Raise Dual-Use Technology Concerns</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/27/anthropic-cybersecurity-stocks-ai-mythos.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>The accidentally revealed Anthropic AI model demonstrates advanced capabilities that could be used for both defensive cybersecurity and offensive hacking operations. Security experts warn that AI systems capable of autonomously discovering zero-day vulnerabilities could fundamentally alter the cybersecurity landscape. The disclosure has prompted discussions about governance frameworks for dual-use AI technologies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The development exemplifies the growing challenge of managing powerful AI systems that can be used for both beneficial and harmful purposes, requiring new regulatory approaches.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="winner">LAC 114</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">IND 113</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">ATL 102</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BOS 109</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIA 128</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CLE 149</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">HOU 119</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MEM 109</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">CHI 113</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">OKC 131</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">NO 106</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">TOR 119</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">UTAH 129</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DEN 135</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">WSH 126</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">GS 131</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">DAL 100</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">POR 93</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">BKN 99</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAL 116</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Limited Discovery</strong> — Search results did not return sufficient long-form articles from approved Explore outlets for March 27-28, 2026.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 19 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 2 · 1 hr 24 min listen
+        
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's leading mathematicians, discusses how AI is transforming mathematics, using Kepler's data-driven discovery of planetary motion as an analogy for understanding where AI excels (breadth) versus where humans provide depth in mathematical research.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Saturday, March 28, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Limited Discovery<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>

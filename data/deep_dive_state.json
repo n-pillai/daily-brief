@@ -6,15 +6,16 @@
     "first_shown": "2026-03-10",
     "description": "Dario Amodei's essay on what a world transformed by powerful AI could look like \u2014 exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.",
     "estimated_time": "30-40 min read",
-    "days_shown": 18
+    "days_shown": 19
   },
   "current_listen": {
     "title": "Dwarkesh Podcast: Terence Tao episode",
     "url": null,
     "source": "Dwarkesh Podcast",
     "first_shown": "2026-03-27",
-    "description": null,
-    "estimated_time": null
+    "description": "Terence Tao, one of the world's leading mathematicians, discusses how AI is transforming mathematics, using Kepler's data-driven discovery of planetary motion as an analogy for understanding where AI excels (breadth) versus where humans provide depth in mathematical research.",
+    "estimated_time": "1 hr 24 min listen",
+    "days_shown": 2
   },
   "current_book_read": {
     "title": "What We Can Know",
