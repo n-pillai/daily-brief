@@ -945,7 +945,7 @@ def generate_narration(brief_data: dict) -> list[dict]:
     for w in weather:
         if not w.get("error"):
             weather_lines.append(
-                f"{w['label']}: {w['temp_f']}°F, {w['condition']}, high {w['high_f']}°F, low {w['low_f']}°F"
+                f"{w['label']}: high {w['high_f']}°F, {w['condition']}. {w.get('clothing_tip', '')}"
             )
     weather_str = " / ".join(weather_lines) if weather_lines else ""
 
@@ -1241,13 +1241,15 @@ def generate_email_html(brief_data: dict, mp3_url: str) -> str:
                           f'font-family:Arial;font-size:12px;color:#9ca3af">'
                           f'{w["location_icon"]} {w["label"]}<br>Unavailable</td>')
             else:
-                cells += (f'<td style="width:50%;text-align:center;padding:8px 4px">'
+                cells += (f'<td style="width:50%;text-align:center;padding:12px 8px">'
                           f'<div style="font-family:Arial;font-size:11px;color:#6b7280;margin-bottom:4px">'
                           f'{w["location_icon"]} {w["label"]}</div>'
                           f'<div style="font-size:22px;margin-bottom:2px">{w["weather_icon"]}</div>'
-                          f'<div style="font-family:Arial;font-size:15px;font-weight:bold;color:#111">{w["temp_f"]}°F</div>'
-                          f'<div style="font-family:Arial;font-size:11px;color:#6b7280;margin-bottom:2px">{w["condition"]}</div>'
-                          f'<div style="font-family:Arial;font-size:11px;color:#9ca3af">H:{w["high_f"]}° / L:{w["low_f"]}°</div>'
+                          f'<div style="font-family:Arial;font-size:20px;font-weight:bold;color:#111">High {w["high_f"]}°F</div>'
+                          f'<div style="font-family:Arial;font-size:12px;color:#6b7280;margin-bottom:4px">'
+                          f'{w["condition"]} · Now {w["temp_f"]}°F · Low {w["low_f"]}°F</div>'
+                          f'<div style="font-family:Arial;font-size:12px;color:#1B4D3E;font-style:italic">'
+                          f'{w["clothing_tip"]}</div>'
                           f'</td>')
         weather_html = (f'<table width="100%" style="margin-bottom:24px;background:#f8fafc;'
                         f'border-radius:8px;border-collapse:collapse">'
