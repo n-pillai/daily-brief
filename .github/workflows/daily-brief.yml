@@ -67,7 +67,7 @@ jobs:
         run: |
           git config user.name "Daily Brief Bot"
           git config user.email "daily-brief-bot@users.noreply.github.com"
-          git add briefs/*.mp3 briefs/*.html data/deep_dive_state.json
+          git add briefs/*.mp3 briefs/*.html data/deep_dive_state.json data/regression_report.json data/known_bugs.json
           if git diff --cached --quiet; then
             echo "No new briefs to commit"
           else
