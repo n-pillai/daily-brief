@@ -4,7 +4,7 @@ Automated daily news briefing with AI synthesis, weather, and audio narration, d
 
 ## What it does
 
-1. **Weather** — fetches current conditions and forecast for up to two locations
+1. **Weather** — fetches today's high, current conditions, and a clothing recommendation for up to two locations
 2. **Searches** today's news via Claude with web search across World & Politics, India, Tech & AI, Business & Finance, Science & Health, and Sports — pulling only from a curated list of trusted outlets per section. Sports coverage is seasonally aware (tracks what's currently in season, with a focus on Team India, IPL, and WPL)
 3. **Synthesises** stories — cross-referencing across outlets, flagging subscriber sources — then runs a post-synthesis validation layer that catches cross-section duplicates, meta-items (e.g. "journal publishes new issue"), hallucinated events with no verifiable source, and explore stories without real article URLs
 4. **Surfaces an Explore section** — longform articles and features from a broader pool (WIRED, Quanta, Hacker News, Aeon, MIT Technology Review, and others), prioritising paid subscriptions
