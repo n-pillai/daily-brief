@@ -935,6 +935,128 @@ def validate_brief(brief_data: dict) -> dict:
     return brief_data
 
 
+# ── Step 2c: Regression checks ────────────────────────────────────────────
+def run_regression_checks(brief_data: dict) -> dict:
+    """Check for recurrence of known bugs. Never blocks brief delivery."""
+    print("🔬 Running regression checks...")
+
+    bugs_path = Path("data/known_bugs.json")
+    if not bugs_path.exists():
+        print("  ℹ️  No known_bugs.json — skipping regression checks")
+        return {"date": DATE_FILE, "regressions_detected": 0, "results": []}
+
+    registry = json.loads(bugs_path.read_text())
+    results = []
+    regressions = 0
+
+    for bug in registry.get("bugs", []):
+        detected = False
+        details = None
+        bug_id = bug["id"]
+        detection = bug.get("detection", {})
+        det_type = detection.get("type")
+
+        if det_type == "python_expr":
+            try:
+                detected = eval(  # noqa: S307 — expressions from our own committed registry
+                    detection["check"],
+                    {"brief_data": brief_data,
+                     "_has_vague_source": _has_vague_source,
+                     "len": len, "any": any},
+                )
+            except Exception as e:
+                details = f"Detection check failed: {e}"
+
+        elif det_type == "url_domain_check":
+            flagged = detection.get("flagged_domains", [])
+            bad_urls = []
+            for story in brief_data.get("explore", {}).get("stories", []):
+                url = (story.get("source_url") or "").lower()
+                for domain in flagged:
+                    if domain in url:
+                        bad_urls.append(url)
+            if bad_urls:
+                detected = True
+                details = f"Found {len(bad_urls)} paywalled URL(s): {', '.join(bad_urls[:3])}"
+
+        elif det_type == "section_tag_mismatch":
+            mismatches = []
+            for section in brief_data.get("sections", []):
+                for story in section.get("stories", []):
+                    tag = story.get("source_section")
+                    if tag and tag != section["id"]:
+                        mismatches.append(
+                            f"{story.get('headline', '?')} (tagged {tag}, placed in {section['id']})"
+                        )
+
+        elif det_type == "cross_section_headline_dedup":
+            # Check for semantically duplicate stories across sections
+            all_stories = []
+            for section in brief_data.get("sections", []):
+                for story in section.get("stories", []):
+                    kw = _headline_keywords(story.get("headline", ""))
+                    all_stories.append((section["id"], story.get("headline", "?"), kw))
+            dupes = []
+            for i in range(len(all_stories)):
+                for j in range(i + 1, len(all_stories)):
+                    if all_stories[i][0] == all_stories[j][0]:
+                        continue  # same section, skip
+                    kw_a, kw_b = all_stories[i][2], all_stories[j][2]
+                    if not kw_a or not kw_b:
+                        continue
+                    overlap = len(kw_a & kw_b) / len(kw_a | kw_b)
+                    if overlap >= 0.35:
+                        dupes.append(
+                            f"[{all_stories[i][0]}] \"{all_stories[i][1]}\" ~ "
+                            f"[{all_stories[j][0]}] \"{all_stories[j][1]}\" ({overlap:.0%})"
+                        )
+            if dupes:
+                detected = True
+                details = f"{len(dupes)} cross-section duplicate(s): {'; '.join(dupes[:3])}"
+            if mismatches:
+                detected = True
+                details = f"{len(mismatches)} misplaced: {'; '.join(mismatches[:3])}"
+
+        result = {"bug_id": bug_id, "detected": detected, "details": details}
+        if detected and bug.get("status") == "fixed":
+            regressions += 1
+            result["fix_recipe"] = bug.get("fix_recipe", [])
+            result["severity"] = "high" if bug_id in ("explore-empty", "cross-section-bleed") else "medium"
+            # Record recurrence in registry
+            bug.setdefault("history", {}).setdefault("recurrences", []).append(DATE_FILE)
+
+        results.append(result)
+
+    report = {
+        "date": DATE_FILE,
+        "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "regressions_detected": regressions,
+        "total_checks": len(results),
+        "results": results,
+    }
+
+    # Persist report
+    report_path = Path("data/regression_report.json")
+    report_path.write_text(json.dumps(report, indent=2))
+
+    # Update registry with any new recurrence entries
+    if regressions > 0:
+        bugs_path.write_text(json.dumps(registry, indent=2))
+
+    # Console output
+    if regressions > 0:
+        print(f"\n  🔴 REGRESSION DETECTED — {regressions} known bug(s) have recurred:")
+        for r in results:
+            if r.get("detected") and "fix_recipe" in r:
+                print(f"     • {r['bug_id']}: {r.get('details', 'no details')}")
+                for step in r["fix_recipe"]:
+                    print(f"       → {step}")
+    else:
+        print(f"  ✅ Regression check passed ({len(results)} known bugs checked)")
+
+    return report
+
+
 # ── Step 3: Generate narration text ───────────────────────────────────────
 def generate_narration(brief_data: dict) -> list[dict]:
     """Generate TTS-friendly narration text from brief data."""
@@ -1388,6 +1510,12 @@ def main():
     data_path = OUTPUT_DIR / f"daily_brief_{DATE_FILE}.json"
     data_path.write_text(json.dumps(brief_data, indent=2))
     print(f"  💾 Data saved: {data_path}")
+
+    # Step 2c: Regression checks (never blocks delivery)
+    try:
+        run_regression_checks(brief_data)
+    except Exception as e:
+        print(f"  ⚠️  Regression check failed (non-blocking): {e}")
 
     # Step 3: Generate narration
     narration_sections = generate_narration(brief_data)

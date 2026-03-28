@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "bugs": [
+    {
+      "id": "explore-empty",
+      "name": "Explore section empty",
+      "description": "0 explore stories remain after validation",
+      "status": "fixed",
+      "detection": {
+        "type": "python_expr",
+        "check": "len(brief_data.get('explore', {}).get('stories', [])) == 0"
+      },
+      "history": {
+        "first_seen": "2026-03-06",
+        "root_cause": "Search prompts for explore pool were too narrow, returning no results or all results lacked URLs",
+        "fix_applied": "Broadened explore search prompt to include more outlets and relaxed freshness window; added explore URL enforcement in validate_brief()",
+        "fix_date": "2026-03-07",
+        "recurrences": [
+          "2026-03-28"
+        ]
+      },
+      "fix_recipe": [
+        "Check search_news() explore prompt \u2014 has the source list in config.json explore_pool been modified or shrunk?",
+        "Check if Claude web search is returning empty for explore queries \u2014 look at raw_results['explore'] in stdout logs",
+        "Check if validate_brief() is removing ALL explore stories via NOURL filter \u2014 look for NOURL removals in stdout",
+        "Try: widen the explore search date range or add more outlets to explore_pool in config.json"
+      ]
+    },
+    {
+      "id": "paywalled-explore",
+      "name": "Paywalled content in explore",
+      "description": "Explore URLs pointing to known paywall domains that readers cannot access without subscription",
+      "status": "fixed",
+      "detection": {
+        "type": "url_domain_check",
+        "check_field": "explore.stories[].source_url",
+        "flagged_domains": [
+          "wired.com",
+          "nytimes.com",
+          "ft.com",
+          "wsj.com",
+          "theathletic.com",
+          "bloomberg.com"
+        ]
+      },
+      "history": {
+        "first_seen": "2026-03-08",
+        "root_cause": "Explore pool includes outlets with hard paywalls; no domain-level filtering existed",
+        "fix_applied": "Added domain-level filtering for known paywall sites in explore URL validation",
+        "fix_date": "2026-03-09",
+        "recurrences": []
+      },
+      "fix_recipe": [
+        "Check validate_brief() explore URL enforcement \u2014 is the paywall filter still present?",
+        "Check if new paywalled domains have been added to config.json explore_pool without updating the filter",
+        "Add the offending domain to flagged_domains in this known_bugs.json entry",
+        "If the domain is a subscriber source (Nisha has access), consider adding it to an allowlist instead"
+      ]
+    },
+    {
+      "id": "nba-score-formatting",
+      "name": "NBA score display formatting",
+      "description": "NBA scores present in data but HTML rendering is broken or unreadable in email",
+      "status": "open",
+      "detection": {
+        "type": "python_expr",
+        "check": "len(brief_data.get('nba_scores', [])) > 0"
+      },
+      "history": {
+        "first_seen": "2026-03-10",
+        "root_cause": "Inline styles in generate_email_html() produce poor layout in email clients",
+        "fix_applied": null,
+        "fix_date": null,
+        "recurrences": []
+      },
+      "fix_recipe": [
+        "Review NBA score rendering in generate_email_html() \u2014 search for 'nba_scores' in the function",
+        "Test generated HTML in email preview tools (Litmus, Email on Acid, or send a test brief)",
+        "Consider switching to a table-based layout for better email client compatibility",
+        "Check that away_abbr, home_abbr, away_score, home_score fields are all present and non-null"
+      ]
+    },
+    {
+      "id": "cross-section-bleed",
+      "name": "Cross-section bleed",
+      "description": "Story placed in a section that doesn't match its source_section tag from search",
+      "status": "fixed",
+      "detection": {
+        "type": "section_tag_mismatch"
+      },
+      "history": {
+        "first_seen": "2026-03-04",
+        "root_cause": "Claude synthesis ignored section boundaries and moved stories between sections based on perceived relevance",
+        "fix_applied": "Added source_section tagging in search_news() and strict SECTION ASSIGNMENT RULE in synthesis prompt; validate_brief() dedup uses source_section for tiebreaking",
+        "fix_date": "2026-03-05",
+        "recurrences": []
+      },
+      "fix_recipe": [
+        "Check search_news() \u2014 is source_section still being tagged on each story result?",
+        "Check synthesise_brief() prompt \u2014 is the SECTION ASSIGNMENT RULE still present and strongly worded?",
+        "Check validate_brief() dedup logic \u2014 is it correctly using source_section for tiebreaking when removing duplicates?",
+        "If Claude is ignoring the prompt rule: strengthen wording or add a post-synthesis re-sort that forces stories back to their tagged section"
+      ]
+    },
+    {
+      "id": "cross-section-duplicate",
+      "name": "Same story in multiple sections",
+      "description": "The same story appears in two different sections with different headlines but covering the same event, even when source_section tags are correct (searched separately, both legitimate)",
+      "status": "fixed",
+      "detection": {
+        "type": "cross_section_headline_dedup"
+      },
+      "history": {
+        "first_seen": "2026-03-07",
+        "root_cause": "The same event gets searched in multiple categories (e.g. world and india) and Claude returns it in both with different framing. validate_brief() dedup catches keyword overlap but misses semantically identical stories with different wording.",
+        "fix_applied": "Added Jaccard similarity check (>0.40 threshold) in validate_brief() cross-section dedup; source_section tiebreaking removes the copy from the less natural section",
+        "fix_date": "2026-03-08",
+        "recurrences": []
+      },
+      "fix_recipe": [
+        "Check validate_brief() cross-section dedup \u2014 is the Jaccard threshold still 0.40? It may be too high for stories with different framing of the same event",
+        "Look at today's brief for duplicate stories across sections \u2014 if the headlines share few keywords but describe the same event, the keyword-based approach is insufficient",
+        "Consider lowering the Jaccard threshold to 0.30, or adding entity-based dedup (matching on key names, places, numbers)",
+        "Check if synthesis prompt has a rule against repeating the same event across sections \u2014 strengthen it if missing"
+      ]
+    },
+    {
+      "id": "vague-hallucinated-sources",
+      "name": "Vague or hallucinated sources",
+      "description": "Stories with no verifiable URL and only generic 'Additional:' source attribution slip through validation",
+      "status": "fixed",
+      "detection": {
+        "type": "python_expr",
+        "check": "any(_has_vague_source(s) for sec in brief_data.get('sections', []) for s in sec.get('stories', []))"
+      },
+      "history": {
+        "first_seen": "2026-03-07",
+        "root_cause": "Claude fabricated stories or cited generic sources when section coverage was thin and the prompt encouraged filling all slots",
+        "fix_applied": "Added _has_vague_source() filter in validate_brief() step 3; synthesis prompt updated with PLACEHOLDER RULE banning filler stories",
+        "fix_date": "2026-03-08",
+        "recurrences": [
+          "2026-03-28"
+        ]
+      },
+      "fix_recipe": [
+        "Check validate_brief() step 3 \u2014 is the vague-source filter still running? Look for the _has_vague_source() call",
+        "Check if _has_vague_source() logic has been accidentally loosened (e.g. threshold changed)",
+        "Check synthesis prompt PLACEHOLDER RULE \u2014 if it was weakened, Claude may be fabricating to fill thin sections",
+        "If stories are getting through with URLs but the URLs are fake: would need a URL reachability check (costly, consider as last resort)"
+      ]
+    }
+  ]
+}
