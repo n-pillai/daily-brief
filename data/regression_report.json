@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-28",
-  "generated_at": "2026-03-28T18:59:56.971777+00:00",
-  "regressions_detected": 2,
+  "date": "2026-03-29",
+  "generated_at": "2026-03-29T12:38:01.834015+00:00",
+  "regressions_detected": 1,
   "total_checks": 6,
   "results": [
     {
@@ -38,15 +38,8 @@
     },
     {
       "bug_id": "vague-hallucinated-sources",
-      "detected": true,
-      "details": null,
-      "fix_recipe": [
-        "Check validate_brief() step 3 \u2014 is the vague-source filter still running? Look for the _has_vague_source() call",
-        "Check if _has_vague_source() logic has been accidentally loosened (e.g. threshold changed)",
-        "Check synthesis prompt PLACEHOLDER RULE \u2014 if it was weakened, Claude may be fabricating to fill thin sections",
-        "If stories are getting through with URLs but the URLs are fake: would need a URL reachability check (costly, consider as last resort)"
-      ],
-      "severity": "medium"
+      "detected": false,
+      "details": null
     }
   ]
 }
