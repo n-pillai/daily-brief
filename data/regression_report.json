@@ -1,25 +1,25 @@
 {
-  "date": "2026-03-29",
-  "generated_at": "2026-03-29T12:38:01.834015+00:00",
+  "date": "2026-03-30",
+  "generated_at": "2026-03-30T13:01:09.345018+00:00",
   "regressions_detected": 1,
   "total_checks": 6,
   "results": [
     {
       "bug_id": "explore-empty",
-      "detected": true,
-      "details": null,
-      "fix_recipe": [
-        "Check search_news() explore prompt \u2014 has the source list in config.json explore_pool been modified or shrunk?",
-        "Check if Claude web search is returning empty for explore queries \u2014 look at raw_results['explore'] in stdout logs",
-        "Check if validate_brief() is removing ALL explore stories via NOURL filter \u2014 look for NOURL removals in stdout",
-        "Try: widen the explore search date range or add more outlets to explore_pool in config.json"
-      ],
-      "severity": "high"
+      "detected": false,
+      "details": null
     },
     {
       "bug_id": "paywalled-explore",
-      "detected": false,
-      "details": null
+      "detected": true,
+      "details": "Found 2 paywalled URL(s): https://www.bloomberg.com/news/articles/2026-03-30/oil-prices-iran-war-is-pushing-energy-market-into-demand-destruction-mode, https://www.bloomberg.com/news/articles/2026-03-29/lilly-insilico-ink-deal-on-ai-drugs-worth-up-to-2-75-billion",
+      "fix_recipe": [
+        "Check validate_brief() explore URL enforcement \u2014 is the paywall filter still present?",
+        "Check if new paywalled domains have been added to config.json explore_pool without updating the filter",
+        "Add the offending domain to flagged_domains in this known_bugs.json entry",
+        "If the domain is a subscriber source (Nisha has access), consider adding it to an allowlist instead"
+      ],
+      "severity": "medium"
     },
     {
       "bug_id": "nba-score-formatting",

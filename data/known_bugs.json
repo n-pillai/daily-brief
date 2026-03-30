@@ -49,7 +49,9 @@
         "root_cause": "Explore pool includes outlets with hard paywalls; no domain-level filtering existed",
         "fix_applied": "Added domain-level filtering for known paywall sites in explore URL validation",
         "fix_date": "2026-03-09",
-        "recurrences": []
+        "recurrences": [
+          "2026-03-30"
+        ]
       },
       "fix_recipe": [
         "Check validate_brief() explore URL enforcement \u2014 is the paywall filter still present?",

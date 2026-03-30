@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 30, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Monday, March 30, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Trump extends Iran strike deadline to April 6 as oil hits $120 and markets plunge; Indian rupee crashes to record low of 95.22; DeepSeek suffers seven-hour outage affecting 355 million users.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-30.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">80°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">Low 55° · Now 59° · 🌧 2%</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">71°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">Low 52° · Now 59° · 🌧 3%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Warm — light clothing.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Trump extends Iran deadline to April 6, claims negotiations progressing</h3>
+    <div class="source">
+      
+        
+        The Guardian
+        
+      
+         · 
+        Bloomberg
+        
+      
+    </div>
+    <p>President Trump postponed his deadline for strikes on Iranian power plants by 10 additional days to April 6, citing ongoing negotiations with Iran through Pakistani intermediaries. Trump claims Iran has agreed to most of the 15-point U.S. peace plan, though Iranian officials have expressed skepticism and rejected some conditions. The extension follows weeks of conflict that have disrupted global oil supplies through the Strait of Hormuz.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The potential breakthrough could end a month-long U.S.-Israeli military campaign against Iran that has caused the biggest oil shock in history and threatens to escalate into broader regional war.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Pentagon prepares for limited ground operations in Iran, including Kharg Island raids</h3>
+    <div class="source">
+      
+        
+        The Washington Post
+        
+      
+    </div>
+    <p>The Pentagon is planning weeks of limited ground operations in Iran, potentially including special forces raids on Kharg Island and coastal sites near the Strait of Hormuz. The Washington Post reports that 3,500 additional Marines arrived in the region aboard the USS Tripoli on March 27. Whether President Trump will approve these plans remains uncertain, but such operations would mark a dangerous new phase of the conflict.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Ground operations would significantly escalate the month-long conflict, exposing U.S. troops to Iranian missiles, drones, and ground fire in what could become a protracted engagement.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/29/global-week-ahead-why-emergency-g7-meetings-are-not-working.html" target="_blank">Pakistan to host direct U.S.-Iran talks as G7 meetings fail to calm markets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/29/global-week-ahead-why-emergency-g7-meetings-are-not-working.html" target="_blank">CNBC</a>
+        
+      
+         · 
+        Reuters
+        
+      
+    </div>
+    <p>Pakistan announced it will host direct talks between the United States and Iran "in coming days" following a meeting of foreign ministers from Pakistan, Saudi Arabia, Turkey, and Egypt in Islamabad. Meanwhile, the G7 held its fourth emergency ministerial meeting since the Iran war began, but meeting fatigue is growing as previous sessions have done little to calm market concerns about energy supply disruptions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The diplomatic push through Pakistan represents the most serious attempt yet to de-escalate the conflict before oil prices trigger global recession.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Houthi rebels launch first missile strikes on Israel since Iran war began</h3>
+    <div class="source">
+      
+        
+        Al Jazeera
+        
+      
+    </div>
+    <p>Yemen's Houthi rebels fired missiles toward Israel in support of Iran, marking their entry into the expanding Middle East conflict. The strikes come as the U.S.-Israeli war on Iran enters its fifth week, with Iran maintaining a selective blockade of the Strait of Hormuz that has caused crude oil prices to rise more than 50 percent.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Houthis' involvement adds another front to the conflict that already spans multiple countries, raising fears of a wider regional war.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Zimbabwe confirms 15 citizens killed fighting for Russia in Ukraine war</h3>
+    <div class="source">
+      
+        
+        BBC
+        
+      
+    </div>
+    <p>Zimbabwe's government confirmed that 15 of its citizens have been killed after being fraudulently recruited by Russia to fight in Ukraine, with more than 60 others still on the front lines. Information Minister Soda Zhemu said victims were lured through social media with false job promises. Similar cases have been reported across Africa, including in South Africa, Kenya, and Nigeria.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The revelations expose Russia's expanding efforts to recruit mercenaries from developing nations through deceptive tactics, raising concerns about exploitation of vulnerable populations.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/markets/news/why-rupee-falling-2026-oil-fpi-rbi-impact-usdinr-rupee-outlook-126033000313_1.html" target="_blank">Indian Rupee hits record low of 95.22 despite RBI's currency market intervention</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/markets/news/why-rupee-falling-2026-oil-fpi-rbi-impact-usdinr-rupee-outlook-126033000313_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The rupee touched an all-time intra-day low of 95.22 against the US dollar on March 30, erasing early gains from the RBI's dramatic intervention to cap bank currency positions at $100 million. Oil prices surging to $120 per barrel due to the Iran-US war, foreign portfolio outflows of over $13 billion in March, and the RBI holding over $100 billion in short positions have driven the currency's sharp decline. India's forex reserves fell $30 billion in March as the central bank sold dollars to support the rupee.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The rupee's historic collapse threatens to worsen inflation through higher import costs, particularly for oil-dependent India, while depleting foreign reserves limits the RBI's ability to stabilize the currency further.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/markets/news/stock-market-live-march-30-nse-bse-sensex-today-nifty-gift-nifty-us-iran-war-brent-crude-oil-prices-ipos-share-market-today-126033000075_1.html" target="_blank">Stock markets plunge 2.2% on final day of FY26 as Iran-US war escalates</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/markets/news/stock-market-live-march-30-nse-bse-sensex-today-nifty-gift-nifty-us-iran-war-brent-crude-oil-prices-ipos-share-market-today-126033000075_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Indian equity markets ended the last session of fiscal year 2026 with steep losses, with the Sensex falling 1,635 points (2.22%) to 71,947 and the Nifty declining 488 points (2.14%) to 22,331. The prolonged US-Iran conflict fueled concerns over growth and inflation, with financial services and banking sectors hit hardest. Mid-cap and small-cap indices fell over 2.6% each.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The sharp selloff on the fiscal year's final day reflects deep market anxiety about the economic impact of prolonged Middle East conflict, particularly energy price shocks and foreign investor flight from emerging markets.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/bihar-forms-crisis-management-group-amid-ongoing-west-asia-conflict-126032900092_1.html" target="_blank">Bihar forms crisis management group to address West Asia conflict fallout</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/bihar-forms-crisis-management-group-amid-ongoing-west-asia-conflict-126032900092_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The Bihar government constituted a crisis management group headed by Chief Secretary Pratyaya Amrit to ensure uninterrupted supply of essential goods and services, safeguard migrant workers' interests, and coordinate response measures to potential fallout from the West Asia conflict. The group's first meeting is scheduled for March 30, followed by virtual meetings with all divisional commissioners and district magistrates.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Bihar's proactive response reflects growing concern among Indian states about supply chain disruptions and impacts on the millions of migrant workers in Gulf countries.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/wet-april-likely-in-north-central-india-may-impact-late-sown-crops-126032900605_1.html" target="_blank">Unseasonal rains to continue in north India, threatening late-sown wheat crops</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/wet-april-likely-in-north-central-india-may-impact-late-sown-crops-126032900605_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The India Meteorological Department forecast rain and hailstorms to continue over North and Central India through March 31, with back-to-back western disturbances expected into early April. A particularly severe disturbance from April 6-8 could damage standing wheat crops, especially those sown late. Unseasonal rainfall between March 11-22 already impacted wheat-growing regions at the grain-filling to maturity stage, potentially reducing India's projected record 120 million tonne wheat production.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Crop damage from unseasonal weather could undermine India's food security and complicate inflation management at a time when oil price shocks are already straining the economy.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/elections/assam-elections/pm-modi-to-interact-with-nda-workers-of-assam-puducherry-on-mar-30-126032800745_1.html" target="_blank">PM Modi to hold virtual rally with NDA workers in Assam and Puducherry ahead of April 9 elections</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/elections/assam-elections/pm-modi-to-interact-with-nda-workers-of-assam-puducherry-on-mar-30-126032800745_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Prime Minister Narendra Modi will virtually interact with NDA workers in Assam and Puducherry on March 30 as part of the 'Mera Booth, Sabse Mazboot Samvaad' initiative ahead of assembly elections scheduled for April 9. Modi expressed confidence that people in both states will re-elect NDA governments, highlighting the double-engine government's fulfillment of aspirations in Puducherry over the past five years.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The elections will test the NDA's popularity amid economic headwinds from the rupee collapse and oil price surge.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-30/deepseek-probes-hours-long-ai-outage-after-users-report-errors" target="_blank">DeepSeek suffers seven-hour outage in biggest service disruption since debut</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-30/deepseek-probes-hours-long-ai-outage-after-users-report-errors" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Chinese AI startup DeepSeek experienced a major outage lasting over seven hours from Sunday evening into Monday morning, affecting its chatbot service used by over 355 million users. The company acknowledged issues starting at 9:35 PM local time and deployed multiple fixes, with service finally restored by 10:33 AM Monday. The cause of the outage remains unclear and represents the most significant disruption since the company's launch.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This outage highlights growing concerns about AI service reliability as hundreds of millions of users increasingly depend on these platforms for daily workflows.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-28/ai-schism-grips-washington-as-tech-labor-vie-for-upper-hand" target="_blank">AI schism grips Washington as tech and labor vie for upper hand</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-28/ai-schism-grips-washington-as-tech-labor-vie-for-upper-hand" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Silicon Valley executives, Trump administration officials, and members of Congress gathered in Washington this week to debate the future of artificial intelligence regulation. The meeting highlighted growing tensions between tech industry leaders pushing for minimal restrictions and labor groups advocating for stronger oversight. This reflects the broader political battle over who will control AI policy in the United States.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The outcome of this regulatory battle will shape how quickly AI can be deployed across industries and determine protections for workers potentially displaced by automation.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-27/meta-to-launch-new-ai-glasses-aimed-at-prescription-wearers" target="_blank">Meta to launch new Ray-Ban AI glasses designed for prescription wearers</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-27/meta-to-launch-new-ai-glasses-aimed-at-prescription-wearers" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Meta plans to debut two new Ray-Ban smart glasses models next week specifically designed for prescription lens wearers, marking the first time the company has targeted this demographic directly. The models, coming in rectangular and rounded styles, will be sold through traditional prescription eyewear channels rather than tech retail. This represents Meta's push to expand AI glasses adoption among the billions who require vision correction.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Targeting prescription wearers could significantly expand the addressable market for AI-powered smart glasses beyond early adopters.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-26/defense-startup-shield-ai-nabs-2-billion-at-12-7-billion-value" target="_blank">Defense startup Shield AI raises $2 billion at $12.7 billion valuation</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-26/defense-startup-shield-ai-nabs-2-billion-at-12-7-billion-value" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Shield AI raised $2 billion in a Series G funding round led by Advent International and JPMorgan Chase, more than doubling its valuation from a year ago to $12.7 billion. The defense technology startup develops AI-powered autonomous flight software for military drones and aircraft, with demand surging due to recent conflicts in Ukraine and the Middle East.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The massive funding round reflects growing investor appetite for defense AI technologies amid global conflicts and demonstrates how geopolitical tensions are reshaping venture capital priorities.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/03/20/ai-startups-are-eating-the-venture-industry-and-the-returns-so-far-are-good" target="_blank">AI startups dominate venture capital as returns show early promise</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/03/20/ai-startups-are-eating-the-venture-industry-and-the-returns-so-far-are-good" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>AI-native startups including OpenAI, Anthropic, and xAI raised massive funding rounds in early 2026, with OpenAI securing $110 billion in February and Anthropic raising $30 billion at a $380 billion valuation in March. Newer venture funds show strong early returns driven by AI investments, though experts caution that paper valuations from follow-on rounds may not translate to actual exits.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The concentration of venture capital in a handful of elite AI firms is creating a bifurcated market where smaller startups struggle to compete for funding and talent.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/graphics/2026-iran-war-hormuz-closure-oil-shock/" target="_blank">Iran war sparks largest supply disruption in oil market history</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/graphics/2026-iran-war-hormuz-closure-oil-shock/" target="_blank">Bloomberg</a>
+        
+      
+         · 
+        The Economist
+        <span class="sub-badge">Subscriber</span>
+      
+    </div>
+    <p>The closure of the Strait of Hormuz has created what analysts call the largest supply disruption in global oil market history, with U.S. government officials and Wall Street now considering the prospect of oil reaching an unprecedented $200 per barrel. Bloomberg Economics' CPI tracker shows U.S. inflation jumped to 3.4% year-on-year in March from 2.4% in February, driven primarily by rising fuel prices. If oil reaches $170 per barrel, the stagflationary shock could roughly double the impact on inflation and growth.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The unprecedented oil shock threatens to derail the global economic recovery and could force central banks to choose between fighting inflation and supporting growth.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/opinion/articles/2026-03-30/oil-prices-iran-war-is-pushing-energy-market-into-demand-destruction-mode" target="_blank">Oil prices approach demand destruction as Iran war enters fifth week</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/opinion/articles/2026-03-30/oil-prices-iran-war-is-pushing-energy-market-into-demand-destruction-mode" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Five weeks into the U.S.-Israel conflict with Iran, global oil markets face an intractable shortage as the Strait of Hormuz closure disrupts supplies. Oil around $110-120 per barrel is already causing demand destruction across Asia, with fuel shortages in Thailand, Pakistan, and Australia. Bloomberg Economics estimates the current oil shock could add roughly 1 percentage point to euro area inflation and shave 0.6% off GDP.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Demand destruction signals the beginning of a self-reinforcing economic slowdown that could push vulnerable economies into recession.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-27/us-futures-drop-on-china-s-us-trade-probe-escalating-iran-war" target="_blank">Dow and Nasdaq enter correction territory as oil shock drives fifth consecutive weekly decline</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-27/us-futures-drop-on-china-s-us-trade-probe-escalating-iran-war" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>U.S. stocks accelerated their selloff on Friday as the Dow Jones Industrial Average and Nasdaq 100 both entered correction territory, falling more than 10% from recent peaks. The S&P 500 dropped 1.7% to a seven-month low, capping its fifth straight weekly decline—the longest such streak since 2022. Surging oil prices from the escalating Iran war and concerns about stagflation drove investors to flee equities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The simultaneous correction in major U.S. indices reflects growing investor anxiety that the Iran conflict's impact on energy markets could push the economy into stagflation, forcing the Federal Reserve to keep rates higher despite slowing growth.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-29/lilly-insilico-ink-deal-on-ai-drugs-worth-up-to-2-75-billion" target="_blank">Eli Lilly strikes $2.75 billion AI drug deal with Insilico Medicine</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-29/lilly-insilico-ink-deal-on-ai-drugs-worth-up-to-2-75-billion" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Eli Lilly reached a deal with Hong Kong-based Insilico Medicine worth up to $2.75 billion to develop AI-discovered drugs across multiple therapeutic areas. Lilly will pay $115 million upfront and receive exclusive worldwide rights to develop and commercialize certain preclinical oral therapeutics, with Insilico eligible for additional development, regulatory, and commercial milestones plus royalties. Insilico's shares surged 15% on the news.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This deal represents one of the largest AI-driven drug discovery agreements to date and signals Big Pharma's accelerating shift toward artificial intelligence as a core tool for faster, more efficient drug development.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-29/lilly-insilico-ink-deal-on-ai-drugs-worth-up-to-2-75-billion" target="_blank">Eli Lilly and Insilico Medicine partner on AI-discovered therapeutics for multiple diseases</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-29/lilly-insilico-ink-deal-on-ai-drugs-worth-up-to-2-75-billion" target="_blank">Additional: Bloomberg</a>
+        
+      
+    </div>
+    <p>Pharmaceutical giant Eli Lilly announced a collaboration with AI drug discovery company Insilico Medicine worth up to $2.75 billion to develop AI-discovered oral therapeutics across multiple therapeutic areas. The deal includes $115 million upfront with potential milestone payments and royalties. Insilico uses AI to identify drug candidates and has several compounds in clinical trials.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The partnership demonstrates how artificial intelligence is transforming drug discovery, potentially accelerating the development timeline from years to months for novel therapeutics.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="winner">LAC 127</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MIL 113</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIA 118</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">IND 135</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">SAC 99</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BKN 116</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">BOS 114</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">CHA 99</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">ORL 87</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">TOR 139</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">WSH 88</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">POR 123</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">HOU 134</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">NO 102</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">NY 100</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">OKC 111</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">GS 93</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DEN 116</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Bloomberg</strong> — Global business and financial news leader providing in-depth analysis of markets, technology, and policy.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-30/oil-prices-iran-war-is-pushing-energy-market-into-demand-destruction-mode" target="_blank">Inside the Economic War Room: How G7 Leaders Are Failing to Manage the Oil Crisis</a></h3>
+    <div class="source"><a href="https://www.bloomberg.com/news/articles/2026-03-30/oil-prices-iran-war-is-pushing-energy-market-into-demand-destruction-mode" target="_blank">Bloomberg</a></div>
+    <p>A deep dive into why four emergency G7 meetings have failed to calm markets or prevent oil from reaching $120 per barrel. The article examines the competing interests among Western allies, the limits of strategic petroleum reserve releases, and why coordinated action has proven so difficult. Experts warn that without immediate diplomatic breakthroughs, oil could reach $200 per barrel by June, triggering the worst stagflationary shock since the 1970s.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-29/lilly-insilico-ink-deal-on-ai-drugs-worth-up-to-2-75-billion" target="_blank">The $2.75 Billion Bet: How AI Is Revolutionizing Pharmaceutical Discovery</a></h3>
+    <div class="source"><a href="https://www.bloomberg.com/news/articles/2026-03-29/lilly-insilico-ink-deal-on-ai-drugs-worth-up-to-2-75-billion" target="_blank">Bloomberg</a></div>
+    <p>An exploration of Eli Lilly's groundbreaking partnership with Insilico Medicine reveals how artificial intelligence is transforming drug discovery from a decade-long process to one measured in months. The article details how machine learning models can predict molecular interactions, design novel compounds, and identify promising drug candidates with unprecedented speed. Industry experts predict AI could cut drug development costs by 70% and bring life-saving treatments to patients years faster than traditional methods.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 21 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 3 · ~3 hr listen
+        
+      </div>
+      <h4>Acquired: Visa episode</h4>
+      <div class="dd-meta">Acquired Podcast</div>
+      <p>Acquired's deep dive into Visa — how a small Bank of America experiment became the most profitable financial network in history.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Monday, March 30, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Bloomberg<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
