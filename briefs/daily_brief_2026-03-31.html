@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — March 31, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Tuesday, March 31, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">President Trump signals willingness to end Iran conflict as markets rally; Nvidia invests $2 billion in Marvell for AI expansion; U.S. gasoline prices surge above $4 per gallon amid oil shock.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-03-31.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">69°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">Low 55° · Now 60° · 🌧 45%</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">64°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">Low 54° · Now 56° · 🌧 34%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Comfortable — a light layer in the morning. Rain likely — bring an umbrella.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Trump Signals Willingness to End Iran Military Campaign Despite Hormuz Closure</h3>
+    <div class="source">
+      
+        
+        Wall Street Journal
+        
+      
+         · 
+        <a href="https://www.cnbc.com/2026/03/30/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>President Donald Trump told aides he is willing to end U.S. military hostilities in the Middle East even if the Strait of Hormuz remains largely shut, according to multiple reports. The potential de-escalation sent stock futures surging over 1% on Tuesday morning, offering hope to markets battered by a month-long conflict that has created the largest oil supply disruption in history.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This could end the energy price shock that has pushed U.S. gas prices above $4 per gallon for the first time in three years and halt the worst monthly stock decline since September 2022.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Defense Secretary Hegseth Faces Scrutiny Over Pre-War Defense Stock Investment Inquiry</h3>
+    <div class="source">
+      
+        
+        Financial Times
+        
+      
+    </div>
+    <p>The Financial Times reported that Defense Secretary Pete Hegseth's broker at Morgan Stanley contacted BlackRock in February about making a multimillion-dollar investment in its iShares Defense Industrials Active ETF, which holds companies like Lockheed Martin and Northrop Grumman. This occurred in the lead-up to the Iran war, though the Pentagon has dismissed concerns.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The timing raises questions about potential conflicts of interest among senior officials in the lead-up to major military operations.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-03-31/nvidia-invests-2-billion-in-marvell-announces-partnership" target="_blank">Nvidia Announces $2 Billion Investment in Marvell Technology for AI Partnership</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-03-31/nvidia-invests-2-billion-in-marvell-announces-partnership" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Nvidia announced a $2 billion investment in Marvell Technology as part of a strategic partnership to expand its AI ecosystem through the NVLink Fusion platform. Marvell will provide custom XPUs and networking solutions while Nvidia supplies supporting technologies for AI infrastructure. The deal sent Marvell shares surging 11% in premarket trading.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This marks Nvidia's latest multi-billion dollar investment as demand for AI infrastructure skyrockets, continuing its pattern of strategic bets in companies like Synopsys and CoreWeave.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/31/stocks-making-the-biggest-moves-premarket-mkc-deo-nvda.html" target="_blank">Tech Stocks Rally on Middle East De-escalation Hopes</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/31/stocks-making-the-biggest-moves-premarket-mkc-deo-nvda.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Technology stocks joined a broader market rally as news of potential Middle East conflict de-escalation boosted investor sentiment. The tech-heavy Nasdaq showed particular strength as investors returned to growth stocks after weeks of defensive positioning.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The tech sector had been among the hardest hit by the recent market turmoil, making this recovery significant for overall market sentiment.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/31/stocks-making-the-biggest-moves-premarket-mkc-deo-nvda.html" target="_blank">Unilever in Advanced Talks to Merge Food Business with McCormick in $15.7 Billion Deal</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/31/stocks-making-the-biggest-moves-premarket-mkc-deo-nvda.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Unilever confirmed it is in advanced talks to combine its food business with spice maker McCormick in a deal involving approximately $15.7 billion in upfront cash and majority consideration in McCormick equity. If completed, Unilever and its shareholders would hold 65% of the combined company. McCormick shares rose more than 3% in premarket trading.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents a major corporate restructuring as Unilever continues to streamline its portfolio and focus on core categories.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/03/30/stock-market-today-live-updates.html" target="_blank">U.S. Gasoline Prices Surge Above $4 Per Gallon as Iran War Drives Oil Shock</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/03/30/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>U.S. gasoline prices hit a nationwide average of $4.018 per gallon, the highest level since August 2022, according to AAA. Prices have soared more than 30% since the U.S. and Israel attacked Iran in late February. The oil supply shock has rapidly driven up costs for families as the Middle East conflict enters its fifth week.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Rising fuel costs are hitting consumer budgets and threatening to reignite inflation pressures just as the Federal Reserve had appeared to be making progress on price stability.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Defense Secretary Hegseth's Broker Sought Defense Stock Investments Before Iran War</h3>
+    <div class="source">
+      
+        
+        Financial Times
+        
+      
+    </div>
+    <p>The Financial Times reported that Defense Secretary Pete Hegseth's broker at Morgan Stanley contacted BlackRock in February about making a multimillion-dollar investment in its iShares Defense Industrials Active ETF, which holds companies like Lockheed Martin and Northrop Grumman. This occurred in the lead-up to the Iran war. The Pentagon has dismissed the report.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The timing of the investment inquiry raises ethical questions about potential conflicts of interest at the highest levels of the defense establishment.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Nanoparticle Drug Delivery System Shows Promise in Early Research</h3>
+    <div class="source">
+      
+        
+        Nature
+        
+      
+    </div>
+    <p>Research published around March 30 in Nature describes advances in nanoparticle-based drug delivery systems that could improve targeted treatment delivery. The work represents incremental progress in nanomedicine applications for therapeutic interventions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Improved drug delivery systems could enhance treatment efficacy while reducing side effects across multiple disease categories.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">PHI 109</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">MIA 119</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">BOS 102</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ATL 112</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">PHX 131</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MEM 105</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">CHI 114</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">SA 129</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">MIN 124</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">DAL 94</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CLE 122</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">UTAH 113</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">DET 110</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">OKC 114</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">WSH 101</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAL 120</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3>NBA Regular Season Nears Conclusion with Playoff Picture Taking Shape</h3>
+    <div class="source">
+      
+        
+        ESPN
+        
+      
+    </div>
+    <p>The NBA regular season is entering its final days with multiple games scheduled for March 31, 2026, as teams jockey for playoff positioning. Several matchups feature teams fighting for postseason berths or seeding advantages.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The final week of the regular season will determine playoff matchups and home-court advantage for the NBA postseason.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>NHL Playoffs Approach as Regular Season Winds Down</h3>
+    <div class="source">
+      
+        
+        ESPN
+        
+      
+    </div>
+    <p>The National Hockey League regular season is nearing completion with several games scheduled for March 31, 2026. Teams are competing for final playoff spots and divisional standings as the postseason approaches.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The final games of the NHL regular season will determine which teams make the playoffs and their first-round matchups.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Tottenham Manager Igor Tudor Addresses Team Performance Amid Season Challenges</h3>
+    <div class="source">
+      
+        
+        Sky Sports
+        
+      
+    </div>
+    <p>Tottenham Hotspur manager Igor Tudor has been discussing his team's recent performances and strategies as the Premier League season progresses. The club continues to navigate a competitive season under Tudor's leadership.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Tottenham's performance under Tudor will determine their European competition qualification and overall season success.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>The Economist</strong> — Deep analysis and long-form features on global affairs, business, technology, and culture from one of the world's most respected news magazines.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 22 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 4 · ~3 hr listen
+        
+      </div>
+      <h4>Acquired: Visa episode</h4>
+      <div class="dd-meta">Acquired Podcast</div>
+      <p>Acquired's deep dive into Visa — how a small Bank of America experiment became the most profitable financial network in history.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Tuesday, March 31, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · The Economist<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
