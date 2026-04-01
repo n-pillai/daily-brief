@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 01, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Wednesday, April 01, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Markets rally on hopes U.S.-Iran war could end soon as Trump promises major announcement; India launches digital Census 2027 with first-ever caste enumeration; OpenAI raises $3B at $122B valuation while Anthropic faces federal ban.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-01.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">⛅</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">63°F</div>
+    <div class="weather-desc">Partly cloudy</div>
+    <div class="weather-hilo">Low 53° · Now 55° · 🌧 24%</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">⛅</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">59°F</div>
+    <div class="weather-desc">Mainly clear</div>
+    <div class="weather-hilo">Low 51° · Now 55° · 🌧 50%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Cool — jacket needed.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/immigration/visa-immigration-changes-in-april-2026-us-uk-canada-eu-tighten-rules-126040100310_1.html" target="_blank">Global Visa Rules Tighten Across US, UK, Canada and EU</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/immigration/visa-immigration-changes-in-april-2026-us-uk-canada-eu-tighten-rules-126040100310_1.html" target="_blank">Additional: Business Standard</a>
+        
+      
+    </div>
+    <p>Multiple countries implemented stricter immigration rules effective April 1. The U.S. mandated updated H-1B Form I-129 with detailed wage disclosures and enhanced green card screening. UK visa fees increased across multiple categories, while the EU began implementing biometric border checks. The changes increase costs and processing times for international students, professionals, and families seeking work or study opportunities abroad.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> These coordinated policy shifts reflect a global trend toward stricter migration controls that will reshape international mobility patterns and labor markets.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india-news/census-2027-begins-today-to-be-conducted-digitally-for-first-time-126040100045_1.html" target="_blank">India Launches Digital Census 2027 with First-Ever Caste Enumeration</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india-news/census-2027-begins-today-to-be-conducted-digitally-for-first-time-126040100045_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>India's 16th Census and eighth since Independence began April 1, marking the first time the exercise will be conducted digitally with self-enumeration options. The census will be conducted in two phases: House Listing and Housing Census from April to September 2026, followed by Population Enumeration in February 2027. For the first time, caste enumeration will also be conducted during the second phase, a politically significant decision that addresses long-standing demands from various communities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This is India's largest census exercise globally and introduces transformative digital methods while adding caste enumeration, which will shape policy-making, welfare programs, and political discourse for decades.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/industry/news/india-ban-chinese-cctv-government-security-concerns-hikvision-dahua-market-126033000316_1.html" target="_blank">India Bans Chinese CCTV Cameras Over Security Concerns</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/industry/news/india-ban-chinese-cctv-government-security-concerns-hikvision-dahua-market-126033000316_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>India restricted Chinese-origin CCTV cameras from companies like Hikvision and Dahua starting April 1 due to national security concerns and new certification requirements. Chinese vendors previously held about one-third of India's $5-7.5 billion video surveillance market, but Indian manufacturers now control over 80% as of February 2026. The move may cause temporary supply shortages and price increases but creates opportunities for domestic manufacturers.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The ban accelerates India's push for technology self-reliance while addressing cybersecurity vulnerabilities in critical surveillance infrastructure.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.businesstoday.in/markets/story/stock-market-new-rules-from-april-1-key-changes-for-traders-investors-523254-2026-03-31" target="_blank">Securities Transaction Tax Hike on Futures and Options Trading Takes Effect</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.businesstoday.in/markets/story/stock-market-new-rules-from-april-1-key-changes-for-traders-investors-523254-2026-03-31" target="_blank">Additional: Business Today</a>
+        
+      
+    </div>
+    <p>As outlined in Union Budget 2026-27, the Securities Transaction Tax on futures and options trading increased from April 1. STT on futures contracts rose from 0.02% to 0.05%, while options premiums increased from 0.10% to 0.15%. The government also implemented new corporate action rules, including taxing share buybacks under capital gains. These changes specifically target derivative traders while leaving other market segments untouched.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The tax hikes aim to cool speculative trading in derivatives markets while boosting government revenue, potentially reshaping retail trading behavior.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.businesstoday.in/personal-finance/tax/story/more-changes-than-last-year-how-april-1-2026-tax-rules-compare-with-april-1-2025-523341-2026-03-31" target="_blank">New Income Tax Act 2025 Introduces Structural Reforms</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.businesstoday.in/personal-finance/tax/story/more-changes-than-last-year-how-april-1-2026-tax-rules-compare-with-april-1-2025-523341-2026-03-31" target="_blank">Additional: Business Today</a>
+        
+      
+    </div>
+    <p>The new Income Tax Act 2025 took effect April 1, 2026, introducing structural reforms beyond immediate tax relief. Key changes include a unified 'Tax Year' replacing the Financial Year-Assessment Year system, stricter HRA documentation requirements with mandatory PAN disclosure, and new Form 130 replacing Form 16. The focus shifts from tax savings to transparency, compliance, and improved reporting mechanisms.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The comprehensive overhaul represents the first major rewrite of India's tax code in decades, potentially improving compliance but requiring significant adjustment from taxpayers and businesses.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>OpenAI Raises $3B from Retail Investors at $122B Valuation</h3>
+    <div class="source">
+      
+        
+        TechCrunch
+        
+      
+    </div>
+    <p>OpenAI raised $3 billion from retail investors as part of a massive funding round that values the company at $122 billion. The company also disclosed it has 900 million weekly ChatGPT users, demonstrating unprecedented scale for an AI product. The retail component marks an unusual approach to AI fundraising, typically dominated by institutional investors.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The astronomical valuation and massive user base solidify OpenAI's position as the dominant consumer AI company, while the retail investor access democratizes participation in AI growth.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>U.S. Government Bans Anthropic, Designates AI Company Supply-Chain Risk</h3>
+    <div class="source">
+      
+        
+        Stratechery
+        
+      
+    </div>
+    <p>The federal government announced it will stop working with Anthropic and designated the AI company a supply-chain risk after Anthropic refused to support certain Pentagon use cases including mass domestic surveillance and autonomous weapons systems. Meanwhile, rival OpenAI reached an agreement with the Defense Department to have its models used in classified settings. The decision creates a stark divide in the AI industry over military applications.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The ban represents the first major government action punishing an AI company for ethical stances, potentially forcing other AI firms to choose between principles and lucrative government contracts.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://stratechery.com/2026/axios-supply-chain-attack-claude-code-code-leaked-ai-and-security/" target="_blank">Claude Code Source Leaked in npm Security Incident</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://stratechery.com/2026/axios-supply-chain-attack-claude-code-code-leaked-ai-and-security/" target="_blank">Stratechery</a>
+        
+      
+    </div>
+    <p>Anthropic's Claude Code source code was leaked via an npm source map error, highlighting security vulnerabilities even at sophisticated AI companies. Ben Thompson analyzed the incident alongside an Axios supply chain attack, focusing on how AI will impact security in both the short and long term. He argues AI will likely make security worse initially before eventually surpassing human capabilities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The leak demonstrates that rapid AI development is outpacing security practices, with potentially serious consequences for proprietary model protection and user data.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/03/31/exclusive-runway-launches-10m-fund-builders-program-to-support-early-stage-ai-startups/" target="_blank">Runway Launches $10M Fund for Early-Stage AI Startups</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/03/31/exclusive-runway-launches-10m-fund-builders-program-to-support-early-stage-ai-startups/" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>Runway is moving beyond building AI video models with the launch of a $10 million venture fund to invest in early-stage companies building across AI, media, and world simulation. The company is also rolling out a Builders program offering seed to Series C startups free API credits and access to its Characters platform, which lets users interact with generative AI agents in real time with customizable faces and voices.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This signals a major shift in AI video generation from pure tool-building to ecosystem development, potentially accelerating innovation in real-time AI agent applications.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://stratechery.com/2026/an-interview-with-nvidia-ceo-jensen-huang-about-accelerated-computing/" target="_blank">Nvidia CEO Discusses AI Inflection Points and Agent Era</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://stratechery.com/2026/an-interview-with-nvidia-ceo-jensen-huang-about-accelerated-computing/" target="_blank">Stratechery</a>
+        
+      
+    </div>
+    <p>In an interview following Nvidia's GTC 2026 keynote, CEO Jensen Huang discussed how AI has crossed important thresholds in the past year with models becoming useful at scale, reasoning improving, and hallucinations dropping. Huang also addressed Nvidia's Groq acquisition, supply chain constraints, and the transition toward AI agents as the next major wave in the industry.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Huang's perspective as the leader of AI's infrastructure provider offers crucial insight into where the industry is heading and when key technical barriers will fall.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/01/cnbc-daily-open-us-iran-war-markets-rally-oil-ai-oracle-layoffs.html" target="_blank">Markets Rally on Hopes U.S.-Iran War Could End Soon</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/01/cnbc-daily-open-us-iran-war-markets-rally-oil-ai-oracle-layoffs.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Wall Street rallied sharply Tuesday with the Dow up 2.49%, S&P 500 gaining 2.91%, and Nasdaq advancing 3.83% following reports that Washington and Tehran may be exploring paths to end their conflict. President Trump announced he will deliver an address Wednesday evening to provide an important update on Iran. However, markets have experienced similar rallies followed by reversals multiple times during the five-week conflict, and oil remains above $100 per barrel.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The U.S.-Iran war has driven oil above $100 per barrel and created the biggest geopolitical risk to global markets and economic growth in 2026, making any credible path toward resolution a major catalyst for risk assets.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>SpaceX Lines Up 21 Banks for Mega IPO 'Project Apex'</h3>
+    <div class="source">
+      
+        
+        CNBC
+        
+      
+    </div>
+    <p>Elon Musk's space venture is working with 21 banks on a blockbuster initial public offering with a likely valuation exceeding $200 billion. The unprecedented scale of the banking syndicate signals one of the largest IPOs in history and could mark a reopening of the IPO market despite recent volatility. The move comes as SpaceX prepares to transition from private to public markets.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A successful SpaceX IPO at this scale would signal confidence in capital markets despite geopolitical turmoil and could unlock exits for other major tech unicorns.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Unilever in Advanced Talks for $60B McCormick Merger</h3>
+    <div class="source">
+      
+        
+        Reuters
+        
+      
+    </div>
+    <p>Unilever is in advanced negotiations to merge its food business with McCormick in a transaction that could create a $60 billion company. The potential mega-merger would represent a major restructuring of Unilever's portfolio as the consumer goods giant seeks to focus its business and reduce conglomerate discount. McCormick shares climbed nearly 3% on the news despite some investor skepticism about integration challenges.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The deal would create a food and spice giant with unprecedented scale and marks the latest effort by legacy consumer goods companies to restructure amid changing retail dynamics.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Biogen to Acquire Apellis Pharmaceuticals for $5.6 Billion</h3>
+    <div class="source">
+      
+        
+        Reuters
+        
+      
+    </div>
+    <p>Biogen agreed to buy all outstanding shares of Apellis Pharmaceuticals for $5.6 billion, sending Apellis shares soaring 138%. Biogen said the acquisition will enhance its growth portfolio in immunology and rare disease. The deal represents one of the largest biotech M&A transactions in early 2026 and comes as Biogen seeks to diversify beyond its Alzheimer's franchise.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The acquisition signals renewed M&A activity in biotech as large pharmaceutical companies seek to replenish pipelines ahead of patent cliffs.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Nvidia Invests $2 Billion in Marvell to Expand AI Ecosystem</h3>
+    <div class="source">
+      
+        
+        CNBC
+        
+      
+    </div>
+    <p>Nvidia announced a $2 billion strategic investment in Marvell Technology, with Marvell joining the Nvidia AI ecosystem to provide custom XPUs and NVLink Fusion-compatible networking. The partnership builds on Nvidia's NVLink Fusion platform for rack-scale AI infrastructure. Marvell shares surged nearly 10% on the announcement as Nvidia continues to consolidate control over critical AI infrastructure components.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The investment extends Nvidia's dominance beyond GPUs into networking and custom silicon, potentially cementing its position as the central player in AI infrastructure.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">PHX 111</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ORL 115</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CHA 117</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">BKN 86</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">TOR 116</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DET 127</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">NY 94</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">HOU 111</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">DAL 99</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">MIL 123</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">CLE 113</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAL 127</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">POR 114</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">LAC 104</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Quanta Magazine</strong> — Illuminating science and mathematics through deeply reported long-form journalism that explores fundamental questions about nature and existence.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org/" target="_blank">Are Strings Still Our Best Hope for a Theory of Everything?</a></h3>
+    <div class="source"><a href="https://www.quantamagazine.org/" target="_blank">Quanta Magazine</a></div>
+    <p>Columnist Natalie Wolchover examines the latest developments in the ongoing debate over whether string theory can describe the physical world. The piece explores both recent advances and persistent criticisms in what she calls the 'forever war' over string theory's viability as a unified theory of physics, addressing fundamental questions about how—or whether—quantum mechanics and gravity can be reconciled.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org/" target="_blank">In Expanding de Sitter Space, Quantum Mechanics Gets Even More Elusive</a></h3>
+    <div class="source"><a href="https://www.quantamagazine.org/" target="_blank">Quanta Magazine</a></div>
+    <p>The basic geometric shape that best describes our expanding universe—de Sitter space—is also the hardest shape for physicists to understand from a quantum mechanical perspective. This explainer examines why the expanding cosmos poses fundamental challenges to our understanding of quantum physics, exploring the tension between general relativity's description of cosmic expansion and quantum theory's requirements.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org/" target="_blank">When Coupled Volcanoes Talk, These Researchers Listen</a></h3>
+    <div class="source"><a href="https://www.quantamagazine.org/" target="_blank">Quanta Magazine</a></div>
+    <p>Volcanologists around the world are tracking magma as it travels between connected volcanoes, following underground pathways that link volcanic systems. This research reveals how volcanic networks communicate through shared magma channels, potentially leading to improved eruption forecasts by understanding the complex interactions between seemingly separate volcanic systems.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 23 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 5 · ~3 hr listen
+        
+      </div>
+      <h4>Acquired: Visa episode</h4>
+      <div class="dd-meta">Acquired Podcast</div>
+      <p>Acquired's deep dive into Visa — how a small Bank of America experiment became the most profitable financial network in history.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Wednesday, April 01, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Quanta Magazine<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>

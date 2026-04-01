@@ -1,20 +1,13 @@
 {
-  "date": "2026-03-31",
-  "generated_at": "2026-03-31T12:58:10.626339+00:00",
-  "regressions_detected": 1,
+  "date": "2026-04-01",
+  "generated_at": "2026-04-01T13:01:19.233994+00:00",
+  "regressions_detected": 0,
   "total_checks": 6,
   "results": [
     {
       "bug_id": "explore-empty",
-      "detected": true,
-      "details": null,
-      "fix_recipe": [
-        "Check search_news() explore prompt \u2014 has the source list in config.json explore_pool been modified or shrunk?",
-        "Check if Claude web search is returning empty for explore queries \u2014 look at raw_results['explore'] in stdout logs",
-        "Check if validate_brief() is removing ALL explore stories via NOURL filter \u2014 look for NOURL removals in stdout",
-        "Try: widen the explore search date range or add more outlets to explore_pool in config.json"
-      ],
-      "severity": "high"
+      "detected": false,
+      "details": null
     },
     {
       "bug_id": "paywalled-explore",
