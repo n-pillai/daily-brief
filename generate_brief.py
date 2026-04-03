@@ -670,7 +670,11 @@ Do not re-cover a specific match result or concluded event (e.g. a tournament fi
 PLACEHOLDER RULE — absolute:
 You must produce at least 2 real news stories in every section, no exceptions.
 NEVER output a story whose headline says "No Fresh Stories Available", "No Results", or any similar placeholder. If coverage is thin, use slightly older stories or "Additional" outlets — but always real news with real headlines.
-A missing article URL is never a reason to omit a story. Include the story with source name as plain text (url: null) rather than dropping it.
+
+URL RULE — critical:
+Every story MUST have at least one source with a real article URL. The raw search results above contain source_url fields — carry these through to the output. If the raw results have a URL for a story, you MUST include it.
+For "Additional" outlets: construct the URL from the outlet's domain and the article slug if you found it via web search. Only set url to null as a last resort for subscriber-only sources where you confirmed the story but cannot link it directly.
+Stories where ALL sources have null URLs will be automatically removed by the validation layer — an empty section is worse than a slightly uncertain URL.
 
 CONTENT QUALITY RULES:
 - Never include stories about a journal publishing an issue, a magazine releasing an edition, or other meta-publishing announcements. Focus on specific discoveries, findings, or events — not on the fact that a publication released content.
@@ -901,15 +905,29 @@ def validate_brief(brief_data: dict) -> dict:
         section["stories"] = filtered
 
     # ── 3. Vague-source filter (no URL + generic "Additional:" source) ──
+    # If removing all vague stories would empty a section, keep them rather than
+    # showing a blank section — a story with a named source but no URL is better
+    # than nothing.
     for section in sections:
         original = section.get("stories", [])
         filtered = []
+        vague = []
         for story in original:
             if _has_vague_source(story):
-                removed.append(f"  VAGUE [{section['id']}] {story.get('headline', '?')}")
+                vague.append(story)
             else:
                 filtered.append(story)
-        section["stories"] = filtered
+        if filtered:
+            # Section has non-vague stories — safe to drop the vague ones
+            for story in vague:
+                removed.append(f"  VAGUE [{section['id']}] {story.get('headline', '?')}")
+            section["stories"] = filtered
+        elif vague:
+            # ALL stories are vague — keep them to avoid an empty section
+            for story in vague:
+                removed.append(f"  VAGUE-KEPT [{section['id']}] {story.get('headline', '?')} (kept — section would be empty)")
+            section["stories"] = vague
+        # else: section was already empty, nothing to do
 
     # ── 4. Explore URL enforcement ──
     explore = brief_data.get("explore", {})
