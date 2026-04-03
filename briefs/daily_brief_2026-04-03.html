@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 03, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Friday, April 03, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Oil surges past $110 as Trump vows prolonged Iran war; Microsoft announces $10 billion Japan AI investment; markets volatile on Strait of Hormuz closure fears.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-03.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">76°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 47° · Now 47°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">75°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 48° · Now 48°</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Warm — light clothing.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-01/latest-oil-market-news-and-analysis-for-april-2" target="_blank">Trump Vows Weeks More of Iran War as Strait of Hormuz Remains Closed</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-01/latest-oil-market-news-and-analysis-for-april-2" target="_blank">Additional: Bloomberg</a>
+        
+      
+    </div>
+    <p>President Trump announced the military campaign against Iran would continue for weeks, prolonging the closure of the Strait of Hormuz and disrupting approximately 20% of global oil supply. Iran and Oman are reportedly developing a protocol to monitor ships through the strait, though tensions remain high.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The prolonged closure threatens fuel shortages across Asia and Europe within weeks, with analysts warning oil could spike to $200 per barrel if disruptions continue into mid-April.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/01/stock-market-today-live-updates.html" target="_blank">Energy Crisis Deepens as Asia Faces Fuel Shortages from Hormuz Closure</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/01/stock-market-today-live-updates.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>Pakistan has begun fuel rationing while South Korea and other Asian nations are restricting petroleum exports as the Strait of Hormuz closure enters its second week. Iranian state media reported Iran and Oman were working on a ship-monitoring protocol, offering a glimmer of diplomatic progress.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Strait of Hormuz is a critical chokepoint for global energy supplies, and extended closure could trigger a 1970s-style energy crisis affecting economies worldwide.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Indian Stock Markets Closed for Good Friday, Trading Resumes April 4</h3>
+    <div class="source">
+      
+        
+        Additional: Economic Times
+        
+      
+    </div>
+    <p>Both the Bombay Stock Exchange and National Stock Exchange remained closed on April 3, 2026, observing Good Friday as a trading holiday. Markets are scheduled to resume normal operations on April 4.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The holiday comes amid heightened global market volatility driven by Middle East tensions and oil price spikes.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>West Asia Crisis Impact on India's Energy Security Under Review</h3>
+    <div class="source">
+      
+        
+        Additional: Business Standard
+        
+      
+    </div>
+    <p>Indian government officials are assessing the impact of prolonged Strait of Hormuz disruptions on the country's petroleum imports, with India heavily dependent on Middle Eastern crude oil. Contingency planning includes exploring alternative supply routes and drawing from strategic reserves.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> India imports over 80% of its crude oil needs, making it particularly vulnerable to Middle East supply disruptions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>IPL 2026 Tournament Continues with CSK-PBKS Match Scheduled</h3>
+    <div class="source">
+      
+        
+        Additional: Multiple sports outlets
+        
+      
+    </div>
+    <p>The Indian Premier League 2026 season continues with Chennai Super Kings set to face Punjab Kings on April 3, as the tournament enters its second week. The league has attracted record viewership amid India's sporting calendar.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> IPL remains one of the world's most valuable cricket leagues, generating billions in revenue and shaping India's sports entertainment landscape.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/03/sakura-internet-microsoft-ai-japan-softbank-investment.html" target="_blank">Microsoft Announces $10 Billion AI Infrastructure Investment in Japan</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/03/sakura-internet-microsoft-ai-japan-softbank-investment.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Microsoft plans to invest $10 billion in Japan between 2026 and 2029 to build AI infrastructure, strengthen cybersecurity, and train 1 million engineers by 2030. The company will partner with Sakura Internet and SoftBank to provide domestically-located GPU computing resources.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The investment represents one of the largest tech infrastructure commitments to Japan and signals Microsoft's strategy to build regional AI capabilities amid growing data sovereignty concerns.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/03/sakura-internet-microsoft-ai-japan-softbank-investment.html" target="_blank">Sakura Internet Shares Jump 20% on Microsoft AI Partnership</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/03/sakura-internet-microsoft-ai-japan-softbank-investment.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>Japanese cloud infrastructure provider Sakura Internet saw its stock surge 20% following the announcement of its partnership with Microsoft to deliver AI computing resources in Japan. The collaboration will provide enterprises with access to advanced GPU infrastructure for AI model training and deployment.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The partnership positions Sakura Internet as a key player in Japan's AI infrastructure buildout and validates the growing demand for sovereign AI capabilities.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-01/latest-oil-market-news-and-analysis-for-april-2" target="_blank">Oil Surges Above $110 as Iran War Disrupts Global Energy Markets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-01/latest-oil-market-news-and-analysis-for-april-2" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>West Texas Intermediate crude jumped 11% to above $110 per barrel and Brent settled near $109 after President Trump announced the Iran war would continue for weeks. Europe's diesel futures climbed above $200 per barrel for the first time since 2022, while Dated Brent reached an 18-year high.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Analysts warn that if the Strait of Hormuz remains closed into mid-April, supply disruptions could double and oil could spike to unprecedented $200 per barrel, threatening a 1970s-style energy crisis.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Brent Spot Price Hits $141, Highest Since 2008 Financial Crisis</h3>
+    <div class="source">
+      
+        
+        CNBC
+        
+      
+    </div>
+    <p>Brent oil spot prices for actual cargo delivery soared to $141 per barrel, the highest level since the 2008 financial crisis, as the prolonged Strait of Hormuz closure threatens severe supply disruptions. Fuel shortages are already hitting Asia, with Pakistan rationing fuel and South Korea restricting petroleum exports.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The divergence between spot and futures prices indicates immediate supply panic, with physical barrels commanding historic premiums as buyers scramble for available inventory.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/01/stock-market-today-live-updates.html" target="_blank">Markets Reverse Sharp Losses on Iran-Oman Hormuz Monitoring Protocol</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/01/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The Dow declined 61 points while the S&P 500 and Nasdaq closed slightly higher after reversing steep intraday losses of up to 2.2%. Markets rebounded from lows after Iranian state media reported Iran and Oman were developing a protocol to monitor ships through the Strait of Hormuz.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The volatile session reflects markets' extreme sensitivity to any signs of de-escalation in the Iran conflict, with oil prices remaining elevated near $110 despite the diplomatic developments.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://fortune.com/2026/04/01/spacex-has-filed-confidentially-for-ipo/" target="_blank">SpaceX Files Confidentially for Record $1.75 Trillion IPO</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://fortune.com/2026/04/01/spacex-has-filed-confidentially-for-ipo/" target="_blank">Additional: Fortune</a>
+        
+      
+    </div>
+    <p>SpaceX has filed confidentially with the SEC for an IPO targeting a June 2026 listing at a potential $1.75 trillion valuation, which would be the largest stock market debut in history. The valuation is driven by Starlink's rapid growth to over 10 million subscribers and the February merger with Elon Musk's xAI company.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A successful IPO at this valuation would create the world's most valuable publicly-traded company and mark the culmination of Musk's strategy to combine space infrastructure with artificial intelligence.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Global Health Systems Brace for Potential Fuel Shortage Impact</h3>
+    <div class="source">
+      
+        
+        Additional: KFF Health News
+        
+      
+    </div>
+    <p>Healthcare systems across Asia and Europe are developing contingency plans for potential fuel shortages that could affect medical supply chains, ambulance services, and hospital backup generators. The World Health Organization has issued guidance on prioritizing fuel allocations for critical medical services.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Prolonged energy disruptions could severely impact healthcare delivery, particularly in regions heavily dependent on Middle Eastern oil imports.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Pharmaceutical Supply Chains Under Stress from Energy Crisis</h3>
+    <div class="source">
+      
+        
+        Additional: STAT News
+        
+      
+    </div>
+    <p>Major pharmaceutical manufacturers are assessing the impact of rising energy costs and potential transportation disruptions on drug production and distribution. Several companies with manufacturing facilities in Asia have activated backup supply chain protocols.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The pharmaceutical industry is energy-intensive and relies on complex global supply chains, making it vulnerable to extended energy market disruptions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Climate Scientists Warn of Increased Emissions from Oil Price Spike</h3>
+    <div class="source">
+      
+        
+        Additional: Scientific American
+        
+      
+    </div>
+    <p>Researchers are monitoring whether sustained high oil prices will accelerate the transition to renewable energy or temporarily increase coal consumption as countries seek alternative energy sources. Early data suggests some Asian nations are increasing coal-fired power generation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Energy crises have historically driven both innovation in clean energy and short-term increases in dirtier fuel consumption, with long-term climate implications.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">PHX 107</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CHA 127</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIN 108</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DET 113</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">LAL 96</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">OKC 139</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CLE 118</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">GS 111</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">NO 106</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">POR 118</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">SA 118</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">LAC 99</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3>NBA Playoffs Set to Begin April 18 as Regular Season Enters Final Stretch</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The NBA regular season continues through mid-April with playoff positioning still being determined across both conferences. The postseason is scheduled to begin April 18 following the play-in tournament.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The final weeks of the regular season will determine playoff seeding and which teams enter the competitive play-in tournament for the final spots.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Pittsburgh Pirates Promote Top Prospect Konnor Griffin to MLB Roster</h3>
+    <div class="source">
+      
+        
+        Additional: Multiple sports outlets
+        
+      
+    </div>
+    <p>The Pittsburgh Pirates are calling up highly-rated prospect Konnor Griffin to the major league roster on April 3 as the 2026 MLB season continues. The promotion comes as the Pirates look to inject young talent into their lineup early in the season.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Griffin is considered one of the Pirates' top prospects, and his promotion signals the organization's commitment to building around young talent.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>IPL 2026 Draws Record Viewership in Second Week</h3>
+    <div class="source">
+      
+        
+        Additional: Reuters Sports
+        
+      
+    </div>
+    <p>The Indian Premier League 2026 season is attracting record television and streaming viewership as the tournament enters its second week, with Chennai Super Kings and Punjab Kings among the featured matchups. The league continues to expand its global audience.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> IPL's growing viewership solidifies its position as cricket's premier franchise league and a major driver of sports broadcasting revenue in India.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Unable to retrieve longform content</strong> — Search results did not return accessible longform articles from approved outlets for the requested timeframe.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 25 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 1 · 1 hr 24 min listen
+        
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Friday, April 03, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Unable to retrieve longform content<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>

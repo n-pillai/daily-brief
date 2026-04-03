@@ -19,7 +19,8 @@
           "2026-03-28",
           "2026-03-29",
           "2026-03-31",
-          "2026-04-02"
+          "2026-04-02",
+          "2026-04-03"
         ]
       },
       "fix_recipe": [
@@ -144,7 +145,8 @@
         "fix_applied": "Added _has_vague_source() filter in validate_brief() step 3; synthesis prompt updated with PLACEHOLDER RULE banning filler stories",
         "fix_date": "2026-03-08",
         "recurrences": [
-          "2026-03-28"
+          "2026-03-28",
+          "2026-04-03"
         ]
       },
       "fix_recipe": [
@@ -157,7 +159,7 @@
     {
       "id": "empty-news-section",
       "name": "Empty news section after validation",
-      "description": "One or more main news sections (world, india, tech, business, science, sports) have 0 stories after validation — the section renders as an empty header in the email",
+      "description": "One or more main news sections (world, india, tech, business, science, sports) have 0 stories after validation \u2014 the section renders as an empty header in the email",
       "status": "open",
       "detection": {
         "type": "python_expr",
@@ -172,11 +174,11 @@
         "recurrences": []
       },
       "fix_recipe": [
-        "Check validate_brief() VAGUE removal log in workflow stdout — count how many stories per section were removed",
+        "Check validate_brief() VAGUE removal log in workflow stdout \u2014 count how many stories per section were removed",
         "If most removals are VAGUE: the synthesis prompt is not populating sources[].url fields. Strengthen the URL requirement in the synthesis prompt or add a fallback that constructs URLs from outlet + headline",
         "If most removals are DEDUP/META: the section had too few unique stories to begin with. Increase the story count requested per section in the search prompt",
         "Consider a fallback: if a section drops to 0 stories post-validation, re-run search for that section with a broader query before giving up",
-        "Nuclear option: loosen _has_vague_source() to allow stories with a named (non-Additional) source even without a URL — trades verifiability for coverage"
+        "Nuclear option: loosen _has_vague_source() to allow stories with a named (non-Additional) source even without a URL \u2014 trades verifiability for coverage"
       ]
     }
   ]
