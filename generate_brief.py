@@ -958,12 +958,15 @@ def run_regression_checks(brief_data: dict) -> dict:
 
         if det_type == "python_expr":
             try:
+                eval_globals = {"brief_data": brief_data,
+                     "_has_vague_source": _has_vague_source,
+                     "len": len, "any": any}
                 detected = eval(  # noqa: S307 — expressions from our own committed registry
                     detection["check"],
-                    {"brief_data": brief_data,
-                     "_has_vague_source": _has_vague_source,
-                     "len": len, "any": any},
+                    eval_globals,
                 )
+                if detected and "details_expr" in detection:
+                    details = eval(detection["details_expr"], eval_globals)  # noqa: S307
             except Exception as e:
                 details = f"Detection check failed: {e}"
 

@@ -153,6 +153,31 @@
         "Check synthesis prompt PLACEHOLDER RULE \u2014 if it was weakened, Claude may be fabricating to fill thin sections",
         "If stories are getting through with URLs but the URLs are fake: would need a URL reachability check (costly, consider as last resort)"
       ]
+    },
+    {
+      "id": "empty-news-section",
+      "name": "Empty news section after validation",
+      "description": "One or more main news sections (world, india, tech, business, science, sports) have 0 stories after validation — the section renders as an empty header in the email",
+      "status": "open",
+      "detection": {
+        "type": "python_expr",
+        "check": "any(len(sec.get('stories', [])) == 0 for sec in brief_data.get('sections', []))",
+        "details_expr": "'Empty sections: ' + ', '.join(sec['id'] for sec in brief_data.get('sections', []) if len(sec.get('stories', [])) == 0)"
+      },
+      "history": {
+        "first_seen": "2026-04-02",
+        "root_cause": "Claude synthesis returns stories without source URLs; validate_brief() VAGUE filter correctly removes them, but when ALL stories in a section lack URLs the entire section ends up empty. Search succeeds, synthesis succeeds, but URL population is inconsistent.",
+        "fix_applied": null,
+        "fix_date": null,
+        "recurrences": []
+      },
+      "fix_recipe": [
+        "Check validate_brief() VAGUE removal log in workflow stdout — count how many stories per section were removed",
+        "If most removals are VAGUE: the synthesis prompt is not populating sources[].url fields. Strengthen the URL requirement in the synthesis prompt or add a fallback that constructs URLs from outlet + headline",
+        "If most removals are DEDUP/META: the section had too few unique stories to begin with. Increase the story count requested per section in the search prompt",
+        "Consider a fallback: if a section drops to 0 stories post-validation, re-run search for that section with a broader query before giving up",
+        "Nuclear option: loosen _has_vague_source() to allow stories with a named (non-Additional) source even without a URL — trades verifiability for coverage"
+      ]
     }
   ]
 }
