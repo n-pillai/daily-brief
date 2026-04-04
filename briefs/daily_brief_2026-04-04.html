@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 04, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Saturday, April 04, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Spain closes airspace to US military operations against Iran as oil prices surge past $140; India commissions third nuclear submarine while joining UK-led talks to reopen Strait of Hormuz; US jobs report shows unexpected strength despite wage slowdown.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-04.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">74°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 47° · Now 61°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">74°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 46° · Now 61°</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Comfortable — a light layer in the morning.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bbc.com/news/articles/cwy368j1e3lo" target="_blank">Spain Closes Airspace to US Military Aircraft Over Iran War</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bbc.com/news/articles/cwy368j1e3lo" target="_blank">BBC</a>
+        
+      
+    </div>
+    <p>Spain has closed its airspace to US planes involved in military operations against Iran, with Defense Minister Margarita Robles calling the war 'profoundly illegal and profoundly unjust.' The decision extends Spain's earlier ban on US use of jointly-operated military bases at Rota and Morón, marking Europe's strongest opposition to the US-Israel military campaign. Prime Minister Pedro Sánchez warned that responding to illegality with more illegality risks creating 'humanity's great disasters.'</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents the strongest European challenge to US military operations in the Middle East and could significantly complicate American logistics for the ongoing Iran campaign.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/liveblog/2026/4/3/iran-war-live-trump-warns-assault-on-infrastructure-hasnt-even-started" target="_blank">US Fighter Jet Shot Down Over Iran as War Enters Fifth Week</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/liveblog/2026/4/3/iran-war-live-trump-warns-assault-on-infrastructure-hasnt-even-started" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>A US military aircraft was shot down during operations over Iran, with one crew member rescued and search continuing for a second crew member according to US officials. Iran has also reported that a major bridge connecting Tehran and Karaj was destroyed in US-Israeli airstrikes, killing eight people and injuring 95 others. The incident occurred as the conflict continues into its fifth week, with Iran launching retaliatory missile and drone attacks across the Gulf region.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The loss of a US aircraft and continued infrastructure strikes signal an escalating conflict with no clear path to de-escalation despite international mediation efforts.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>China and Pakistan Propose Five-Point Peace Plan for Iran War</h3>
+    <div class="source">
+      
+        
+        Reuters
+        
+      
+         · 
+        The Guardian
+        
+      
+    </div>
+    <p>China and Pakistan jointly released a five-point peace initiative calling for an immediate ceasefire in the Gulf, swift launch of peace talks, and restoration of normal navigation through the Strait of Hormuz. The proposal came after Pakistani Foreign Minister Ishaq Dar met with Chinese Foreign Minister Wang Yi in Beijing, positioning Pakistan as a key mediator leveraging its ties to both the US and Iran. The plan calls for protection of civilians and civilian infrastructure, and a comprehensive peace framework based on UN Charter principles.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> China's emergence as a potential mediator in a US-led conflict represents a significant geopolitical shift and could challenge American influence in resolving the crisis.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/external-affairs-defence-security/news/india-inducts-nuclear-powered-submarine-ins-aridhaman-boosts-deterrence-126040300645_1.html" target="_blank">India Inducts Nuclear-Powered Submarine INS Aridhaman, Strengthening Naval Deterrence</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/external-affairs-defence-security/news/india-inducts-nuclear-powered-submarine-ins-aridhaman-boosts-deterrence-126040300645_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>India commissioned its indigenously-built nuclear-powered ballistic missile submarine INS Aridhaman on Friday, further strengthening the naval component of its nuclear triad. This is India's third submarine under the closely guarded SSBN program, following INS Arihant and INS Arighat. India joins an exclusive group of countries with nuclear-powered submarines including the US, Russia, UK, France and China.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This significantly enhances India's strategic nuclear deterrence capabilities and maritime security posture amid regional security challenges.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/external-affairs-defence-security/news/india-joins-uk-meeting-strait-hormuz-shipping-crisis-126040201295_1.html" target="_blank">India Joins UK-Led Talks to Reopen Strait of Hormuz Amid Iran Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/external-affairs-defence-security/news/india-joins-uk-meeting-strait-hormuz-shipping-crisis-126040201295_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Foreign Secretary Vikram Misri participated in a virtual meeting convened by the UK on Thursday to explore ways to reopen the Strait of Hormuz, a vital shipping route choked off by the US-Israeli war against Iran. More than 60 countries participated in the meeting where India emphasized the importance of navigation and unimpeded transit through international waterways. India is also supplying oil to Bangladesh, Nepal, Bhutan, and Sri Lanka, with the Maldives seeking fuel supplies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The closure of this critical waterway threatens global energy supplies and India's oil imports, while India positions itself as a regional energy supplier to neighboring countries.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/economy/news/india-uk-fta-may-come-into-force-in-next-30-to-45-days-goyal-126040201109_1.html" target="_blank">India-UK Free Trade Agreement Expected to Come into Force Within 30-45 Days</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/economy/news/india-uk-fta-may-come-into-force-in-next-30-to-45-days-goyal-126040201109_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>Commerce and Industry Minister Piyush Goyal announced that the India-UK free trade agreement, signed in July 2025, is likely to be implemented by May 1, 2026. The agreement has already passed both Houses of Parliament in both countries. Goyal held a bilateral meeting with UK's Secretary of State for Business and Trade Peter Kyle on the sidelines of the 14th WTO ministerial conference in Cameroon.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The implementation will deepen economic ties between two major economies and provide Indian businesses with enhanced access to UK markets.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/finance/personal-finance/send-or-receive-money-abroad-new-tax-rules-will-change-your-paperwork-126040300184_1.html" target="_blank">New Tax Rules on Foreign Income and Remittances Take Effect</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/finance/personal-finance/send-or-receive-money-abroad-new-tax-rules-will-change-your-paperwork-126040300184_1.html" target="_blank">Business Standard</a>
+        
+      
+    </div>
+    <p>The Central Board of Direct Taxes has notified new Income-tax Rules, 2026 under the Income-tax Act, 2025, which came into force on April 1. The new rules significantly tighten reporting requirements for foreign transactions, with increased focus on uniformity, transparency and data consistency. Non-resident taxpayers face higher compliance burden, especially for tax treaty claims, foreign remittances and foreign tax credit.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> These changes will impact Indians working abroad, receiving foreign remittances, or conducting international business transactions.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Global Tech Supply Chains Face Disruption from Iran War</h3>
+    <div class="source">
+      
+        
+        Additional: Bloomberg Technology
+        
+      
+    </div>
+    <p>Technology companies are scrambling to adjust supply chains as the closure of the Strait of Hormuz and soaring oil prices threaten semiconductor and electronics manufacturing. Major tech manufacturers are exploring alternative shipping routes and accelerating diversification away from Gulf-dependent logistics. The energy crisis is also driving up data center operating costs and cloud computing prices.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The conflict's impact on energy and shipping could lead to product delays and price increases across the tech sector during a critical production period.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>AI Companies Grapple with Energy Costs as Oil Prices Surge</h3>
+    <div class="source">
+      
+        
+        Additional: CNBC Technology
+        
+      
+    </div>
+    <p>Major AI companies including OpenAI, Google, and Microsoft are facing sharply higher energy costs for training and running large language models as oil prices exceed $140 per barrel. The energy-intensive nature of AI data centers makes them particularly vulnerable to the current crisis. Some companies are reportedly delaying planned model upgrades and expansion projects.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Rising energy costs could slow the pace of AI development and increase prices for AI services, affecting the technology's accessibility and adoption.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Cybersecurity Firms Report Surge in Iranian-Linked Attacks</h3>
+    <div class="source">
+      
+        
+        Additional: Reuters Technology
+        
+      
+    </div>
+    <p>Cybersecurity companies are tracking a significant increase in cyberattacks linked to Iranian state actors targeting US and Israeli critical infrastructure, financial institutions, and technology companies. The attacks include ransomware, data theft attempts, and distributed denial-of-service operations. Security researchers warn that the cyber dimension of the conflict could expand to include more countries and sectors.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The cyber warfare component of the Iran conflict poses risks to global digital infrastructure beyond the immediate conflict zone.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-02/the-world-s-main-physical-oil-price-soars-to-highest-since-2008" target="_blank">Dated Brent Oil Price Surges Above $140, Highest Level Since 2008</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-02/the-world-s-main-physical-oil-price-soars-to-highest-since-2008" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Dated Brent, the price for real-world oil shipments in the North Sea, reached $141.37 on April 2, marking the highest level since 2008 and surpassing levels seen during Russia's Ukraine invasion. The surge reflects the severe disruption to global oil supply caused by Iran's closure of the Strait of Hormuz during the ongoing U.S.-Iran conflict. Analysts warn the futures price is not accurately reflecting the true tightness in physical oil markets.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents the worst energy crisis in history according to the IEA, with 12 million barrels per day lost—more than double the 1970s oil crises—threatening global recession.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/03/jobs-report-march-2026-.html" target="_blank">US Payrolls Rose by 178,000 in March, More Than Expected</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/03/jobs-report-march-2026-.html" target="_blank">CNBC</a>
+        
+      
+         · 
+        Wall Street Journal
+        
+      
+    </div>
+    <p>The U.S. economy added 178,000 jobs in March, significantly exceeding the expected 57,000 and rebounding from February's revised loss of 133,000 jobs. Healthcare led gains with 76,000 jobs added, including 35,000 workers returning from a Kaiser Permanente strike. However, wage growth slowed to 3.5% annually—the lowest since May 2021—and the labor force contracted by 396,000. Unemployment held at 4.3%.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The mixed report—stronger job growth but weaker wage gains and shrinking labor force—keeps the Federal Reserve on hold as the Iran war drives energy inflation.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/02/oil-prices-today-wti-brent-trump-speech-iran-war-.html" target="_blank">US Oil Prices Soar 11% as Trump's Iran War Speech Stokes Escalation Fears</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/02/oil-prices-today-wti-brent-trump-speech-iran-war-.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>U.S. West Texas Intermediate crude futures surged more than 11% to close at $111.54 per barrel on April 2, while Brent crude gained nearly 8% to settle at $109.03. The spike followed President Trump's Wednesday evening national address warning of further military aggression against Iran in the next two to three weeks, dampening hopes for imminent de-escalation. The Strait of Hormuz remains largely closed, blocking approximately 20% of global oil flows.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The continued closure of the world's most critical oil chokepoint threatens to push energy prices even higher and deepen global economic disruption.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-02/iranian-oil-prices-fetch-a-premium-for-first-time-since-2022" target="_blank">Iranian Oil Trades at Premium to Brent for First Time Since 2022</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-02/iranian-oil-prices-fetch-a-premium-for-first-time-since-2022" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Iran's main oil export grade swung to a premium of $1 per barrel over global Brent crude on March 26, marking the first time since May 2022 that Iranian oil has traded above the benchmark. The reversal from typical steep discounts came just days after the U.S. temporarily rolled back some sanctions on Iranian oil. This unusual pricing dynamic reflects the extreme market distortions caused by the conflict and sanctions shifts.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The premium pricing for Iranian oil highlights the severity of global supply disruptions and the complex sanctions dynamics during wartime.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.statnews.com/2026/04/02/health-news-cdc-stops-testing-for-pox-rabies/" target="_blank">CDC Temporarily Pauses Diagnostic Testing for Rabies and Pox Viruses</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.statnews.com/2026/04/02/health-news-cdc-stops-testing-for-pox-rabies/" target="_blank">STAT News</a>
+        
+      
+    </div>
+    <p>The CDC has temporarily paused diagnostic testing for rabies and pox viruses, according to an update on the agency website. These tests are performed by CDC on behalf of state and local health laboratories that lack the same capacity. The news comes at a time when there's no director leading the agency, and staff have expressed anger and distrust of Trump administration officials.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This disruption to critical public health testing capabilities could delay diagnosis of dangerous diseases during a period of instability at the nation's top health protection agency.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.statnews.com/2026/04/03/health-news-hhs-works-it-for-autism-awareness-day/" target="_blank">Supreme Court Conversion Therapy Ruling Could Affect Medical Regulation</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.statnews.com/2026/04/03/health-news-hhs-works-it-for-autism-awareness-day/" target="_blank">STAT News</a>
+        
+      
+    </div>
+    <p>The Supreme Court struck down a ban on mental health providers engaging in conversion therapy, with broader implications for medical regulation. The judges' decision to label talk therapy as speech rather than professional conduct could hinder states' ability to regulate certain types of speech and care that providers can engage in, potentially affecting vaccine guidance and other medical advice.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This ruling could fundamentally weaken states' authority to regulate medical practice and protect patients from harmful or discredited treatments.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Social Sciences Research Shows Low Replication Rates</h3>
+    <div class="source">
+      
+        
+        Science
+        
+      
+    </div>
+    <p>A large-scale assessment found that while over 85% of 110 articles from leading economics and political science journals were computationally reproducible, about half of research in the social sciences doesn't replicate. About 25% of evaluated articles contained non-trivial coding errors, and 72% of statistically significant results remained significant in robustness checks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This assessment provides crucial insights into the reliability of social science research and highlights systemic issues in research reproducibility that affect policy decisions.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">IND 108</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CHA 129</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIN 103</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">PHI 115</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">ATL 141</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">BKN 107</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">CHI 96</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">NY 136</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">UTAH 106</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">HOU 140</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">TOR 128</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MEM 96</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">BOS 133</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MIL 101</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">ORL 138</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">DAL 127</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3>UConn Faces Illinois in March Madness Final Four Semifinal</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>Defending national champion UConn takes on Illinois in one of two Final Four semifinal matchups as the NCAA men's basketball tournament reaches its climactic stage. The winner will advance to the national championship game on Monday. In the other semifinal, Arizona faces Michigan in a battle of storied programs seeking to reach the title game.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> UConn seeks to become the first team since 2007 to win back-to-back national championships in an era of one-and-done players and transfer portal movement.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>IPL 2026: Chennai Super Kings Face Punjab Kings</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN Cricinfo
+        
+      
+    </div>
+    <p>The Indian Premier League continues with Chennai Super Kings taking on Punjab Kings on April 3, while Delhi Capitals are scheduled to face Mumbai Indians on April 4. The tournament is in its early stages with teams jockeying for playoff positions in cricket's most lucrative league.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The IPL remains the world's richest cricket league and a major sporting event in India, drawing massive television audiences and betting interest.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>NBA Playoff Race Intensifies as Regular Season Nears End</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The NBA regular season is entering its final week with playoff seeding still being determined across both conferences. The Detroit Pistons currently lead the Eastern Conference standings, while teams across the league are finalizing rotations and managing player health heading into the postseason. The play-in tournament is scheduled to begin next week.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The final week of the regular season will determine playoff matchups and could significantly impact championship odds for contending teams.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>The Economist</strong> — In-depth analysis and long-form features on global affairs, economics, and culture from the world's leading weekly magazine.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 26 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 2 · 1 hr 24 min listen
+        
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Saturday, April 04, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · The Economist<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
