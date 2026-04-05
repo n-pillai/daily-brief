@@ -54,7 +54,8 @@
         "fix_applied": "Added domain-level filtering for known paywall sites in explore URL validation",
         "fix_date": "2026-03-09",
         "recurrences": [
-          "2026-03-30"
+          "2026-03-30",
+          "2026-04-05"
         ]
       },
       "fix_recipe": [
@@ -148,7 +149,8 @@
         "recurrences": [
           "2026-03-28",
           "2026-04-03",
-          "2026-04-04"
+          "2026-04-04",
+          "2026-04-05"
         ]
       },
       "fix_recipe": [
