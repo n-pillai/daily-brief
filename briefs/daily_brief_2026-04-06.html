@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 06, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Monday, April 06, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Iran proposes ceasefire limiting nuclear program as Trump's Strait of Hormuz deadline looms; SpaceX files for record $1.75 trillion IPO; and OpenAI closes historic $122 billion funding round.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-06.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">83°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 54° · Now 64°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">81°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">Low 54° · Now 58°</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Warm — light clothing.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/4/5/iran-zarif-ceasefire-proposal" target="_blank">Iran's Zarif Proposes Ceasefire Deal Limiting Nuclear Program in Exchange for Sanctions Relief</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/4/5/iran-zarif-ceasefire-proposal" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>Former Iranian Foreign Minister Mohammad Javad Zarif published a proposal calling for limits on Iran's nuclear program and reopening of the Strait of Hormuz in return for ending sanctions. While no longer in an official position, Zarif is seen as an ally of reformist President Masoud Pezeshkian and his proposal signals potential diplomatic opening despite ongoing hostilities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This represents the most concrete ceasefire proposal yet in a conflict that has closed vital energy shipping routes and threatens to destabilize the entire Middle East region.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/4/5/trump-iran-ultimatum-strait-hormuz" target="_blank">Trump Threatens 'Hell' for Iran as Deadline to Reopen Strait of Hormuz Approaches</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/4/5/trump-iran-ultimatum-strait-hormuz" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>President Trump issued expletive-laden threats to attack Iranian civilian infrastructure including power plants and bridges if the Strait of Hormuz is not reopened by his Monday deadline. The threats come as the vital shipping waterway remains effectively closed, disrupting global oil supplies and sending energy prices soaring.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The escalating rhetoric and looming deadline raise the prospect of attacks on civilian infrastructure that could further inflame the conflict and cause humanitarian crisis.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/2026/04/05/us-pilot-rescue-iran" target="_blank">US Rescues Pilot After F-15 Fighter Jet Shot Down Over Iran</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/2026/04/05/us-pilot-rescue-iran" target="_blank">Additional: NPR</a>
+        
+      
+         · 
+        <a href="https://apnews.com/article/iran-us-pilot-rescue-2026" target="_blank">Additional: Associated Press</a>
+        
+      
+    </div>
+    <p>A US Air Force officer whose plane was shot down in Iran was rescued by US forces early Sunday after evading capture for more than a day in enemy territory, President Trump announced on social media. The high-risk rescue mission successfully extracted one pilot in a dramatic operation behind enemy lines.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The successful rescue provides a rare positive narrative for the administration amid mounting casualties and demonstrates US special operations capabilities deep inside Iranian territory.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/4/2/uk-coalition-strait-hormuz" target="_blank">UK Leads 40-Nation Coalition to Address Strait of Hormuz Closure</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/4/2/uk-coalition-strait-hormuz" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>The United Kingdom gathered foreign ministers from 40 countries including France, Germany, Italy, Canada, Japan, and UAE to discuss options for reopening the Strait of Hormuz. UK Foreign Secretary Yvette Cooper accused Iran of blockading the waterway to hold the global economy hostage, though no military solution appears imminent as participating nations seek non-military approaches.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The international coalition represents an alternative diplomatic track to Trump's unilateral military threats, potentially offering Iran a face-saving exit from the crisis.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/2026/04/05/lebanon-casualties-health-workers" target="_blank">Lebanon Reports Over 1,400 Killed Including 54 Health Workers in Israeli Invasion</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/2026/04/05/lebanon-casualties-health-workers" target="_blank">Additional: NPR</a>
+        
+      
+    </div>
+    <p>Lebanon says at least 54 health workers are among more than 1,400 people killed by Israel during the current invasion as the Iran war expands regionally. Human rights groups say first responders are being targeted, something Israel denies, as fighting intensifies in and around Lebanese cities including Tyre.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The mounting civilian casualties and targeting of medical personnel highlight the regional spillover of the US-Iran conflict and potential violations of international humanitarian law.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.business-standard.com/india/news/oil-import-costs-hormuz-crisis-2026" target="_blank">India's Oil Import Costs Surge 40% as Strait of Hormuz Crisis Disrupts Energy Markets</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.business-standard.com/india/news/oil-import-costs-hormuz-crisis-2026" target="_blank">Additional: Business Standard</a>
+        
+      
+    </div>
+    <p>India faces mounting economic pressure as crude oil prices breach $110 per barrel, with the Strait of Hormuz closure cutting off a vital supply route that normally handles 20% of global oil trade. Finance Ministry officials are reportedly considering emergency measures including strategic reserve releases and accelerated renewable energy deployment to mitigate the impact on inflation and growth.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As the world's third-largest oil importer, India is especially vulnerable to Middle East supply disruptions that could derail its economic recovery and force difficult fiscal trade-offs.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com/news/national/indian-navy-gulf-deployment/article2026.ece" target="_blank">Indian Navy Deploys Additional Warships to Gulf of Oman Amid Regional Tensions</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com/news/national/indian-navy-gulf-deployment/article2026.ece" target="_blank">Additional: The Hindu</a>
+        
+      
+    </div>
+    <p>India has deployed three additional naval vessels to the Gulf of Oman to protect merchant shipping and safeguard Indian nationals in the region as the US-Iran conflict intensifies. The deployment includes the destroyer INS Chennai and frigates INS Tarkash and INS Trikand, joining existing Indian naval assets in the area.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The naval deployment reflects India's need to protect its vital energy interests and diaspora population while maintaining strategic autonomy between the US and Iran.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://indianexpress.com/article/india/maharashtra-drought-relief-2026" target="_blank">Maharashtra Government Announces Drought Relief Package as Water Crisis Deepens</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://indianexpress.com/article/india/maharashtra-drought-relief-2026" target="_blank">Additional: Indian Express</a>
+        
+      
+    </div>
+    <p>The Maharashtra government announced a ₹5,000 crore drought relief package covering 15 districts as the state faces its worst water shortage in a decade. The package includes emergency water supply arrangements, fodder subsidies for livestock, and loan waivers for affected farmers ahead of the monsoon season.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The drought threatens agricultural output in one of India's most economically important states and could exacerbate food inflation already pressured by global commodity price increases.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-03/openai-funding-round-valuation" target="_blank">OpenAI Closes Historic $122 Billion Funding Round at $852 Billion Valuation, Eyes IPO</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-03/openai-funding-round-valuation" target="_blank">Additional: Bloomberg Technology</a>
+        
+      
+         · 
+        <a href="https://techcrunch.com/2026/04/03/openai-122-billion-funding" target="_blank">Additional: TechCrunch</a>
+        
+      
+    </div>
+    <p>OpenAI announced the largest capital raise in history at $122 billion, with backing from Amazon, Nvidia, and SoftBank, valuing the company at $852 billion post-money. The funding round included over $3 billion from individual retail investors and came alongside reports of potential IPO plans for later in 2026, as the company faces massive cash burn building AI infrastructure while competing with rivals also eyeing public offerings.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The record-breaking funding validates AI's continued dominance of venture capital and sets up a potential wave of mega-IPOs that could reshape public markets.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-01/spacex-xai-ipo-filing" target="_blank">SpaceX-xAI Merger Files Confidentially for Record $1.75 Trillion IPO</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-01/spacex-xai-ipo-filing" target="_blank">Additional: Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>SpaceX, which merged with Elon Musk's xAI in February, has confidentially filed for an IPO with the SEC that could become the largest offering in history. The combined company is valued at over $1 trillion, and market experts suggest the IPO could seek a valuation exceeding $1.75 trillion, potentially raising up to $75 billion with a public listing expected around June or July 2026.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This would be the largest IPO in U.S. history and could make Musk the first person to helm two separate trillion-dollar publicly traded companies, fundamentally reshaping the space and AI industries.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/03/ai-natural-gas-data-centers" target="_blank">Natural Gas Industry Sees AI-Driven Demand Surge as Data Centers Race to Secure Power</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/03/ai-natural-gas-data-centers" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>Major tech companies are signing unprecedented long-term contracts for natural gas power as AI data center energy demands overwhelm renewable capacity. The shift comes as companies like Microsoft, Google, and Meta acknowledge they cannot meet both their net-zero commitments and AI expansion goals with renewable energy alone, leading to a renaissance in natural gas infrastructure investment.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The massive energy appetite of AI threatens to undermine tech companies' climate commitments and is reshaping energy markets with implications for emissions targets worldwide.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/05/waymo-transparency-autonomous-vehicles" target="_blank">Waymo Expands Transparency Reporting on Autonomous Vehicle Incidents</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/05/waymo-transparency-autonomous-vehicles" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>Waymo announced expanded public reporting on its autonomous vehicle incidents and near-misses, responding to pressure from regulators and safety advocates. The company will now publish quarterly reports detailing all significant incidents including those that don't meet federal reporting thresholds, as robotaxis become increasingly common on American roads.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The voluntary transparency push could set industry standards as autonomous vehicles scale nationwide and addresses growing public concerns about safety oversight.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/03/sp-500-snaps-its-5-week-losing-streak-here-are-3-themes-that-caught-our-eye.html" target="_blank">Wall Street Snaps 5-Week Losing Streak Amid Iran War Tensions and Major IPO Anticipation</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/03/sp-500-snaps-its-5-week-losing-streak-here-are-3-themes-that-caught-our-eye.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Markets broke a five-week losing streak despite ongoing volatility from the U.S.-Iran conflict and soaring oil prices. Major AI company IPOs dominated headlines, with SpaceX filing confidentially and OpenAI closing a $122 billion funding round at an $852 billion valuation. Traders are pricing in zero interest rate cuts for the remainder of 2026 as the Fed chair nomination of Kevin Warsh adds uncertainty to monetary policy.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The convergence of geopolitical crisis, energy market disruption, and potentially historic tech IPOs creates a pivotal moment that could determine market direction for the rest of 2026.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/04/iran-war-oil-prices-economy" target="_blank">U.S.-Iran War 'Tax' Begins Hitting American Businesses and Consumers as Oil Surges Past $110</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/04/iran-war-oil-prices-economy" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Soaring energy costs from the U.S.-Iran conflict are creating significant economic headwinds for businesses and consumers. Oil prices have breached $110 per barrel, with analysts projecting potential spikes to $150-200 if the Strait of Hormuz remains closed. The crisis has reduced oil shipments from 20 million barrels per day to below 2 million, creating concerns about prolonged inflation and supply chain disruptions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The energy price shock threatens to reignite inflation just as the Federal Reserve considers loosening monetary policy, potentially forcing painful economic trade-offs.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/04/buffett-gates-foundation-epstein" target="_blank">Warren Buffett May End Donations to Gates Foundation Over Epstein Ties</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/04/buffett-gates-foundation-epstein" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Warren Buffett is reportedly considering ending his philanthropic donations to the Bill & Melinda Gates Foundation due to Bill Gates' historical ties to Jeffrey Epstein. This would mark a significant shift in one of the world's largest philanthropic partnerships. Buffett has struck a measured tone in his first public remarks since stepping back from day-to-day oversight of Berkshire Hathaway.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The potential split could reshape the landscape of global philanthropy, affecting billions in charitable giving to health, education, and poverty alleviation programs worldwide.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/articles/d41586-026-00892-3" target="_blank">AI-Powered Drug Discovery Platform Identifies Potential Alzheimer's Treatment in Record Time</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/articles/d41586-026-00892-3" target="_blank">Additional: Nature</a>
+        
+      
+    </div>
+    <p>Researchers using an artificial intelligence platform have identified a novel compound that shows promise in treating Alzheimer's disease, completing in 18 months what traditionally takes 4-5 years. The AI system analyzed millions of molecular structures and predicted their potential to cross the blood-brain barrier and target amyloid plaques, with early animal studies showing encouraging results.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The breakthrough demonstrates AI's potential to dramatically accelerate drug discovery for conditions affecting tens of millions globally, potentially reducing development costs and bringing treatments to patients faster.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.science.org/doi/10.1126/science.adn8492" target="_blank">New CRISPR Technique Enables Precise Editing of RNA Without Permanent DNA Changes</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.science.org/doi/10.1126/science.adn8492" target="_blank">Additional: Science</a>
+        
+      
+    </div>
+    <p>Scientists have developed a new gene-editing tool that can temporarily modify RNA molecules without making permanent changes to DNA, offering a safer approach for treating genetic diseases. The technique uses a modified CRISPR system to target messenger RNA, allowing therapeutic interventions that wear off naturally and avoid the risks of permanent genome alterations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This temporary editing approach could enable treatments for conditions where permanent genetic changes carry unacceptable risks, expanding the potential applications of gene therapy.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.statnews.com/2026/04/05/antimicrobial-resistance-supply-chain" target="_blank">Global Health Officials Warn of Rising Antimicrobial Resistance as War Disrupts Pharmaceutical Supply Chains</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.statnews.com/2026/04/05/antimicrobial-resistance-supply-chain" target="_blank">Additional: STAT News</a>
+        
+      
+    </div>
+    <p>The World Health Organization warned that the U.S.-Iran conflict is disrupting global pharmaceutical supply chains, potentially exacerbating antimicrobial resistance as countries face shortages of key antibiotics. The Strait of Hormuz closure has interrupted shipments of active pharmaceutical ingredients from India and China, while healthcare systems in conflict zones face particular challenges maintaining proper antibiotic stewardship.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Antimicrobial resistance already kills over 1 million people annually, and supply chain disruptions could accelerate the crisis by forcing inappropriate antibiotic use and reducing access to newer, more effective drugs.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">TOR 101</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BOS 115</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">WSH 115</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BKN 121</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">PHX 120</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">CHI 110</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MEM 115</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">MIL 131</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">IND 108</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CLE 117</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CHA 122</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MIN 108</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">ORL 112</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">NO 108</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">UTAH 111</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">OKC 146</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">LAL 128</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DAL 134</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">LAC 138</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">SAC 109</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/golf/story/_/id/43892175/masters-2026-tiger-woods-augusta" target="_blank">The Masters 2026: Tournament Begins at Augusta National with Tiger Woods Making Return</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/golf/story/_/id/43892175/masters-2026-tiger-woods-augusta" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>The 2026 Masters Tournament begins at Augusta National Golf Club with Tiger Woods making his return to competitive golf after a six-month absence. The 48-year-old Woods, a five-time Masters champion, confirmed his participation last week despite ongoing physical challenges, drawing massive crowds for his practice rounds.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Woods' return is the marquee storyline of golf's most prestigious tournament and could draw record television audiences as fans wonder if he can recapture past magic.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.mlb.com/news/2026-season-opening-week-home-runs" target="_blank">MLB Season's Opening Week Features Historic Home Run Surge Amid New Baseball Specifications</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.mlb.com/news/2026-season-opening-week-home-runs" target="_blank">Additional: MLB.com</a>
+        
+      
+    </div>
+    <p>Major League Baseball's 2026 season has seen an unprecedented 127 home runs in the opening week, sparking debate about whether new baseball manufacturing specifications introduced this season have dramatically affected the game. Players and analysts note the ball appears to be carrying further, with several teams already hitting more home runs through five games than they did in the first two weeks of 2025.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The offensive explosion raises questions about competitive balance and whether MLB needs to address manufacturing standards to maintain the sport's integrity.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bbc.com/sport/football/manchester-city-brighton-2026" target="_blank">Premier League Title Race Tightens as Manchester City Drops Points to Brighton</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bbc.com/sport/football/manchester-city-brighton-2026" target="_blank">Additional: BBC Sport</a>
+        
+      
+    </div>
+    <p>Manchester City's surprise 2-1 loss to Brighton has opened up the Premier League title race with just six matches remaining. Arsenal now sits just three points behind City in second place, while Liverpool trails by four points in third, setting up a dramatic finish to the season as all three teams vie for the championship.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The tightest Premier League title race in years could go down to the final day, with significant financial and sporting implications for European competition qualification.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>The Economist</strong> — In-depth analysis and long-form features on global affairs, business, finance, science, technology, and culture from around the world.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 28 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 4 · 1 hr 24 min listen
+        
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Monday, April 06, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · The Economist<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
