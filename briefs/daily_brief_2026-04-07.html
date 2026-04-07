@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 07, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Tuesday, April 07, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">JPMorgan CEO Jamie Dimon warns Iran war poses paramount global risk as Trump's deadline for Strait of Hormuz reopening approaches; Microsoft commits $10 billion to AI infrastructure in Japan; AI companies turn to natural gas plants to power surging data center energy needs.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-07.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-unavail">Unavailable</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-unavail">Unavailable</div>
+    
+  </div>
+  
+</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/05/stock-market-today-live-updates.html" target="_blank">Trump's Deadline for Iran to Reopen Strait of Hormuz Looms as Ceasefire Talks Continue</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/05/stock-market-today-live-updates.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>President Trump has set a deadline of Tuesday, April 8 at 8 PM ET for Iran to reopen the Strait of Hormuz, with reports emerging that the U.S. and Iran are discussing a potential 45-day ceasefire through mediators. Despite ongoing negotiations, chances of reaching a deal before the deadline remain slim, keeping oil markets volatile with WTI crude trading around $112 per barrel.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The standoff over the world's most critical oil chokepoint threatens global energy supplies and could trigger broader military escalation if diplomatic efforts fail before Tuesday evening.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/06/jpmorgan-ceo-jamie-dimon-annual-letter-risks.html" target="_blank">JPMorgan's Dimon Calls Iran War 'Paramount Risk' to Global Stability</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/06/jpmorgan-ceo-jamie-dimon-annual-letter-risks.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>In his annual shareholder letter, JPMorgan Chase CEO Jamie Dimon warned that the Iran conflict represents the paramount risk to global stability, cautioning that markets may be mispricing threats to energy supplies and trade routes. Dimon highlighted mounting geopolitical risks alongside persistent inflation concerns and criticized current banking regulations as inadequate for modern financial challenges.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As head of the world's largest bank by market cap, Dimon's annual letter serves as Wall Street's most closely watched assessment of systemic risks facing the global economy.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Court Sentences 9 Police Officers to Death in Sathankulam Custodial Deaths Case</h3>
+    <div class="source">
+      
+        
+        Additional: The Hindu
+        
+      
+    </div>
+    <p>A court has sentenced nine police officers to death in the high-profile Sathankulam custodial deaths case, marking a rare instance of capital punishment for law enforcement officials in India. The case involved the death of a father and son in police custody in Tamil Nadu in 2020, which sparked national outrage over police brutality.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The landmark verdict sends a strong message about accountability for custodial violence and police misconduct in India's criminal justice system.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Moody's Cuts India's Growth Forecast Citing West Asia Tensions and Oil Price Impact</h3>
+    <div class="source">
+      
+        
+        Additional: Economic Times
+        
+      
+    </div>
+    <p>Moody's Analytics has lowered India's economic growth forecast due to escalating tensions in West Asia and their impact on global oil prices. The ratings agency cited disruptions to energy supplies and increased inflationary pressures from the Iran conflict as primary concerns affecting India's growth trajectory.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As one of the world's largest oil importers, India faces significant economic headwinds from energy market disruptions, potentially constraining the government's fiscal options and growth prospects.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>LPG Supply Disruptions Reported Across Major Cities</h3>
+    <div class="source">
+      
+        
+        Additional: NDTV
+        
+      
+    </div>
+    <p>Several major Indian cities are experiencing LPG (cooking gas) supply issues amid broader energy market disruptions linked to the closure of the Strait of Hormuz. Distribution companies have reported delays in refilling cylinders, raising concerns about household energy access as the crisis continues.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> LPG shortages directly affect millions of Indian households and could become a political flashpoint if the energy crisis persists.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://stratechery.com/2026/openai-buys-tbpn-tech-and-the-token-tsunami/" target="_blank">OpenAI Acquires TBPN Tech Talk Show in Unusual Media Expansion</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://stratechery.com/2026/openai-buys-tbpn-tech-and-the-token-tsunami/" target="_blank">Stratechery</a>
+        
+      
+    </div>
+    <p>OpenAI has acquired TBPN, a technology talk show, in a rare move into media for the AI company. The acquisition represents OpenAI's diversification beyond pure technology into content and distribution channels, signaling how AI companies are exploring new business models as they approach potential public listings.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The move suggests AI leaders see value in controlling media properties to shape narratives and reach audiences directly, beyond just providing technology infrastructure.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/03/ai-companies-are-building-huge-natural-gas-plants-to-power-data-centers-what-could-go-wrong/" target="_blank">AI Companies Building Natural Gas Plants to Power Data Centers Amid Energy Crunch</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/03/ai-companies-are-building-huge-natural-gas-plants-to-power-data-centers-what-could-go-wrong/" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>Microsoft partnered with Chevron and Engine No. 1 to build a natural gas plant in West Texas that could produce 5 gigawatts of electricity, while Google confirmed work with Crusoe on a 933 MW plant in North Texas. The rush to secure natural gas supplies and equipment for AI data centers has led to turbine shortages and price increases of 195% expected by year-end.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The massive energy demands of AI training and inference are forcing tech companies to become power producers, with significant implications for climate commitments and energy markets.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Microsoft Charts $10 Billion Investment in AI-Eager Japan</h3>
+    <div class="source">
+      
+        
+        Bloomberg Technology
+        
+      
+    </div>
+    <p>Microsoft announced plans for $10 billion in investments in Japan as the country demonstrates strong appetite for AI infrastructure. The commitment represents Microsoft's continued global expansion of AI capabilities and data center infrastructure to meet surging demand across Asia.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Japan's emergence as a major AI infrastructure hub reflects the global race to build computing capacity, with countries competing to attract investment and talent.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-02/microsoft-aims-to-create-large-cutting-edge-ai-models-by-2027" target="_blank">Microsoft Aims to Create Cutting-Edge AI Models By 2027 to Reduce OpenAI Dependence</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-02/microsoft-aims-to-create-large-cutting-edge-ai-models-by-2027" target="_blank">Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Microsoft is pushing to develop large, cutting-edge AI models by 2027 as part of an effort to build in-house alternatives to the most powerful AI tools from OpenAI and Anthropic. CEO of Microsoft AI Mustafa Suleyman stated the objective is to reach state-of-the-art across models that can respond to or generate text, images and audio.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Despite its close partnership and investment in OpenAI, Microsoft is hedging by building independent AI capabilities that could reshape the competitive dynamics among frontier AI labs.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/06/jpmorgan-ceo-jamie-dimon-annual-letter-risks.html" target="_blank">Jamie Dimon Warns of Geopolitical Risks, AI Uncertainty and 'Poor Bank Regulations' in Annual Letter</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/06/jpmorgan-ceo-jamie-dimon-annual-letter-risks.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>JPMorgan Chase CEO Jamie Dimon released his annual shareholder letter warning of mounting risks from the Iran war, persistent inflation, and private market upheaval. He called the Iran conflict the paramount risk to global stability and cautioned that markets may be mispricing threats to energy supplies and trade routes. Dimon also criticized Basel III banking regulations as 'nonsensical' and 'un-American,' while defending AI investment as transformational rather than a speculative bubble.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Dimon's annual letter serves as a critical barometer for Wall Street's outlook on global economic and financial system risks, particularly influential given JPMorgan's position as the world's largest bank by market capitalization.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/05/stock-market-today-live-updates.html" target="_blank">Markets Rise as Investors Hope for U.S.-Iran Ceasefire Deal Ahead of Tuesday Deadline</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/05/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>U.S. stock markets rose for a fourth session on Monday as the S&P 500 gained 0.44% to close at 6,611.83, with investors hoping for a deal to end the U.S.-Iran conflict. Reports emerged that the U.S. and Iran were discussing a potential 45-day ceasefire through mediators, though chances of reaching a deal before President Trump's Tuesday 8pm deadline remained slim.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The outcome of the Iran crisis and potential energy market disruptions represent the dominant macroeconomic risk driving market volatility and investor positioning in early 2026.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Private Markets Face Upheaval as Investors Rush to Exit Amid AI and Valuation Concerns</h3>
+    <div class="source">
+      
+        
+        Bloomberg
+        
+      
+    </div>
+    <p>Private credit and equity markets are experiencing significant turmoil as investors seek redemptions amid concerns about software company vulnerabilities to AI disruption and opaque valuations. The lack of transparency in private credit funds has made it difficult to evaluate exposure to potentially troubled borrowers, while the $3 trillion AI data center build-out is drawing capital away from traditional private market investments.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Growing instability in private markets could expose hidden risks in pension funds and endowments while signaling a broader repricing of technology assets in the AI era.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Tesla Stock Faces Further Declines, JPMorgan Warns</h3>
+    <div class="source">
+      
+        
+        CNBC
+        
+      
+    </div>
+    <p>Tesla shares, already down sharply in 2026, face additional downside risk according to JPMorgan analysts. The electric vehicle maker has struggled this year amid broader market volatility, geopolitical uncertainty, and questions about growth prospects in an environment of higher interest rates and economic uncertainty.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Tesla's struggles reflect broader challenges facing high-valuation technology stocks as investors reassess growth assumptions amid shifting economic conditions.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Arctic Road Trip Brings Vital Underground Fungal Networks into View</h3>
+    <div class="source">
+      
+        
+        Quanta Magazine
+        
+      
+    </div>
+    <p>Researchers conducting fieldwork in the Arctic have documented how soil fungi form critical underground networks that support plant life in extreme environments. The study reveals how these mycorrhizal networks facilitate nutrient exchange and help vegetation survive in harsh polar conditions, providing insights into ecosystem resilience under climate stress.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Understanding Arctic fungal networks could help predict how polar ecosystems will respond to warming temperatures and inform conservation strategies for these vulnerable regions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>New Advances Bring the Era of Quantum Computers Closer Than Ever</h3>
+    <div class="source">
+      
+        
+        Quanta Magazine
+        
+      
+    </div>
+    <p>Recent breakthroughs in quantum error correction and qubit stability are accelerating the timeline for practical quantum computing applications. Researchers have demonstrated new techniques for maintaining quantum coherence longer and correcting errors more efficiently, addressing two of the field's fundamental challenges.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> These advances could bring quantum computing's promise of revolutionary capabilities in drug discovery, cryptography, and materials science significantly closer to commercial reality.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>NASA's Artemis II Moon Mission Preparations Enter Final Phase</h3>
+    <div class="source">
+      
+        
+        Scientific American
+        
+      
+    </div>
+    <p>NASA is conducting final preparations for the Artemis II mission, which will send astronauts around the Moon for the first time in over 50 years. The mission represents a critical step toward establishing a sustained human presence on the lunar surface and testing systems that will support longer-duration deep space exploration.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Artemis II will validate technologies and procedures essential for future lunar landings and eventual Mars missions, marking humanity's return to deep space human exploration.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="winner">NY 108</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">ATL 105</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">DET 107</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ORL 123</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CLE 142</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">MEM 126</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">PHI 102</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">SA 115</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">POR 132</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DEN 137</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3>IPL 2026 Season Reaches Mid-Point as Playoff Race Intensifies</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The Indian Premier League 2026 season, which began March 28 and runs through May 31, has reached its midway point with several teams emerging as playoff contenders. The tournament continues to draw massive viewership as franchises battle for positions in the knockout stages.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The IPL remains cricket's most lucrative league and a major cultural event in India, with significant implications for player valuations and international cricket scheduling.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>NBA Regular Season Enters Final Week Before Play-In Tournament</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The NBA regular season is in its final week before the Play-In Tournament begins April 14-17, with several teams fighting for playoff positioning. The playoffs proper are set to begin April 18, with seeding in multiple conferences still undecided heading into the season's final games.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The compressed final week will determine playoff matchups and could significantly impact championship odds as teams jockey for home-court advantage.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>MLB Season Underway as Teams Begin 2026 Campaign</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>Major League Baseball's 2026 season is in its early stages with teams completing their first series of the year. The opening weeks are setting early storylines as franchises test new rosters and strategies for the long season ahead.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Early-season performance can set momentum for playoff contenders and reveal which teams' offseason moves are paying dividends.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Stratechery</strong> — Ben Thompson's influential analysis of technology strategy and business models
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://stratechery.com/2026/openai-buys-tbpn-tech-and-the-token-tsunami/" target="_blank">OpenAI Buys TBPN: Tech and the Token Tsunami</a></h3>
+    <div class="source"><a href="https://stratechery.com/2026/openai-buys-tbpn-tech-and-the-token-tsunami/" target="_blank">Stratechery</a></div>
+    <p>Ben Thompson analyzes OpenAI's unexpected acquisition of TBPN, a tech talk show, examining how AI companies are diversifying into media and distribution. The piece explores broader trends in how AI is disrupting traditional tech services and the strategic rationale behind owning content properties alongside AI infrastructure.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 29 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 5 · 1 hr 24 min listen
+        
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Tuesday, April 07, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Stratechery<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
