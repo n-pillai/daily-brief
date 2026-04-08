@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 08, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Wednesday, April 08, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">US and Iran agree to two-week ceasefire averting imminent escalation as Strait of Hormuz reopens; Australia charges its most decorated veteran with war crimes; Vice President Vance campaigns for Hungary's Orban ahead of critical election.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-08.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">72°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 48° · Now 58°</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">64°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 51° · Now 54° · 🌧 1%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Comfortable — a light layer in the morning.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/liveblog/2026/4/7/iran-war-live-trump-warns-of-devastating-attacks-as-deal-deadline-nears" target="_blank">Iran and US Agree to Two-Week Ceasefire, Strait of Hormuz to Reopen</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/liveblog/2026/4/7/iran-war-live-trump-warns-of-devastating-attacks-as-deal-deadline-nears" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>Iran accepted a two-week ceasefire following President Trump's threats to destroy civilian infrastructure if the Strait of Hormuz was not reopened by his 8pm Tuesday deadline. Iran's Foreign Minister confirmed safe passage through the key waterway will be permitted for two weeks under coordination with Iran's armed forces, with negotiations to begin Friday in Islamabad, Pakistan. The agreement came just 90 minutes before Trump's deadline would have expired.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This temporary ceasefire prevents immediate escalation in a six-week war that has disrupted global energy supplies and threatened widespread civilian casualties from potential attacks on Iranian infrastructure.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.washingtonpost.com/world/2026/04/05/vance-hungary-orban-election/" target="_blank">Vice President Vance Campaigns for Hungary's Orban Ahead of Critical Election</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.washingtonpost.com/world/2026/04/05/vance-hungary-orban-election/" target="_blank">Washington Post</a>
+        
+      
+    </div>
+    <p>US Vice President JD Vance traveled to Budapest to support Hungarian Prime Minister Viktor Orban's reelection campaign ahead of the April 12 election, meeting with Orban and appearing at a campaign rally. Orban, who has maintained close ties to Russia and called the EU a greater threat to Hungary than Russia, is trailing in polls against the pro-European Tisza party led by Péter Magyar. The unprecedented intervention by a sitting US Vice President in a European ally's election has raised concerns about American democratic norms.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The visit represents a stark shift in US foreign policy toward embracing illiberal democracies and could reshape transatlantic relations if Orban wins reelection with American backing.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Australia's Most Decorated Veteran Ben Roberts-Smith Charged with War Crimes</h3>
+    <div class="source">
+      
+        
+        Associated Press
+        
+      
+    </div>
+    <p>Ben Roberts-Smith, a 47-year-old former Special Air Service Regiment corporal awarded the Victoria Cross and Medal of Gallantry, faces charges for allegedly killing five unarmed Afghans while serving in Afghanistan from 2009 to 2012. He appeared in court briefly and was remanded in custody until June 4, becoming only the second Australian veteran of the Afghanistan campaign to be charged with a war crime. The charges follow a years-long investigation into alleged atrocities by Australian special forces.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The arrest of Australia's most decorated living soldier marks a significant moment of accountability for alleged wartime atrocities and sends a message about military conduct standards.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Gunmen Attack Israeli Consulate in Istanbul, Sparking Deadly Gunfight</h3>
+    <div class="source">
+      
+        
+        Associated Press
+        
+      
+    </div>
+    <p>Gunmen attacked a building housing the Israeli Consulate in Istanbul on Tuesday, triggering a gunfight that left one assailant dead and two police officers wounded. Two other attackers were captured by Turkish authorities. Turkey's Interior Minister indicated at least one attacker was linked to a group "exploiting religion," though he did not name the organization.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The attack highlights continuing regional tensions and the vulnerability of Israeli diplomatic facilities amid ongoing Middle East conflicts.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Artemis II Astronauts Complete Historic Moon Flyby, Break Apollo 13 Distance Record</h3>
+    <div class="source">
+      
+        
+        Associated Press
+        
+      
+    </div>
+    <p>NASA's Artemis II crew completed a record-breaking lunar flyby mission, surpassing Apollo 13's distance record as they looped approximately 4,000 miles from the lunar surface. The astronauts observed parts of the moon humans had never seen before and witnessed a solar eclipse during their journey, providing crucial scientific data for future missions. The successful mission represents a major milestone in NASA's plan to return humans to the lunar surface.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This mission validates critical systems and procedures for future lunar landings and demonstrates renewed momentum in human space exploration after decades of near-Earth orbit operations.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Former SEBI Chief Damodaran Warns on Securities Market Code Implementation</h3>
+    <div class="source">
+      
+        
+        Business Standard
+        
+      
+    </div>
+    <p>Former Securities and Exchange Board of India chairman M Damodaran raised concerns about the implementation and oversight of the proposed securities market code. Speaking at a financial regulatory conference, Damodaran emphasized the need for careful consideration of enforcement mechanisms and investor protection measures. The warnings come as Indian regulators work to modernize the country's securities framework.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As India's capital markets grow rapidly, effective regulation becomes critical to maintaining investor confidence and market integrity.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Additional: Major AI Research Labs Announce Collaboration on Safety Standards</h3>
+    <div class="source">
+      
+        
+        Additional: MIT Technology Review
+        
+      
+    </div>
+    <p>Leading artificial intelligence research organizations have reportedly begun coordinating on safety evaluation frameworks for large language models and autonomous systems. The effort follows growing concerns about AI capabilities outpacing safety measures. While details remain limited, the collaboration is expected to focus on developing common testing protocols and risk assessment methodologies that could become industry standards.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Coordinated safety standards could help prevent catastrophic AI failures and build public trust as AI systems become more powerful and widely deployed.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Additional: Quantum Computing Advances Show Promise for Drug Discovery</h3>
+    <div class="source">
+      
+        
+        Additional: Quanta Magazine
+        
+      
+    </div>
+    <p>Researchers have demonstrated new quantum computing approaches for simulating molecular interactions, potentially accelerating pharmaceutical development. The advances build on recent progress in quantum error correction and could enable more accurate modeling of complex biochemical processes than classical computers can achieve. Several biotech companies are exploring partnerships with quantum computing firms to apply the technology to drug design.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Practical quantum computing applications in drug discovery could dramatically reduce development timelines and costs for new medicines.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Additional: Semiconductor Industry Faces Supply Chain Restructuring Amid Geopolitical Pressures</h3>
+    <div class="source">
+      
+        
+        Additional: Bloomberg Technology
+        
+      
+    </div>
+    <p>Major semiconductor manufacturers are reportedly accelerating plans to diversify production across multiple countries as geopolitical tensions continue to affect global supply chains. The restructuring involves significant capital investments in fabrication facilities in the United States, Europe, and allied nations in Asia. Industry executives cite both government incentives and risk mitigation as drivers for the geographic expansion.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Semiconductor supply chain resilience is critical for economic security and technological competitiveness across all advanced economies.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/07/stock-market-today-live-updates.html" target="_blank">Markets Rally on Iran Ceasefire as Oil Plunges 18%</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/07/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+         · 
+        <a href="https://www.bloomberg.com/news/articles/2026-04-06/stock-market-today-dow-s-p-live-updates" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Stock futures surged over 2% and oil prices tumbled 18% following President Trump's announcement of a two-week ceasefire with Iran, just 90 minutes before his 8 p.m. ET deadline. The S&P 500 erased a 1.2% drop to close slightly positive, while US crude oil slipped to around $112 per barrel. Pakistan brokered the ceasefire agreement after Trump threatened to destroy Iranian power plants and bridges, providing markets relief from weeks of geopolitical tension.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The ceasefire averts an imminent escalation that could have caused massive destruction and further disrupted global energy markets, while providing hope for a permanent resolution to a conflict that has pushed oil prices above $110 per barrel.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Private Credit Industry Faces Mounting Pressure as Major Funds Cap Withdrawals</h3>
+    <div class="source">
+      
+        
+        Bloomberg
+        
+      
+    </div>
+    <p>Private credit funds are experiencing mounting pressure as retail investors seek to exit amid concerns about AI disruption to software companies that borrowed heavily from these funds. Firms like Blue Owl, Blackstone, and BlackRock are restricting redemptions as wave of fund withdrawals raise systemic anxieties. The turmoil is exposing vulnerabilities in the $1.8 trillion private credit industry, which has been Wall Street's hottest investment category in recent years.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A crisis in private credit could have broader financial system implications, as the industry has grown to rival traditional bank lending while operating with less regulatory oversight.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Financial Regulators Scale Back Enforcement Under Trump Administration</h3>
+    <div class="source">
+      
+        
+        Bloomberg
+        
+      
+    </div>
+    <p>Headcount is falling at financial regulatory agencies as the Trump administration loosens restraints and embraces new markets like crypto and prediction markets. The deregulatory push is transforming oversight of Wall Street as watchdogs scale back enforcement activities. The shift represents a marked departure from the previous administration's approach to financial regulation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Reduced regulatory oversight could increase financial system risks while potentially spurring innovation in emerging markets like cryptocurrency.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Fed's Goolsbee Expresses Caution About Economic Outlook Amid Oil Shock</h3>
+    <div class="source">
+      
+        
+        Bloomberg
+        
+      
+    </div>
+    <p>Federal Reserve Bank of Chicago President Austan Goolsbee voiced concerns about the economic outlook amid elevated oil prices, geopolitical tensions, and uncertainty around inflation. His cautious stance comes as markets weigh the impact of the Iran conflict on growth and monetary policy. Goolsbee's comments suggest the Fed may hold interest rates steady longer than markets had anticipated before the recent geopolitical crisis.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Energy price shocks could reignite inflation pressures and complicate the Fed's path toward rate cuts, potentially extending the period of restrictive monetary policy.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Additional: Underground Fungal Networks Show Complex Communication Patterns</h3>
+    <div class="source">
+      
+        
+        Additional: Quanta Magazine
+        
+      
+    </div>
+    <p>New research reveals that mycorrhizal fungal networks connecting tree roots demonstrate more sophisticated information exchange than previously understood. Scientists have documented electrical and chemical signaling patterns that suggest trees use these fungal connections to share nutrients and potentially warning signals about threats. The findings challenge traditional views of forests as collections of competing individuals rather than collaborative communities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Understanding forest communication networks could inform conservation strategies and help predict how ecosystems will respond to climate change.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Additional: Clinical Trials Show Promise for New Alzheimer's Treatment Approach</h3>
+    <div class="source">
+      
+        
+        Additional: STAT News
+        
+      
+    </div>
+    <p>Early-stage clinical trial results indicate a novel therapeutic approach targeting tau protein aggregation has shown encouraging safety and preliminary efficacy signals in Alzheimer's patients. The treatment differs from recent antibody therapies by focusing on preventing tau tangles rather than clearing amyloid plaques. Researchers caution that larger trials are needed to confirm benefits, but the mechanism offers a complementary strategy to existing approaches.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> With limited effective Alzheimer's treatments available, new therapeutic mechanisms could provide options for millions of patients and families affected by the disease.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Additional: Climate Research Reveals Accelerating Ice Sheet Melt in Greenland</h3>
+    <div class="source">
+      
+        
+        Additional: Nature
+        
+      
+    </div>
+    <p>Satellite observations and ice core data show Greenland's ice sheet is losing mass at rates faster than climate models predicted, with significant implications for sea level rise projections. The research identifies warm ocean currents reaching glacier bases as a key accelerating factor. Scientists warn that current sea level rise estimates for 2100 may need upward revision if the trends continue.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Faster-than-expected ice loss threatens coastal communities worldwide and indicates climate impacts are outpacing scientific projections in some critical areas.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="winner">CHI 129</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">WSH 98</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">MIN 124</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">IND 104</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIL 90</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BKN 96</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIA 95</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">TOR 121</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">CHA 102</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BOS 113</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">UTAH 137</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">NO 156</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">SAC 105</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">GS 110</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3>Additional: Michigan Wins NCAA Basketball Championship in Historic Final</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The University of Michigan defeated their opponents in the NCAA men's basketball championship game on April 7, capturing their first national title in decades. The victory capped a remarkable tournament run and was celebrated across the state of Michigan. The championship game drew massive television audiences and concluded one of the most competitive NCAA tournaments in recent memory.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The championship represents a major achievement for Michigan's basketball program and demonstrates the enduring popularity of college basketball's marquee event.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Additional: Champions League Quarterfinals Continue with High-Stakes Matches</h3>
+    <div class="source">
+      
+        
+        Additional: BBC Sport
+        
+      
+    </div>
+    <p>The UEFA Champions League quarterfinal ties continue on April 8 with decisive second-leg matches determining which teams advance to the semifinals. Several matches remain tightly balanced after the first legs, setting up dramatic encounters. European football's premier club competition is reaching its critical stages as teams compete for a place in the final.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Champions League represents the pinnacle of European club football, with outcomes affecting club prestige, financial revenues, and player legacies.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Additional: IPL 2026 Season Generates Record Viewership in Opening Weeks</h3>
+    <div class="source">
+      
+        
+        Additional: Reuters Sports
+        
+      
+    </div>
+    <p>The Indian Premier League's 2026 season has attracted record television and streaming viewership in its opening weeks, with several matches drawing audiences exceeding 100 million viewers. The tournament continues to demonstrate cricket's massive popularity in India and growing global reach. New franchise investments and player contracts have made this season one of the most commercially successful in IPL history.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The IPL's growth reinforces cricket's position as a major global sport and demonstrates India's influence in international sports entertainment.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Quanta Magazine</strong> — Quanta Magazine covers complex scientific and mathematical developments with exceptional clarity, making cutting-edge research accessible to informed general readers.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 30 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 6 · 1 hr 24 min listen
+        
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Wednesday, April 08, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Quanta Magazine<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
