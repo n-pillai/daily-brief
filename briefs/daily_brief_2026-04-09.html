@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 09, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Thursday, April 09, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">US-Iran ceasefire sends markets surging and oil prices plunging, while India heads to polls in three states and Delta reports massive losses from fuel costs.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-09.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">79°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 52° · Now 61° · 🌧 2%</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">71°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 52° · Now 57° · 🌧 1%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Warm — light clothing.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/4/8/us-iran-ceasefire" target="_blank">Trump Announces Two-Week Ceasefire with Iran, Markets Rally on Energy Crisis Relief</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/4/8/us-iran-ceasefire" target="_blank">Al Jazeera English</a>
+        
+      
+         · 
+        <a href="https://www.npr.org/2026/04/08/nx-s1-4886044/iran-trump-ceasefire-market-reaction" target="_blank">Additional: NPR</a>
+        
+      
+    </div>
+    <p>President Trump announced a two-week ceasefire agreement with Iran on April 7, immediately sending U.S. stock markets surging over 2% and crude oil prices plunging below $95 per barrel. The temporary halt to hostilities in the Persian Gulf region, which had threatened roughly 20% of global oil and liquefied natural gas supplies through the Strait of Hormuz, revived expectations for Federal Reserve rate cuts in 2026. The dollar erased its year-to-date gains while Bitcoin topped $71,000 as investors digested the geopolitical developments.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The ceasefire offers potential resolution to a conflict that has disrupted global energy markets and threatened economic stability since U.S. and Israeli strikes on Iran in late February.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.reuters.com/markets/commodities/oil-prices-ceasefire-2026-04-08" target="_blank">Oil Prices Drop Nearly 10% on Ceasefire News, Energy Sector Volatility Continues</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.reuters.com/markets/commodities/oil-prices-ceasefire-2026-04-08" target="_blank">Additional: Reuters</a>
+        
+      
+    </div>
+    <p>Brent crude and West Texas Intermediate futures fell sharply following the ceasefire announcement, with traders reassessing supply disruption risks from the Persian Gulf. The price drop provides immediate relief to airlines and other fuel-intensive industries that have faced surging costs since the conflict began. However, analysts caution that the two-week timeframe creates uncertainty about longer-term energy market stability.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Energy price volatility has been a major driver of inflation concerns and has directly impacted consumer costs and corporate profitability across multiple sectors.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.ft.com/content/markets-iran-ceasefire-2026" target="_blank">Global Markets React to Reduced Middle East Tensions with Broad Risk-On Rally</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.ft.com/content/markets-iran-ceasefire-2026" target="_blank">Additional: Financial Times</a>
+        
+      
+    </div>
+    <p>International stock markets followed Wall Street's lead with significant gains as the ceasefire reduced immediate geopolitical risk premiums. European and Asian markets posted strong advances, with particular strength in airlines and tourism sectors that had been heavily impacted by elevated fuel costs and regional instability. Currency markets saw the U.S. dollar weaken against major peers as safe-haven demand declined.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The market response demonstrates how concentrated geopolitical tensions in critical energy transit zones can create cascading effects across global financial markets.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com/elections/kerala-assam-puducherry-voting-2026/article68053421.ece" target="_blank">Kerala, Assam, and Puducherry Vote in Assembly Elections Today</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com/elections/kerala-assam-puducherry-voting-2026/article68053421.ece" target="_blank">Additional: The Hindu</a>
+        
+      
+    </div>
+    <p>Voters in Kerala, Assam, and the Union Territory of Puducherry are casting ballots today in crucial state assembly elections. The contests are being closely watched as key tests of national political trends and regional party strength. High-stakes battles in Kerala pit the ruling Left Democratic Front against the Congress-led United Democratic Front, while Assam sees the BJP seeking to retain power.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> These state elections serve as important barometers of political sentiment ahead of future national contests and will shape governance in strategically important states.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://economictimes.indiatimes.com/markets/stocks/news/rbi-monetary-policy-april-2026/articleshow/109162043.cms" target="_blank">RBI Maintains Repo Rate at 5.25% Amid Economic Uncertainty</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://economictimes.indiatimes.com/markets/stocks/news/rbi-monetary-policy-april-2026/articleshow/109162043.cms" target="_blank">Additional: Economic Times</a>
+        
+      
+    </div>
+    <p>The Reserve Bank of India kept its benchmark repo rate unchanged at 5.25% on April 8, maintaining its cautious stance as it balances growth concerns against inflation pressures. The decision came as global energy prices showed volatility from Middle East tensions, though the subsequent ceasefire announcement may alter the inflation outlook. The central bank signaled it is closely monitoring both domestic economic indicators and international developments.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The RBI's policy stance directly affects borrowing costs for businesses and consumers and signals the central bank's confidence in economic stability.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.livemint.com/markets/stock-market-news/sensex-nifty-rally-iran-ceasefire-2026-04-09" target="_blank">Indian Markets Gain on Global Risk-On Sentiment Following Iran Ceasefire</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.livemint.com/markets/stock-market-news/sensex-nifty-rally-iran-ceasefire-2026-04-09" target="_blank">Additional: Mint</a>
+        
+      
+    </div>
+    <p>Indian equity indices posted solid gains tracking global markets after the U.S.-Iran ceasefire announcement eased concerns about oil price shocks. The BSE Sensex and NSE Nifty both advanced as energy-dependent sectors rallied on expectations of more stable fuel costs. Foreign institutional investors showed renewed interest in Indian equities after recent outflows driven by geopolitical risk aversion.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> India's economy is particularly sensitive to oil price fluctuations as a major energy importer, making Middle East stability crucial for inflation management and economic growth.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/07/anthropic-compute-deal" target="_blank">Anthropic Secures Major Cloud Computing Deal for AI Model Training</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/07/anthropic-compute-deal" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>AI safety company Anthropic announced a significant cloud computing partnership on April 7 to support training of its next-generation language models. The deal addresses the growing compute bottleneck facing AI companies as models scale to unprecedented sizes. While financial terms were not disclosed, the agreement signals continued heavy investment in AI infrastructure despite economic uncertainties.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Access to massive computing resources has become a critical competitive factor in the AI race, with companies competing for limited GPU and cloud capacity.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/07/uber-amazon-chips" target="_blank">Uber and Amazon Partner on Custom AI Chip Development</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/07/uber-amazon-chips" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>Uber and Amazon Web Services announced a collaboration on April 7 to develop custom AI chips optimized for specific workloads including autonomous vehicle systems and logistics optimization. The partnership reflects a broader trend of major tech companies designing specialized silicon to reduce reliance on Nvidia and improve cost efficiency. The chips are expected to enter production within 18-24 months.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Custom chip development by major cloud users could reshape the semiconductor industry and reduce dependencies on dominant GPU manufacturers.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://stratechery.com/2026/openai-tbpn-partnership" target="_blank">OpenAI Expands Partnership with Telecommunications Provider</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://stratechery.com/2026/openai-tbpn-partnership" target="_blank">Stratechery</a>
+        
+      
+    </div>
+    <p>OpenAI announced on April 6 an expanded partnership with telecommunications infrastructure provider TBPN to integrate AI capabilities into communications networks. The collaboration aims to bring advanced language model features to enterprise and consumer telecom services. The deal represents OpenAI's continued push beyond pure software into infrastructure-level integrations.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Embedding AI into core telecommunications infrastructure could accelerate adoption and create new revenue streams for both AI and telecom companies.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/technology" target="_blank">Tech Sector Rallies Alongside Broader Markets on Ceasefire News</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/technology" target="_blank">Additional: Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Technology stocks participated strongly in the market rally following the Iran ceasefire announcement, with semiconductor and cloud computing companies posting notable gains. Reduced geopolitical uncertainty eased concerns about potential supply chain disruptions affecting chip manufacturing and data center operations. Bitcoin and cryptocurrency markets also surged on the risk-on sentiment.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The tech sector's sensitivity to geopolitical stability reflects its complex global supply chains and energy-intensive operations.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/08/delta-air-lines-q1-2026-earnings.html" target="_blank">Delta Air Lines Reports Q1 Loss as Jet Fuel Prices Surge 88% Since Iran Conflict</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/08/delta-air-lines-q1-2026-earnings.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Delta posted a net loss of $289 million in Q1 2026 compared to a $240 million profit a year earlier, driven by soaring fuel costs that jumped nearly 88% since the U.S. and Israel attacked Iran on February 28. The airline expects $1 billion in pretax profit for Q2 and projects fuel costs of $4.30 per gallon, though it declined to update its full-year forecast due to ongoing price uncertainty. Delta and Southwest both raised checked bag fees by $10 to offset rising costs.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The earnings reveal the direct economic toll of the Iran conflict on the airline industry, with fuel representing airlines' largest operating expense after labor.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-07/stock-market-today-dow-s-p-live-updates" target="_blank">S&P 500 Rallies 2.5% as Dow Jumps Over 1,300 Points on Ceasefire Agreement</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-07/stock-market-today-dow-s-p-live-updates" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>U.S. stock markets posted their strongest single-day gains in months following the Iran ceasefire announcement, with the S&P 500 advancing 2.5% and the Dow Jones Industrial Average surging over 1,300 points. Treasury yields fell as investors reassessed Federal Reserve policy expectations in light of reduced energy-driven inflation pressures. The rally was broad-based across sectors, with particular strength in airlines, industrials, and consumer discretionary stocks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The market response demonstrates how quickly investor sentiment can shift based on geopolitical developments affecting energy markets and inflation expectations.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://fortune.com/2026/04/08/warner-bros-zaslav-golden-parachute" target="_blank">Warner Bros. CEO's $887 Million Golden Parachute Draws Criticism from Proxy Adviser</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://fortune.com/2026/04/08/warner-bros-zaslav-golden-parachute" target="_blank">Additional: Fortune</a>
+        
+      
+    </div>
+    <p>Proxy advisory firm Institutional Shareholder Services criticized Warner Bros. CEO David Zaslav's 'extraordinary' $887 million golden parachute package, urging investors to back a sale of the company rather than approving the executive compensation. The report highlights growing scrutiny of executive pay packages in the media industry amid challenging market conditions and shareholder pressure for better returns.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The controversy reflects broader tensions between executive compensation practices and shareholder value creation in an era of activist investing.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/fedex-pilots-agreement-2026" target="_blank">FedEx Reaches Tentative Labor Agreement with Pilots After Five-Year Negotiations</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/fedex-pilots-agreement-2026" target="_blank">Additional: Bloomberg</a>
+        
+      
+    </div>
+    <p>FedEx announced a tentative labor deal with its pilots' union on April 8 after five years of negotiations, representing a significant milestone for labor relations at the shipping giant. While contract terms were not immediately disclosed, the agreement comes as the logistics industry faces pressure from rising fuel costs and shifting demand patterns. The deal must still be ratified by union members.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Successful labor negotiations help FedEx maintain operational stability in a competitive logistics market where pilot shortages have been a persistent challenge.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/graduate-student-loans-2026" target="_blank">Graduate Students Face Costly Private Loans After Federal Student Loan Cuts</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/graduate-student-loans-2026" target="_blank">Additional: Bloomberg</a>
+        
+      
+    </div>
+    <p>Graduate student borrowers are confronting higher costs to fill a $10 billion funding gap after federal student loan program cuts, forcing many toward private loan markets with less favorable terms. The shift raises concerns about accessibility to advanced education and long-term debt burdens for professionals entering fields like law, medicine, and business. Financial aid experts warn the changes could disproportionately impact students from lower-income backgrounds.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Changes to graduate student financing could reshape access to advanced degrees and affect workforce development in critical professional fields.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/articles/d41586-026-organoids-april" target="_blank">New Research Shows Promise for Organoid Models in Disease Study</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/articles/d41586-026-organoids-april" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>Scientists have made significant advances in using organoid technology to model complex diseases, according to research published in Nature on April 8. The miniature organ-like structures grown from stem cells are providing unprecedented insights into disease mechanisms and drug responses. Researchers demonstrated improved methods for creating more realistic tissue architecture and maintaining organoids for extended study periods.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Organoid technology could accelerate drug discovery and reduce reliance on animal testing by providing more accurate human disease models.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/articles/glp1-benefits-2026" target="_blank">GLP-1 Medications Show Additional Health Benefits Beyond Weight Loss</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/articles/glp1-benefits-2026" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>New studies published on April 8 reveal that GLP-1 receptor agonists, the class of drugs including Ozempic and Wegovy, may provide cardiovascular and metabolic benefits extending beyond their primary weight loss effects. Research indicates potential positive impacts on liver health, kidney function, and inflammation markers. The findings are prompting researchers to investigate whether the medications could be prescribed for conditions beyond diabetes and obesity.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Expanding therapeutic applications of GLP-1 drugs could address multiple chronic health conditions simultaneously, though questions about long-term effects and accessibility remain.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/articles/artemis-ii-update-2026" target="_blank">NASA's Artemis II Mission Preparations Advance Toward 2027 Launch</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/articles/artemis-ii-update-2026" target="_blank">Nature</a>
+        
+      
+    </div>
+    <p>NASA provided updates on April 8 regarding preparations for the Artemis II crewed lunar flyby mission, currently scheduled for 2027. The mission will send four astronauts around the Moon, marking humanity's first crewed lunar mission since Apollo 17 in 1972. Engineers are conducting final testing on the Orion spacecraft's heat shield and life support systems following lessons learned from the uncrewed Artemis I test flight.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Artemis II represents a critical stepping stone toward establishing a sustained human presence on the Moon and eventual Mars exploration.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://kffhealthnews.org/news/trump-medical-records-access-2026" target="_blank">Trump Administration Moves to Expand Access to Medical Records</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://kffhealthnews.org/news/trump-medical-records-access-2026" target="_blank">KFF Health News</a>
+        
+      
+    </div>
+    <p>The Trump administration announced new policies on April 8 aimed at expanding patient and third-party access to electronic medical records, building on existing federal interoperability rules. The changes would require healthcare providers to share data more readily with patients and approved applications. Privacy advocates have raised concerns about potential data security risks and commercial exploitation of health information.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Expanded medical record access could improve care coordination and patient empowerment but raises significant privacy and security questions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://kffhealthnews.org/news/urgent-care-abortion-services-2026" target="_blank">Urgent Care Centers Increasingly Offering Abortion Services in Some States</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://kffhealthnews.org/news/urgent-care-abortion-services-2026" target="_blank">KFF Health News</a>
+        
+      
+    </div>
+    <p>A growing number of urgent care centers in states with legal abortion access are beginning to offer medication abortion services, according to a report published April 8. The trend reflects efforts to increase access points for abortion care following the Supreme Court's Dobbs decision. Medical professionals note that urgent care settings can safely provide early medication abortion while also addressing barriers like cost and travel distance to traditional abortion providers.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The expansion of abortion services into urgent care settings could significantly affect access patterns in states where abortion remains legal.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">ATL 116</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CLE 122</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIN 120</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">ORL 132</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIL 111</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DET 137</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MEM 119</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DEN 136</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">POR 101</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">SA 112</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">DAL 107</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">PHX 112</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.espncricinfo.com/series/ipl-2026/kkr-vs-lsg-match-15" target="_blank">IPL 2026: Kolkata Knight Riders Face Lucknow Super Giants at Eden Gardens</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espncricinfo.com/series/ipl-2026/kkr-vs-lsg-match-15" target="_blank">Additional: ESPN Cricinfo</a>
+        
+      
+    </div>
+    <p>Match 15 of the Indian Premier League 2026 takes place today at Eden Gardens in Kolkata, with the Knight Riders hosting Lucknow Super Giants. The tournament has already produced several thrilling finishes, including Gujarat Titans' one-run victory over Delhi Capitals on April 8. Both teams are seeking to establish momentum in the early stages of the tournament.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The IPL remains cricket's most lucrative and watched franchise league, with massive viewership across India and global markets.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bbc.com/sport/golf/masters-2026" target="_blank">The Masters 2026 Begins at Augusta National</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bbc.com/sport/golf/masters-2026" target="_blank">Additional: BBC Sport</a>
+        
+      
+    </div>
+    <p>The 90th Masters Tournament tees off today at Augusta National Golf Club, with the world's top golfers competing for one of sport's most prestigious titles. The tournament runs through April 12, with defending champion and current world number one among the favorites. Weather conditions at Augusta are expected to be favorable for scoring throughout the week.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Masters is golf's most iconic tournament and the first major championship of the year, attracting global television audiences.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/nba/playoffs/2026" target="_blank">NBA Regular Season Concludes April 12 as Playoff Picture Takes Shape</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/nba/playoffs/2026" target="_blank">Additional: ESPN</a>
+        
+      
+    </div>
+    <p>The NBA regular season enters its final days with the Detroit Pistons having secured the No. 1 seed in the Eastern Conference. Multiple playoff positions remain undecided as teams battle for postseason positioning ahead of the April 12 regular season conclusion. The playoffs are scheduled to begin April 18, with the play-in tournament taking place beforehand.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The playoff race determines matchups and home-court advantage for the championship tournament, with seeding often playing a crucial role in postseason success.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.skysports.com/premier-league-fixtures-april-2026" target="_blank">Premier League Title Race Intensifies with Multiple Fixtures This Week</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.skysports.com/premier-league-fixtures-april-2026" target="_blank">Additional: Sky Sports</a>
+        
+      
+    </div>
+    <p>The English Premier League features a packed fixture schedule from April 9-13 as the title race and relegation battles reach critical stages. Multiple top-six teams face crucial matches that could determine Champions League qualification and championship positioning. The condensed schedule reflects fixture congestion from earlier weather postponements and cup competitions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Premier League remains the world's most-watched domestic football competition, with billions in prize money and prestige at stake.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Quanta Magazine</strong> — Award-winning coverage illuminating developments in mathematics, physics, biology, and computer science.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org/quantum-computing-advances-april-2026" target="_blank">Quantum Computing Advances Enable New Approaches to Complex Problem Solving</a></h3>
+    <div class="source"><a href="https://www.quantamagazine.org/quantum-computing-advances-april-2026" target="_blank">Quanta Magazine</a></div>
+    <p>Recent breakthroughs in quantum error correction and qubit stability are enabling researchers to tackle previously intractable computational problems. Scientists demonstrated that quantum systems can now maintain coherence long enough to solve certain optimization problems exponentially faster than classical computers. The advances suggest practical quantum computing applications may arrive sooner than previously expected, though significant engineering challenges remain.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.quantamagazine.org/prime-number-patterns-discovery" target="_blank">Mathematical Discovery Reveals Hidden Patterns in Prime Number Distribution</a></h3>
+    <div class="source"><a href="https://www.quantamagazine.org/prime-number-patterns-discovery" target="_blank">Quanta Magazine</a></div>
+    <p>Mathematicians have uncovered unexpected regularities in how prime numbers are distributed along the number line, challenging long-held assumptions about their randomness. The findings employ sophisticated techniques from analytic number theory and could have implications for cryptography and theoretical physics. While the work doesn't solve the famous Riemann Hypothesis, it provides new tools for understanding prime number behavior at large scales.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 31 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 7 · 1 hr 24 min listen
+         — <em>tell Leo when you finish to get your next listen</em>
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Thursday, April 09, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Quanta Magazine<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
