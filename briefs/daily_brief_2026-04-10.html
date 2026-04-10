@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 10, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Friday, April 10, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Markets rally as fragile U.S.-Iran ceasefire holds; private credit funds face redemption crisis; Meta deepens AI infrastructure investment with $21 billion CoreWeave deal.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-10.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">64°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">Low 55° · Now 58° · 🌧 45%</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">🌧️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">60°F</div>
+    <div class="weather-desc">Drizzle</div>
+    <div class="weather-hilo">Low 54° · Now 57° · 🌧 57%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Cool — jacket needed. Rain likely — bring an umbrella.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">U.S.-Iran Ceasefire Holds Despite Strait of Hormuz Blockage</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">Additional: CNBC</a>
+        
+      
+    </div>
+    <p>A fragile two-week ceasefire between the U.S. and Iran is holding, contingent on Iran reopening the Strait of Hormuz. However, shipping traffic through the waterway—which handles approximately 20% of global oil production—remains largely blocked five weeks into the conflict. Oil prices have climbed above $97 per barrel despite cautious optimism about the truce.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The closure of this critical shipping lane has major implications for global energy markets, inflation, and international trade, with the potential to disrupt supply chains worldwide.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/newsletters/2026-04-09/wall-street-still-loves-bitcoin-even-if-fever-is-cooling" target="_blank">Global Trade Foundations Tested by Strait Closure</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/newsletters/2026-04-09/wall-street-still-loves-bitcoin-even-if-fever-is-cooling" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>The Iran conflict's closure of a vital shipping route through the Strait of Hormuz has tested the foundations of global trade, with economists warning of potential supply chain disruptions extending well beyond energy markets. The blockage affects not just oil shipments but also manufactured goods and raw materials crucial to global commerce.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The disruption highlights the vulnerability of global trade to geopolitical conflicts and could trigger broader economic consequences if the blockage persists.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>RBI Holds Repo Rate at 5.25% as Inflation Concerns Ease</h3>
+    <div class="source">
+      
+        
+        Additional: Multiple Indian outlets
+        
+      
+    </div>
+    <p>The Reserve Bank of India maintained its key repo rate at 5.25% on April 8, signaling confidence in India's inflation trajectory while remaining vigilant about global uncertainties. The decision reflects the central bank's assessment that price pressures have moderated sufficiently to avoid further tightening.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The rate hold provides stability for borrowers and signals the RBI's confidence in India's economic trajectory amid global volatility.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>IPL 2026 Enters Crucial Phase with High-Stakes Matches</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The Indian Premier League 2026 continues with key matches scheduled for April 10, including Rajasthan Royals versus Royal Challengers Bengaluru and Kolkata Knight Riders against Lucknow Super Giants. The tournament is generating significant viewership and economic activity across India.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The IPL represents India's most valuable sports property and drives substantial economic activity in entertainment, hospitality, and media sectors.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Indian Markets Track Global Rally on Ceasefire Optimism</h3>
+    <div class="source">
+      
+        
+        Additional: Economic Times
+        
+      
+    </div>
+    <p>Indian equity markets participated in the global rally following the U.S.-Iran ceasefire announcement, with investors growing cautiously optimistic about reduced geopolitical risk. The potential reopening of the Strait of Hormuz could particularly benefit India, which imports over 80% of its crude oil requirements.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Lower oil prices and reduced geopolitical uncertainty would significantly benefit India's import bill and inflation outlook.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">Meta Signs $21 Billion AI Infrastructure Deal with CoreWeave</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Meta Platforms has agreed to spend an additional $21 billion with AI infrastructure provider CoreWeave, building on a prior $14.2 billion commitment. The massive investment underscores Meta's determination to maintain leadership in AI development. CoreWeave, which has seen its shares climb 28% in 2026, also announced plans to raise $3 billion in fresh debt to support its expansion.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This deal represents one of the largest AI infrastructure commitments to date and signals the massive capital requirements for companies competing in the generative AI race.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">AI Software Sector Faces Investor Concerns Amid Valuation Questions</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Growing fears around AI and software sector exposures have contributed to stress in private credit markets, with investors questioning valuations and business models. The concerns reflect uncertainty about which AI applications will generate sustainable revenue and which companies are overvalued in the current hype cycle.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A potential correction in AI valuations could have ripple effects across tech markets and startup funding.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">Private Credit Funds Hit Redemption Limits as Investors Flee</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Carlyle's flagship private-credit fund received redemption requests totaling 15.7%—three times above its 5% quarterly limit—forcing the firm to cap withdrawals, according to The Wall Street Journal. Blue Owl's OCIC fund faced similar pressure with 29.1% redemption requests, also capping at 5%. The surge reflects growing investor concerns about liquidity risks and exposures to stressed AI and software companies.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The redemption crisis signals potential systemic risks in the rapidly grown $1.7 trillion private credit market, which has become a crucial alternative to traditional bank lending.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">Stock Markets Rally as Dow Turns Positive for 2026</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The S&P 500 gained 0.62% and the Dow Jones Industrial Average rose 275 points to turn positive for the year, driven by optimism over the U.S.-Iran ceasefire. Investors are betting that reduced geopolitical risk and a potential reopening of the Strait of Hormuz could ease inflationary pressures, though oil prices paradoxically rose above $97 per barrel.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The market's positive turn suggests investors believe the worst of the geopolitical crisis may be over, though significant uncertainty remains.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">Morgan Stanley Launches Bitcoin Fund with Industry-Low Fees</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Morgan Stanley entered the Bitcoin ETF market with a 0.14% fee—the lowest among competitors and undercutting BlackRock's 0.25%. The launch comes despite Bitcoin falling 40% from its October peak, with Morgan Stanley betting that its extensive network of financial advisors can capture market share from incumbent crypto funds.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Major Wall Street firms continue to embrace cryptocurrency despite market volatility, signaling institutional conviction in digital assets' long-term role in portfolios.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/newsletters/2026-04-09/wall-street-still-loves-bitcoin-even-if-fever-is-cooling" target="_blank">Wall Street's Crypto Appetite Persists Despite Bitcoin Plunge</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/newsletters/2026-04-09/wall-street-still-loves-bitcoin-even-if-fever-is-cooling" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Despite Bitcoin's 40% decline from its October 2025 peak, Wall Street's product development machine continues unabated with new cryptocurrency offerings from major financial institutions. The persistence suggests institutional investors view the current downturn as a buying opportunity rather than a fundamental rejection of digital assets.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Continued institutional investment in crypto infrastructure indicates the industry's maturation and integration into mainstream finance, regardless of short-term price movements.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Health Policy Debates Continue Over Insurance Coverage Reforms</h3>
+    <div class="source">
+      
+        
+        Additional: KFF Health News
+        
+      
+    </div>
+    <p>Ongoing policy discussions in Washington focus on potential reforms to health insurance coverage and access, with lawmakers debating various approaches to controlling costs while expanding coverage. The debates reflect continued partisan divisions over the role of government in healthcare provision.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Healthcare policy remains a critical issue affecting millions of Americans' access to medical care and financial security.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Research Funding Priorities Shift Toward Pandemic Preparedness</h3>
+    <div class="source">
+      
+        
+        Additional: Nature
+        
+      
+    </div>
+    <p>Scientific funding agencies are increasingly prioritizing pandemic preparedness and infectious disease research in their grant allocations, reflecting lessons learned from recent global health crises. The shift represents a significant reorientation of resources toward surveillance, vaccine development, and rapid response capabilities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Investment in pandemic preparedness could prove crucial in preventing or mitigating future global health emergencies.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Climate Health Impacts Draw Increased Scientific Attention</h3>
+    <div class="source">
+      
+        
+        Additional: Scientific American
+        
+      
+    </div>
+    <p>Researchers are documenting the growing health impacts of climate change, from heat-related illnesses to changing disease vectors and mental health effects. Studies show vulnerable populations face disproportionate risks, prompting calls for integrated climate and health policy responses.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Understanding climate's health impacts is essential for preparing healthcare systems and protecting vulnerable communities from environmental changes.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">MIA 114</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">TOR 128</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CHI 119</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">WSH 108</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">IND 123</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">BKN 94</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">BOS 106</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">NY 112</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">PHI 102</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">HOU 113</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">LAL 119</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">GS 103</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3>Premier League Title Race Intensifies with April Fixtures</h3>
+    <div class="source">
+      
+        
+        Additional: Sky Sports
+        
+      
+    </div>
+    <p>The Premier League title race remains tight as teams enter the crucial April period, with West Ham facing Wolves on April 10 among key fixtures. Every point has become critical as contenders jockey for position in the season's final weeks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Premier League title race is one of global football's most-watched competitions, with billions of dollars in revenue and prestige at stake.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>NBA Playoff Picture Takes Shape in Season's Final Weeks</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>NBA teams are battling for playoff positioning as the regular season enters its final weeks, with several races for playoff spots and seeding still undecided. The intensity has ramped up as teams recognize the importance of home-court advantage and favorable matchups.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Playoff seeding can significantly impact championship odds, making these final regular-season games critically important.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>MLB Season Sees Early Injury Challenges for Contenders</h3>
+    <div class="source">
+      
+        
+        Additional: Sports Illustrated
+        
+      
+    </div>
+    <p>Major League Baseball teams are grappling with early-season injuries, including the Los Angeles Angels' Robert Stephenson, testing roster depth and forcing teams to adjust strategies. The injury wave reflects ongoing debates about workload management and player health protocols.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Early injuries can derail championship aspirations and drive significant midseason roster moves.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Multiple Long-Form Outlets</strong> — Curated in-depth features and analysis from leading publications
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 32 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 8 · 1 hr 24 min listen
+         — <em>tell Leo when you finish to get your next listen</em>
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Friday, April 10, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Multiple Long-Form Outlets<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
