@@ -1,25 +1,25 @@
 {
-  "date": "2026-04-10",
-  "generated_at": "2026-04-10T12:50:08.289805+00:00",
-  "regressions_detected": 2,
+  "date": "2026-04-11",
+  "generated_at": "2026-04-11T12:39:56.791540+00:00",
+  "regressions_detected": 1,
   "total_checks": 7,
   "results": [
     {
       "bug_id": "explore-empty",
-      "detected": true,
-      "details": null,
-      "fix_recipe": [
-        "Check search_news() explore prompt \u2014 has the source list in config.json explore_pool been modified or shrunk?",
-        "Check if Claude web search is returning empty for explore queries \u2014 look at raw_results['explore'] in stdout logs",
-        "Check if validate_brief() is removing ALL explore stories via NOURL filter \u2014 look for NOURL removals in stdout",
-        "Try: widen the explore search date range or add more outlets to explore_pool in config.json"
-      ],
-      "severity": "high"
+      "detected": false,
+      "details": null
     },
     {
       "bug_id": "paywalled-explore",
-      "detected": false,
-      "details": null
+      "detected": true,
+      "details": "Found 1 paywalled URL(s): https://www.wired.com/story/ai-environmental-cost-data-centers-2026/",
+      "fix_recipe": [
+        "Check validate_brief() explore URL enforcement \u2014 is the paywall filter still present?",
+        "Check if new paywalled domains have been added to config.json explore_pool without updating the filter",
+        "Add the offending domain to flagged_domains in this known_bugs.json entry",
+        "If the domain is a subscriber source (Nisha has access), consider adding it to an allowlist instead"
+      ],
+      "severity": "medium"
     },
     {
       "bug_id": "nba-score-formatting",
@@ -38,15 +38,8 @@
     },
     {
       "bug_id": "vague-hallucinated-sources",
-      "detected": true,
-      "details": null,
-      "fix_recipe": [
-        "Check validate_brief() step 3 \u2014 is the vague-source filter still running? Look for the _has_vague_source() call",
-        "Check if _has_vague_source() logic has been accidentally loosened (e.g. threshold changed)",
-        "Check synthesis prompt PLACEHOLDER RULE \u2014 if it was weakened, Claude may be fabricating to fill thin sections",
-        "If stories are getting through with URLs but the URLs are fake: would need a URL reachability check (costly, consider as last resort)"
-      ],
-      "severity": "medium"
+      "detected": false,
+      "details": null
     },
     {
       "bug_id": "empty-news-section",
