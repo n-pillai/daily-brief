@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 12, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Sunday, April 12, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Marathon US-Iran peace talks collapse after 21 hours in Islamabad as regulators worldwide scramble to contain cybersecurity threats from Anthropic's Mythos AI model, while inflation surges to 3.3% amid energy market disruption.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-12.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">57°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">Low 50° · Now 51° · 🌧 49%</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">56°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">Low 49° · Now 52° · 🌧 51%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Cool — jacket needed. Rain likely — bring an umbrella.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www-thehindu-com.translate.goog/news/international/iran-israel-us-war-west-asia-conflict-live-updates-on-april-12-2026/article70853206.ece" target="_blank">US-Iran Peace Talks Collapse After 21 Hours of Marathon Negotiations in Islamabad</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www-thehindu-com.translate.goog/news/international/iran-israel-us-war-west-asia-conflict-live-updates-on-april-12-2026/article70853206.ece" target="_blank">The Hindu</a>
+        
+      
+    </div>
+    <p>Vice President J.D. Vance met with Iranian officials in Islamabad for over 21 hours of intensive peace talks that ended without agreement. Iran's Foreign Ministry spokesman said success depends on Washington avoiding excessive demands and unlawful requests, with discussions covering the Strait of Hormuz, nuclear issues, war reparations, sanctions lifting, and ending the war against Iran. The failure follows a fragile two-week ceasefire announced earlier this week.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The collapse of the first direct US-Iran meeting since 1979 prolongs the West Asia conflict that has disrupted global oil markets and threatens continued economic instability.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www-thehindu-com.translate.goog/news/international/iran-israel-us-war-west-asia-conflict-live-updates-on-april-12-2026/article70853206.ece" target="_blank">Indian Markets Monitor West Asia Peace Talks as Energy Costs Impact Economic Outlook</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www-thehindu-com.translate.goog/news/international/iran-israel-us-war-west-asia-conflict-live-updates-on-april-12-2026/article70853206.ece" target="_blank">The Hindu</a>
+        
+      
+    </div>
+    <p>Indian businesses and policymakers are closely tracking the failed US-Iran peace talks in neighboring Islamabad, with concerns mounting about sustained high energy prices impacting India's import bill and inflation trajectory. India imports over 85% of its crude oil requirements, making it particularly vulnerable to Middle East supply disruptions and price volatility.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Prolonged high oil prices could derail India's economic growth momentum and force the Reserve Bank of India to maintain higher interest rates longer than anticipated.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-10/anthropic-model-scare-sparks-urgent-bessent-powell-warning-to-bank-ceos" target="_blank">US Treasury and Fed Chiefs Summon Wall Street CEOs Over Anthropic's Mythos AI Cybersecurity Threat</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-10/anthropic-model-scare-sparks-urgent-bessent-powell-warning-to-bank-ceos" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>Treasury Secretary Scott Bessent and Federal Reserve Chair Jerome Powell held an urgent meeting with Wall Street leaders on April 7 to warn about Anthropic's Mythos AI model, which is so advanced at finding software vulnerabilities that it could enable powerful cyberattacks if it falls into the wrong hands. The government is urging major banks including JPMorgan, Citigroup, and Goldman Sachs to test the model internally to identify and patch vulnerabilities in their systems. Anthropic is limiting Mythos access through Project Glasswing to select tech firms including Apple, Amazon, Microsoft, and Cisco.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This marks the first time US government officials have treated an AI model as a national security-level cybersecurity threat, signaling a new era where AI capabilities can fundamentally shift the cyber arms race.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-11/bank-of-england-set-to-discuss-anthropic-s-mythos-with-banks" target="_blank">Bank of England to Discuss Anthropic's Mythos AI Model With UK Financial Institutions</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-11/bank-of-england-set-to-discuss-anthropic-s-mythos-with-banks" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>The Bank of England plans to discuss the impact of Anthropic's new Mythos AI model with financial institutions within the next two weeks, joining US regulators in raising alarms over cybersecurity risks. The meetings will include representatives from the Treasury, the Financial Conduct Authority, and the National Cyber Security Centre. This follows similar emergency meetings in the US and Canada with banking leaders.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Global financial regulators are coordinating an unprecedented international response to an AI model's potential threat to critical financial infrastructure.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/02/microsoft-takes-on-ai-rivals-with-three-new-foundational-models/" target="_blank">Microsoft Releases Three New Foundational AI Models for Text, Voice, and Images</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/02/microsoft-takes-on-ai-rivals-with-three-new-foundational-models/" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>Microsoft AI announced three new foundational models: MAI-Transcribe-1 for speech transcription across 25 languages, MAI-Voice-1 for audio generation that can produce 60 seconds of audio in one second, and an image generation model. The release signals Microsoft's push to build its own multimodal AI stack and compete directly with rival AI labs, even while maintaining its $13 billion partnership with OpenAI. Microsoft CEO Mustafa Suleyman reaffirmed the OpenAI partnership but noted a recent renegotiation allowed Microsoft greater freedom to pursue superintelligence research.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Microsoft's move to develop competing AI models while maintaining its OpenAI partnership reveals the complex dynamics reshaping the AI industry landscape.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/07/the-ai-gold-rush-is-pulling-private-wealth-into-riskier-earlier-bets/" target="_blank">Private Wealth and Family Offices Skip VCs to Invest Directly in AI Startups</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/07/the-ai-gold-rush-is-pulling-private-wealth-into-riskier-earlier-bets/" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>High-net-worth individuals and family offices are increasingly bypassing venture capital funds to invest directly in AI startups, driven by the AI investment frenzy and companies staying private longer. Arena Private Wealth noted that substantial returns are being made before companies go public, with private markets dominated by AI names. These investors are making highly selective bets with significantly higher stakes than traditional VC portfolio approaches.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The shift in capital flows toward direct AI investments could reshape startup funding dynamics and increase volatility in the private markets.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Japan Invests $16 Billion to Propel Rapidus in Global AI Chip Race</h3>
+    <div class="source">
+      
+        
+        Bloomberg
+        
+      
+    </div>
+    <p>Japan is making a $16 billion bet on Rapidus, its homegrown semiconductor manufacturer, to compete in the global AI chip market dominated by companies like TSMC and NVIDIA. The massive government investment reflects Japan's strategy to rebuild its semiconductor manufacturing capabilities and reduce dependence on foreign chipmakers as AI infrastructure becomes critical to national competitiveness. This comes as TSMC posted a 35% revenue jump driven by AI chip demand.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Japan's aggressive push into AI chip manufacturing signals an intensifying global competition for semiconductor self-sufficiency amid escalating technology nationalism.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Private Credit Funds Face Redemption Crisis as Retail Investors Exit</h3>
+    <div class="source">
+      
+        
+        Bloomberg
+        
+      
+    </div>
+    <p>Private markets are experiencing a tense moment as retail investors increasingly request redemptions from major funds. Carlyle's flagship $7 billion private credit fund saw redemption requests hit 15.7%, three times above its 5% limit, while Blue Owl's OCIC fund hit 29.1% redemption levels. The crisis reflects growing fears around AI and software sector exposures.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The surge in redemptions marks the first major stress test for private credit's expansion into retail markets and could reshape the $1.5 trillion industry's growth trajectory.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>AI Data Center Build-Out Reaches $3 Trillion as Borrowing Accelerates</h3>
+    <div class="source">
+      
+        
+        Bloomberg
+        
+      
+    </div>
+    <p>The artificial intelligence infrastructure boom is driving unprecedented borrowing to finance a $3 trillion data center construction wave. Meta Platforms deepened its commitment by agreeing to spend an additional $21 billion with CoreWeave on top of a prior $14.2 billion deal. The massive capital expenditure reflects continued bet on AI despite broader market volatility and concerns about AI sector valuations contributing to redemptions in private credit funds.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The scale of AI infrastructure investment reveals how deeply technology companies are betting on continued AI growth even as financial markets show signs of concern.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Wall Street Regulators Pull Back Under Trump Deregulatory Push</h3>
+    <div class="source">
+      
+        
+        Bloomberg
+        
+      
+    </div>
+    <p>Financial regulatory agencies are reducing headcount and enforcement activity as the Trump administration loosens restraints on Wall Street. The shift includes embracing new markets like cryptocurrency and prediction platforms. The pullback represents a significant reversal from previous regulatory postures, occurring even as regulators sound alarms about AI cybersecurity threats requiring bank action.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The simultaneous deregulation of traditional finance and emergency response to AI threats illustrates the competing pressures facing financial oversight in the technology age.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Experiments Ring the 'Death Knell' for Sterile Neutrinos</h3>
+    <div class="source">
+      
+        
+        Quanta Magazine
+        
+      
+    </div>
+    <p>New experimental results published on April 8 have effectively ruled out the existence of sterile neutrinos, hypothetical particles that some physicists hoped could explain dark matter and other mysteries of the universe. Multiple detector experiments found no evidence for the additional neutrino type beyond the three known flavors, closing the door on one of the more popular extensions to the Standard Model of particle physics.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The findings force physicists to look elsewhere for explanations of dark matter and neutrino anomalies, reshaping the search for physics beyond the Standard Model.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Why Do We Tell Ourselves Scary Stories About AI?</h3>
+    <div class="source">
+      
+        
+        Quanta Magazine
+        
+      
+    </div>
+    <p>In an essay published April 10, science writer Amanda Gefter explores the psychological and cultural roots of AI doomsday narratives, examining why humans are drawn to catastrophic scenarios about artificial intelligence. The piece analyzes how our tendency to anthropomorphize AI and project human motivations onto machine learning systems shapes both public discourse and policy responses, particularly relevant as regulators worldwide respond to actual AI capabilities like Anthropic's Mythos model.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Understanding the psychology behind AI fear narratives becomes critical as policymakers distinguish between legitimate technical risks and speculative existential threats.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.skysports.com/premier-league-scores-fixtures/2026-04-01" target="_blank">Premier League Sunday: Chelsea Host Manchester City, Tottenham Travel to Sunderland</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.skysports.com/premier-league-scores-fixtures/2026-04-01" target="_blank">Sky Sports</a>
+        
+      
+    </div>
+    <p>Four Premier League matches are scheduled for April 12, including Chelsea vs Manchester City at 4:30 PM, Sunderland vs Tottenham at 2:00 PM, Crystal Palace vs Newcastle at 2:00 PM, and Nottingham Forest vs Aston Villa at 2:00 PM. Tottenham remains winless in 2026 with 13 league matches without victory, making their clash with Sunderland critical for avoiding relegation concerns.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Tottenham's historic winless streak in 2026 puts unprecedented pressure on the club as they face a resurgent Sunderland side.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.espn.com/mlb/scoreboard/_/date/20260412" target="_blank">MLB Season Continues: Astros-Mariners Highlight Sunday Schedule</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.espn.com/mlb/scoreboard/_/date/20260412" target="_blank">ESPN</a>
+        
+      
+    </div>
+    <p>MLB's second week of the 2026 season features multiple games on April 12, including Houston Astros visiting the Seattle Mariners, Giants at Orioles, and Rangers at Dodgers. The Guardians-Braves game will air nationally on NBC at 5 PM ET, marking a rare regular-season MLB broadcast on the network as part of the league's expanded national television presence.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> NBC's entry into regular-season MLB broadcasting represents a significant shift in how baseball reaches national audiences beyond traditional cable networks.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.iplt20.com/" target="_blank">IPL 2026: Mumbai Indians Face Royal Challengers Bengaluru at Wankhede Stadium</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.iplt20.com/" target="_blank">Additional: IPL Official</a>
+        
+      
+    </div>
+    <p>Mumbai Indians host Royal Challengers Bengaluru in Match 20 of IPL 2026 at 7:30 PM IST at the Wankhede Stadium. Both teams are coming off losses to Rajasthan Royals, with MI falling by 27 runs and RCB losing by 6 wickets. RCB has won five of their last eight encounters against MI, giving the defending champions momentum heading into the traditional rivalry match.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The clash between two IPL giants offers both teams a chance to bounce back from recent defeats in what remains India's most-watched sporting league.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>Quanta Magazine</strong> — Award-winning popular science magazine covering mathematics, physics, biology, and computer science with deeply reported features.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 34 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 10 · 1 hr 24 min listen
+         — <em>tell Leo when you finish to get your next listen</em>
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Sunday, April 12, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · Quanta Magazine<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
