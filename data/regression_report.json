@@ -1,7 +1,7 @@
 {
-  "date": "2026-04-12",
-  "generated_at": "2026-04-12T12:44:10.938228+00:00",
-  "regressions_detected": 1,
+  "date": "2026-04-13",
+  "generated_at": "2026-04-13T13:06:27.306265+00:00",
+  "regressions_detected": 2,
   "total_checks": 7,
   "results": [
     {
@@ -23,7 +23,7 @@
     },
     {
       "bug_id": "nba-score-formatting",
-      "detected": false,
+      "detected": true,
       "details": null
     },
     {
@@ -38,8 +38,15 @@
     },
     {
       "bug_id": "vague-hallucinated-sources",
-      "detected": false,
-      "details": null
+      "detected": true,
+      "details": null,
+      "fix_recipe": [
+        "Check validate_brief() step 3 \u2014 is the vague-source filter still running? Look for the _has_vague_source() call",
+        "Check if _has_vague_source() logic has been accidentally loosened (e.g. threshold changed)",
+        "Check synthesis prompt PLACEHOLDER RULE \u2014 if it was weakened, Claude may be fabricating to fill thin sections",
+        "If stories are getting through with URLs but the URLs are fake: would need a URL reachability check (costly, consider as last resort)"
+      ],
+      "severity": "medium"
     },
     {
       "bug_id": "empty-news-section",

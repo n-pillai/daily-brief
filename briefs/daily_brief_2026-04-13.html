@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Monday, April 13, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Hungary's Viktor Orban ousted after 16 years as opposition wins landslide; Trump orders Strait of Hormuz blockade after Iran talks collapse; major banks kick off Q1 earnings season amid geopolitical uncertainty.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-13.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">63°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 49° · Now 49° · 🌧 19%</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">60°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 48° · Now 48° · 🌧 13%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Cool — jacket needed.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/4/12/hungary-election-early-results-show-magyars-tisza-ahead-of-orbans-fidesz" target="_blank">Hungary's Viktor Orban Ousted After 16 Years as Opposition Wins Landslide Election</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/4/12/hungary-election-early-results-show-magyars-tisza-ahead-of-orbans-fidesz" target="_blank">Al Jazeera</a>
+        
+      
+    </div>
+    <p>Hungarian Prime Minister Viktor Orban conceded defeat after Peter Magyar's Tisza party won a two-thirds majority with 53.6 percent of the vote in parliamentary elections. Magyar's center-right party secured 138 seats in the 199-seat parliament, ending Orban's 16-year rule with record turnout of nearly 80 percent.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Orban's defeat removes a key ally of President Trump and Putin from power in Europe and could reshape Hungary's relationship with the EU and its role in blocking aid to Ukraine.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.washingtonpost.com/world/2026/04/10/china-taiwan-cheng-xi/98740a3a-34a0-11f1-b85b-2cd751275c1d_story.html" target="_blank">China Announces New Ties with Taiwan After Xi Jinping Meets Opposition Leader</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.washingtonpost.com/world/2026/04/10/china-taiwan-cheng-xi/98740a3a-34a0-11f1-b85b-2cd751275c1d_story.html" target="_blank">Washington Post</a>
+        
+      
+    </div>
+    <p>China announced it will resume direct flights to Taiwan and lift bans on Taiwanese aquaculture imports following a meeting between President Xi Jinping and Kuomintang opposition leader Cheng Li-wun. Xi told Cheng that China will 'absolutely not tolerate' Taiwan independence in their first such meeting in a decade. Taiwan's government criticized the meeting as undermining sovereignty and facilitating Beijing's unification agenda.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The meeting represents Beijing's strategy to engage Taiwan's opposition while the ruling party resists closer ties, potentially reshaping cross-strait relations ahead of Taiwan's next election cycle.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>West Bengal Assembly Elections Enter Final Phase as TMC and BJP Intensify Campaigns</h3>
+    <div class="source">
+      
+        
+        Additional: Business Standard
+        
+      
+    </div>
+    <p>The Trinamool Congress and Bharatiya Janata Party are locked in intense campaigning as West Bengal's assembly elections enter their final phase. Chief Minister Mamata Banerjee and senior BJP leaders are holding multiple rallies across the state, with both parties focusing on development issues and regional identity politics.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> West Bengal's election is seen as a critical test of both parties' strength in eastern India and could influence the political landscape ahead of national elections.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>India's UPI Payment System Continues Rapid Growth Amid Digital Economy Expansion</h3>
+    <div class="source">
+      
+        
+        Additional: Business Standard
+        
+      
+    </div>
+    <p>India's Unified Payments Interface (UPI) continues to see strong growth in transaction volumes and value, reflecting the ongoing expansion of the country's digital payments ecosystem. The growth comes as more merchants and consumers adopt digital payment methods, supported by government initiatives promoting cashless transactions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> UPI's growth underscores India's position as a global leader in digital payments innovation and the rapid transformation of its retail and financial services sectors.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>India Monitors West Asia Crisis Impact on Energy Security and LPG Supplies</h3>
+    <div class="source">
+      
+        
+        Additional: Economic Times
+        
+      
+    </div>
+    <p>Indian government officials are closely monitoring the impact of escalating tensions in West Asia, particularly the US-Iran conflict, on the country's energy security and liquefied petroleum gas (LPG) supplies. The government is assessing contingency plans to ensure uninterrupted fuel supplies amid potential disruptions to oil shipments through the Strait of Hormuz.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> India imports over 80% of its crude oil, with significant volumes coming through the Strait of Hormuz, making energy security a critical concern as Middle East tensions escalate.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Apple Reportedly Developing AI-Powered Smart Glasses to Compete with Meta</h3>
+    <div class="source">
+      
+        
+        Additional: Bloomberg Technology
+        
+      
+    </div>
+    <p>Apple is exploring the development of AI-powered smart glasses as the company seeks to compete with Meta's Ray-Ban collaboration and expand its presence in wearable technology. The project would leverage Apple's artificial intelligence capabilities and could represent the company's next major hardware category after the Vision Pro headset.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Smart glasses represent a potentially massive market for consumer AI applications, and Apple's entry could accelerate mainstream adoption of AI-powered wearables.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Victory Giant Technology Plans Hong Kong IPO Amid Tech Market Recovery</h3>
+    <div class="source">
+      
+        
+        Additional: Bloomberg Technology
+        
+      
+    </div>
+    <p>Victory Giant Technology is moving forward with plans for an initial public offering in Hong Kong, taking advantage of improving conditions in Asian tech markets. The IPO would test investor appetite for technology stocks following a volatile first quarter marked by AI market turbulence and geopolitical tensions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The IPO could signal renewed confidence in Asian tech markets and provide a benchmark for other companies considering public listings after months of market uncertainty.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>AI Companies Face Growing Scrutiny Over Energy Consumption and Data Center Expansion</h3>
+    <div class="source">
+      
+        
+        Additional: WIRED
+        
+      
+    </div>
+    <p>Major AI companies are facing increasing pressure from regulators and environmental groups over the massive energy requirements of training and running large language models. Data center expansions planned by tech giants are drawing particular attention as concerns mount about grid capacity and carbon emissions from AI infrastructure.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The energy demands of AI could constrain the technology's growth and force companies to invest heavily in renewable energy or face regulatory limits on expansion.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Major Banks Report Q1 Earnings This Week Amid Geopolitical Uncertainty</h3>
+    <div class="source">
+      
+        
+        CNBC
+        
+      
+    </div>
+    <p>Goldman Sachs, JPMorgan Chase, Citigroup, Wells Fargo, Morgan Stanley and Bank of America are all reporting first quarter earnings this week. Analysts expect earnings growth driven by strong trading volumes and recovering investment banking activity, but investors remain wary of risks from the Iran conflict's impact on inflation, credit quality, and deal flow.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The banking sector's Q1 results will provide critical insights into how Wall Street navigated one of the most volatile quarters in years and set expectations for the broader financial sector.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>FTC in Settlement Talks with Major Ad Companies Over Platform Boycott Probe</h3>
+    <div class="source">
+      
+        
+        Reuters
+        
+      
+    </div>
+    <p>The U.S. Federal Trade Commission is negotiating a potential settlement with several major advertising companies including Dentsu, Publicis and WPP to resolve a probe into whether they violated federal antitrust laws by coordinating boycotts against platforms, including Elon Musk's X. The firms would commit not to direct clients' advertising budgets away from media platforms based on political content, though individual advertisers would still be free to choose where to advertise.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This settlement would reshape how major advertising firms can coordinate client spending across social media platforms, with implications for both advertiser autonomy and platform revenue.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Stock Markets Post Best Week Since November on Fragile Iran Ceasefire</h3>
+    <div class="source">
+      
+        
+        CNBC
+        
+      
+    </div>
+    <p>The S&P 500 added about 3.6% for the week ending April 11, while the Nasdaq rose about 4.7% and the Dow gained 3%, marking the best weekly performances since November. The rally came after President Trump suspended attacks on Iran for two weeks, though traders remain cautious about the fragility of the ceasefire and its impact on oil prices and inflation.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The strong rally reflects investor relief over reduced Middle East tensions, but the market remains vulnerable to any resumption of hostilities or disruption to energy supplies.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-performance-study.html" target="_blank">Small Group of AI Leaders Capturing Three-Quarters of Economic Gains, Study Finds</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-performance-study.html" target="_blank">Additional: PwC</a>
+        
+      
+    </div>
+    <p>A small group of companies is capturing three-quarters of AI's economic gains, with just 20% of companies pulling ahead in generating real financial returns from artificial intelligence, according to PwC's new AI Performance study. Leading companies are 2.6 times more likely to use AI to reinvent business models rather than just improve efficiency, with capturing growth opportunities from industry convergence identified as the single strongest factor influencing AI-driven financial performance.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The widening gap between AI leaders and laggards suggests the technology may be creating winner-take-all dynamics that could reshape competitive landscapes across industries.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Researchers Develop New Method for Early Detection of Alzheimer's Disease</h3>
+    <div class="source">
+      
+        
+        Additional: Nature
+        
+      
+    </div>
+    <p>Scientists have developed a novel blood-based biomarker test that can detect Alzheimer's disease up to 10 years before symptoms appear, according to recent research. The test identifies specific protein signatures associated with neurodegeneration and could enable earlier intervention and treatment when therapies are most effective.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Early detection of Alzheimer's could transform treatment outcomes by allowing intervention before significant brain damage occurs, potentially helping millions of patients worldwide.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Climate Change Accelerating Loss of Antarctic Ice Shelves, New Study Warns</h3>
+    <div class="source">
+      
+        
+        Additional: Science
+        
+      
+    </div>
+    <p>Antarctic ice shelves are thinning and retreating at accelerating rates due to warming ocean temperatures, according to new satellite observations published this week. The research shows that several major ice shelves have lost more than 30% of their volume since 2000, raising concerns about sea level rise and the stability of Antarctic ice sheets.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The accelerating ice loss could lead to faster-than-expected sea level rise, threatening coastal communities worldwide and potentially triggering irreversible changes to the Antarctic ice sheet.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>New mRNA Vaccine Shows Promise Against Multiple Cancer Types in Clinical Trials</h3>
+    <div class="source">
+      
+        
+        Additional: The Lancet
+        
+      
+    </div>
+    <p>A new mRNA-based cancer vaccine has shown encouraging results in phase 2 clinical trials, demonstrating effectiveness against multiple tumor types including melanoma, lung cancer, and colorectal cancer. The personalized vaccine works by training the immune system to recognize and attack cancer-specific proteins, building on the same technology used in COVID-19 vaccines.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Success in these trials could open a new frontier in cancer treatment, offering personalized immunotherapy options that harness the body's own immune system to fight tumors.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">ORL 108</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">BOS 113</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">WSH 117</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CLE 130</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">DET 133</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">IND 121</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">ATL 117</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">MIA 143</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">CHA 110</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">NY 96</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MIL 106</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">PHI 126</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">BKN 101</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">TOR 136</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">CHI 128</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">DAL 149</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">MEM 101</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">HOU 132</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">NO 126</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">MIN 132</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">PHX 135</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">OKC 103</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">DEN 128</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">SA 118</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">UTAH 107</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAL 131</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">GS 110</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">LAC 115</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="">SAC 110</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">POR 122</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3>NBA Playoffs Set to Begin as Regular Season Concludes with Tight Seeding Races</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The NBA regular season concluded on April 12 with several playoff seeding positions decided in the final games. The playoffs are scheduled to begin April 14-17, with play-in tournament games determining the final bracket spots. Multiple teams finished with identical records, creating intense competition for home-court advantage in the opening rounds.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The playoffs mark the culmination of a season that saw parity across both conferences, with no dominant team emerging and several potential championship contenders.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Champions League Quarterfinals Continue with High-Stakes Matches This Week</h3>
+    <div class="source">
+      
+        
+        Additional: BBC Sport
+        
+      
+    </div>
+    <p>The UEFA Champions League quarterfinals continue this week with second-leg matches that will determine which teams advance to the semifinals. Several first-leg matches ended with narrow margins, setting up potentially dramatic return fixtures as Europe's elite clubs battle for places in the final four.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Champions League remains European football's most prestigious club competition, with billions of euros in prize money and broadcasting revenue at stake.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>IPL 2026 Sees Record Viewership as Tournament Enters Critical Phase</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The Indian Premier League 2026 season is drawing record television and streaming audiences as teams compete for playoff positions. Multiple matches on April 13 will have significant implications for the standings as the tournament approaches its business end, with several franchises still in contention for the top four spots.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The IPL is the world's richest cricket league and a major driver of the global sports economy, with franchise valuations and player salaries reaching unprecedented levels.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>The Economist</strong> — In-depth analysis and commentary on global affairs, business, finance, science, and technology from a classical liberal perspective.
+  </div>
+
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 35 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 11 · 1 hr 24 min listen
+         — <em>tell Leo when you finish to get your next listen</em>
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Monday, April 13, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · The Economist<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
