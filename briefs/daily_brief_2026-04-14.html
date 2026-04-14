@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 14, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Tuesday, April 14, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">JPMorgan Chase kicks off earnings season with record-beating results; Anthropic's Mythos AI raises cybersecurity alarms at the highest levels of government; India grapples with labor unrest as workers demand wage parity.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-14.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">60°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 47° · Now 47° · 🌧 1%</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☀️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">58°F</div>
+    <div class="weather-desc">Clear sky</div>
+    <div class="weather-hilo">Low 48° · Now 48° · 🌧 2%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Cool — jacket needed.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>US-Iran Ceasefire Talks Collapse, Escalating Strait of Hormuz Crisis</h3>
+    <div class="source">
+      
+        
+        Al Jazeera English
+        
+      
+         · 
+        Reuters
+        
+      
+    </div>
+    <p>Peace negotiations between the United States and Iran collapsed in Islamabad on April 13, further escalating tensions over Iran's blockade of the Strait of Hormuz. The breakdown has raised concerns about prolonged disruption to global oil supplies, with Brent crude climbing above $82 per barrel. U.S. Treasury Secretary Scott Bessent and Federal Reserve Chair Jerome Powell held emergency meetings with major bank CEOs to assess economic risks.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Strait of Hormuz handles roughly one-fifth of global oil traffic, and a prolonged blockade could trigger supply shocks and inflation worldwide.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Hungary's Viktor Orbán Defeated by Péter Magyar in Historic Election Upset</h3>
+    <div class="source">
+      
+        
+        NPR
+        
+      
+         · 
+        Al Jazeera English
+        
+      
+    </div>
+    <p>In a stunning political reversal, opposition candidate Péter Magyar defeated long-serving Prime Minister Viktor Orbán in Hungary's election held April 12-13, 2026. Magyar's victory ends Orbán's 16-year grip on power and signals a potential shift in Hungary's relationship with the European Union. The election saw high turnout amid concerns over democratic backsliding and press freedom.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Orbán's defeat could reshape Central European politics and Hungary's contentious stance within the EU on issues ranging from rule of law to relations with Russia.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Peru Presidential Election Extended Amid Chaos and Organizational Failures</h3>
+    <div class="source">
+      
+        
+        NPR
+        
+      
+         · 
+        Al Jazeera English
+        
+      
+    </div>
+    <p>Peru's presidential election voting was extended to April 13 after widespread logistical failures and violence disrupted polling on the scheduled election day. Reports of ballot shortages, delayed openings at voting centers, and incidents of intimidation plagued the process. International observers expressed concern about the integrity of the electoral process in a country already facing political instability.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The chaotic election underscores Peru's deepening governance crisis following years of political turmoil, impeachments, and social unrest.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>Uttar Pradesh Announces 21% Wage Hike After Violent Noida Factory Worker Protests</h3>
+    <div class="source">
+      
+        
+        The Hindu
+        
+      
+         · 
+        Economic Times
+        
+      
+    </div>
+    <p>Following violent protests by factory workers in Noida on April 13 that included stone-pelting and arson, the Uttar Pradesh government announced an interim 21% wage hike effective April 1. Minimum monthly wages for unskilled workers in Gautam Buddh Nagar and Ghaziabad increased from ₹11,313 to ₹13,690. Over 300 people were arrested in connection with the violence, with authorities investigating allegations of organized instigation through social media.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The wage protests highlight growing labor unrest in India's industrial heartland as workers demand parity with neighboring states amid rising living costs, posing challenges for both economic competitiveness and social stability.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Indian Markets Fall as US-Iran Peace Talks Collapse; Sensex Down 702 Points</h3>
+    <div class="source">
+      
+        
+        Economic Times
+        
+      
+         · 
+        NDTV
+        
+      
+    </div>
+    <p>Indian stock markets declined sharply on April 13 as US-Iran ceasefire negotiations in Islamabad failed, escalating geopolitical tensions. Sensex fell 702 points (0.9%) to close at 76,847, while Nifty dropped 207 points (0.9%) to 23,842. The collapse of talks raised concerns about oil supply disruptions through the Strait of Hormuz, with volatility increasing across commodities.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> India imports over 85% of its oil needs, making it highly vulnerable to Middle East supply disruptions and price spikes that could fuel inflation and widen the current account deficit.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Rupee Hits Fresh Low of 92.30 Per Dollar Amid West Asia Tensions</h3>
+    <div class="source">
+      
+        
+        Business Standard
+        
+      
+         · 
+        Mint
+        
+      
+    </div>
+    <p>The Indian rupee hit a fresh low of 92.30 against the dollar on April 13, pressured by escalating West Asia tensions, higher oil prices (Brent at $82.97), and a firmer dollar index (98.96). The RBI intervened by selling dollars, with the rupee closing at 92.15, down 0.71%. The rupee has fallen 7.25% in the current fiscal year, with analysts expecting it to trade in the 91-93 range amid balance of payments pressures and foreign portfolio investment outflows.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> A weaker rupee increases import costs, particularly for oil and electronics, potentially fueling inflation and complicating the RBI's monetary policy decisions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Stock Markets Closed for Ambedkar Jayanti; Trading Resumes April 15</h3>
+    <div class="source">
+      
+        
+        NDTV
+        
+      
+         · 
+        Economic Times
+        
+      
+    </div>
+    <p>Indian stock exchanges NSE and BSE remained closed on April 14 for Dr. Ambedkar Jayanti, with no trading in equity, derivatives, or currency segments. MCX remained closed in the morning session but opened for evening trading from 5 pm, while NCDEX stayed closed the entire day. Normal trading across all exchanges resumed on April 15.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The holiday pause comes as markets digest geopolitical tensions and await further developments in the Middle East crisis that has roiled global markets.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-10/anthropic-model-scare-sparks-urgent-bessent-powell-warning-to-bank-ceos" target="_blank">Treasury and Fed Summon Wall Street CEOs Over Anthropic's Mythos AI Cybersecurity Risks</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-10/anthropic-model-scare-sparks-urgent-bessent-powell-warning-to-bank-ceos" target="_blank">Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Treasury Secretary Scott Bessent and Federal Reserve Chair Jerome Powell held an urgent meeting with major bank CEOs warning about unprecedented cyber risks from Anthropic's new Mythos AI model. The model can autonomously find and exploit thousands of zero-day vulnerabilities in operating systems and browsers, including bugs decades old. Anthropic is restricting access to only 40-50 organizations through Project Glasswing rather than public release.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This marks a watershed moment where AI capabilities in cybersecurity have advanced so rapidly that top US financial regulators felt compelled to convene emergency meetings with Wall Street leaders about defensive preparations.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/" target="_blank">Anthropic's Mythos AI Model Autonomously Exploits Decades-Old Security Vulnerabilities</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>Anthropic released preview access to its Mythos AI model exclusively to 12 partner organizations including Amazon, Apple, Google, Microsoft, and JPMorgan Chase as part of Project Glasswing. The model identified thousands of zero-day vulnerabilities, many 10-20 years old, including a 27-year-old bug in OpenBSD and exploits chaining four vulnerabilities together. Anthropic is withholding public release due to weaponization concerns, with OpenAI reportedly developing a similar model called 'Spud.'</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The model demonstrates AI's double-edged sword in cybersecurity: it can find vulnerabilities faster than human researchers but could also be weaponized by adversaries if it falls into the wrong hands.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.technologyreview.com/2026/04/13/1135675/want-to-understand-the-current-state-of-ai-check-out-these-charts/" target="_blank">Stanford's 2026 AI Index Shows Models Improving Despite Plateau Predictions, US-China Neck-and-Neck</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.technologyreview.com/2026/04/13/1135675/want-to-understand-the-current-state-of-ai-check-out-these-charts/" target="_blank">MIT Technology Review</a>
+        
+      
+    </div>
+    <p>Stanford's 2026 AI Index reveals AI models continue improving despite predictions of a development plateau, with Anthropic currently leading followed closely by xAI, Google, and OpenAI. Chinese models like DeepSeek and Alibaba lag only modestly behind US leaders. AI is boosting productivity by 14% in customer service and 26% in software development, though one-third of organizations expect workforce reductions in the coming year.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This annual benchmark report shows the global AI race remains intensely competitive with razor-thin margins between leaders, while also revealing AI's tangible but uneven impact on jobs and productivity.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/05/japan-is-proving-experimental-physical-ai-is-ready-for-the-real-world/" target="_blank">Japan Pushes Physical AI from Pilots to Real-World Deployment Amid Labor Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/05/japan-is-proving-experimental-physical-ai-is-ready-for-the-real-world/" target="_blank">TechCrunch</a>
+        
+      
+    </div>
+    <p>Japan's Ministry of Economy announced aims to capture 30% of the global physical AI market by 2040, driven by severe labor shortages as the working-age population is projected to shrink by nearly 15 million over 20 years. Companies are deploying AI-powered robots across factories, warehouses, and infrastructure, with Japan already holding 70% of the global industrial robotics market. The shift represents industrial survival rather than simple efficiency gains.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Japan's demographic crisis is forcing the country to become a global testbed for physical AI and robotics, potentially creating technologies that will be adopted worldwide as other nations face similar aging challenges.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Alibaba Claims Breakthrough with Viral 'Happy Horse' AI Model</h3>
+    <div class="source">
+      
+        
+        Bloomberg Technology
+        
+      
+    </div>
+    <p>Alibaba announced a major breakthrough with its 'Happy Horse' AI model that has gone viral, marking the latest advancement from Chinese tech giants in the global AI race. The announcement comes as Chinese models continue narrowing the gap with US competitors according to recent benchmarks. This represents Alibaba's effort to demonstrate parity with leading Western AI models.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The announcement underscores China's determination to close the AI gap with the United States despite chip export restrictions and trade tensions.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/14/jpmorgan-chase-jpm-earnings-1q-2026.html" target="_blank">JPMorgan Chase Reports Strong Q1 2026 Earnings, Beating Wall Street Estimates</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/14/jpmorgan-chase-jpm-earnings-1q-2026.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>JPMorgan Chase reported first-quarter net income of $16.5 billion, or $5.94 per share, exceeding analyst expectations by $0.48. Revenue reached $50.5 billion, up 10% year-over-year, driven by strong performance across consumer banking, commercial and investment banking divisions. CEO Jamie Dimon flagged 'increasingly complex' economic risks amid geopolitical tensions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As the first major U.S. bank to report Q1 2026 earnings, JPMorgan's results set the tone for the banking sector and signal resilience despite ongoing Middle East conflicts and economic uncertainty.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/12/stock-market-today-live-updates.html" target="_blank">Goldman Sachs Reports Second-Best Quarter Ever but Shares Fall on FICC Trading Miss</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/12/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Goldman Sachs reported Q1 2026 earnings of $17.55 per share on revenue of $17.23 billion, both beating analyst estimates, marking its second-best quarter ever for profit and revenue. However, shares fell nearly 4% in premarket trading as fixed income, currencies and commodities trading revenue of $4.01 billion missed expectations, and the bank posted higher-than-expected credit loss provisions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The mixed results reveal that even record-breaking performance may not satisfy investors increasingly focused on specific business line performance and risk provisions in an uncertain economic climate.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/13/markets-trump-strait-of-hormuz-blockade-gold-stocks-dollar.html" target="_blank">Markets Show Resilience as Investors Price In Geopolitical Risks Despite Strait of Hormuz Tensions</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/13/markets-trump-strait-of-hormuz-blockade-gold-stocks-dollar.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>U.S. equity markets demonstrated restrained reactions to the Strait of Hormuz blockade, with most major benchmarks falling only around 1%, suggesting investors have reached 'peak uncertainty' and are less reactive to geopolitical headlines. Oil prices surged while equity declines remained modest, indicating much of the geopolitical risk has been priced in.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The muted market response suggests a fundamental shift in investor sentiment, indicating markets may have absorbed maximum geopolitical fear and could be positioned for recovery if tensions ease.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-13/wall-street-expects-a-cautious-fed-as-t-bill-purchases-wind-down" target="_blank">Federal Reserve Announces Greater Wind Down of Treasury Bill Purchase Program</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-13/wall-street-expects-a-cautious-fed-as-t-bill-purchases-wind-down" target="_blank">Bloomberg</a>
+        
+      
+    </div>
+    <p>The Federal Reserve announced Monday it will buy approximately $25 billion of Treasury bills each month, representing a larger wind down than anticipated of the program designed to ease short-term funding costs by rebuilding reserves in the financial system. Wall Street analysts expect a cautious Fed approach as the program concludes.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Fed's more aggressive tapering of T-bill purchases signals growing confidence in financial system liquidity and marks another step in normalizing monetary policy after years of extraordinary intervention.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>AI Systems Accelerate Mathematical Discovery, Transforming Research Practices</h3>
+    <div class="source">
+      
+        
+        Additional: Quanta Magazine
+        
+      
+    </div>
+    <p>Artificial intelligence systems are increasingly being used to accelerate mathematical research, with AI tools helping mathematicians explore conjectures, verify proofs, and discover patterns that might take years for humans to identify. The development represents a shift in how mathematical research is conducted, though mathematicians emphasize that AI augments rather than replaces human intuition and creativity in the field.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The integration of AI into pure mathematics could accelerate breakthroughs in one of humanity's most abstract disciplines, with potential knock-on effects for physics, computer science, and cryptography.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Healthcare Insurers Increasingly Deploy AI to Make Coverage Decisions, Raising Concerns</h3>
+    <div class="source">
+      
+        
+        Additional: KFF Health News
+        
+      
+    </div>
+    <p>Major healthcare insurance companies are deploying artificial intelligence systems to help make coverage and reimbursement decisions, automating processes that previously required human review. Patient advocates and some physicians have raised concerns about transparency, accuracy, and the potential for AI systems to deny coverage inappropriately, particularly for complex or rare conditions that may not fit standard algorithms.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> As AI increasingly influences healthcare access decisions, questions about algorithmic fairness, appeal processes, and regulatory oversight become critical for patient outcomes and healthcare equity.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Cancer Drug Daraxonrasib Shows Promise in Clinical Trials for KRAS-Mutant Tumors</h3>
+    <div class="source">
+      
+        
+        Additional: STAT News
+        
+      
+    </div>
+    <p>Clinical trial results for daraxonrasib, a drug targeting KRAS-mutant cancers, showed encouraging responses in patients with previously difficult-to-treat tumors. KRAS mutations are among the most common drivers of cancer but have historically been challenging to target therapeutically. The trial results add to a growing class of KRAS-targeted therapies that represent a significant shift in cancer treatment.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> KRAS mutations drive approximately 25% of all cancers, making successful targeting of these mutations a major advance that could benefit millions of patients with lung, colorectal, and pancreatic cancers.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3>NBA Play-In Tournament Begins with Heat-Hornets, Suns-Trail Blazers Matchups</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>The NBA Play-In Tournament tipped off April 14 with the Miami Heat facing the Charlotte Hornets and the Phoenix Suns taking on the Portland Trail Blazers. The tournament determines the final playoff spots in each conference, with winners advancing and losers getting another chance in elimination games. The format, introduced in recent seasons, has added drama to the end of the regular season.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Play-In Tournament has revitalized late-season competition and given more teams meaningful games in April, though some traditionalists argue it devalues regular season performance.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Azzi Fudd Selected First Overall by Dallas Wings in 2026 WNBA Draft</h3>
+    <div class="source">
+      
+        
+        Additional: ESPN
+        
+      
+    </div>
+    <p>UConn guard Azzi Fudd was selected first overall by the Dallas Wings in the 2026 WNBA Draft held April 13. Fudd, a highly decorated college player who overcame significant injuries during her collegiate career, brings elite shooting and scoring ability to Dallas. The draft was held in New York with strong attendance and viewership reflecting growing interest in women's basketball.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The 2026 draft class enters the WNBA at a time of unprecedented growth for women's basketball, with increased media coverage, sponsorships, and fan engagement following the sport's recent surge in popularity.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3>Rory McIlroy Wins 2026 Masters Tournament, Completing Career Grand Slam</h3>
+    <div class="source">
+      
+        
+        Additional: BBC Sport
+        
+      
+    </div>
+    <p>Rory McIlroy captured his first Masters title on April 13, completing a career Grand Slam with victories in all four major golf championships. McIlroy finished at 12-under par after a final-round 69 at Augusta National, holding off challenges from Scottie Scheffler and Viktor Hovland. The victory ends McIlroy's decade-long quest for the green jacket and cements his legacy among golf's all-time greats.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> McIlroy joins elite company as only the sixth player to win all four major championships, a feat accomplished by legends like Tiger Woods, Jack Nicklaus, and Gary Player.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>MIT Technology Review</strong> — In-depth reporting on emerging technologies and their impact on business, society, and the future.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.technologyreview.com/2026/04/13/1135675/want-to-understand-the-current-state-of-ai-check-out-these-charts/" target="_blank">Want to Understand the Current State of AI? Check Out These Charts</a></h3>
+    <div class="source"><a href="https://www.technologyreview.com/2026/04/13/1135675/want-to-understand-the-current-state-of-ai-check-out-these-charts/" target="_blank">MIT Technology Review</a></div>
+    <p>Stanford's 2026 AI Index provides comprehensive data on the state of artificial intelligence development worldwide. The report shows continued model improvements despite predictions of plateaus, with the US and China running neck-and-neck in capabilities. Productivity gains are significant but uneven, with customer service seeing 14% improvements and software development 26%, while one-third of organizations plan workforce reductions. The index has become the definitive annual benchmark for tracking AI's evolution and impact.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/05/japan-is-proving-experimental-physical-ai-is-ready-for-the-real-world/" target="_blank">Japan Is Proving Experimental Physical AI Is Ready for the Real World</a></h3>
+    <div class="source"><a href="https://techcrunch.com/2026/04/05/japan-is-proving-experimental-physical-ai-is-ready-for-the-real-world/" target="_blank">TechCrunch</a></div>
+    <p>Japan is rapidly transitioning physical AI and robotics from laboratory experiments to real-world deployment across factories, warehouses, construction sites, and infrastructure. Driven by a demographic crisis that will shrink the working-age population by 15 million over 20 years, Japan's government aims to capture 30% of the global physical AI market by 2040. The country already dominates industrial robotics with 70% global market share and is leveraging this advantage to become the world's testbed for AI-powered automation that could eventually be adopted globally.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 36 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 12 · 1 hr 24 min listen
+         — <em>tell Leo when you finish to get your next listen</em>
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Tuesday, April 14, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · MIT Technology Review<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
