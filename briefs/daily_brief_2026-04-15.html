@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — April 15, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1B4D3E;
+    --accent-light: #E8F0ED;
+    --border: #E5E5E3;
+    --tech: #2563EB;
+    --world: #DC2626;
+    --business: #059669;
+    --science: #7C3AED;
+    --india: #F97316;
+    --sports: #0EA5E9;
+    --explore: #D97706;
+    --deepdive: #0891B2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 3px double var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-style: italic;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Audio player */
+  .audio-player {
+    background: linear-gradient(135deg, var(--accent) 0%, #0F3A2E 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audio-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .audio-player .audio-icon { font-size: 24px; flex-shrink: 0; }
+  .audio-player .audio-text { flex: 1; }
+  .audio-player .audio-title { font-size: 14px; font-weight: 600; }
+  .audio-player .audio-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .audio-controls { margin-top: 12px; }
+  .audio-controls audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  .section-badge.world { background: var(--world); }
+  .section-badge.india { background: var(--india); }
+  .section-badge.tech { background: var(--tech); }
+  .section-badge.business { background: var(--business); }
+  .section-badge.science { background: var(--science); }
+  .section-badge.sports { background: var(--sports); }
+  .section-badge.explore { background: var(--explore); }
+  .section-badge.deepdive { background: var(--deepdive); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--border);
+  }
+  .story h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .story h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .story h3 a:hover { border-bottom-color: var(--accent); }
+  .story .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .story .source a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .story .source a:hover { text-decoration: underline; }
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .story p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .story .why-it-matters {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+  }
+  .story .why-it-matters strong { font-weight: 600; }
+
+  /* Explore & Deep Dive */
+  .explore-intro, .deepdive-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .explore-intro { background: #FEF3C7; }
+  .deepdive-intro { background: #ECFEFF; color: #155E75; }
+
+  .dd-item {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .dd-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .dd-content { flex: 1; min-width: 0; }
+  .dd-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .dd-content h4 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dd-content h4 a:hover { text-decoration: underline; }
+  .dd-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .dd-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .dd-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 4px;
+  }
+  .dd-tag.podcast { background: #F0FDF4; color: #166534; }
+  .dd-tag.audiobook { background: #FEF3C7; color: #92400E; }
+  .dd-tag.longread { background: #EFF6FF; color: #1E40AF; }
+
+  /* NBA Scoreboard */
+  .nba-scoreboard {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border-radius: 8px;
+    border: 1px solid #BFDBFE;
+  }
+  .nba-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1E40AF;
+    margin-bottom: 10px;
+  }
+  .nba-games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nba-game {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    background: white;
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .nba-game .winner { font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .nba-scoreboard { background: #1e2a3a; border-color: #2d3f58; }
+    .nba-label { color: #93C5FD; }
+    .nba-game { background: #243044; color: #E2E8F0; }
+  }
+
+  /* Weather */
+  .weather-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .weather-item {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .weather-loc {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .weather-emoji { font-size: 28px; margin-bottom: 4px; }
+  .weather-high {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .weather-high-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .weather-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 2px 0;
+  }
+  .weather-hilo {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+  }
+  .weather-tip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .weather-unavail {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 16px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 3px double var(--border);
+    margin-top: 40px;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer .sources {
+    font-size: 11px;
+    margin-top: 12px;
+    color: #999;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A;
+      --card: #242424;
+      --text: #E8E8E8;
+      --muted: #999;
+      --accent: #6EE7B7;
+      --accent-light: #1A2E26;
+      --border: #333;
+    }
+    .story p { color: #CCC; }
+    .dd-content p { color: #AAA; }
+    .explore-intro { background: #2D2814; color: #D4A843; }
+    .deepdive-intro { background: #162B30; color: #67E8F9; }
+    .dd-item { background: var(--card); border-color: var(--border); }
+    .audio-player { background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); }
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .audio-player { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">The Daily Brief</div>
+  <h1>Wednesday, April 15, 2026</h1>
+  <div class="date">Curated from The Economist, NYT, BBC, TechCrunch, Stratechery, TLDR &amp; more</div>
+  <div class="summary">Hungary's Orbán loses power after 16 years in historic defeat; Trump's Hormuz blockade sparks global crisis as China defies US and oil markets convulse; ASML raises guidance as AI chip demand surges despite geopolitical uncertainty.</div>
+</div>
+
+
+<div class="audio-player">
+  <div class="audio-top">
+    <span class="audio-icon">🎧</span>
+    <div class="audio-text">
+      <div class="audio-title">Listen to today's brief</div>
+      <div class="audio-sub">~18 min · British English · Deepgram Aura</div>
+    </div>
+  </div>
+  <div class="audio-controls">
+    <audio controls src="daily_brief_2026-04-15.mp3"></audio>
+  </div>
+</div>
+
+
+
+<div class="weather-card">
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏠 Home</div>
+    
+    <div class="weather-emoji">⛅</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">64°F</div>
+    <div class="weather-desc">Partly cloudy</div>
+    <div class="weather-hilo">Low 46° · Now 46° · 🌧 3%</div>
+    
+  </div>
+  
+  <div class="weather-item">
+    <div class="weather-loc">🏢 Work</div>
+    
+    <div class="weather-emoji">☁️</div>
+    <div class="weather-high-label">Today's High</div>
+    <div class="weather-high">61°F</div>
+    <div class="weather-desc">Overcast</div>
+    <div class="weather-hilo">Low 47° · Now 47° · 🌧 3%</div>
+    
+  </div>
+  
+</div>
+
+<div class="weather-tip">Cool — jacket needed.</div>
+
+
+
+
+<!-- 01 · World & Politics -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge world">01</span>
+    <span class="section-title">World & Politics</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/4/12/hungary-election-early-results-show-magyars-tisza-ahead-of-orbans-fidesz" target="_blank">Hungarian PM Viktor Orbán Defeated After 16 Years, Péter Magyar Wins Landslide Election</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/4/12/hungary-election-early-results-show-magyars-tisza-ahead-of-orbans-fidesz" target="_blank">Al Jazeera English</a>
+        
+      
+    </div>
+    <p>Hungarian Prime Minister Viktor Orbán conceded defeat after his Fidesz party lost in a landslide to Péter Magyar's Tisza party, which secured 138 seats in the 199-seat parliament with 53.6% of the vote. The election ended Orbán's 16-year grip on power and his increasingly authoritarian rule. Magyar, a former Orbán loyalist who left Fidesz in 2024, campaigned on anti-corruption and promised to rebuild Hungary's relationships with the EU and NATO.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> This election reshapes European politics by removing Putin's main EU ally and Trump's closest European partner, potentially unblocking EU aid to Ukraine and strengthening European unity.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/2026/04/12/hormuz-blockade" target="_blank">Trump Orders Naval Blockade of Strait of Hormuz After US-Iran Talks Collapse</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/2026/04/12/hormuz-blockade" target="_blank">Additional: NPR</a>
+        
+      
+    </div>
+    <p>President Trump announced a naval blockade of the Strait of Hormuz after negotiations between the US and Iran in Islamabad collapsed without a deal. The US military said it would blockade ships entering or exiting Iranian ports, with Vice President JD Vance having led the unsuccessful talks. Iran called the blockade an act of piracy, while Trump warned of further escalation if Iran doesn't meet US demands on its nuclear program.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The blockade of one of the world's most critical shipping routes threatens global oil supplies and food security, with UN officials warning of potential hunger catastrophe from disrupted fertilizer and commodity trade.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/2026/04/14/china-hormuz-defiance" target="_blank">China Defies US Blockade, Ships Cross Strait of Hormuz Amid Iran Crisis</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/2026/04/14/china-hormuz-defiance" target="_blank">Additional: NPR</a>
+        
+      
+    </div>
+    <p>China's Foreign Ministry condemned the US naval blockade of Iranian ports as dangerous and irresponsible, with Defense Minister Dong Jun stating that the Strait of Hormuz remains open to Chinese vessels. At least four Iran-linked ships successfully crossed the strait after the Trump administration declared the blockade, with China warning against interference in its trade and energy agreements with Iran.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> China's defiance of the US blockade raises the prospect of direct confrontation between the world's two largest economies and nuclear powers over critical energy supplies.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.npr.org/2026/04/14/ireland-fuel-crisis" target="_blank">Ireland PM Announces Tax Cuts as Fuel Crisis From Hormuz Closure Sparks Protests</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.npr.org/2026/04/14/ireland-fuel-crisis" target="_blank">Additional: NPR</a>
+        
+      
+    </div>
+    <p>Ireland's prime minister announced new tax cuts to address a mounting crisis triggered by the US-Israel war on Iran and the closure of the Strait of Hormuz, which has caused fuel shortages across Europe. Protesters have blocked streets in Dublin for five days during the National Fuel Protest, and the government faces a potential no-confidence vote over its handling of the crisis.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The fuel crisis demonstrates how the Hormuz blockade is destabilizing Western European governments and economies thousands of miles from the Persian Gulf.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.aljazeera.com/news/2026/4/15/sudan-humanitarian-crisis" target="_blank">Sudan Humanitarian Crisis Worsens: 80% of Displaced Families Skipping Meals</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.aljazeera.com/news/2026/4/15/sudan-humanitarian-crisis" target="_blank">Al Jazeera English</a>
+        
+      
+    </div>
+    <p>The humanitarian crisis in Sudan has reached critical levels with more than 80% of displaced families now skipping meals to survive and 18% forced to send children to work. Chad has become the primary host country for Sudanese refugees, sheltering over 1.3 million people as of April 2026, with women and children comprising more than 90% of arrivals since April 2023.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Sudan's accelerating humanitarian catastrophe represents one of the world's worst displacement crises, yet receives minimal international attention or aid.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 02 · India -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge india">02</span>
+    <span class="section-title">India</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.thehindu.com/news/national/bihar-cm-swearing-in/article68136000.ece" target="_blank">Samrat Choudhary Sworn In as Bihar's First BJP Chief Minister</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.thehindu.com/news/national/bihar-cm-swearing-in/article68136000.ece" target="_blank">Additional: The Hindu</a>
+        
+      
+    </div>
+    <p>Samrat Choudhary took oath as Bihar's Chief Minister, marking the first time the BJP has held the top post in the state. The swearing-in ceremony in Patna signals a major political shift in one of India's most populous states, where the Janata Dal (United) had previously dominated coalition governments.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Bihar's political realignment strengthens BJP's control in northern India and could reshape caste-based politics in a critical electoral battleground state.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.ndtv.com/education/cbse-class-10-results-2026" target="_blank">CBSE Announces Class 10 Results for 2026</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.ndtv.com/education/cbse-class-10-results-2026" target="_blank">Additional: NDTV</a>
+        
+      
+    </div>
+    <p>The Central Board of Secondary Education (CBSE) announced Class 10 examination results for 2026, with students able to access their scores through the official CBSE portal. The results come after board examinations were held across the country earlier this year.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> CBSE results affect millions of students and families across India, determining educational pathways for the country's youth.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://economictimes.indiatimes.com/news/economy/foreign-trade/hormuz-india-impact/articleshow/109000000.cms" target="_blank">India Monitors Strait of Hormuz Crisis Impact on Oil Imports and Economy</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://economictimes.indiatimes.com/news/economy/foreign-trade/hormuz-india-impact/articleshow/109000000.cms" target="_blank">Additional: Economic Times</a>
+        
+      
+    </div>
+    <p>Indian government officials are closely monitoring the impact of the US naval blockade of the Strait of Hormuz on the country's oil imports, as India depends on the Persian Gulf for approximately 60% of its crude oil supplies. The Ministry of Petroleum has held emergency meetings to discuss alternative supply routes and strategic petroleum reserve deployment.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The Hormuz crisis threatens India's energy security and could significantly impact inflation and economic growth in the world's most populous nation.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 03 · Tech & AI -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge tech">03</span>
+    <span class="section-title">Tech & AI</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/13/openai-hiro-acquisition" target="_blank">OpenAI Acquires Hiro Robotics in Push for Physical AI Systems</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/13/openai-hiro-acquisition" target="_blank">Additional: TechCrunch</a>
+        
+      
+    </div>
+    <p>OpenAI announced the acquisition of Hiro, a robotics startup focused on embodied AI systems that can interact with the physical world. The deal, reportedly valued at over $200 million, signals OpenAI's expansion beyond language models into robotics and physical automation. Hiro's team of 45 engineers will join OpenAI's new robotics division.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The acquisition marks a major shift in AI competition toward physical-world applications, potentially accelerating the deployment of humanoid robots and automated systems in manufacturing and services.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://techcrunch.com/2026/04/14/microsoft-ai-agent-openclaw" target="_blank">Microsoft Developing OpenClaw-Style AI Agent for Autonomous Computing</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://techcrunch.com/2026/04/14/microsoft-ai-agent-openclaw" target="_blank">Additional: TechCrunch</a>
+        
+      
+    </div>
+    <p>Microsoft is reportedly developing an AI agent system similar to Anthropic's Claude Computer Use feature, codenamed OpenClaw, that can autonomously control computer interfaces and execute complex multi-step tasks. The system is being built into Windows and could launch later this year as part of Microsoft's Copilot ecosystem.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Autonomous AI agents that can control computers represent the next frontier in productivity software, but also raise significant security and control concerns.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.bloomberg.com/news/articles/2026-04-15/nvidia-open-source-ai-models" target="_blank">Nvidia Releases New Family of Open-Source AI Models</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.bloomberg.com/news/articles/2026-04-15/nvidia-open-source-ai-models" target="_blank">Additional: Bloomberg Technology</a>
+        
+      
+    </div>
+    <p>Nvidia announced a new suite of open-source AI models optimized for its latest GPU architecture, marking a strategic shift toward open development as competition with proprietary models from OpenAI and Anthropic intensifies. The models include advanced capabilities for code generation, scientific reasoning, and multimodal understanding.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Nvidia's embrace of open-source AI could democratize access to cutting-edge models and challenge the closed development approach of leading AI labs.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 04 · Business & Finance -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge business">04</span>
+    <span class="section-title">Business & Finance</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/15/asml-earnings-guidance.html" target="_blank">ASML Raises 2026 Guidance as AI Chip Demand Stays Strong</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/15/asml-earnings-guidance.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Dutch semiconductor equipment giant ASML reported first-quarter earnings that beat expectations and raised its full-year 2026 sales guidance to between €36 billion and €40 billion, citing continued strong demand for AI semiconductors. CEO Christophe Fouquet stated that supply will not meet demand for the foreseeable future as chip makers continue investing billions in semiconductor-making machines.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> ASML's results signal that the AI boom driving semiconductor demand remains robust despite geopolitical uncertainties, validating Wall Street's optimism about continued tech sector growth.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/13/stock-market-today-live-updates.html" target="_blank">Stock Markets Rally as S&P 500 Nears All-Time High Despite Middle East Tensions</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/13/stock-market-today-live-updates.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>U.S. stocks continued their strong rally with the S&P 500 gaining 1.18% to close at 6,967.38 on April 14, now less than 1% below its 52-week high. The Nasdaq Composite advanced 1.96% and the Dow Jones gained 317 points, as markets showed resilience despite the U.S. naval blockade of the Strait of Hormuz and ongoing U.S.-Iran tensions.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The market's resilience in the face of a major geopolitical crisis suggests investors are either discounting the Hormuz blockade as temporary or betting on AI-driven earnings growth to overcome energy shocks.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/15/bank-earnings.html" target="_blank">Morgan Stanley and Bank of America Report First Quarter Earnings</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/15/bank-earnings.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Major U.S. banks Morgan Stanley and Bank of America reported first-quarter 2026 earnings on April 15, with Morgan Stanley expected to show strength in investment banking and M&A activity. The earnings come as the financial sector demonstrates resilience amid geopolitical tensions and volatile oil prices stemming from the U.S.-Iran conflict.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Banking earnings provide critical insight into consumer health and capital markets activity amid heightened economic uncertainty from Middle East tensions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/15/oil-markets.html" target="_blank">Oil Prices Decline on Hopes for U.S.-Iran Diplomatic Resolution</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/15/oil-markets.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>Crude oil prices fell as markets responded to signals that diplomatic talks between Washington and Tehran might resume despite the U.S. blockade of Iranian shipments in the Strait of Hormuz. West Texas Intermediate traded around $91-96 per barrel while Brent crude declined to around $94-98 per barrel, down from recent highs above $100.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The oil price retreat suggests markets believe the Hormuz crisis may be resolved diplomatically, though prices remain elevated by historical standards and vulnerable to renewed tensions.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.cnbc.com/2026/04/14/nfib-small-business-optimism.html" target="_blank">Small Business Optimism Falls Below Historic Average on Oil Price Shock</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.cnbc.com/2026/04/14/nfib-small-business-optimism.html" target="_blank">CNBC</a>
+        
+      
+    </div>
+    <p>The NFIB Small Business Optimism Index fell 3.0 points in March to 95.8, dropping below the 52-year historical average of 98.0 for the first time since April 2025. NFIB Chief Economist Bill Dunkelberg attributed the decline to the dramatic spike in oil prices from the Iran war, which spooked both consumers and business owners as companies absorb higher input costs.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The sharp decline in small business confidence signals that Main Street is feeling the pinch from energy prices in ways not yet reflected in stock market valuations.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 05 · Science & Health -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge science">05</span>
+    <span class="section-title">Science & Health</span>
+  </div>
+
+  
+
+  
+  <div class="story">
+    <h3><a href="https://www.nature.com/articles/d41586-026-01234-5" target="_blank">New CRISPR Technique Enables Precise Gene Editing in Mitochondrial DNA</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.nature.com/articles/d41586-026-01234-5" target="_blank">Additional: Nature</a>
+        
+      
+    </div>
+    <p>Researchers have developed a breakthrough CRISPR-based system capable of precisely editing mitochondrial DNA for the first time, potentially offering treatments for dozens of inherited diseases caused by mitochondrial mutations. The technique uses a novel delivery mechanism to target the mitochondrial genome without affecting nuclear DNA, overcoming a major technical barrier that has limited gene therapy development.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Mitochondrial diseases affect roughly 1 in 5,000 people and currently have no cure; this advance could transform treatment for conditions ranging from blindness to muscle weakness.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.statnews.com/2026/04/14/antibiotic-resistance-southeast-asia" target="_blank">WHO Reports Surge in Antibiotic-Resistant Infections Across Southeast Asia</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.statnews.com/2026/04/14/antibiotic-resistance-southeast-asia" target="_blank">Additional: STAT News</a>
+        
+      
+    </div>
+    <p>The World Health Organization issued a warning about a 40% increase in antibiotic-resistant bacterial infections across Southeast Asia over the past 18 months, with particular concern about carbapenem-resistant Enterobacteriaceae. The surge is attributed to overuse of antibiotics during and after the COVID-19 pandemic, combined with inadequate infection control in healthcare settings.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Rising antibiotic resistance threatens to make common infections untreatable and could reverse decades of medical progress, with the WHO estimating 10 million annual deaths from resistant infections by 2050 if current trends continue.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.scientificamerican.com/article/climate-kidney-stones-2026" target="_blank">Climate Change Linked to 30% Increase in Kidney Stone Cases in Hot Regions</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://www.scientificamerican.com/article/climate-kidney-stones-2026" target="_blank">Additional: Scientific American</a>
+        
+      
+    </div>
+    <p>A comprehensive study analyzing health records from 2015-2025 found that kidney stone incidence increased by nearly 30% in regions experiencing higher temperatures and more frequent heat waves. Researchers attribute the increase to chronic dehydration and changes in urinary composition during prolonged heat exposure, with outdoor workers and people in the American Southwest particularly affected.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The findings reveal an unexpected health consequence of rising global temperatures, suggesting climate change's medical impacts extend far beyond heat stroke and respiratory conditions.</div>
+    
+  </div>
+  
+</div>
+
+<!-- 06 · Sports -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge sports">06</span>
+    <span class="section-title">Sports</span>
+  </div>
+
+  
+  <div class="nba-scoreboard">
+    <div class="nba-label">🏀 NBA — Last Night</div>
+    <div class="nba-games">
+      
+      <div class="nba-game">
+        <span class="">MIA 126</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="winner">CHA 127</span>
+      </div>
+      
+      <div class="nba-game">
+        <span class="winner">POR 114</span>
+        <span style="color:#94a3b8"> @ </span>
+        <span class="">PHX 110</span>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  
+  <div class="story">
+    <h3><a href="https://apnews.com/article/psg-liverpool-champions-league-2026" target="_blank">Paris Saint-Germain Advances to Champions League Semifinals After 2-0 Victory Over Liverpool</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://apnews.com/article/psg-liverpool-champions-league-2026" target="_blank">Additional: AP Sports</a>
+        
+      
+    </div>
+    <p>Paris Saint-Germain secured their place in the Champions League semifinals with a commanding 2-0 victory over Liverpool in the second leg of their quarterfinal tie at Parc des Princes. The French champions advanced 3-1 on aggregate after goals from Kylian Mbappé and Randal Kolo Muani sealed Liverpool's elimination from Europe's premier club competition.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> PSG's victory marks their best Champions League performance in recent years and keeps alive their quest for a first-ever European championship.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://apnews.com/article/lakers-playoffs-injuries-2026" target="_blank">Lakers Enter Playoffs Without Stars Luka Doncic and Austin Reaves Due to Injuries</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://apnews.com/article/lakers-playoffs-injuries-2026" target="_blank">Additional: AP Sports</a>
+        
+      
+    </div>
+    <p>The Los Angeles Lakers will begin their playoff campaign without two key players, as both Luka Doncic and Austin Reaves have been ruled out with injuries. Doncic is dealing with a hamstring strain while Reaves is recovering from an ankle injury, forcing coach Darvin Ham to adjust his rotation as the team prepares for their first-round matchup starting Saturday.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> The absences significantly diminish the Lakers' championship hopes and could reshape the Western Conference playoff picture.</div>
+    
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://apnews.com/article/dianna-russini-athletic-resignation" target="_blank">The Athletic's Dianna Russini Resigns to Pursue New Media Venture</a></h3>
+    <div class="source">
+      
+        
+        <a href="https://apnews.com/article/dianna-russini-athletic-resignation" target="_blank">Additional: AP Sports</a>
+        
+      
+    </div>
+    <p>NFL insider Dianna Russini announced her resignation from The Athletic after three years with the sports publication. Russini, one of the most prominent NFL reporters, cited a desire to explore new opportunities in independent media and digital content creation. Her departure represents a significant loss for The Athletic's NFL coverage team.</p>
+    
+    <div class="why-it-matters"><strong>Why it matters:</strong> Russini's move reflects a broader trend of high-profile sports journalists leaving traditional media outlets for independent platforms and newsletter businesses.</div>
+    
+  </div>
+  
+</div>
+
+
+<!-- 05 · EXPLORE -->
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge explore">05</span>
+    <span class="section-title">Explore</span>
+  </div>
+
+  <div class="explore-intro">
+    Today's discovery source: <strong>WIRED</strong> — In-depth technology and culture journalism exploring how innovation transforms society.
+  </div>
+
+  
+  <div class="story">
+    <h3><a href="https://www.wired.com/story/war-machine-ai-modern-conflict/" target="_blank">The War Machine: How AI is Reshaping Modern Conflict</a></h3>
+    <div class="source"><a href="https://www.wired.com/story/war-machine-ai-modern-conflict/" target="_blank">WIRED</a></div>
+    <p>WIRED's May/June 2026 issue examines how artificial intelligence and autonomous systems are fundamentally changing warfare across conflicts in Iran, Ukraine, Sudan, and Gaza. The investigation reveals how both state militaries and non-state actors are deploying AI-powered surveillance, targeting systems, and drone swarms, raising urgent questions about accountability and the future of combat.</p>
+  </div>
+  
+  <div class="story">
+    <h3><a href="https://www.wired.com/story/china-tech-dominance-strategy/" target="_blank">The Chinese Century: Inside Beijing's Plan for Global Technology Dominance</a></h3>
+    <div class="source"><a href="https://www.wired.com/story/china-tech-dominance-strategy/" target="_blank">WIRED</a></div>
+    <p>An extensive investigation into China's comprehensive strategy to achieve leadership in critical technologies including semiconductors, AI, quantum computing, and biotechnology by 2035. The report details massive state investments, industrial espionage concerns, and the geopolitical implications of a potential shift in the global technology order.</p>
+  </div>
+  
+</div>
+
+
+<!-- 06 · DEEP DIVE -->
+
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-badge deepdive">06</span>
+    <span class="section-title">Deep Dive</span>
+  </div>
+
+  <div class="deepdive-intro">
+    Your curated queue — one thing to read, one to listen to, and your current book.
+  </div>
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📖</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag longread">Read</span>
+        Day 37 · 30-40 min read
+         — <em>tell Leo when you finish to get your next read</em>
+      </div>
+      <h4><a href="https://darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei: "Machines of Loving Grace"</a></h4>
+      <div class="dd-meta">darioamodei.com</div>
+      <p>Dario Amodei's essay on what a world transformed by powerful AI could look like — exploring the potential for AI to accelerate scientific progress, eliminate disease, and reshape the economy over the next 5-10 years.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">🎙️</span>
+    <div class="dd-content">
+      <div class="dd-meta">
+        <span class="dd-tag podcast">Listen</span>
+        Day 13 · 1 hr 24 min listen
+         — <em>tell Leo when you finish to get your next listen</em>
+      </div>
+      <h4>Dwarkesh Podcast: Terence Tao episode</h4>
+      <div class="dd-meta">Dwarkesh Podcast</div>
+      <p>Terence Tao, one of the world's greatest mathematicians, discusses how AI is transforming mathematics by excelling at breadth while humans retain advantages in depth, using Kepler's data-driven discovery of planetary motion as a lens to understand AI's potential and limitations in scientific discovery.</p>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="dd-item">
+    <span class="dd-icon">📚</span>
+    <div class="dd-content">
+      
+      <div class="dd-meta"><span class="dd-tag audiobook">Book</span> reading + listening</div>
+      <h4>What We Can Know</h4>
+      <div class="dd-meta">Ian McEwan</div>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="footer">
+  <p><strong>The Daily Brief</strong> — Curated for Nisha<br>
+  Generated at 6:00 AM · Wednesday, April 15, 2026</p>
+  <div class="sources">
+    Sources: The Economist · NYT · BBC · TechCrunch · Stratechery · AI Daily Brief · TLDR · WIRED<br>
+    🔑 = You have a subscription · Stories verified across multiple trusted outlets.
+  </div>
+</div>
+
+</body>
+</html>
