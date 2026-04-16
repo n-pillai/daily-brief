@@ -1,7 +1,7 @@
 {
-  "date": "2026-04-15",
-  "generated_at": "2026-04-15T13:05:53.258620+00:00",
-  "regressions_detected": 1,
+  "date": "2026-04-16",
+  "generated_at": "2026-04-16T13:09:58.260168+00:00",
+  "regressions_detected": 0,
   "total_checks": 7,
   "results": [
     {
@@ -11,15 +11,8 @@
     },
     {
       "bug_id": "paywalled-explore",
-      "detected": true,
-      "details": "Found 2 paywalled URL(s): https://www.wired.com/story/war-machine-ai-modern-conflict/, https://www.wired.com/story/china-tech-dominance-strategy/",
-      "fix_recipe": [
-        "Check validate_brief() explore URL enforcement \u2014 is the paywall filter still present?",
-        "Check if new paywalled domains have been added to config.json explore_pool without updating the filter",
-        "Add the offending domain to flagged_domains in this known_bugs.json entry",
-        "If the domain is a subscriber source (Nisha has access), consider adding it to an allowlist instead"
-      ],
-      "severity": "medium"
+      "detected": false,
+      "details": null
     },
     {
       "bug_id": "nba-score-formatting",
